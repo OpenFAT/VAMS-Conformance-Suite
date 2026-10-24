@@ -155,7 +155,7 @@ run.verilog     = vvp -n "$CONFORM_WORK/sim.vvp"
 | `CONFORM_TOOLDIR` | the config's directory, for adapters beside it |
 | `CONFORM_FILES`, `CONFORM_LIBMAP`, `CONFORM_LIBLIST`, `CONFORM_STD` | from `//@` lines |
 | `CONFORM_COMPILE_ONLY` | `1` when only compiling is judged (see Stages) |
-| `CONFORM_<KEY>` | from a manifest row's `KEY=VALUE` columns (a row sets these, not `//@` lines: `STD`, `INCDIR`, `DIRS` the directories its runner makes in the cwd, `DEFINES`, `SHIM` an include directory under `external/`) |
+| `CONFORM_<KEY>` | from a manifest row's `KEY=VALUE` columns (a row sets these, not `//@` lines: `STD`, `INCDIR`, `DIRS` the directories its runner makes in the cwd, `DEFINES`, `SHIM` an include directory under `external/`). The harness reads `FILTER`, `RTOL`, `ATOL` and `DIFF=OUT:GOLD` (the file the run writes must equal GOLD, compared as `//! expect vcd`) |
 
 | Config | Languages | Notes |
 |---|---|---|
