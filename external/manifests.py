@@ -114,6 +114,14 @@ IVL_STD = {"-g2005": "1364-2005", "-g2001": "1364-2001", "-g2001-noconfig": "136
            "-g1": "1364-1995", "-g2": "1364-2001", "-gspecify": None}
 
 
+# Rows whose ivtest type is an Icarus limitation, not IEEE 1364-2005: the
+# source is legal, so it must compile (and, with a PASSED line, run).
+IV_WANT = {
+    "comment1": ("passed", "§3.3: `/*` inside a block comment is comment text"),
+    "event_array": ("compile", "A.2.1.3: list_of_event_identifiers takes a dimension"),
+}
+
+
 def ivtest():
     iv = EXT / "iverilog/ivtest"
     seen, entries = set(), {}
@@ -128,7 +136,9 @@ def ivtest():
             if lst == "regress-vlg.list" and len(f) >= 3:
                 ty, *args = f[1].split(",")
                 gold = f[3][5:] if len(f) > 3 and f[3].startswith("gold=") else None
-                entries[f[0]] = (ty, args, f"{f[2]}/{f[0]}.v", gold and f"gold/{gold}")
+                # diff=OUT:GOLD[:N]: the file the run writes is the oracle (N header lines aside)
+                diff = ":".join(f[3][5:].split(":")[:2]) if len(f) > 3 and f[3].startswith("diff=") else None
+                entries[f[0]] = (ty, args, f"{f[2]}/{f[0]}.v", gold and f"gold/{gold}", diff)
     for line in read(iv / "regress-vvp.list").split("\n"):
         f = re.sub(r"#.*", "", line).split()
         if len(f) < 2 or f[0] in seen:
@@ -142,11 +152,12 @@ def ivtest():
         # `-gstrict-expr-width` it adds are about Icarus, not the test.
         j["gold"] = j.get("strict", {}).get("gold", j.get("gold"))
         gold = j.get("gold")
-        entries[f[0]] = (j["type"], j.get("iverilog-args", []), f"ivltests/{j['source']}",
-                         gold and f"gold/{gold}-vvp-stdout.gold")
+        # vvp-args (`-ql-` quiet mode, `-m` a VPI module) configure Icarus's runtime
+        args = j.get("iverilog-args", []) + j.get("vvp-args", [])
+        entries[f[0]] = (j["type"], args, f"ivltests/{j['source']}", gold and f"gold/{gold}-vvp-stdout.gold", None)
     rows, skipped = [], {}
     want = {"normal": "ok", "CE": "reject", "RE": "reject-run", "CO": "compile", "CN": "compile"}
-    for name, (ty, args, src, gold) in sorted(entries.items()):
+    for name, (ty, args, src, gold, diff) in sorted(entries.items()):
         if ty not in want:
             skipped[name] = f"of type {ty}"
             continue
@@ -161,15 +172,16 @@ def ivtest():
             skipped[name] = "calling a non-1364 system task"
             continue
         std = next((IVL_STD[a] for a in args if IVL_STD.get(a)), "1364-2005")
-        w = want[ty]
-        if w == "ok" and not gold:
+        w = IV_WANT.get(name, (want[ty],))[0]
+        if w == "ok" and not gold and not diff:
             w = "passed"
         # A reject's gold is iverilog's own diagnostic text, which IEEE 1364
         # leaves to the tool: the oracle is the rejection itself.
         if w in ("reject", "reject-run"):
             gold = None
         # DIRS: the work/ and log/ ivtest's runner creates in its cwd.
-        rows.append(["verilog", w, src, gold or "-", f"STD={std}", "INCDIR=ivltests", "DIRS=work log"] + ([f"FILTER={IV_FILTER}"] if gold else []))
+        rows.append(["verilog", w, src, gold or "-", f"STD={std}", "INCDIR=ivltests", "DIRS=work log"]
+                    + ([f"DIFF={diff}"] if diff and w == "ok" else []) + ([f"FILTER={IV_FILTER}"] if gold else []))
     write("ivtest", iv, rows, skipped, "Icarus Verilog's regression suite, the regress-vlg.list selection (GPL-2.0).")
 
 
@@ -206,12 +218,17 @@ def sv_tests():
 
 # --- ISP RAS ieee-1364-2005 ---------------------------------------------------
 
+# A row whose TYPE contradicts the example it copies: 14.2.4.4's Example 2 is
+# the clause's own "illegal" combination of ifnone and an unconditional path.
+ISPRAS_TYPE = {"test_14_02_04_4_2.v": "NEGATIVE"}
+
+
 def ispras():
     d = EXT / "ispras-sv-tests/ieee-1364-2005"
     rows, skipped = [], {}
     for p in sorted(d.glob("*.v")):
         m = re.search(r"//\s*!\s*TYPE:\s*(\w+)", read(p))
-        ty = m and m.group(1)
+        ty = ISPRAS_TYPE.get(p.name, m and m.group(1))
         if ty == "POSITIVE":
             rows.append(["verilog", "compile", p.name, "-", "STD=1364-2005"])
         elif ty == "NEGATIVE":
@@ -259,13 +276,18 @@ def openvaf():
 
 # --- gnucap-modelgen-verilog -------------------------------------------------------
 
+# Error tests gnucap does not name `error`: ref/<name>.out holds the error.
+# dump_macro.3: ports named `1` and `2` (A.1.3: a port is an identifier).
+GNUCAP_REJECT = {"dump_macro.3.vams"}
+
+
 def gnucap():
     d = EXT / "gnucap-modelgen-verilog/tests"
     rows, skipped = [], {}
     for p in sorted(d.glob("*.vams")):
         lang = "verilog-ams" if VAMS_RE.search(strip(read(p))) else "verilog-a"
         # every error test is named `*error*` (`.error.`, `dump_error.N`, `macro.errorN`)
-        rows.append([lang, "reject" if "error" in p.name else "compile", p.name])
+        rows.append([lang, "reject" if "error" in p.name or p.name in GNUCAP_REJECT else "compile", p.name])
     write("gnucap-modelgen", d, rows, skipped, "gnucap-modelgen-verilog's model tests; `error` names must be refused (GPL-3.0).")
 
 

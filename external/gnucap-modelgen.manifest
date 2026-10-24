@@ -117,7 +117,7 @@ verilog-a	compile	dump_loop.0.vams
 verilog-a	compile	dump_macro.0.vams
 verilog-a	compile	dump_macro.1.vams
 verilog-a	compile	dump_macro.2.vams
-verilog-a	compile	dump_macro.3.vams
+verilog-a	reject	dump_macro.3.vams
 verilog-a	compile	dump_macro.4.vams
 verilog-a	compile	dump_macro.5.vams
 verilog-a	reject	dump_macro.error0.vams

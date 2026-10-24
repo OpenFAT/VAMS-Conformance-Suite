@@ -380,6 +380,14 @@ static int parse_row(char *row, const char *mroot, Spec *sp, char *lang, char *s
         snprintf(key, sizeof key, "CONFORM_%s", col[i]);
         setenv(key, eq + 1, 1);
         if (!strcmp(col[i], "FILTER")) sp->filter = eq + 1;
+        if (!strcmp(col[i], "DIFF")) { /* OUT:GOLD, as `//! expect vcd OUT == GOLD`, GOLD from the root */
+            char *colon = strchr(eq + 1, ':');
+            if (!colon) return snprintf(why, MSG, "DIFF=%s is not OUT:GOLD", eq + 1), -1;
+            *colon = 0;
+            char gold[PATH_MAX * 2];
+            snprintf(gold, sizeof gold, "%s/%s", mroot, colon + 1);
+            sp->vcd_out = xstrdup(eq + 1), sp->vcd_gold = xstrdup(gold);
+        }
         if (!strcmp(col[i], "RTOL")) sp->rtol = atof(eq + 1);
         if (!strcmp(col[i], "ATOL")) sp->atol = atof(eq + 1);
     }
@@ -593,7 +601,8 @@ static int judge_output(const char *dir, const char *work, const Spec *sp, const
     if (sp->vcd_out) {
         char a[PATH_MAX], b[PATH_MAX];
         snprintf(a, sizeof a, "%s/%s", work, sp->vcd_out);
-        snprintf(b, sizeof b, "%s/%s", dir, sp->vcd_gold);
+        if (*sp->vcd_gold == '/') snprintf(b, sizeof b, "%s", sp->vcd_gold);
+        else snprintf(b, sizeof b, "%s/%s", dir, sp->vcd_gold);
         char *x = slurp(a, NULL), *y = slurp(b, NULL);
         int same = 0;
         if (x && y) {
