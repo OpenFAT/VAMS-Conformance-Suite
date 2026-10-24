@@ -1,0 +1,20 @@
+// A.8.2 Syntax 4-3 ends `transition` at its fifth slot:
+//
+//   transition ( analog_expression [ , analog_expression [ , analog_expression
+//       [ , analog_expression [ , constant_expression ] ] ] ] )
+//
+// i.e. §4.5.8's `transition(expr [, td [, rise_time [, fall_time [, time_tol ]]]])`.
+// A sixth argument derives from nothing, so there is no value to ignore. The
+// same call without the trailing `1.0` is the five-argument form, which
+// compiles (OpenVAF's transition_tolerance_err.va pins the same error).
+//
+//! lrm 4.5.8
+//! lrm A.8.2
+//! reject-only E0506
+`include "disciplines.vams"
+module ch04_transition_six_arguments(a, b);
+    inout a, b;
+    electrical a, b;
+
+    analog V(b) <+ transition(V(a), 0.0, 1n, 2n, 1p, 1.0);
+endmodule
