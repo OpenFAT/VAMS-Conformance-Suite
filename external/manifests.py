@@ -221,6 +221,16 @@ def top_files(d, ext):
     return [p for p in files if p.name not in included and re.search(r"\bmodule\b", strip(read(p)))]
 
 
+# Upstream "must compile" rows the LRM refuses. The row's mode follows the LRM;
+# the clause is the oracle.
+OPENVAF_LRM_REJECT = {
+    # VAMS-2023 5.10.3.4: absdelta() "is only allowed in an initial or always
+    # block of a Verilog-AMS module"; both put it in an analog @().
+    "openvaf/test_data/ui/event_functions.va": "5.10.3.4",
+    "integration_tests/VAMS2023_EVENT_FUNS/vams2023_event_funs.va": "5.10.3.4",
+}
+
+
 def openvaf():
     root = EXT / "OpenVAF-Reloaded"
     rows, skipped = [], {}
@@ -235,6 +245,9 @@ def openvaf():
     for d in sorted((root / "integration_tests").iterdir()):
         if d.is_dir():
             rows += [["verilog-a", "compile", str(p.relative_to(root))] for p in top_files(d, ".va")]
+    for r in rows:
+        if r[2] in OPENVAF_LRM_REJECT:
+            r[1] = "reject"
     write("openvaf", root, rows, skipped, "OpenVAF-Reloaded's diagnostic tests and the models its integration tests compile (GPL-3.0).")
 
 

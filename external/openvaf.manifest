@@ -3,7 +3,7 @@
 # left out: 4 with no expected log
 #root OpenVAF-Reloaded
 verilog-a	reject	openvaf/test_data/ui/ddx.va
-verilog-a	compile	openvaf/test_data/ui/event_functions.va
+verilog-a	reject	openvaf/test_data/ui/event_functions.va
 verilog-a	reject	openvaf/test_data/ui/event_functions_err.va
 verilog-a	reject	openvaf/test_data/ui/formatting.va
 verilog-a	reject	openvaf/test_data/ui/function_string_err.va
@@ -61,7 +61,7 @@ verilog-a	compile	integration_tests/PSP103/psp103t.va
 verilog-a	compile	integration_tests/RESISTOR/resistor.va
 verilog-a	compile	integration_tests/STRINGS/strings.va
 verilog-a	compile	integration_tests/VAMS2023_EVENTS/vams2023_events.va
-verilog-a	compile	integration_tests/VAMS2023_EVENT_FUNS/vams2023_event_funs.va
+verilog-a	reject	integration_tests/VAMS2023_EVENT_FUNS/vams2023_event_funs.va
 verilog-a	compile	integration_tests/VAMS2023_MATH/vams2023_math.va
 verilog-a	compile	integration_tests/VAMS2023_RTOI/vams2023_rtoi.va
 verilog-a	compile	integration_tests/VAMS2023_STRING_FUN/vams2023_string_fun.va
