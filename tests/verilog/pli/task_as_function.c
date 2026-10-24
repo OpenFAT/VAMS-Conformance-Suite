@@ -16,14 +16,14 @@
  * where only an expression can stand; a task returns no value, so the design
  * is refused before time 0: the host exits 1, naming $random, and neither
  * this application's cbStartOfSimulation nor the design's $display runs.
- * Its `//! refuse` line pins the refusal. Legal neighbour:
+ * Its `//! exit 1` and `.expected.stderr.txt` pin the refusal. Legal neighbour:
  * systf.c, whose $unsigned override is registered as a vpiSysFunc and
  * called as a function.
  */
 
 //! inherited-reject IEEE 1364-2005 20.3
 //! design task_as_function.v
-//! refuse vpi_host: `$random` is registered as a system task and called as a function (IEEE 1364-2005 §20.3)
+//! exit 1
 
 #include "b_check.h"
 

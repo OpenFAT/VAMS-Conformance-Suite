@@ -5,7 +5,7 @@
  * ------------------------------------------------------------------ DERIVATION
  *
  * analog_object_relations.va has one analog block, a begin-end of six statements:
- *   0, 1  `CHECK(...) — check.vh expands each to one $strobe call with five
+ *   0, 1  two CHECK macro calls — check.vh expands each to one $strobe call with five
  *         arguments (the format, the name, got, want, the comparison);
  *   2     $p04_tap(Vp(b1), 2.5);
  *   3     Ip(b1) <+ Vp(b1) / 1k;
