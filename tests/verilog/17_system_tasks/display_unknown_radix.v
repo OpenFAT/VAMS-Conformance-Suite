@@ -60,7 +60,7 @@
 //
 //! lrm 9.4.3
 //! inherited IEEE 1364-2005 17.1 (17.1.1.4 unknown / high-impedance display)
-//! expect stdout 02_display_unknown_radix.expected.txt
+//! expect stdout display_unknown_radix.expected.txt
 `timescale 1ns/1ns
 module d09_display_unknown_radix;
   reg [7:0] v;

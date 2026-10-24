@@ -52,7 +52,7 @@
 //! lrm 9.6
 //! lrm 9.6:1000
 //! inherited IEEE 1364-2005 17.3 ($timeformat and the %t conversion)
-//! expect stdout 07_timeformat.expected.txt
+//! expect stdout timeformat.expected.txt
 `timescale 10ns/1ns
 module d09_timeformat;
   initial begin

@@ -44,7 +44,7 @@
 //! lrm 9.5 (Table 9-2)
 //! inherited IEEE 1364-2005 17.2.9 ($readmemb range form, descending load, x/z data)
 //! data 09_readmemb_range.bin
-//! expect stdout 09_readmemb_range.expected.txt
+//! expect stdout readmemb_range.expected.txt
 `timescale 1ns/1ns
 module d09_readmemb_range;
   reg [3:0] m [0:7];

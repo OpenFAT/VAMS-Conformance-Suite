@@ -50,7 +50,7 @@
 //
 //! lrm 9.10
 //! inherited IEEE 1364-2005 17.7 ($time rounding to the local time unit)
-//! expect stdout 06_time_rounding.expected.txt
+//! expect stdout time_rounding.expected.txt
 `timescale 10ns/100ps
 module d09_time_rounding;
   initial begin
