@@ -14,7 +14,7 @@
  *   12.10 vpi_get_analog_value() "shall retrieve the simulation value" of a
  *         quantity.
  *
- * THE HOST. The banner's `*! external` lines make tests/fixtures/ch11_vpi/vpi_host.zig attach
+ * THE HOST. The banner's `*! external` lines make VerA's VPI host (src/vpi/host.zig) attach
  * the built library's call table with no solution in it (n_u = n_rows =
  * n_shares = 0), then, per line, call analog_run.setPoint(kind, t, dt, freq)
  * and run every call's calltf once. Nothing is solved in this process, so

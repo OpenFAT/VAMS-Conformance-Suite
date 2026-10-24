@@ -13,7 +13,7 @@
  * what the application associates with the call under one instance is not
  * the other's.
  *
- * THE HOST. As for p03_14 (`*! external`), tests/fixtures/ch11_vpi/vpi_host.zig attaches the
+ * THE HOST. As for p03_14 (`*! external`), VerA's VPI host (src/vpi/host.zig) attaches the
  * design's library with no solution in it, on the installed design. The
  * `*! library` line adds a second, built from env_twin.va, attached with
  * its own design; `*! instances 2` makes it call every call once for host
