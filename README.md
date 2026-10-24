@@ -211,6 +211,13 @@ does not count), and `RTOL`/`ATOL` compare the numbers in them within
 `atol + rtol·max(|a|, |b|)`. A test name is `<manifest>/<source>`, which is
 also how an xfail file lists it.
 
+Where the governing LRM (IEEE 1364-2005, VAMS-2023) decides a test
+differently from its upstream suite, `external/expectations.tsv` overrides
+the row's want and gold and names the clause, written into the row as
+`LRM=`. Most are upstream tests of a construct the LRM forbids, now `reject`
+(issue #1); the gold files it adds live in `external/gold/`. A name there that
+no manifest has stops `manifests.py`.
+
 | Manifest | Upstream | Selected | Rule |
 |---|---|---:|---|
 | `ivtest` | Icarus Verilog `ivtest` | 1854 | `regress-vlg.list` ("any simulator that supports standard Verilog") and the vvp JSON tests, without Icarus-only options or non-1364 system tasks |
