@@ -6,8 +6,12 @@
 //! abstol I(p) = 1e-12
 //! checks 2
 // Own base natures below: D.1's guard keeps annex D's out of check.vh's include.
+// So `Voltage` is declared here too: §3.6.2.1 binds a declared nature (E0378).
 `define DISCIPLINES_VAMS 1
 `include "check.vh"
+nature Voltage;
+  units="V"; access=V; abstol=1u;
+endnature
 nature loose_current;
   units="A"; access=I; abstol=1n;
 endnature
