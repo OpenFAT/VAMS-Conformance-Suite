@@ -109,7 +109,6 @@ pass	verilog-a/annex_a_syntax/behavioral_statements.va
 pass	verilog-a/annex_a_syntax/branch_array.va
 pass	verilog-a/annex_a_syntax/case_generate.va
 pass	verilog-a/annex_a_syntax/concatenated_port.va
-pass	verilog-a/annex_a_syntax/configuration_source_text.va
 pass	verilog-a/annex_a_syntax/contribution_in_event_rejected.va
 pass	verilog-a/annex_a_syntax/contribution_to_variable_rejected.va
 pass	verilog-a/annex_a_syntax/declarations.va
@@ -124,7 +123,6 @@ pass	verilog-a/annex_a_syntax/expressions.va
 pass	verilog-a/annex_a_syntax/force_in_analog_rejected.va
 pass	verilog-a/annex_a_syntax/forever_in_analog_rejected.va
 pass	verilog-a/annex_a_syntax/function_call_takes_every_argument.va
-pass	verilog-a/annex_a_syntax/function_input_formals_only.va
 pass	verilog-a/annex_a_syntax/generate.va
 pass	verilog-a/annex_a_syntax/identifier_details_positive.va
 pass	verilog-a/annex_a_syntax/if_generate.va
@@ -137,7 +135,6 @@ pass	verilog-a/annex_a_syntax/long_sum_under_the_nesting_limit.va
 pass	verilog-a/annex_a_syntax/looping_statements.va
 pass	verilog-a/annex_a_syntax/macromodule.va
 pass	verilog-a/annex_a_syntax/macromodule_contributes.va
-pass	verilog-a/annex_a_syntax/mintypmax_constant_takes_typical.va
 pass	verilog-a/annex_a_syntax/module_instance_named.va
 pass	verilog-a/annex_a_syntax/module_instantiation.va
 pass	verilog-a/annex_a_syntax/module_ports.va
@@ -188,8 +185,6 @@ pass	verilog-a/annex_a_syntax/reject_A_9_3_identifier_starting_with_digit.va
 pass	verilog-a/annex_a_syntax/reject_A_9_4_vertical_tab_is_not_white_space.va
 pass	verilog-a/annex_a_syntax/replication.va
 pass	verilog-a/annex_a_syntax/source_text.va
-pass	verilog-a/annex_a_syntax/specparam_declaration_unsupported.va
-pass	verilog-a/annex_a_syntax/specparam_module_item_value.va
 pass	verilog-a/annex_a_syntax/string_literal.va
 pass	verilog-a/annex_a_syntax/sum_chain_past_the_old_parser_limit.va
 pass	verilog-a/annex_a_syntax/system_task_null_argument_space.va
@@ -2028,7 +2023,6 @@ pass	verilog-a/ch09_system_tasks/write_mode_reopen_appends_across_analyses.va
 pass	verilog-a/ch09_system_tasks/xposition.va
 pass	verilog-a/ch09_system_tasks/yposition.va
 pass	verilog-a/ch10_directives/a_conditional_directive_ends_with_its_operand.va
-pass	verilog-a/ch10_directives/a_directive_without_an_operand_is_one_word.va
 pass	verilog-a/ch10_directives/a_formal_inside_a_number_is_not_substituted.va
 pass	verilog-a/ch10_directives/an_escaped_identifier_is_one_macro_argument.va
 pass	verilog-a/ch10_directives/apostrophe_is_not_accent_grave.va
@@ -2112,7 +2106,6 @@ pass	verilog-a/ch10_directives/macro_formal_must_be_simple_identifier.va
 pass	verilog-a/ch10_directives/macro_indirect_recursion_rejected.va
 pass	verilog-a/ch10_directives/macro_late_binding.va
 pass	verilog-a/ch10_directives/macro_name_cannot_start_with_dollar.va
-pass	verilog-a/ch10_directives/macro_resetall_preserves_user.va
 pass	verilog-a/ch10_directives/macro_text_does_not_split_a_string.va
 pass	verilog-a/ch10_directives/macro_too_few_actuals_rejected.va
 pass	verilog-a/ch10_directives/macro_too_many_actuals_rejected.va
@@ -2127,8 +2120,6 @@ pass	verilog-a/ch10_directives/pragma_is_directive_text_not_source_text.va
 pass	verilog-a/ch10_directives/predefined_compact_modeling.va
 pass	verilog-a/ch10_directives/predefined_vams_enable.va
 pass	verilog-a/ch10_directives/resetall_inside_a_module_rejected.va
-pass	verilog-a/ch10_directives/resetall_restores_the_default_nettype.va
-pass	verilog-a/ch10_directives/resetall_restores_the_unconnected_drive_default.va
 pass	verilog-a/ch10_directives/the_tool_specific_predefined_macro.va
 pass	verilog-a/ch10_directives/timescale_precision_is_not_coarser_than_the_unit.va
 pass	verilog-a/ch10_directives/transition_arguments_override_default.va
@@ -2140,7 +2131,6 @@ pass	verilog-a/ch10_directives/unconnected_drive_reaches_a_named_port_connection
 pass	verilog-a/ch10_directives/unconnected_drive_region_closes_mid_compilation.va
 pass	verilog-a/ch10_directives/unconnected_drive_spares_an_unconnected_inout.va
 pass	verilog-a/ch10_directives/undef_conditional.va
-pass	verilog-a/ch10_directives/undef_predefined_macro.va
 pass	verilog-a/ch10_directives/undef_requires_a_name_rejected.va
 pass	verilog-a/ch10_directives/undefined_macro.va
 pass	verilog-a/ch10_directives/vams_enable_arm_carries_a_range_rejected.va
@@ -2217,17 +2207,20 @@ pass	verilog-ams/annex_a_syntax/analog_initial.va
 pass	verilog-ams/annex_a_syntax/case_equality_in_analog.va
 pass	verilog-ams/annex_a_syntax/child_output_reg_drives_parent_wire.va
 pass	verilog-ams/annex_a_syntax/concatenation_as_switch_terminal.va
+pass	verilog-ams/annex_a_syntax/configuration_source_text.va
 pass	verilog-ams/annex_a_syntax/connectrules_declaration.va
 pass	verilog-ams/annex_a_syntax/digital_declaration_forms_in_va.va
 pass	verilog-ams/annex_a_syntax/digital_statements_in_initial.va
 pass	verilog-ams/annex_a_syntax/drive_strength_resolves.va
 pass	verilog-ams/annex_a_syntax/drive_strength_unsupported.va
 pass	verilog-ams/annex_a_syntax/fork_in_analog_rejected.va
+pass	verilog-ams/annex_a_syntax/function_input_formals_only.va
 pass	verilog-ams/annex_a_syntax/gate_instantiation_one_input.va
 pass	verilog-ams/annex_a_syntax/gate_instantiation_truth_table.va
 pass	verilog-ams/annex_a_syntax/gate_instantiation_unsupported.va
 pass	verilog-ams/annex_a_syntax/hierarchical_digital_names.va
 pass	verilog-ams/annex_a_syntax/intra_assignment_implicit_event.va
+pass	verilog-ams/annex_a_syntax/mintypmax_constant_takes_typical.va
 pass	verilog-ams/annex_a_syntax/mintypmax_delay_takes_typical.va
 pass	verilog-ams/annex_a_syntax/named_event_trigger.va
 pass	verilog-ams/annex_a_syntax/net_and_variable_types.va
@@ -2270,6 +2263,8 @@ pass	verilog-ams/annex_a_syntax/specify_block_unsupported.va
 pass	verilog-ams/annex_a_syntax/specify_path_delay_mintypmax_list.va
 pass	verilog-ams/annex_a_syntax/specify_path_delays_design_runs.va
 pass	verilog-ams/annex_a_syntax/specify_paths_design_runs.va
+pass	verilog-ams/annex_a_syntax/specparam_declaration_unsupported.va
+pass	verilog-ams/annex_a_syntax/specparam_module_item_value.va
 pass	verilog-ams/annex_a_syntax/specparam_range_and_select.va
 pass	verilog-ams/annex_a_syntax/task_declaration_enabled_from_initial.va
 pass	verilog-ams/annex_a_syntax/task_enable.va
@@ -2692,6 +2687,7 @@ pass	verilog-ams/ch09_system_tasks/stop_in_analog_initial_rejected.va
 pass	verilog-ams/ch09_system_tasks/strobe_writes_once_per_accepted_solution.va
 pass	verilog-ams/ch09_system_tasks/timescale_tasks_in_digital_context.va
 pass	verilog-ams/ch09_system_tasks/ungetc_cancelled_by_fseek_and_gap_reads_zero.va
+pass	verilog-ams/ch10_directives/a_directive_without_an_operand_is_one_word.va
 pass	verilog-ams/ch10_directives/default_discipline.va
 pass	verilog-ams/ch10_directives/default_discipline_crosses_a_file_boundary.va
 pass	verilog-ams/ch10_directives/default_discipline_empty_reset.va
@@ -2704,7 +2700,11 @@ pass	verilog-ams/ch10_directives/default_nettype_value_grammar.va
 pass	verilog-ams/ch10_directives/default_nettype_wire_restores_implicit_nets.va
 pass	verilog-ams/ch10_directives/escaped_names_in_directives.va
 pass	verilog-ams/ch10_directives/ignored_standard_directives.va
+pass	verilog-ams/ch10_directives/macro_resetall_preserves_user.va
 pass	verilog-ams/ch10_directives/resetall_clears_default_discipline.va
+pass	verilog-ams/ch10_directives/resetall_restores_the_default_nettype.va
+pass	verilog-ams/ch10_directives/resetall_restores_the_unconnected_drive_default.va
+pass	verilog-ams/ch10_directives/undef_predefined_macro.va
 pass	verilog-ams/ch11_vpi/analog_object_relations.va
 pass	verilog-ams/ch11_vpi/analog_system_task_registration.va
 pass	verilog-ams/ch11_vpi/assignment_loop_objects.va

@@ -279,7 +279,7 @@ verilog-a/ch09_system_tasks/cubic_spline_natural_ends.va	hand2
 verilog-a/ch09_system_tasks/ignored_column_and_selector.va	hand2
 verilog-a/ch09_system_tasks/error_extrapolation_inside_is_legal.va	hand2
 verilog-a/ch09_system_tasks/param_given_variable_rejected.va	hand2
-verilog-a/ch10_directives/undef_predefined_macro.va	hand2
+verilog-ams/ch10_directives/undef_predefined_macro.va	hand2
 verilog-a/ch10_directives/line_macro_remapping.va	hand2
 verilog-ams/ch10_directives/default_nettype_wire_restores_implicit_nets.va	hand2
 verilog-a/ch10_directives/compact_modeling_macro_implies_its_extensions.va	hand2

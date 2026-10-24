@@ -19,7 +19,7 @@
 * last, so the samples inside the run are held to 1e-6. A runner that left
 * the factor at 0.9375 (its last step before 1) gets 0.83959, outside both.
 * Expected results: spice_op_source_stepping.expected.json
-.hdl "spice_op_exp_junction.va"
+.hdl "../verilog-a/ch09_system_tasks/spice_op_exp_junction.va"
 V1 in 0 DC 5
 R1 in a 1
 N1 a 0 spice_op_exp_junction

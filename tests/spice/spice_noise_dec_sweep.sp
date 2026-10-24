@@ -15,7 +15,7 @@
 *     3.16k 4.9755071417307534e-08    100k   1.5165723552667643e-08
 *     10k  4.770141081892325e-08
 * Expected results: spice_noise_dec_sweep.expected.json
-.hdl "spice_noise_rc_white.va"
+.hdl "../verilog-a/ch04_expressions/spice_noise_rc_white.va"
 Vin in 0 DC 0 AC 1
 Rs in out 1k noisy=0
 Nrc out 0 spice_noise_rc_white

@@ -19,7 +19,7 @@
 * R1 is noisy=0: a SPICE resistor carries 4kT/R by default, and this deck
 * isolates the model's one generator, whose two contributions are the claim.
 * Expected results: spice_noise_shared_generator.expected.json
-.hdl "spice_noise_shared_pair.va"
+.hdl "../verilog-a/ch04_expressions/spice_noise_shared_pair.va"
 V1 in 0 DC 0 AC 1
 R1 in out 1k noisy=0
 Np out x 0 spice_noise_shared_pair

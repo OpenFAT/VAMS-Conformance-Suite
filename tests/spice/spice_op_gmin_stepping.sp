@@ -16,7 +16,7 @@
 * within SPICE's reltol of the root; a runner that left gmin = 1e-3 in the
 * answer gets (1 - m)^3 = m^3 + m, m = 0.3059 (python3 bisection).
 * Expected results: spice_op_gmin_stepping.expected.json
-.hdl "spice_op_cubic_conductance.va"
+.hdl "../verilog-a/ch09_system_tasks/spice_op_cubic_conductance.va"
 V1 in 0 DC 1
 N1 in mid spice_op_cubic_conductance
 N2 mid 0 spice_op_cubic_conductance
