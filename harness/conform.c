@@ -370,6 +370,7 @@ static int parse_row(char *row, const char *mroot, Spec *sp, char *lang, char *s
     else if (!strcmp(w, "reject")) sp->reject = 1;
     else if (!strcmp(w, "reject-run")) sp->reject_run = sp->needs_run = 1, sp->exit_want = -1;
     else return snprintf(why, MSG, "unknown want `%s`", w), -1;
+    if (n > 3 && strchr(col[3], '=')) return snprintf(why, MSG, "gold column is `%s`: write `-` before KEY=VALUE", col[3]), -1;
     if (n > 3 && strcmp(col[3], "-")) snprintf(sp->gold, sizeof sp->gold, "%s/%s", mroot, col[3]);
     for (int i = 4; i < n; i++) {
         char *eq = strchr(col[i], '=');

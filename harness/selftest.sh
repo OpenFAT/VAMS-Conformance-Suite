@@ -64,6 +64,8 @@ printf 'FAILED\n' > "$T/up/t/d.out"
 # e: a row's STD= reaches the tool. f: a compile row's run is told it only compiles.
 cp "$T/up/t/a.v" "$T/up/t/e.v"; printf 'std=1364-2005\n' > "$T/up/gold/e.gold"
 cp "$T/up/t/a.v" "$T/up/t/f.v"; echo 1 > "$T/up/t/f.exit"
+# g: a KEY=VALUE in the gold column is a broken row, not a gold file.
+cp "$T/up/t/a.v" "$T/up/t/g.v"
 cat > "$T/s/up.manifest" <<'EOF2'
 #root ../up
 verilog	ok	t/a.v	gold/a.gold	FILTER=grep -v banner
@@ -72,6 +74,7 @@ verilog	passed	t/c.v
 verilog	passed	t/d.v
 verilog	ok	t/e.v	gold/e.gold	STD=1364-2005
 verilog	compile	t/f.v
+verilog	compile	t/g.v	STD=1364-2005
 EOF2
 printf 'verilog-a/xfail.va  # a known bug\nverilog-a/xpass.va\n' > "$T/xfail"
 
@@ -104,6 +107,7 @@ PASS	up/t/c.v
 FAIL	up/t/d.v
 PASS	up/t/e.v
 PASS	up/t/f.v
+FAIL	up/t/g.v
 PASS	verilog/named_gold.v
 FAIL	verilog/named_gold_missing.v
 SKIP	verilog-a/deck.sp
