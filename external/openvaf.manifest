@@ -19,7 +19,7 @@ verilog-a	compile	openvaf/test_data/syn_ui/module_overwrite_unknown_lint.va
 verilog-a	reject	openvaf/test_data/syn_ui/overwrite_reserved_ident.va
 verilog-a	reject	openvaf/test_data/syn_ui/reserved_ident_nested.va
 verilog-a	reject	openvaf/test_data/syn_ui/source_map.va
-verilog-a	reject	openvaf/test_data/syn_ui/unknown_lint.va
+verilog-a	compile	openvaf/test_data/syn_ui/unknown_lint.va
 verilog-a	compile	integration_tests/AMPLIFIER/amplifier.va
 verilog-a	compile	integration_tests/ASMHEMT/asmhemt.va
 verilog-a	compile	integration_tests/BSIM3/bsim3.va
@@ -35,7 +35,7 @@ verilog-a	compile	integration_tests/CURRENT_SOURCE/current_source.va
 verilog-a	compile	integration_tests/DIODE/diode.va
 verilog-a	compile	integration_tests/DIODE_CMC/diode_cmc.va
 verilog-a	compile	integration_tests/EKV/ekv.va
-verilog-a	compile	integration_tests/EKV_LONGCHANNEL/ekv_longchannel.va
+verilog-a	compile	integration_tests/EKV_LONGCHANNEL/ekv_longchannel.va	-	SHIM=shims/openvaf
 verilog-a	compile	integration_tests/HICUML2/hicuml2.va
 verilog-a	compile	integration_tests/HiSIM2/hisim2.va
 verilog-a	compile	integration_tests/HiSIMHV/hisimhv.va

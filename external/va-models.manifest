@@ -56,10 +56,10 @@ verilog-a	compile	mextram/vacode/bjt505.va
 verilog-a	compile	mextram/vacode/bjt505t.va
 verilog-a	compile	mextram/vacode/bjtd505.va
 verilog-a	compile	mextram/vacode/bjtd505t.va
-verilog-a	compile	mextram/vacode504p12p1/bjt504.va
-verilog-a	compile	mextram/vacode504p12p1/bjt504t.va
-verilog-a	compile	mextram/vacode504p12p1/bjtd504.va
-verilog-a	compile	mextram/vacode504p12p1/bjtd504t.va
+verilog-a	compile	mextram/vacode504p12p1/bjt504.va	-	DEFINES=__OPENVAF__
+verilog-a	compile	mextram/vacode504p12p1/bjt504t.va	-	DEFINES=__OPENVAF__
+verilog-a	compile	mextram/vacode504p12p1/bjtd504.va	-	DEFINES=__OPENVAF__
+verilog-a	compile	mextram/vacode504p12p1/bjtd504t.va	-	DEFINES=__OPENVAF__
 verilog-a	compile	mextram/vacode505p2p0/bjt505.va
 verilog-a	compile	mextram/vacode505p2p0/bjt505t.va
 verilog-a	compile	mextram/vacode505p2p0/bjtd505.va

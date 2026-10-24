@@ -137,6 +137,10 @@ def ivtest():
             j = json.loads(read(iv / f[1]))
         except ValueError:
             continue
+        # vvp_reg.py --strict: a standard-conforming run's gold overrides the
+        # default. Its `type: EF` (iverilog's own strict mode fails) and the
+        # `-gstrict-expr-width` it adds are about Icarus, not the test.
+        j["gold"] = j.get("strict", {}).get("gold", j.get("gold"))
         gold = j.get("gold")
         entries[f[0]] = (j["type"], j.get("iverilog-args", []), f"ivltests/{j['source']}",
                          gold and f"gold/{gold}-vvp-stdout.gold")
@@ -160,7 +164,12 @@ def ivtest():
         w = want[ty]
         if w == "ok" and not gold:
             w = "passed"
-        rows.append(["verilog", w, src, gold or "-", f"STD={std}", "INCDIR=ivltests"] + ([f"FILTER={IV_FILTER}"] if gold else []))
+        # A reject's gold is iverilog's own diagnostic text, which IEEE 1364
+        # leaves to the tool: the oracle is the rejection itself.
+        if w in ("reject", "reject-run"):
+            gold = None
+        # DIRS: the work/ and log/ ivtest's runner creates in its cwd.
+        rows.append(["verilog", w, src, gold or "-", f"STD={std}", "INCDIR=ivltests", "DIRS=work log"] + ([f"FILTER={IV_FILTER}"] if gold else []))
     write("ivtest", iv, rows, skipped, "Icarus Verilog's regression suite, the regress-vlg.list selection (GPL-2.0).")
 
 
@@ -221,6 +230,15 @@ def top_files(d, ext):
     return [p for p in files if p.name not in included and re.search(r"\bmodule\b", strip(read(p)))]
 
 
+# Errors OpenVAF raises by its own policy, not the LRM's: an unknown lint name
+# in `openvaf_allow`/`openvaf_warn` (VAMS-LRM 2.9 leaves an attribute's meaning
+# to the tool), so the source is legal and must compile.
+OPENVAF_POLICY = {"unknown_lint.va"}
+# OpenVAF also answers `include "disciplines.va"`/"constants.va" with annex D's headers
+# (openvaf/vfs/src/va_std.rs); shims/openvaf/ maps them to the .vams names.
+OPENVAF_ALIAS = re.compile(r'`include\s+"(?:disciplines|constants)\.va"')
+
+
 def openvaf():
     root = EXT / "OpenVAF-Reloaded"
     rows, skipped = [], {}
@@ -230,11 +248,12 @@ def openvaf():
             if not log.is_file():
                 skipped[str(p)] = "with no expected log"
                 continue
-            bad = re.search(r"(?mi)^error", read(log))
+            bad = re.search(r"(?mi)^error", read(log)) and p.name not in OPENVAF_POLICY
             rows.append(["verilog-a", "reject" if bad else "compile", str(p.relative_to(root))])
     for d in sorted((root / "integration_tests").iterdir()):
         if d.is_dir():
-            rows += [["verilog-a", "compile", str(p.relative_to(root))] for p in top_files(d, ".va")]
+            rows += [["verilog-a", "compile", str(p.relative_to(root))] + (["-", "SHIM=shims/openvaf"] if OPENVAF_ALIAS.search(read(p)) else [])
+                     for p in top_files(d, ".va")]
     write("openvaf", root, rows, skipped, "OpenVAF-Reloaded's diagnostic tests and the models its integration tests compile (GPL-3.0).")
 
 
@@ -245,17 +264,25 @@ def gnucap():
     rows, skipped = [], {}
     for p in sorted(d.glob("*.vams")):
         lang = "verilog-ams" if VAMS_RE.search(strip(read(p))) else "verilog-a"
-        rows.append([lang, "reject" if ".error." in p.name else "compile", p.name])
-    write("gnucap-modelgen", d, rows, skipped, "gnucap-modelgen-verilog's model tests; `.error.` names must be refused (GPL-3.0).")
+        # every error test is named `*error*` (`.error.`, `dump_error.N`, `macro.errorN`)
+        rows.append([lang, "reject" if "error" in p.name else "compile", p.name])
+    write("gnucap-modelgen", d, rows, skipped, "gnucap-modelgen-verilog's model tests; `error` names must be refused (GPL-3.0).")
 
 
 # --- VA-Models ----------------------------------------------------------------------
+
+# A model whose own headers define a macro it needs only for named simulators:
+# mextram 504.12.1's frontdef.inc defines `IPRnb under `ifdef __OPENVAF__ only.
+MODEL_DEFINES = {"mextram/vacode504p12p1": "__OPENVAF__"}
+
 
 def va_models():
     root = EXT / "VA-Models/code"
     rows = []
     for d in sorted({p.parent for p in root.rglob("*.va")}):
-        rows += [["verilog-a", "compile", str(p.relative_to(root))] for p in top_files(d, ".va")]
+        defs = MODEL_DEFINES.get(str(d.relative_to(root)))
+        rows += [["verilog-a", "compile", str(p.relative_to(root))] + (["-", f"DEFINES={defs}"] if defs else [])
+                 for p in top_files(d, ".va")]
     write("va-models", root, rows, {}, "dwarning/VA-Models: compact models used with ngspice and Xyce; each must compile.")
 
 
