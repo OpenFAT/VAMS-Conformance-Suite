@@ -99,6 +99,7 @@ Two kinds of directive:
 | `//! exit N` | harness | the run's exit status |
 | `//! checks N` | harness | exactly N `ok=` lines |
 | `//! stdout TEXT` | harness | stdout contains TEXT |
+| `//! expect stdout GOLD` | harness | stdout equals GOLD (beside the test) instead of `<stem>.expected.txt`; a GOLD that is not there fails the test |
 | `//! expect vcd OUT == GOLD` | harness | the VCD the run writes equals GOLD, `$date`/`$version` bodies aside |
 | `//! neighbour FILE` | nobody | the legal twin of a `_rejected` test |
 | `//@ files A.v B.v` | tool | more sources (exported absolute as `CONFORM_FILES`) |
@@ -130,9 +131,12 @@ run.verilog     = vvp -n "$CONFORM_WORK/sim.vvp"
 
 - **Stages:** `compile` then `run`. A tool may define either or both. With
   `compile` only, a run test that compiles counts as *compile-only*, and a
-  `reject-run` test is skipped. With `run` only, the run does both.
+  `reject-run` test is skipped. With `run` only, the run does both; for an
+  accept test (compiling is enough) it gets `CONFORM_COMPILE_ONLY=1` and may
+  stop after compiling.
 - **Languages:** the directory under `tests/` (`verilog-a`, `verilog-ams`,
-  `verilog`, `spice`), `vpi` for a `.c` test, or a manifest row's first
+  `verilog`, `spice`), `vpi` for a `.c` test, `netlist` for a `.sp` deck
+  wherever it is filed, or a manifest row's first
   column (`netlist` for SPICE decks). `stage.*` is a fallback. A language with
   no command is skipped.
 - **Exit 77** from a stage means the tool cannot express this test (an adapter
@@ -150,7 +154,8 @@ run.verilog     = vvp -n "$CONFORM_WORK/sim.vvp"
 | `CONFORM_INCLUDE` | `tests/include` (for a manifest test, the suite's root) |
 | `CONFORM_TOOLDIR` | the config's directory, for adapters beside it |
 | `CONFORM_FILES`, `CONFORM_LIBMAP`, `CONFORM_LIBLIST`, `CONFORM_STD` | from `//@` lines |
-| `CONFORM_<KEY>` | from a manifest row's `KEY=VALUE` columns |
+| `CONFORM_COMPILE_ONLY` | `1` when only compiling is judged (see Stages) |
+| `CONFORM_<KEY>` | from a manifest row's `KEY=VALUE` columns (a row sets these, not `//@` lines: `STD`, `INCDIR`, `DIRS` the directories its runner makes in the cwd, `DEFINES`, `SHIM` an include directory under `external/`) |
 
 | Config | Languages | Notes |
 |---|---|---|

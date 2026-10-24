@@ -229,7 +229,7 @@ static int collect(const char *path, const struct stat *st, int type, struct FTW
 static int by_name(const void *a, const void *b) { return strcmp(((const Test *)a)->name, ((const Test *)b)->name); }
 
 /* The suite root is the nearest ancestor holding `include/`; the language is
- * the directory right below it. `rel` is the path from the root. */
+ * the directory right below it (a `.c` is `vpi`, a `.sp` `netlist`). `rel` is the path from the root. */
 static int locate(const char *abs, char *root, char *lang, const char **rel) {
     snprintf(root, PATH_MAX, "%s", abs);
     char probe[PATH_MAX + 16];
@@ -243,6 +243,7 @@ static int locate(const char *abs, char *root, char *lang, const char **rel) {
             if (!slash) return -1;
             snprintf(lang, 64, "%.*s", (int)(slash - *rel), *rel);
             if (has_ext(abs, ".c")) snprintf(lang, 64, "vpi");
+            if (has_ext(abs, ".sp")) snprintf(lang, 64, "netlist"); /* a SPICE deck, wherever it is filed */
             return 0;
         }
     }
@@ -296,6 +297,7 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
     memset(sp, 0, sizeof *sp);
     sp->checks_want = -1;
     int exit_set = 0;
+    char named[256] = ""; /* `//! expect stdout F`: the gold, beside the test */
     char *text = slurp(src, NULL);
     if (!text) return snprintf(why, MSG, "cannot read source"), -1;
     sp->self_checks = strstr(text, "`CHECK") || strstr(text, "ok=");
@@ -323,17 +325,22 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
         else if (kw_is(d, kn, "stdout") && sp->nstdout < 16) sp->stdout_want[sp->nstdout++] = xstrdup(trim((char *)arg));
         else if (kw_is(d, kn, "expect")) {
             char out[256], gold[256];
-            if (sscanf(arg, "vcd %255s == %255s", out, gold) != 2)
-                return snprintf(why, MSG, "bad //! expect: %s", arg), free(text), -1;
-            sp->vcd_out = xstrdup(out);
-            sp->vcd_gold = xstrdup(gold);
+            if (sscanf(arg, "stdout %255s", named) == 1) ;
+            else if (sscanf(arg, "vcd %255s == %255s", out, gold) == 2) sp->vcd_out = xstrdup(out), sp->vcd_gold = xstrdup(gold);
+            else return snprintf(why, MSG, "bad //! expect: %s", arg), free(text), -1;
         }
         if (!is_meta(d, kn)) sp->needs_run = 1;
     }
     free(text);
     if (sp->reject_run && !exit_set) sp->exit_want = -1; /* any normal failure */
-    sibling(sp->gold, sizeof sp->gold, src, ".expected.txt");
-    if (access(sp->gold, F_OK)) *sp->gold = 0;
+    if (*named) {
+        /* a named gold that is not there is a broken test, not a gold-less one */
+        snprintf(sp->gold, sizeof sp->gold, "%s/%s", dir, named);
+        if (access(sp->gold, F_OK)) return snprintf(why, MSG, "//! expect stdout %s: no such file", named), -1;
+    } else {
+        sibling(sp->gold, sizeof sp->gold, src, ".expected.txt");
+        if (access(sp->gold, F_OK)) *sp->gold = 0;
+    }
     sibling(sp->errgold, sizeof sp->errgold, src, ".expected.stderr.txt");
     if (access(sp->errgold, F_OK)) *sp->errgold = 0;
     if (*sp->gold || sp->self_checks || has_ext(src, ".c")) sp->needs_run = 1;
@@ -629,6 +636,8 @@ static int run_test(const Test *t, size_t index, char *why) {
     if (!cc && !rc) return snprintf(why, MSG, "tool has no command for %s", lang), SKIP;
     if (sp.reject_run && !rc) return snprintf(why, MSG, "reject-run needs a run command"), SKIP;
     if (!sp.reject && !sp.needs_run) rc = cc ? NULL : rc; /* accept test: compiling is enough */
+    /* With only a run command, tell it the run is not judged (it may stop after compiling). */
+    setenv_opt("CONFORM_COMPILE_ONLY", !sp.reject && !sp.needs_run && !cc ? "1" : NULL);
     if (sp.reject && !sp.needs_run && cc) rc = NULL;
 
     snprintf(work, sizeof work, "%s/%zu", work_root, index);
@@ -644,10 +653,12 @@ static int run_test(const Test *t, size_t index, char *why) {
     setenv("CONFORM_LANG", lang, 1);
     setenv("CONFORM_INCLUDE", inc, 1);
     setenv("CONFORM_TOOLDIR", conf_dir, 1);
-    setenv_opt("CONFORM_FILES", sp.files);
-    setenv_opt("CONFORM_LIBMAP", sp.libmap);
-    setenv_opt("CONFORM_LIBLIST", sp.liblist);
-    setenv_opt("CONFORM_STD", sp.std);
+    if (!t->row) { /* a row exports its own KEY=VALUE columns (parse_row) */
+        setenv_opt("CONFORM_FILES", sp.files);
+        setenv_opt("CONFORM_LIBMAP", sp.libmap);
+        setenv_opt("CONFORM_LIBLIST", sp.liblist);
+        setenv_opt("CONFORM_STD", sp.std);
+    }
     free(stem);
     if (t->row) link_root(root, work);
     else link_inputs(abs, dir, work);

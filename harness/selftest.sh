@@ -11,7 +11,7 @@ mkdir -p "$T/s/include" "$T/s/verilog-a" "$T/s/verilog" "$T/s/spice"
 
 cat > "$T/tool.conf" <<'EOF'
 run.verilog-a = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; s=$(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0); [ "$s" = segv ] && kill -SEGV $$; [ "$s" = hang ] && sleep 30; exit $s
-run.verilog = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
+run.verilog = [ -z "$CONFORM_COMPILE_ONLY" ] || exit 0; cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; ${CONFORM_STD:+echo std=$CONFORM_STD}; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
 EOF
 printf 'compile.verilog-a = exit 0\n' > "$T/compile-only.conf"
 
@@ -44,6 +44,15 @@ printf 'module h; endmodule\n' > "$T/s/verilog/golden_diff.v"
 printf 'hi\n' > "$T/s/verilog/golden_diff.expected.txt"
 printf 'ho\n' > "$T/s/verilog/golden_diff.out"
 printf 'module support; endmodule\n' > "$T/s/verilog/support_only.v"
+# `//! expect stdout F` names the gold; a name that is not there fails.
+printf '//! expect stdout named.gold.txt\nmodule n; endmodule\n' > "$T/s/verilog/named_gold.v"
+printf 'hi\n' > "$T/s/verilog/named.gold.txt"
+printf 'hi\n' > "$T/s/verilog/named_gold.out"
+printf '//! expect stdout gone.expected.txt\nmodule n; endmodule\n' > "$T/s/verilog/named_gold_missing.v"
+printf 'hi\n' > "$T/s/verilog/named_gold_missing.out"
+# A SPICE deck is `netlist` wherever it is filed (no command here: SKIP).
+printf '* deck\n.end\n' > "$T/s/verilog-a/deck.sp"
+printf '{}\n' > "$T/s/verilog-a/deck.expected.json"
 # An upstream-style suite driven by a manifest: its own gold, its own filter.
 mkdir -p "$T/up/t" "$T/up/gold"
 printf 'module a; endmodule\n' > "$T/up/t/a.v"
@@ -52,12 +61,17 @@ printf 'banner 1.0\nvalue 3\n' > "$T/up/t/a.out"; printf 'banner 2.0\nvalue 3\n'
 printf 'value 4\n' > "$T/up/t/b.out"; printf 'value 3\n' > "$T/up/gold/b.gold"
 printf 'all\n PASSED\n' > "$T/up/t/c.out"
 printf 'FAILED\n' > "$T/up/t/d.out"
+# e: a row's STD= reaches the tool. f: a compile row's run is told it only compiles.
+cp "$T/up/t/a.v" "$T/up/t/e.v"; printf 'std=1364-2005\n' > "$T/up/gold/e.gold"
+cp "$T/up/t/a.v" "$T/up/t/f.v"; echo 1 > "$T/up/t/f.exit"
 cat > "$T/s/up.manifest" <<'EOF2'
 #root ../up
 verilog	ok	t/a.v	gold/a.gold	FILTER=grep -v banner
 verilog	ok	t/b.v	gold/b.gold	FILTER=grep -v banner
 verilog	passed	t/c.v
 verilog	passed	t/d.v
+verilog	ok	t/e.v	gold/e.gold	STD=1364-2005
+verilog	compile	t/f.v
 EOF2
 printf 'verilog-a/xfail.va  # a known bug\nverilog-a/xpass.va\n' > "$T/xfail"
 
@@ -88,6 +102,11 @@ PASS	up/t/a.v
 FAIL	up/t/b.v
 PASS	up/t/c.v
 FAIL	up/t/d.v
+PASS	up/t/e.v
+PASS	up/t/f.v
+PASS	verilog/named_gold.v
+FAIL	verilog/named_gold_missing.v
+SKIP	verilog-a/deck.sp
 PASS	verilog-a/pass.va
 FAIL	verilog-a/reject_ok.va
 EOF
