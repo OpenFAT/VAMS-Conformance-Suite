@@ -104,6 +104,7 @@ pass	verilog-a/annex_a_syntax/analog_function.va
 pass	verilog-a/annex_a_syntax/analog_function_default_type.va
 pass	verilog-a/annex_a_syntax/analog_function_formal_typed_by_item.va
 pass	verilog-a/annex_a_syntax/analog_function_integer_string.va
+pass	verilog-a/annex_a_syntax/analog_function_type_before_direction.va
 pass	verilog-a/annex_a_syntax/attributes_comments_identifiers.va
 pass	verilog-a/annex_a_syntax/behavioral_statements.va
 pass	verilog-a/annex_a_syntax/branch_array.va
@@ -435,6 +436,8 @@ pass	verilog-a/ch02_lexical/vertical_tab_is_not_white_space.va
 pass	verilog-a/ch02_lexical/whitespace_comments.va
 pass	verilog-a/ch02_lexical/wide_literal_backend_boundary.va
 pass	verilog-a/ch02_lexical/zero_size_rejected.va
+pass	verilog-a/ch03_data_types/access_half_follows_net_discipline_flow_first.va
+pass	verilog-a/ch03_data_types/access_half_follows_net_discipline_potential_first.va
 pass	verilog-a/ch03_data_types/access_name_shadow.va
 pass	verilog-a/ch03_data_types/alias_card_write_sets_original_given.va
 pass	verilog-a/ch03_data_types/alias_double_override.va
@@ -494,6 +497,7 @@ pass	verilog-a/ch03_data_types/derived_units_immutable.va
 pass	verilog-a/ch03_data_types/desc_net_rows.va
 pass	verilog-a/ch03_data_types/desc_units_output_variable_rows.va
 pass	verilog-a/ch03_data_types/desc_units_parameter_rows.va
+pass	verilog-a/ch03_data_types/discipline_binds_undeclared_nature_rejected.va
 pass	verilog-a/ch03_data_types/discipline_declarations.va
 pass	verilog-a/ch03_data_types/discipline_domain_is_continuous_or_discrete_rejected.va
 pass	verilog-a/ch03_data_types/discipline_duplicate_user_attribute_rejected.va
@@ -620,6 +624,7 @@ pass	verilog-a/ch03_data_types/range_first_expression_larger.va
 pass	verilog-a/ch03_data_types/range_without_closed_inf_is_silent.va
 pass	verilog-a/ch03_data_types/real_parameter_from_string.va
 pass	verilog-a/ch03_data_types/real_scalar_is_not_indexable_rejected.va
+pass	verilog-a/ch03_data_types/real_variable_over_continuous_net_rejected.va
 pass	verilog-a/ch03_data_types/reject_3_6_2_5_flow_override_without_flow_nature.va
 pass	verilog-a/ch03_data_types/reject_A_2_1_3_net_list_mixes_assignment.va
 pass	verilog-a/ch03_data_types/reject_localparam_empty_named_override.va
@@ -813,6 +818,7 @@ pass	verilog-a/ch04_expressions/function_output_inout.va
 pass	verilog-a/ch04_expressions/function_output_nonvariable.va
 pass	verilog-a/ch04_expressions/function_reads_genvar_rejected.va
 pass	verilog-a/ch04_expressions/function_return.va
+pass	verilog-a/ch04_expressions/function_string_output_starts_empty.va
 pass	verilog-a/ch04_expressions/function_unassigned_output_inout.va
 pass	verilog-a/ch04_expressions/function_undirected_argument.va
 pass	verilog-a/ch04_expressions/function_untyped_argument.va
@@ -940,6 +946,7 @@ pass	verilog-a/ch04_expressions/operator_in_while.va
 pass	verilog-a/ch04_expressions/operator_missing_mandatory_argument.va
 pass	verilog-a/ch04_expressions/operator_null_argument.va
 pass	verilog-a/ch04_expressions/operator_under_constant_condition.va
+pass	verilog-a/ch04_expressions/own_expm1_function_warns.va
 pass	verilog-a/ch04_expressions/parameter_reduction_and_arithmetic_shift.va
 pass	verilog-a/ch04_expressions/parameterized_dimension_override.va
 pass	verilog-a/ch04_expressions/partial_slice_assignment.va
@@ -1046,6 +1053,7 @@ pass	verilog-a/ch04_expressions/transition_interrupted_falling_lower.va
 pass	verilog-a/ch04_expressions/transition_interrupted_rising.va
 pass	verilog-a/ch04_expressions/transition_interrupted_rising_higher.va
 pass	verilog-a/ch04_expressions/transition_negative_time_rejected.va
+pass	verilog-a/ch04_expressions/transition_six_arguments_rejected.va
 pass	verilog-a/ch04_expressions/transition_transport_delay.va
 pass	verilog-a/ch04_expressions/two_independent_dc_sweeps_reinitialize_variables.va
 pass	verilog-a/ch04_expressions/unary_minus.va
@@ -1170,6 +1178,7 @@ pass	verilog-a/ch05_analog_behavior/event_cross_fires.va
 pass	verilog-a/ch05_analog_behavior/event_cross_fires_on_a_time_grid.va
 pass	verilog-a/ch05_analog_behavior/event_cross_param_direction.va
 pass	verilog-a/ch05_analog_behavior/event_cross_rising_and_falling.va
+pass	verilog-a/ch05_analog_behavior/event_cross_runtime_direction.va
 pass	verilog-a/ch05_analog_behavior/event_initial_or_cross.va
 pass	verilog-a/ch05_analog_behavior/event_list_comma_equals_or.va
 pass	verilog-a/ch05_analog_behavior/event_null_argument_invalid.va
@@ -1566,6 +1575,7 @@ pass	verilog-a/ch06_hierarchy/paramset_parameter_outside_range_rejected.va
 pass	verilog-a/ch06_hierarchy/paramset_port_no_module_declares_rejected.va
 pass	verilog-a/ch06_hierarchy/paramset_range_bound_integer_division.va
 pass	verilog-a/ch06_hierarchy/paramset_range_bound_modulus.va
+pass	verilog-a/ch06_hierarchy/paramset_range_first_expression_larger_rejected.va
 pass	verilog-a/ch06_hierarchy/paramset_selected_after_generate.va
 pass	verilog-a/ch06_hierarchy/paramset_selected_by_generate_localparam.va
 pass	verilog-a/ch06_hierarchy/paramset_selection_by_paramset_ranges.va

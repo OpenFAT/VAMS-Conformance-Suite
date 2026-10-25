@@ -1,11 +1,12 @@
 // A.1.7 `nature_binding ::= potential_or_flow nature_identifier ;` and
 // §3.6.2.1 "Only the name of the nature is specified in the discipline": the
-// name is a nature's. Defining DISCIPLINES_VAMS keeps annex D's natures out,
-// so `Voltage` names nothing and `mine` binds no potential nature. The error
-// belongs to the discipline itself: VerA once said nothing there and refused
-// the first `V(p)` with E0501 instead, naming the access, not the nature.
+// name is a nature's. `Undeclared_Potential` is declared nowhere, not even by
+// annex D, so `mine` binds no potential nature whether or not a tool loads the
+// standard definitions. The error belongs to the discipline itself: VerA once
+// said nothing there and refused the first `V(p)` with E0501 instead, naming
+// the access, not the nature.
 //
-// With `nature Voltage` declared the same file is
+// With that nature declared the same file is
 // inherited_flow_tolerance_minimum.va's shape and compiles.
 //
 //! lrm 3.6.2.1
@@ -16,9 +17,10 @@ nature Current;
   units="A"; access=I; abstol=1p;
 endnature
 discipline mine;
-  potential Voltage; flow Current;
+  potential Undeclared_Potential; flow Current;
 enddiscipline
 module ch03_discipline_binds_undeclared_nature(p);
   inout p; mine p;
-  analog I(p) <+ V(p) / 1k;
+  // No V(p): the discipline has no potential, so a read would add E0501.
+  analog I(p) <+ 1m;
 endmodule
