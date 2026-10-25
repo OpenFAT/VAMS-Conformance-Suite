@@ -764,7 +764,7 @@ verilog/17_system_tasks/q_exam.v	transcript	accepts	0	yes
 verilog/17_system_tasks/q_exam_arguments_rejected.v	reject	accepts	1	yes	
 verilog/17_system_tasks/q_exam_code_rejected.v	reject	accepts	0	no	accepts and exits 0
 verilog/17_system_tasks/q_exam_code_runtime.v	transcript	accepts	0	no	stdout differs
-verilog/17_system_tasks/q_exam_means_round.v	transcript	accepts	0	no	stdout differs
+verilog/17_system_tasks/q_exam_means.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/q_exam_peak_length.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/q_full.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/q_full_arguments_rejected.v	reject	accepts	1	yes	
