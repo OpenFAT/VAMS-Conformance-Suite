@@ -11,7 +11,7 @@ mkdir -p "$T/s/include" "$T/s/verilog-a" "$T/s/verilog" "$T/s/spice"
 
 cat > "$T/tool.conf" <<'EOF'
 run.verilog-a = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; s=$(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0); [ "$s" = segv ] && kill -SEGV $$; [ "$s" = hang ] && sleep 30; exit $s
-run.verilog = [ -z "$CONFORM_COMPILE_ONLY" ] || exit 0; cp "$CONFORM_DIR/$CONFORM_STEM.file" out.txt 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; ${CONFORM_STD:+echo std=$CONFORM_STD}; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
+run.verilog = [ -z "$CONFORM_COMPILE_ONLY" ] || exit 0; cp "$CONFORM_DIR/$CONFORM_STEM.file" out.txt 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; ${CONFORM_STD:+echo std=$CONFORM_STD}; ${CONFORM_PROTECT_KEYS:+echo keys=${CONFORM_PROTECT_KEYS##*/}}; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
 EOF
 printf 'compile.verilog-a = exit 0\n' > "$T/compile-only.conf"
 
@@ -50,6 +50,10 @@ printf 'hi\n' > "$T/s/verilog/named.gold.txt"
 printf 'hi\n' > "$T/s/verilog/named_gold.out"
 printf '//! expect stdout gone.expected.txt\nmodule n; endmodule\n' > "$T/s/verilog/named_gold_missing.v"
 printf 'hi\n' > "$T/s/verilog/named_gold_missing.out"
+# `//@ protect-keys F` reaches the tool as CONFORM_PROTECT_KEYS.
+printf '//@ protect-keys k.json\nmodule k; endmodule\n' > "$T/s/verilog/keys.v"
+printf '{}\n' > "$T/s/verilog/k.json"
+printf 'keys=k.json\n' > "$T/s/verilog/keys.expected.txt"
 # A SPICE deck is `netlist` wherever it is filed (no command here: SKIP).
 printf '* deck\n.end\n' > "$T/s/verilog-a/deck.sp"
 printf '{}\n' > "$T/s/verilog-a/deck.expected.json"
@@ -116,6 +120,7 @@ FAIL	up/t/g.v
 PASS	up/t/h.v
 FAIL	up/t/i.v
 PASS	verilog/named_gold.v
+PASS	verilog/keys.v
 FAIL	verilog/named_gold_missing.v
 SKIP	verilog-a/deck.sp
 PASS	verilog-a/pass.va

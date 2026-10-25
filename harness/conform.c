@@ -257,7 +257,7 @@ typedef struct {
     char *stdout_want[16];
     int nstdout;
     char *vcd_out, *vcd_gold;
-    char *files, *libmap, *liblist, *std;
+    char *files, *libmap, *liblist, *std, *protect_keys;
     char gold[PATH_MAX], errgold[PATH_MAX]; /* empty: none */
     char *filter;                           /* applied to stdout and gold alike */
     double rtol, atol;                      /* gold numbers within tolerance */
@@ -312,6 +312,7 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
             else if (!strcmp(kw, "libmap")) append_paths(&sp->libmap, rest, dir);
             else if (!strcmp(kw, "liblist")) append(&sp->liblist, rest);
             else if (!strcmp(kw, "std")) append(&sp->std, rest);
+            else if (!strcmp(kw, "protect-keys")) append_paths(&sp->protect_keys, rest, dir);
             else return snprintf(why, MSG, "unknown directive //@ %s", kw), free(text), -1;
             continue;
         }
@@ -668,6 +669,7 @@ static int run_test(const Test *t, size_t index, char *why) {
         setenv_opt("CONFORM_LIBMAP", sp.libmap);
         setenv_opt("CONFORM_LIBLIST", sp.liblist);
         setenv_opt("CONFORM_STD", sp.std);
+        setenv_opt("CONFORM_PROTECT_KEYS", sp.protect_keys);
     }
     free(stem);
     if (t->row) link_root(root, work);
