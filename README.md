@@ -247,7 +247,7 @@ same class, with as many tests in parallel as it has CPUs; treat differences
 under about 20% as noise.
 
 <!-- conformance:start -->
-Measured 2026-10-23 by `.github/workflows/conformance.yml`, each tool at its latest version (`tools/ci.sh` says which).
+Measured 2026-10-25 by `.github/workflows/conformance.yml`, each tool at its latest version (`tools/ci.sh` says which).
 
 ![Verilog (IEEE 1364-2005) conformance](docs/conformance/verilog.svg)
 ![Verilog (IEEE 1364-2005) speed](docs/conformance/verilog-time.svg)
@@ -266,14 +266,11 @@ Measured 2026-10-23 by `.github/workflows/conformance.yml`, each tool at its lat
 
 | Language | Tool | Version | Passed | Failed | Not supported | Conformance | Time on common tests |
 |---|---|---|---:|---:|---:|---:|---:|
-| Verilog (IEEE 1364-2005) | VerA | vera 0.12.1 | 3105 | 467 | 35 | 86.1% | - |
-| Verilog (IEEE 1364-2005) | Verilator | Verilator 5.052 2026-09-05 rev v5.052 | 1807 | 1765 | 35 | 50.1% | - |
-| Verilog (IEEE 1364-2005) | ngspice | ** ngspice-45 : Circuit level simulation program | 0 | 76 | 3531 | 0.0% | - |
-| Verilog-A | VerA | vera 0.12.1 | 770 | 1695 | 0 | 31.2% | 55.4 s (770) |
-| Verilog-AMS | VerA | vera 0.12.1 | 513 | 158 | 73 | 69.0% | - |
-| Verilog-AMS | Verilator | Verilator 5.052 2026-09-05 rev v5.052 | 0 | 3 | 741 | 0.0% | - |
-| Verilog-AMS | ngspice | ** ngspice-45 : Circuit level simulation program | 0 | 3 | 741 | 0.0% | - |
-| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 584 | 415 | 34 | 56.5% | 206.6 s (584) |
+| Verilog (IEEE 1364-2005) | Icarus Verilog | unpacking 'github:NixOS/nixpkgs/674a2028661e550a97400c1cc992b9cca9a668a1' into the Git cache... | 2968 | 601 | 42 | 82.2% | 518.5 s (2382) |
+| Verilog (IEEE 1364-2005) | VerA | vera 0.15.0 | 2862 | 749 | 0 | 79.3% | 51.0 s (2382) |
+| Verilog-A | VerA | vera 0.15.0 | 2003 | 449 | 0 | 81.7% | 1190.4 s (2003) |
+| Verilog-AMS | VerA | vera 0.15.0 | 537 | 217 | 0 | 71.2% | 911.4 s (537) |
+| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 598 | 439 | 36 | 55.7% | 233.9 s (598) |
 
 </details>
 <!-- conformance:end -->

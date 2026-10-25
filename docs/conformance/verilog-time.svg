@@ -1,7 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="102" viewBox="0 0 760 102" role="img" aria-labelledby="t"><title id="t">Verilog (IEEE 1364-2005) speed</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="136" viewBox="0 0 760 136" role="img" aria-labelledby="t"><title id="t">Verilog (IEEE 1364-2005) speed</title>
 <style>text{font:13px system-ui,-apple-system,"Segoe UI",sans-serif;fill:#0b0b0b}.m{fill:#52514e}.h{font-size:15px;font-weight:600}.bg{fill:#fcfcfb}.p{fill:#2a78d6}@media (prefers-color-scheme:dark){text{fill:#fff}.m{fill:#c3c2b7}.bg{fill:#1a1a19}.p{fill:#3987e5}}</style>
-<rect class="bg" width="760" height="102" rx="8"/>
+<rect class="bg" width="760" height="136" rx="8"/>
 <text class="h" x="16" y="26">Verilog (IEEE 1364-2005): wall time, shorter is faster</text>
-<text class="m" x="16" y="44">the 0 tests all 3 tools pass</text>
-<text class="m" x="16" y="68">No tests to time yet.</text>
+<text class="m" x="16" y="44">the 2382 tests all 2 tools pass</text>
+<text x="16" y="65">VerA</text>
+<rect class="p" x="150" y="52" width="42.3" height="18" rx="4"><title>51.0 s total, median 12 ms per test</title></rect>
+<text x="202.3" y="65"><tspan font-weight="600">51.0 s</tspan><tspan class="m"> median 12 ms/test</tspan></text>
+<text x="16" y="99">Icarus Verilog</text>
+<rect class="p" x="150" y="86" width="430.0" height="18" rx="4"><title>518.5 s total, median 137 ms per test</title></rect>
+<text x="590.0" y="99"><tspan font-weight="600">518.5 s</tspan><tspan class="m"> median 137 ms/test</tspan></text>
 </svg>
