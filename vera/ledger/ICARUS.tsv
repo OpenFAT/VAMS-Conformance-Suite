@@ -690,8 +690,9 @@ verilog/15_timing_checks/setup.v	transcript	accepts	0	no	stdout differs
 verilog/15_timing_checks/setup_negative_limit_rejected.v	reject	accepts	0	no	accepts and exits 0
 verilog/15_timing_checks/setuphold.v	transcript	accepts	0	no	stdout differs
 verilog/15_timing_checks/setuphold_signal_limit_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/15_timing_checks/setuphold_timecheck_condition.v	transcript	accepts	0	no	stdout differs
+verilog/15_timing_checks/setuphold_timestamp_condition.v	transcript	accepts	0	no	stdout differs
 verilog/15_timing_checks/system_task_in_specify_rejected.v	reject	refuses	-	yes	tests/conformance/tests/verilog/15_timing_checks/system_task_in_specify_rejected.v:18: syntax error
-verilog/15_timing_checks/timecheck_condition_refused.v	reject	accepts	0	no	accepts and exits 0
 verilog/15_timing_checks/timing_check_forms.v	transcript	accepts	0	yes	
 verilog/15_timing_checks/timing_check_in_procedure_rejected.v	reject	refuses	-	yes	tests/conformance/tests/verilog/15_timing_checks/timing_check_in_procedure_rejected.v:18: syntax error
 verilog/15_timing_checks/vector.v	transcript	accepts	0	no	stdout differs
