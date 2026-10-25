@@ -41,7 +41,9 @@ def languages():
 
 
 def category(name, langs):
-    lang = langs.get(name) or name.split("/", 1)[0]
+    # A SPICE deck is a netlist wherever it is filed, as conform runs it: the
+    # .sp beside Annex E's .va tests is the simulators' SPICE, not Verilog-AMS.
+    lang = langs.get(name) or ("netlist" if name.endswith(".sp") else name.split("/", 1)[0])
     return LANG.get(lang)
 
 
