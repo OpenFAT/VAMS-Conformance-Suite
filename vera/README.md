@@ -24,7 +24,7 @@ One test per line: its path relative to the suite root, then `#` and the
 reason. Lines starting with `#` are comments.
 
 ```
-tests/verilog/16_sdf/sdf_interconnect_delay.v # SDF annotation is not implemented; $sdf_annotate is refused with E1102.
+tests/verilog/28_protected_envelopes/protected_md5_digest.v # Protected-envelope decryption and its test key-provider adapter are unavailable (E0146).
 ```
 
 A listed test that passes fails the run, so remove its line once VerA meets
