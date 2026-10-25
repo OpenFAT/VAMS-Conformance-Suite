@@ -1044,7 +1044,7 @@ verilog	reject	ivltests/pr1925363b.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work l
 verilog	passed	ivltests/pr1932444.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/pr1934744.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	ok	ivltests/pr1936363.v	gold/pr1936363.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
-verilog	reject	ivltests/pr1938138.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	compile	ivltests/pr1938138.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 13.2.1.1: a module defined twice keeps the last definition, with a warning
 verilog	passed	ivltests/pr1939165.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/pr1946411.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/pr1948110.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
