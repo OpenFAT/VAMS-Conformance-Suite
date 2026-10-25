@@ -1,15 +1,11 @@
 // IEEE 1364-2005 §17.2.10: "The $sdf_annotate system task reads timing data
-// from an SDF file into a specified region of the design." §16.1: "The term
-// SDF annotator refers to any tool capable of backannotating SDF data to a
-// Verilog simulator."
+// from an SDF file into a specified region of the design." The clause names
+// no behaviour for a file that is not there. VerA stops the run (E1102)
+// rather than going on: carrying on past the call would simulate a design
+// whose timing the SDF file was meant to set. No file of this name exists
+// beside the source or in the working directory.
 //
-// VerA is not an SDF annotator: clause 16 is out of scope (CLAUSES.tsv).
-// Carrying on past the call would run a design whose timing the SDF file was
-// meant to set, so the call is refused by name (E1102), never skipped. The
-// file need not exist: the refusal is at compile time.
-//
-// Legal neighbour: 04_data_types/specparam_module_body_delay.v writes the
-// same kind of timing value in the source, where VerA does apply it.
+// Legal neighbours: 16_sdf/*.v write their SDF file first, then annotate it.
 //! inherited IEEE 1364-2005 17.2.10 16 16.1
 //! reject E1102
 module sdf_annotate_rejected;

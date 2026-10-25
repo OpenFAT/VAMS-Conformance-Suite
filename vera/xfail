@@ -1,0 +1,3 @@
+# VerA's own expected failures under its fixture harness (zig build test-ams, test-devices):
+# one suite-relative path per line, the reason after `#`. The suite dropped the fixtures'
+# `//! xfail` lines (a tool's known failures are tools/<tool>.xfail); these are theirs.

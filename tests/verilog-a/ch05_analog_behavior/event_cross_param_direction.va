@@ -1,4 +1,4 @@
-// §5.10.3.1 the direction argument of cross() is a constant_expression, and a
+// §5.10.3.1 the direction argument of cross() is an analog_expression, and a
 // PARAMETER is one — so the direction in force is the model card's, not the
 // declared default. §3.4 makes the override the parameter's value everywhere
 // it is read; a compiler that folds the direction at code generation freezes

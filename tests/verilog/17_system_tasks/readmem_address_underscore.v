@@ -11,8 +11,8 @@
 //   11     -> mem[0] = 11
 // so "11 33". The file has addresses, so no W1150 count warning.
 //
-// Invalid neighbour: an x digit names no word, readmem_address_x_rejected.v;
-// a leading `_`, readmem_edge_underscore_leading_rejected.v covers the
+// Invalid neighbour: an x digit names no word, readmem_address_x_load_terminated.v;
+// a leading `_`, readmem_edge_underscore_leading_load_terminated.v covers the
 // data-word form of the same §3.5.1 rule.
 //! inherited IEEE 1364-2005 17.2.9
 //! inherited IEEE 1364-2005 3.5.1

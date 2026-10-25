@@ -1,0 +1,18 @@
+// §3.13 / IEEE 1364-2005 §12.6 (via VAMS §6.8): "An identifier shall be used
+// to declare only one item within a scope." `p` is already an electrical port,
+// an analog node of a continuous discipline (§3.6.2); `real p` declares a
+// second item, a variable, under the same name. Unlike a discrete net, which
+// §7 lets a `reg` share (`reg out; ddiscrete out;`), a continuous net is never
+// a variable. gnucap's dump_error.6c is this file, and its ref/ output reports
+// "already declared".
+//
+//! lrm 3.13
+//! lrm 6.8
+//! reject-only E0362
+`include "disciplines.vams"
+module ch03_real_variable_over_continuous_net(p, n);
+    electrical p, n;
+    inout p, n;
+    real p;
+    analog I(n) <+ V(n) / 1k;
+endmodule

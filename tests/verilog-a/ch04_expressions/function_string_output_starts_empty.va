@@ -1,0 +1,51 @@
+// §4.7.2.3: "All output arguments of an analog user-defined function are
+// initialized, zero (0) if numeric, empty string ("") if a string, which in
+// turn means that the argument passed to it is reset to zero (0) or the empty
+// string ("") accordingly." §4.7.1 starts a string function's return variable
+// at "" the same way.
+//
+// `spare` is an output the body never writes, so the caller's `spare` reads
+// back "" even though it held "stale" before the call; `label` is written, so
+// it reads the input. `blank` never assigns its return variable. VerA once
+// started a string output from the numeric zero and generated a testbench
+// that did not compile (OpenVAF's VAMS2023_STRING_FUN).
+//
+//! lrm 4.7.1
+//! lrm 4.7.2.3
+`include "check.vh"
+module ch04_function_string_output_starts_empty(a);
+    inout a;
+    electrical a;
+
+    analog function real relabel;
+        input kind;
+        output label, spare;
+        string kind, label, spare;
+        begin
+            label = kind;
+            relabel = 1.0;
+        end
+    endfunction
+
+    analog function string blank;
+        input x;
+        real x;
+        begin
+        end
+    endfunction
+
+    string label, spare, b;
+    real r;
+
+    analog begin
+        spare = "stale";
+        r = relabel("x", label, spare);
+        b = blank(1.0);
+        `CHECKI("the written output reads the input", label == "x", 1);
+        `CHECKI("the unwritten output is reset to the empty string", spare == "", 1);
+        `CHECKI("an unassigned string return is the empty string", b == "", 1);
+        // Printing them is what typed the old numeric start: `%s` of an f64.
+        $strobe("label=%s spare=[%s] blank=[%s]", label, spare, b);
+        I(a) <+ r * V(a);
+    end
+endmodule

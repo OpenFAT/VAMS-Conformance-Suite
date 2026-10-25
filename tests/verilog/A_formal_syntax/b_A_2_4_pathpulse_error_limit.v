@@ -4,9 +4,9 @@
 //         = ( reject_limit_value [ , error_limit_value ] )
 //
 // Both forms with both limits: PATHPULSE$ = (1, 2) and PATHPULSE$a$y =
-// (1, 2). W0251: VerA reads the specify block and models nothing in it, so
-// b_A_2_4_pp runs as a plain buffer of the top's 1'b1: y = 1 at t=1 ->
-// "y=1".
+// (1, 2). The limits apply (§14.6.1), but a constant input makes no pulse,
+// so b_A_2_4_pp runs as a buffer of the top's 1'b1 behind its 1 ns path:
+// y = 1 at t=1 -> "y=1".
 //! inherited IEEE 1364-2005 A.2.4 14.6 14.6.1
 `timescale 1ns/1ns
 module b_A_2_4_pp (a, y);

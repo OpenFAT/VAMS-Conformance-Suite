@@ -229,7 +229,7 @@ static int collect(const char *path, const struct stat *st, int type, struct FTW
 static int by_name(const void *a, const void *b) { return strcmp(((const Test *)a)->name, ((const Test *)b)->name); }
 
 /* The suite root is the nearest ancestor holding `include/`; the language is
- * the directory right below it. `rel` is the path from the root. */
+ * the directory right below it (a `.c` is `vpi`, a `.sp` `netlist`). `rel` is the path from the root. */
 static int locate(const char *abs, char *root, char *lang, const char **rel) {
     snprintf(root, PATH_MAX, "%s", abs);
     char probe[PATH_MAX + 16];
@@ -243,6 +243,7 @@ static int locate(const char *abs, char *root, char *lang, const char **rel) {
             if (!slash) return -1;
             snprintf(lang, 64, "%.*s", (int)(slash - *rel), *rel);
             if (has_ext(abs, ".c")) snprintf(lang, 64, "vpi");
+            if (has_ext(abs, ".sp")) snprintf(lang, 64, "netlist"); /* a SPICE deck, wherever it is filed */
             return 0;
         }
     }
@@ -255,8 +256,10 @@ typedef struct {
     int reject, reject_run, exit_want, checks_want, needs_run, self_checks, passed;
     char *stdout_want[16];
     int nstdout;
+    char *stderr_want[16]; /* a row's STDERR= */
+    int nstderr;
     char *vcd_out, *vcd_gold;
-    char *files, *libmap, *liblist, *std;
+    char *files, *libmap, *liblist, *std, *protect_keys;
     char gold[PATH_MAX], errgold[PATH_MAX]; /* empty: none */
     char *filter;                           /* applied to stdout and gold alike */
     double rtol, atol;                      /* gold numbers within tolerance */
@@ -296,6 +299,7 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
     memset(sp, 0, sizeof *sp);
     sp->checks_want = -1;
     int exit_set = 0;
+    char named[256] = ""; /* `//! expect stdout F`: the gold, beside the test */
     char *text = slurp(src, NULL);
     if (!text) return snprintf(why, MSG, "cannot read source"), -1;
     sp->self_checks = strstr(text, "`CHECK") || strstr(text, "ok=");
@@ -310,6 +314,7 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
             else if (!strcmp(kw, "libmap")) append_paths(&sp->libmap, rest, dir);
             else if (!strcmp(kw, "liblist")) append(&sp->liblist, rest);
             else if (!strcmp(kw, "std")) append(&sp->std, rest);
+            else if (!strcmp(kw, "protect-keys")) append_paths(&sp->protect_keys, rest, dir);
             else return snprintf(why, MSG, "unknown directive //@ %s", kw), free(text), -1;
             continue;
         }
@@ -323,17 +328,22 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
         else if (kw_is(d, kn, "stdout") && sp->nstdout < 16) sp->stdout_want[sp->nstdout++] = xstrdup(trim((char *)arg));
         else if (kw_is(d, kn, "expect")) {
             char out[256], gold[256];
-            if (sscanf(arg, "vcd %255s == %255s", out, gold) != 2)
-                return snprintf(why, MSG, "bad //! expect: %s", arg), free(text), -1;
-            sp->vcd_out = xstrdup(out);
-            sp->vcd_gold = xstrdup(gold);
+            if (sscanf(arg, "stdout %255s", named) == 1) ;
+            else if (sscanf(arg, "vcd %255s == %255s", out, gold) == 2) sp->vcd_out = xstrdup(out), sp->vcd_gold = xstrdup(gold);
+            else return snprintf(why, MSG, "bad //! expect: %s", arg), free(text), -1;
         }
         if (!is_meta(d, kn)) sp->needs_run = 1;
     }
     free(text);
     if (sp->reject_run && !exit_set) sp->exit_want = -1; /* any normal failure */
-    sibling(sp->gold, sizeof sp->gold, src, ".expected.txt");
-    if (access(sp->gold, F_OK)) *sp->gold = 0;
+    if (*named) {
+        /* a named gold that is not there is a broken test, not a gold-less one */
+        snprintf(sp->gold, sizeof sp->gold, "%s/%s", dir, named);
+        if (access(sp->gold, F_OK)) return snprintf(why, MSG, "//! expect stdout %s: no such file", named), -1;
+    } else {
+        sibling(sp->gold, sizeof sp->gold, src, ".expected.txt");
+        if (access(sp->gold, F_OK)) *sp->gold = 0;
+    }
     sibling(sp->errgold, sizeof sp->errgold, src, ".expected.stderr.txt");
     if (access(sp->errgold, F_OK)) *sp->errgold = 0;
     if (*sp->gold || sp->self_checks || has_ext(src, ".c")) sp->needs_run = 1;
@@ -363,6 +373,7 @@ static int parse_row(char *row, const char *mroot, Spec *sp, char *lang, char *s
     else if (!strcmp(w, "reject")) sp->reject = 1;
     else if (!strcmp(w, "reject-run")) sp->reject_run = sp->needs_run = 1, sp->exit_want = -1;
     else return snprintf(why, MSG, "unknown want `%s`", w), -1;
+    if (n > 3 && strchr(col[3], '=')) return snprintf(why, MSG, "gold column is `%s`: write `-` before KEY=VALUE", col[3]), -1;
     if (n > 3 && strcmp(col[3], "-")) snprintf(sp->gold, sizeof sp->gold, "%s/%s", mroot, col[3]);
     for (int i = 4; i < n; i++) {
         char *eq = strchr(col[i], '=');
@@ -372,6 +383,15 @@ static int parse_row(char *row, const char *mroot, Spec *sp, char *lang, char *s
         snprintf(key, sizeof key, "CONFORM_%s", col[i]);
         setenv(key, eq + 1, 1);
         if (!strcmp(col[i], "FILTER")) sp->filter = eq + 1;
+        if (!strcmp(col[i], "DIFF")) { /* OUT:GOLD, as `//! expect vcd OUT == GOLD`, GOLD from the root */
+            char *colon = strchr(eq + 1, ':');
+            if (!colon) return snprintf(why, MSG, "DIFF=%s is not OUT:GOLD", eq + 1), -1;
+            *colon = 0;
+            char gold[PATH_MAX * 2];
+            snprintf(gold, sizeof gold, "%s/%s", mroot, colon + 1);
+            sp->vcd_out = xstrdup(eq + 1), sp->vcd_gold = xstrdup(gold);
+        }
+        if (!strcmp(col[i], "STDERR") && sp->nstderr < 16) sp->stderr_want[sp->nstderr++] = xstrdup(eq + 1);
         if (!strcmp(col[i], "RTOL")) sp->rtol = atof(eq + 1);
         if (!strcmp(col[i], "ATOL")) sp->atol = atof(eq + 1);
     }
@@ -576,6 +596,8 @@ static int judge_output(const char *dir, const char *work, const Spec *sp, const
     if (sp->passed && !passed_line(s->out)) return snprintf(why, MSG, "no PASSED line"), 0;
     for (int i = 0; i < sp->nstdout; i++)
         if (!strstr(s->out, sp->stdout_want[i])) return snprintf(why, MSG, "stdout lacks \"%s\"", sp->stdout_want[i]), 0;
+    for (int i = 0; i < sp->nstderr; i++)
+        if (!strstr(s->err, sp->stderr_want[i])) return snprintf(why, MSG, "stderr lacks \"%s\"", sp->stderr_want[i]), 0;
     int bad = count(s->out, "ok=0"), all = count(s->out, "ok=");
     if (bad) return snprintf(why, MSG, "%d of %d assertion(s) reported ok=0", bad, all), 0;
     if (sp->checks_want >= 0 && all != sp->checks_want)
@@ -585,7 +607,8 @@ static int judge_output(const char *dir, const char *work, const Spec *sp, const
     if (sp->vcd_out) {
         char a[PATH_MAX], b[PATH_MAX];
         snprintf(a, sizeof a, "%s/%s", work, sp->vcd_out);
-        snprintf(b, sizeof b, "%s/%s", dir, sp->vcd_gold);
+        if (*sp->vcd_gold == '/') snprintf(b, sizeof b, "%s", sp->vcd_gold);
+        else snprintf(b, sizeof b, "%s/%s", dir, sp->vcd_gold);
         char *x = slurp(a, NULL), *y = slurp(b, NULL);
         int same = 0;
         if (x && y) {
@@ -607,6 +630,26 @@ static int rm_entry(const char *p, const struct stat *st, int t, struct FTW *f) 
 enum { PASS, FAIL, SKIP, ACCEPT }; /* ACCEPT: compiled, run stage absent */
 static const char *names[] = {"PASS", "FAIL", "SKIP", "PASS"};
 
+/* A design whose same-stem `.c` names it with `//! design` is that VPI
+ * application's input and shares its gold: it runs as the `.c`, never alone
+ * (a design run without its application tests nothing the gold describes).
+ * Rewrites `abs` to the `.c` then. */
+static void app_of(char *abs) {
+    if (has_ext(abs, ".c")) return;
+    char c[PATH_MAX], want[PATH_MAX];
+    sibling(c, sizeof c, abs, ".c");
+    char *text = slurp(c, NULL);
+    if (!text) return;
+    snprintf(want, sizeof want, "%s", strrchr(abs, '/') + 1);
+    int named = 0;
+    for (char *l = text; l && !named; l = strchr(l, '\n') ? strchr(l, '\n') + 1 : NULL) {
+        const char *d = directive(l, "//! design");
+        if (d) named = !strncmp(d, want, strlen(want)) && strspn(d + strlen(want), " \t\r") == strcspn(d + strlen(want), "\n");
+    }
+    free(text);
+    if (named) snprintf(abs, PATH_MAX, "%s", c);
+}
+
 /* Runs one test; `why` explains a FAIL or SKIP. */
 static int run_test(const Test *t, size_t index, char *why) {
     char abs[PATH_MAX], root[PATH_MAX], lang[64], dir[PATH_MAX], work[PATH_MAX + 32], inc[PATH_MAX + 16];
@@ -620,6 +663,7 @@ static int run_test(const Test *t, size_t index, char *why) {
         rel = abs + strlen(root) + 1;
     } else {
         snprintf(abs, sizeof abs, "%s", t->path);
+        app_of(abs);
         if (locate(abs, root, lang, &rel)) return snprintf(why, MSG, "not under a suite root"), FAIL;
     }
     snprintf(dir, sizeof dir, "%s", abs);
@@ -629,6 +673,8 @@ static int run_test(const Test *t, size_t index, char *why) {
     if (!cc && !rc) return snprintf(why, MSG, "tool has no command for %s", lang), SKIP;
     if (sp.reject_run && !rc) return snprintf(why, MSG, "reject-run needs a run command"), SKIP;
     if (!sp.reject && !sp.needs_run) rc = cc ? NULL : rc; /* accept test: compiling is enough */
+    /* With only a run command, tell it the run is not judged (it may stop after compiling). */
+    setenv_opt("CONFORM_COMPILE_ONLY", !sp.reject && !sp.needs_run && !cc ? "1" : NULL);
     if (sp.reject && !sp.needs_run && cc) rc = NULL;
 
     snprintf(work, sizeof work, "%s/%zu", work_root, index);
@@ -644,10 +690,13 @@ static int run_test(const Test *t, size_t index, char *why) {
     setenv("CONFORM_LANG", lang, 1);
     setenv("CONFORM_INCLUDE", inc, 1);
     setenv("CONFORM_TOOLDIR", conf_dir, 1);
-    setenv_opt("CONFORM_FILES", sp.files);
-    setenv_opt("CONFORM_LIBMAP", sp.libmap);
-    setenv_opt("CONFORM_LIBLIST", sp.liblist);
-    setenv_opt("CONFORM_STD", sp.std);
+    if (!t->row) { /* a row exports its own KEY=VALUE columns (parse_row) */
+        setenv_opt("CONFORM_FILES", sp.files);
+        setenv_opt("CONFORM_LIBMAP", sp.libmap);
+        setenv_opt("CONFORM_LIBLIST", sp.liblist);
+        setenv_opt("CONFORM_STD", sp.std);
+        setenv_opt("CONFORM_PROTECT_KEYS", sp.protect_keys);
+    }
     free(stem);
     if (t->row) link_root(root, work);
     else link_inputs(abs, dir, work);

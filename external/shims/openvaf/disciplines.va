@@ -1,0 +1,3 @@
+// OpenVAF resolves `include "disciplines.va"` to VAMS-LRM annex D's header
+// (openvaf/vfs/src/va_std.rs); the LRM names that header disciplines.vams.
+`include "disciplines.vams"

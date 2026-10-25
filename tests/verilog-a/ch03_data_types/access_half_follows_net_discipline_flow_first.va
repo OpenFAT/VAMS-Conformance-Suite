@@ -1,0 +1,40 @@
+// §3.6.1.2 an access function belongs to a NATURE, and §3.6.2 lets two
+// disciplines bind one nature to different halves. Here `Current` (access `I`)
+// is electrical's flow and also the potential of a signal-flow discipline
+// `current_sf`, the binding ekv3 makes. Which half `I(x)` reads is therefore a
+// property of the net `x`, never of the order the disciplines are declared in.
+//
+// THE ORACLE IS METAMORPHIC: this file and
+// `access_half_follows_net_discipline_potential_first.va` are one circuit with
+// the two discipline declarations swapped, and both must print the same
+// verdicts. VerA once kept one global access-name -> half map, so whichever
+// discipline came last decided: `I(p,n)` on an electrical net was E0501 in
+// this order, and in the other `I(c)` became a flow source.
+//
+// The digits: I(p,n) <+ V(p,n)/1k with 2.0 imposed gives 2e-3 (Ohm's law);
+// `I(c) <+ 5.0` on the signal-flow net is a potential source, so the solved
+// `c` reads back 5 (as a flow source to ground it would leave c singular).
+//
+//! lrm 3.6.1.2
+//! lrm 3.6.2
+//! lrm 4.4
+//! bias p = 2.0, n = 0.0
+//! solve
+`define DISCIPLINES_VAMS
+`include "check.vh"
+nature Current; units = "A"; access = I; abstol = 1p; endnature
+nature Voltage; units = "V"; access = V; abstol = 1u; endnature
+discipline electrical; potential Voltage; flow Current; enddiscipline
+discipline current_sf; potential Current; enddiscipline
+
+module access_half_flow_first(p, n);
+    inout p, n;
+    electrical p, n;
+    current_sf c;
+    analog begin
+        I(p, n) <+ V(p, n) / 1k;
+        I(c) <+ 5.0;
+        `CHECKR("I on electrical is the flow", I(p, n), 2.0e-3, 1e-12);
+        `CHECKR("I on current_sf is the potential", I(c), 5.0, 1e-12);
+    end
+endmodule

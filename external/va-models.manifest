@@ -3,7 +3,7 @@
 #root VA-Models/code
 verilog-a	compile	ASMHEMT/vacode/asmhemt.va
 verilog-a	compile	ASMHEMT/vacode/asmhemt101_0.va
-verilog-a	compile	EPFL-HEMT/vacode/epfl_hemt.va
+verilog-a	reject	EPFL-HEMT/vacode/epfl_hemt.va	-	LRM=VAMS-2023 4.4 Table 4-16; Annex change item 6 (forbids it; suite issue #1)
 verilog-a	compile	IGBT/vacode/igbt3.va
 verilog-a	compile	L-UTSOI/vacode/L_UTSOI_102.va
 verilog-a	compile	L-UTSOI/vacode/L_UTSOI_102_nqs.va
@@ -11,7 +11,7 @@ verilog-a	compile	L-UTSOI/vacode102_5/L_UTSOI_102.va
 verilog-a	compile	MOSVAR/vacode/mosvar.va
 verilog-a	compile	angelov/vacode/angelov.va
 verilog-a	compile	angelov/vacode/angelov_gan.va
-verilog-a	compile	bsim4/vacode/bsim4.va
+verilog-a	reject	bsim4/vacode/bsim4.va	-	LRM=VAMS-2023 2.7 (VD-021) (forbids it; suite issue #1)
 verilog-a	compile	bsim6/vacode/BSIM6.1.1.va
 verilog-a	compile	bsim6/vacode/bsim6.0.va
 verilog-a	compile	bsimbulk/vacode/bsimbulk.va
@@ -26,7 +26,7 @@ verilog-a	compile	diode_cmc/vacode/diode_cmc.va
 verilog-a	compile	ekv/vacode/ekv26.va
 verilog-a	compile	ekv3/vacode/ekv3.va
 verilog-a	compile	fbh_hbt/vacode/fbh_hbt-2_1.va
-verilog-a	compile	fbh_hbt/vacode/fbh_hbt-2_3.va
+verilog-a	reject	fbh_hbt/vacode/fbh_hbt-2_3.va	-	LRM=VAMS-2023 2.8.1; 1364-2005 19.3.1 (forbids it; suite issue #1)
 verilog-a	compile	hicum0/vacode/HICUML0-2.va
 verilog-a	compile	hicum0/vacode/hicumL0_v2p0p0.va
 verilog-a	compile	hicum0/vacode/hicumL0_v2p1p0.va
@@ -56,10 +56,10 @@ verilog-a	compile	mextram/vacode/bjt505.va
 verilog-a	compile	mextram/vacode/bjt505t.va
 verilog-a	compile	mextram/vacode/bjtd505.va
 verilog-a	compile	mextram/vacode/bjtd505t.va
-verilog-a	compile	mextram/vacode504p12p1/bjt504.va
-verilog-a	compile	mextram/vacode504p12p1/bjt504t.va
-verilog-a	compile	mextram/vacode504p12p1/bjtd504.va
-verilog-a	compile	mextram/vacode504p12p1/bjtd504t.va
+verilog-a	compile	mextram/vacode504p12p1/bjt504.va	-	DEFINES=__OPENVAF__
+verilog-a	compile	mextram/vacode504p12p1/bjt504t.va	-	DEFINES=__OPENVAF__
+verilog-a	compile	mextram/vacode504p12p1/bjtd504.va	-	DEFINES=__OPENVAF__
+verilog-a	compile	mextram/vacode504p12p1/bjtd504t.va	-	DEFINES=__OPENVAF__
 verilog-a	compile	mextram/vacode505p2p0/bjt505.va
 verilog-a	compile	mextram/vacode505p2p0/bjt505t.va
 verilog-a	compile	mextram/vacode505p2p0/bjtd505.va

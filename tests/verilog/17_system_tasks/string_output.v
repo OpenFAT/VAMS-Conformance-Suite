@@ -11,20 +11,22 @@
 // shall be padded on the left with zeros." §3.6.2, p. 13: "If a string is
 // larger than the destination string variable, the string is right-justified,
 // and the leftmost characters are truncated." §17.1.1.7: %s prints "leading
-// zeros are never printed".
+// zeros are never printed": each leading zero byte is shown as a space, so
+// [%s] of the 64-bit s is 8 characters wide (iverilog -g2005's text;
+// specification/Vague_Decisions.md VD-129).
 //
 // s is 64 bits (8 characters), f is 32 bits (4 characters).
 //   $swrite(s, "v=%0d", 8'd42)      "v=42", zero-padded on the left:
-//                                   s = 64'h00000000_763d3432 -> [v=42] and
+//                                   s = 64'h00000000_763d3432 -> [    v=42] and
 //                                   %h 00000000763d3432
-//   $swriteh(s, 8'hab, "|", 4'h5)   no format: hex, as $fwriteh -> [ab|5]
-//   $swriteb(s, 3'b101, "/", 2'b0x) binary -> [101/0x]
-//   $swriteo(s, 6'o17)              octal, two digits for 6 bits -> [17]
+//   $swriteh(s, 8'hab, "|", 4'h5)   no format: hex, as $fwriteh -> [    ab|5]
+//   $swriteb(s, 3'b101, "/", 2'b0x) binary -> [  101/0x]
+//   $swriteo(s, 6'o17)              octal, two digits for 6 bits -> [      17]
 //   $swrite(s, 8'd7, ":", 4'd9)     decimal, sized (§17.1.1.3): 8 bits take
-//                                   3 columns, 4 bits take 2 -> [  7: 9]
-//   $sformat(s, "%0d-%0d", 3, 4)    -> [3-4]
+//                                   3 columns, 4 bits take 2 -> [    7: 9]
+//   $sformat(s, "%0d-%0d", 3, 4)    -> [     3-4]
 //   $sformat(s, "%0d%s", 5, "%d")   the third argument is NOT a format: %s
-//                                   prints its characters -> [5%d]
+//                                   prints its characters -> [     5%d]
 //   $swrite(f, "abcdef")            6 characters into 4: the leftmost two
 //                                   are truncated -> [cdef]
 //! inherited IEEE 1364-2005 17.2.3

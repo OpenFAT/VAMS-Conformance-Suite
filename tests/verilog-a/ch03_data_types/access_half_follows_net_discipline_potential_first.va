@@ -1,0 +1,29 @@
+// The metamorphic twin of `access_half_follows_net_discipline_flow_first.va`:
+// the same circuit with the signal-flow discipline declared BEFORE
+// `electrical`. §3.6.1.2/§4.4 make the half `I(x)` reads a property of `x`'s
+// discipline, so declaration order cannot change a verdict; see the twin for
+// the digits.
+//
+//! lrm 3.6.1.2
+//! lrm 3.6.2
+//! lrm 4.4
+//! bias p = 2.0, n = 0.0
+//! solve
+`define DISCIPLINES_VAMS
+`include "check.vh"
+nature Current; units = "A"; access = I; abstol = 1p; endnature
+nature Voltage; units = "V"; access = V; abstol = 1u; endnature
+discipline current_sf; potential Current; enddiscipline
+discipline electrical; potential Voltage; flow Current; enddiscipline
+
+module access_half_potential_first(p, n);
+    inout p, n;
+    electrical p, n;
+    current_sf c;
+    analog begin
+        I(p, n) <+ V(p, n) / 1k;
+        I(c) <+ 5.0;
+        `CHECKR("I on electrical is the flow", I(p, n), 2.0e-3, 1e-12);
+        `CHECKR("I on current_sf is the potential", I(c), 5.0, 1e-12);
+    end
+endmodule

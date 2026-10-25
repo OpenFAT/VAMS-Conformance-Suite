@@ -9,7 +9,7 @@
 // literal bounds do, and m[1], m[6] keep x. Printed ascending m[1]..m[6]:
 //     xxxx 1111 x1z0 0010 0001 xxxx
 // A refusal of the variable bounds (the defect this pins) compiles nothing.
-// readmem_unknown_bound_rejected.v is the invalid neighbour.
+// readmem_unknown_bound_load_terminated.v is the invalid neighbour.
 //! lrm 9.5 (Table 9-2)
 //! inherited IEEE 1364-2005 17.2.9
 //! data 09_readmemb_range.bin

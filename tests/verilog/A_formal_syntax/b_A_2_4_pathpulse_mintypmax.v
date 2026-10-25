@@ -1,9 +1,9 @@
 // IEEE 1364-2005 A.2.4 and Syntax 14-7 derive each PATHPULSE$ limit through
 // limit_value ::= constant_mintypmax_expression. Both the single-limit and
 // two-limit forms therefore accept minimum:typical:maximum expressions.
-// W0251 records that VerA does not simulate specify pulse filtering. This
-// test asserts only the legal declaration and the independently executed
-// buffer: its constant input 1 reaches y before the t=1 sample, so y=1.
+// The limits apply (§14.6.1), but the constant input makes no pulse to
+// filter: this test asserts the legal declaration and the buffer, whose
+// input 1 reaches y through the 1 ns path by the t=1 sample, so y=1.
 // The invalid neighbour is b_A_2_4_pathpulse_missing_corner_rejected.v.
 //! inherited IEEE 1364-2005 A.2.4 14.6 14.6.1
 `timescale 1ns/1ns

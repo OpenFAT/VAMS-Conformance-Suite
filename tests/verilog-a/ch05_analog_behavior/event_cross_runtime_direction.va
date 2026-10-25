@@ -1,0 +1,28 @@
+// VAMS-2023 §5.10.3.1: "The expr, dir, and enable arguments are specified as
+// analog_expression", so the direction may be computed during the solve and
+// the one in force is its value at the point being evaluated. VerA once
+// refused a solve-time dir with E0515 (OpenVAF's VAMS2023_EVENT_FUNS).
+//
+// V(p) is walked -1 -> 1 -> -1: one RISING crossing in (0, 1n] and one
+// FALLING crossing in (1n, 2n]. The direction is -1 (falling only) up to
+// 1.5n and +1 (rising only) after it, so each crossing meets the direction
+// that ignores it and no event fires: n stays 0. Every constant direction
+// fires at least once (+1 on the rise, -1 on the fall, 0 on both), so n == 0
+// holds only if the runtime value reaches the direction decode.
+//
+//! lrm 5.10.3.1
+//! analysis tran
+//! time 0, 1n, 2n
+//! wave V(p) = -1, 1, -1
+`include "check.vh"
+module ch5_cross_runtime_dir(p);
+  inout p; electrical p;
+  integer n, dir;
+  analog begin
+    @(initial_step) n = 0;
+    dir = ($abstime > 1.5n) ? 1 : -1;
+    @(cross(V(p), dir)) n = n + 1;
+    `CHECKI("a runtime direction ignores both crossings", n, 0);
+    I(p) <+ V(p) * 1m;
+  end
+endmodule

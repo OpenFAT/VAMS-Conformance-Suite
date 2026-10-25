@@ -27,7 +27,7 @@
 //! lrm 12.31.4:1002
 //! design digital.v
 //! stdout b7_reset_every_run: requests=1001 resets=1000
-//! refuse more than 1000 vpiReset requests
+//! exit 1
 
 #include "../ch11_vpi/p02_check.h"
 
