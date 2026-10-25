@@ -75,6 +75,9 @@ cp "$T/up/t/a.v" "$T/up/t/e.v"; printf 'std=1364-2005\n' > "$T/up/gold/e.gold"
 cp "$T/up/t/a.v" "$T/up/t/f.v"; echo 1 > "$T/up/t/f.exit"
 # g: a KEY=VALUE in the gold column is a broken row, not a gold file.
 cp "$T/up/t/a.v" "$T/up/t/g.v"
+# j, k: STDOUT= is a line the run must print, here a reject-run's diagnostic.
+cp "$T/up/t/a.v" "$T/up/t/j.v"; printf 'error: budget\n' > "$T/up/t/j.out"; echo 1 > "$T/up/t/j.exit"
+cp "$T/up/t/j.v" "$T/up/t/k.v"; cp "$T/up/t/j.out" "$T/up/t/k.out"; echo 1 > "$T/up/t/k.exit"
 # h, i: DIFF= judges the file the run writes (tokens, as a VCD).
 cp "$T/up/t/a.v" "$T/up/t/h.v"; printf 'x 1\n' > "$T/up/t/h.file"; printf 'x  1\n' > "$T/up/gold/h.gold"
 cp "$T/up/t/a.v" "$T/up/t/i.v"; printf 'x 2\n' > "$T/up/t/i.file"; cp "$T/up/gold/h.gold" "$T/up/gold/i.gold"
@@ -89,6 +92,8 @@ verilog	compile	t/f.v
 verilog	compile	t/g.v	STD=1364-2005
 verilog	ok	t/h.v	-	DIFF=out.txt:gold/h.gold
 verilog	ok	t/i.v	-	DIFF=out.txt:gold/i.gold
+verilog	reject-run	t/j.v	-	STDOUT=error: budget
+verilog	reject-run	t/k.v	-	STDOUT=error: other
 EOF2
 printf 'verilog-a/xfail.va  # a known bug\nverilog-a/xpass.va\n' > "$T/xfail"
 
@@ -126,6 +131,8 @@ PASS	up/t/f.v
 FAIL	up/t/g.v
 PASS	up/t/h.v
 FAIL	up/t/i.v
+PASS	up/t/j.v
+FAIL	up/t/k.v
 PASS	verilog/named_gold.v
 PASS	verilog/keys.v
 FAIL	verilog/named_gold_missing.v
