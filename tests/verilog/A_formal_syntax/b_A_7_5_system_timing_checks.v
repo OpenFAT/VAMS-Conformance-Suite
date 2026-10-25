@@ -61,7 +61,7 @@
 // form: a bare expression, `~`, `==`, `===`, `!=` and `!==`, against
 // 1'b1, 'b1, 0 and 1'B0. The productions only the other four commands and
 // the negative-limit arguments use (event_based_flag, remain_active_flag,
-// the $nochange offsets, stamptime and checktime conditions, delayed
+// the $nochange offsets, delayed
 // reference and data) are parsed by a digital run too, which then refuses
 // the design by name (E1149, ieee1364/15_timing_checks/b_15_*_refused.v), so
 // they have no run here; an analog compile accepts them all
