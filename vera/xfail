@@ -1,9 +1,6 @@
 # VerA's own expected failures under its fixture harness (zig build test-ams, test-devices):
 # one suite-relative path per line, the reason after `#`. The suite dropped the fixtures'
 # `//! xfail` lines (a tool's known failures are tools/<tool>.xfail); these are theirs.
-tests/verilog/10_tasks_functions/nonansi_task_complete_port_redeclared_rejected.v # A fully typed non-ANSI task port can incorrectly be redeclared with another type.
-tests/verilog/10_tasks_functions/nonansi_task_duplicate_port_variable_rejected.v # Duplicate non-ANSI task-port variables are accepted and executed.
-tests/verilog/10_tasks_functions/nonansi_task_port_range_mismatch_rejected.v # A non-ANSI task port and its variable declaration may incorrectly have different ranges.
 tests/verilog/14_specify_blocks/negative_pulse_showcancelled.v # Pulse limits and pulse-style declarations are parsed but not simulated.
 tests/verilog/14_specify_blocks/pulse_error_window_styles.v # Pulse limits and pulse-style declarations are parsed but not simulated.
 tests/verilog/14_specify_blocks/pulse_path_specific_limits.v # Pulse limits and pulse-style declarations are parsed but not simulated.
