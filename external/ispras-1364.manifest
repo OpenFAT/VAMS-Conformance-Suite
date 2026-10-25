@@ -98,7 +98,7 @@ verilog	compile	test_08_03_00_1.v	-	STD=1364-2005
 verilog	compile	test_08_04_00_1.v	-	STD=1364-2005
 verilog	compile	test_08_05_00_1.v	-	STD=1364-2005
 verilog	compile	test_08_05_00_2.v	-	STD=1364-2005
-verilog	compile	test_08_06_00_1.v	-	STD=1364-2005
+verilog	reject	test_08_06_00_1.v	-	STD=1364-2005	LRM=12.3.9.2 (a UDP instance's output drives reg q, not a net; forbids it; suite issue #1)
 verilog	compile	test_08_07_00_1.v	-	STD=1364-2005
 verilog	compile	test_09_01_00_1.v	-	STD=1364-2005
 verilog	compile	test_09_02_01_1.v	-	STD=1364-2005
@@ -248,7 +248,7 @@ verilog	compile	test_15_05_01_2.v	-	STD=1364-2005
 verilog	compile	test_15_05_01_3.v	-	STD=1364-2005
 verilog	compile	test_15_05_02_1.v	-	STD=1364-2005
 verilog	compile	test_15_05_02_2.v	-	STD=1364-2005
-verilog	compile	test_15_05_02_3.v	-	STD=1364-2005
+verilog	reject	test_15_05_02_3.v	-	STD=1364-2005	LRM=6.1.2 (a continuous assignment to a reg; forbids it; suite issue #1)
 verilog	reject	test_15_06_00_1.v	-	STD=1364-2005	LRM=4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
 verilog	reject	test_15_06_00_2.v	-	STD=1364-2005	LRM=4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
 verilog	compile	test_15_06_00_3.v	-	STD=1364-2005

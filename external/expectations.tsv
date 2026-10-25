@@ -107,7 +107,9 @@ gnucap-modelgen/dump_unary.0.vams	reject	-	VAMS 2.6.2 (forbids it; suite issue #
 gnucap-modelgen/dump_var_def.0.vams	reject	-	VAMS 2.6.2 (forbids it; suite issue #1)
 gnucap-modelgen/dump_var_def.1.vams	reject	-	VAMS 2.6.2 (forbids it; suite issue #1)
 gnucap-modelgen/dump_warn.ps0.vams	reject	-	VAMS A.1.2; VAMS 6.5.2.2; VAMS 2.6.2; VAMS A.1.2 (forbids it; suite issue #1)
+ispras-1364/test_08_06_00_1.v	reject	-	12.3.9.2 (a UDP instance's output drives reg q, not a net; forbids it; suite issue #1)
 ispras-1364/test_14_02_04_4_2.v	reject	-	IEEE 1364-2005 §14.2.4.4 (forbids it; suite issue #1)
+ispras-1364/test_15_05_02_3.v	reject	-	6.1.2 (a continuous assignment to a reg; forbids it; suite issue #1)
 ispras-1364/test_15_06_00_1.v	reject	-	4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
 ispras-1364/test_15_06_00_2.v	reject	-	4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
 ivtest/ivltests/array_packed_2d.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
@@ -153,6 +155,7 @@ ivtest/ivltests/pr1864110a.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #
 ivtest/ivltests/pr1864110b.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/pr1864115.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/pr1877743.v	reject	-	14.2.5/A.7.2; 14.2.4.1 (forbids it; suite issue #1)
+ivtest/ivltests/pr1938138.v	compile	-	IEEE 1364-2005 13.2.1.1: a module defined twice keeps the last definition, with a warning
 ivtest/ivltests/pr2172606b.v	ok	../../gold/ivtest/pr2172606b.gold	IEEE 1364-2005 5.1.13 Table 5-21: x ? z : z is x, so the procedural check's both-z branch prints twice (iverilog gives z)
 ivtest/ivltests/pr2257003.v	reject	-	A.4.2; 12.4 (forbids it; suite issue #1)
 ivtest/ivltests/pr2257003b.v	reject	-	A.4.2; 12.4 (forbids it; suite issue #1)
