@@ -6,7 +6,8 @@
 // clause names a run-time outcome, not an error; VerA refuses such a
 // construct before any process runs, as iverilog does ("always process does
 // not have any delay", ivtest always3.1.1B), whichever process would have
-// run first. Legal neighbour: initial_and_always.v, whose always constructs
+// run first (specification/Vague_Decisions.md VD-133). Legal neighbour:
+// initial_and_always.v, whose always constructs
 // each carry a timed statement.
 //! neighbour initial_and_always.v
 module triage_zero_delay_always_rejected;

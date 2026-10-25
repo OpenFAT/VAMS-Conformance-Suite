@@ -4,7 +4,7 @@
 // §4.8.2 (rounded, halves away from zero), and one with no integer (an
 // infinity or a NaN, whose integer is x) as 0; `$rtoi` of an integral value
 // converts it to real first. This is iverilog -g2005's text (the oracle;
-// ivtest itor_rtoi; specification/Vague_Decisions.md VD-128). This fixture
+// ivtest itor_rtoi; specification/Vague_Decisions.md VD-130). This fixture
 // was itor_real_argument_rejected until 2026-10-24.
 //
 //   $itor(10.4) = 10, $itor(-1.5) = -2, $itor(1.0/0.0) = 0, $rtoi(1'bx) = 0

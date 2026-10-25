@@ -13,7 +13,7 @@
 // and the leftmost characters are truncated." §17.1.1.7: %s prints "leading
 // zeros are never printed": each leading zero byte is shown as a space, so
 // [%s] of the 64-bit s is 8 characters wide (iverilog -g2005's text;
-// specification/Vague_Decisions.md VD-127).
+// specification/Vague_Decisions.md VD-129).
 //
 // s is 64 bits (8 characters), f is 32 bits (4 characters).
 //   $swrite(s, "v=%0d", 8'd42)      "v=42", zero-padded on the left:

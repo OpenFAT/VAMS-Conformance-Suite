@@ -4,7 +4,7 @@
 // it outputs, and a delayed driver outputs nothing known until its first
 // update lands: §8.5 Figure 8-1 draws q and qb, behind `buf #3` and `not #5`,
 // as unknown until simulation times 3 and 5. Only a net with no driver, `u`,
-// reads the default z (specification/Vague_Decisions.md VD-126). (This
+// reads the default z (specification/Vague_Decisions.md VD-128). (This
 // fixture read z for the driven nets until G8;
 // iverilog, the reference tool, prints these lines.)
 //

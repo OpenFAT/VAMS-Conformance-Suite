@@ -14,7 +14,7 @@
 //   fmt = 0: no characters, so no conversion; the argument 5 is one too
 //     many -> a warning and the empty text -> []
 // %s prints all 48 characters of s, each leading zero byte as a space
-// (§17.1.1.7, VD-127; b_17_2_3_sformat_variable_format the same way), so
+// (§17.1.1.7, VD-129; b_17_2_3_sformat_variable_format the same way), so
 // each line is right-justified in 48 columns.
 //! inherited IEEE 1364-2005 17.2.3
 // native-required

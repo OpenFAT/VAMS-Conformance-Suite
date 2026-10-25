@@ -5,7 +5,7 @@
 // open. VerA makes it as wide as its digits (digit count times bits per
 // digit, leading zero digits included), as iverilog -g2005 does (the oracle;
 // ivtest pr903, which this fixture truncated to 32 bits until 2026-10-24;
-// specification/Vague_Decisions.md VD-129).
+// specification/Vague_Decisions.md VD-131).
 //
 //   'h1_0000_0000          9 hex digits, 36 bits  -> %h 100000000
 //   'h0000_0000_0001       12 digits, 48 bits     -> %h 000000000001

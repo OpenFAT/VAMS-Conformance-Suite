@@ -19,7 +19,7 @@
 //     o = 8'o17 (%o of 8 bits: three digits, 017), bb = 8'b00000101, and the
 //     blank before %c skips to Z = 8'h5a -> "5 12 3f 017 00000101 5a"
 //   "-45 xyz" with "%d %s": a = -45, s = "xyz" (zero-padded; %s shows the
-//     two leading zero bytes of the 40-bit s as spaces, VD-127) ->
+//     two leading zero bytes of the 40-bit s as spaces, VD-129) ->
 //     "2 -45 [  xyz]"
 //   "k=+9 50%" with "k=%d %d%%": k and = match literally, a = +9, b = 50,
 //     %% matches the % -> "2 9 50"
