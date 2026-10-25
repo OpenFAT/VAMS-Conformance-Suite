@@ -328,13 +328,13 @@
 14.3.3	-	Delay selection
 14.4	-	Mixing module path delays and distributed delays
 14.5	-	Driving wired logic
-14.6	not-supported	Detailed control of pulse filtering behavior	Simulation behaviour VerA does not execute (CLAUSE-AUDIT.md §5.7 keeps 14 in scope as parsed and read by VPI): no module path delay or pulse limit is applied; a specify block that writes them warns W0251. Fixture: A_formal_syntax/b_A_7_1_specify_block.v (a specify block with both pulsestyle declarations, both showcancelled declarations and a path delay parses and runs as the plain buffer its continuous assignments make it; the run draws W0251, whose text names the §14.6 pulse controls as not modelled).
-14.6.1	not-supported	Specify block control of pulse limit values	Simulation behaviour VerA does not execute (CLAUSE-AUDIT.md §5.7 keeps 14 in scope as parsed and read by VPI): the PATHPULSE$ limits are parsed and dropped, so no pulse width is filtered; the block warns W0251. Fixture: A_formal_syntax/b_A_2_4_pathpulse_mintypmax.v (both Syntax 14-7 forms, `specparam PATHPULSE$ = (1:2:3)` and `PATHPULSE$a$y = (1:2:3, 4:5:6)`, parse and draw only W0251; no reject or error limit is applied).
-14.6.2	not-supported	Global control of pulse limit values	Global pulse limits are simulator invocation options, not a source form: the two options in this clause (error-limit and reject-limit percentages) have no VerA equivalent, so nothing in a design selects one and no design can require them. The whole §14.6 filtering is unmodelled and a specify block that writes pulse limits draws W0251 (A_formal_syntax/b_A_2_4_pathpulse_mintypmax.v).
-14.6.3	not-supported	SDF annotation of pulse limit values	Out of scope (CLAUSE-AUDIT.md §5.7): SDF back-annotation. VerA is no SDF annotator; $sdf_annotate, the only way source asks for one, is refused (E1102). Fixture: 17_system_tasks/sdf_annotate_rejected.v (`$sdf_annotate` is refused with E1102).
-14.6.4	not-supported	Detailed pulse control capabilities	Simulation behaviour VerA does not execute (CLAUSE-AUDIT.md §5.7 keeps 14 in scope as parsed and read by VPI): the pulse style and cancellation declarations are parsed, but no pulse is filtered to X or detected as negative, and the block warns W0251. Fixture: A_formal_syntax/b_A_7_1_specify_block.v (pulsestyle_onevent/ondetect and showcancelled/noshowcancelled over the two outputs; only W0251, then the plain buffer's output).
-14.6.4.1	not-supported	On-event versus on-detect pulse filtering	Simulation behaviour VerA does not execute (CLAUSE-AUDIT.md §5.7 keeps 14 in scope as parsed and read by VPI): no on-event/on-detect filtering is run; the pulsestyle declarations are parsed and the block warns W0251. Fixture: A_formal_syntax/b_A_7_1_specify_block.v (all four declarations of Syntax 14-8, the two pulsestyle and the two showcancelled forms, over outputs y and z).
-14.6.4.2	not-supported	Negative pulse detection	Simulation behaviour VerA does not execute (CLAUSE-AUDIT.md §5.7 keeps 14 in scope as parsed and read by VPI): no negative pulse is detected or shown as X; the showcancelled declarations are parsed and the block warns W0251. Fixture: A_formal_syntax/b_A_7_1_specify_block.v (showcancelled y and noshowcancelled z).
+14.6	-	Detailed control of pulse filtering behavior
+14.6.1	-	Specify block control of pulse limit values
+14.6.2	not-supported	Global control of pulse limit values	Global pulse limits are simulator invocation options, not a source form: the two options in this clause (error-limit and reject-limit percentages) have no VerA equivalent, so nothing in a design selects one and no design can require them. The digital engine applies the source's own limits (§14.6.1, 14_specify_blocks/pulse_path_specific_limits.v) and, without any, the default: both limits the path delay.
+14.6.3	-	SDF annotation of pulse limit values
+14.6.4	-	Detailed pulse control capabilities
+14.6.4.1	-	On-event versus on-detect pulse filtering
+14.6.4.2	-	Negative pulse detection
 15	non-normative	Timing checks	Clause preamble: "This clause describes how timing checks are used in specify blocks to determine whether signals obey the timing constraints." (p. 237). It states no rule of its own; the rules are §15.1-§15.8, each cited or classified on its own row.
 15.1	-	Overview
 15.2	no-prohibition	Timing checks using a stability window	The stability-window checks' common steps: "Define a time window with respect to the reference signal ... Check the time of transition of the data signal ... Report a timing violation if the data signal transitions within the time window." Nothing is illegal here; each command's limits are §15.2.1-§15.2.6's. Positive: 15_timing_checks/setup.v and its five siblings.
@@ -369,7 +369,7 @@
 16.2.4	-	SDF annotation of interconnect delays
 16.3	-	Multiple annotations
 16.4	-	Multiple SDF files
-16.5	not-supported	Pulse limit annotation	Out of scope (CLAUSE-AUDIT.md §5.7): SDF back-annotation. VerA is no SDF annotator; $sdf_annotate, the only way source asks for one, is refused (E1102). Fixture: 17_system_tasks/sdf_annotate_rejected.v (`$sdf_annotate` is refused with E1102).
+16.5	-	Pulse limit annotation
 16.6	-	SDF to Verilog delay value mapping
 17	non-normative	System tasks and functions	"This clause describes system tasks and functions that are considered part of the Verilog HDL. These system tasks and functions are divided into ten categories" A list of the tasks by category; the rules are in §17.1 to §17.11.
 17.1	non-normative	Display system tasks	"The display group of system tasks is divided into three categories: the display and write tasks, strobed monitoring tasks, and continuous monitoring tasks." An introduction; the rules are §17.1.1 to §17.1.3, each cited both ways.
