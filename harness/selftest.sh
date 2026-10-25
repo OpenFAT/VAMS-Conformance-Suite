@@ -12,6 +12,7 @@ mkdir -p "$T/s/include" "$T/s/verilog-a" "$T/s/verilog" "$T/s/spice"
 cat > "$T/tool.conf" <<'EOF'
 run.verilog-a = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; s=$(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0); [ "$s" = segv ] && kill -SEGV $$; [ "$s" = hang ] && sleep 30; exit $s
 run.verilog = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
+run.vpi = echo "$CONFORM_LANG $(basename "$CONFORM_SRC")"
 EOF
 printf 'compile.verilog-a = exit 0\n' > "$T/compile-only.conf"
 
@@ -44,6 +45,10 @@ printf 'module h; endmodule\n' > "$T/s/verilog/golden_diff.v"
 printf 'hi\n' > "$T/s/verilog/golden_diff.expected.txt"
 printf 'ho\n' > "$T/s/verilog/golden_diff.out"
 printf 'module support; endmodule\n' > "$T/s/verilog/support_only.v"
+# A design its same-stem VPI application names runs as that application.
+printf 'module app; endmodule\n' > "$T/s/verilog/app.v"
+printf '//! design app.v\n' > "$T/s/verilog/app.c"
+printf 'vpi app.c\n' > "$T/s/verilog/app.expected.txt"
 # An upstream-style suite driven by a manifest: its own gold, its own filter.
 mkdir -p "$T/up/t" "$T/up/gold"
 printf 'module a; endmodule\n' > "$T/up/t/a.v"
@@ -83,6 +88,8 @@ XPASS	verilog-a/xpass.va
 SKIP	verilog-a/tool_cannot.va
 SKIP	spice/no_command.va
 PASS	verilog/golden.v
+PASS	verilog/app.v
+PASS	verilog/app.c
 FAIL	verilog/golden_diff.v
 PASS	up/t/a.v
 FAIL	up/t/b.v

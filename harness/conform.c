@@ -607,6 +607,26 @@ static int rm_entry(const char *p, const struct stat *st, int t, struct FTW *f) 
 enum { PASS, FAIL, SKIP, ACCEPT }; /* ACCEPT: compiled, run stage absent */
 static const char *names[] = {"PASS", "FAIL", "SKIP", "PASS"};
 
+/* A design whose same-stem `.c` names it with `//! design` is that VPI
+ * application's input and shares its gold: it runs as the `.c`, never alone
+ * (a design run without its application tests nothing the gold describes).
+ * Rewrites `abs` to the `.c` then. */
+static void app_of(char *abs) {
+    if (has_ext(abs, ".c")) return;
+    char c[PATH_MAX], want[PATH_MAX];
+    sibling(c, sizeof c, abs, ".c");
+    char *text = slurp(c, NULL);
+    if (!text) return;
+    snprintf(want, sizeof want, "%s", strrchr(abs, '/') + 1);
+    int named = 0;
+    for (char *l = text; l && !named; l = strchr(l, '\n') ? strchr(l, '\n') + 1 : NULL) {
+        const char *d = directive(l, "//! design");
+        if (d) named = !strncmp(d, want, strlen(want)) && strspn(d + strlen(want), " \t\r") == strcspn(d + strlen(want), "\n");
+    }
+    free(text);
+    if (named) snprintf(abs, PATH_MAX, "%s", c);
+}
+
 /* Runs one test; `why` explains a FAIL or SKIP. */
 static int run_test(const Test *t, size_t index, char *why) {
     char abs[PATH_MAX], root[PATH_MAX], lang[64], dir[PATH_MAX], work[PATH_MAX + 32], inc[PATH_MAX + 16];
@@ -620,6 +640,7 @@ static int run_test(const Test *t, size_t index, char *why) {
         rel = abs + strlen(root) + 1;
     } else {
         snprintf(abs, sizeof abs, "%s", t->path);
+        app_of(abs);
         if (locate(abs, root, lang, &rel)) return snprintf(why, MSG, "not under a suite root"), FAIL;
     }
     snprintf(dir, sizeof dir, "%s", abs);

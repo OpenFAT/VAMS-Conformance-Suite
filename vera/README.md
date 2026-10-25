@@ -7,7 +7,7 @@ suite out at `tests/conformance` and runs `tests/` through its own harness
 
 | Path | Contents |
 |---|---|
-| `host/` | Zig hosts that load an emitted device and drive it: `*_host.zig`, the `*_gpu.zig` twin, `*_dyn.zig`, `vdev_*.zig`, `vpi_host.zig`. Each names its device with `//! device tests/<lang>/<chapter>/<file>`, a suite-relative path |
+| `host/` | Zig hosts that load an emitted device and drive it: `*_host.zig`, the `*_gpu.zig` twin, `*_dyn.zig`, `vdev_*.zig`. Each names its device with `//! device tests/<lang>/<chapter>/<file>`, a suite-relative path |
 | `canary/` | Wrong-on-purpose fixtures that VerA's harness must FAIL, and `EXPECT.tsv`, the verdict each one must get |
 | `ledger/` | The evidence accounting: `VERDICTS.tsv` and `LEVELS.tsv` (the verdict and evidence-level baselines), `OBLIGATIONS.tsv` (the AMS sentence ledger), `SPECIALIZED.tsv` (host, VPI and reference assertions), `ORACLES.tsv`, `GAPS.tsv`, `FEATURE_GAPS.tsv`, `MUTANTS.tsv`, `ICARUS.tsv`, `GRAMMAR.tsv`, `GRAMMAR-DIFF.tsv`, `ADVERSARIAL.tsv`, `PROFILES.json` and `STEPS.txt` |
 | `clauses/<chapter>/CLAUSES.tsv` | Per-chapter clause classification rows (`ieee1364/` for IEEE 1364-2005); metadata, not tests |
