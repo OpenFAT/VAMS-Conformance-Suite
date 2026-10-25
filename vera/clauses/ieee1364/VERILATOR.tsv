@@ -844,7 +844,7 @@ fixture	expect	verilator	exit	agrees	note
 17_system_tasks/display_decimal_states.v	transcript	accepts	0	yes	
 17_system_tasks/display_missing_argument_rejected.v	reject	refuses	-	yes	%Error: tests/conformance/tests/verilog/17_system_tasks/display_missing_argument_rejected.v:7:17: Missing arguments for $display-like format
 17_system_tasks/display_named_scope.v	transcript	accepts	0	yes	
-17_system_tasks/display_packed_ascii.v	transcript	accepts	0	no	stdout differs; golden shows x/z
+17_system_tasks/display_packed_ascii.v	transcript	accepts	0	yes
 17_system_tasks/display_radix.v	transcript	accepts	0	yes	
 17_system_tasks/display_unknown_radix.v	transcript	accepts	0	no	stdout differs; golden shows x/z
 17_system_tasks/display_write_runs.v	transcript	accepts	0	yes	
