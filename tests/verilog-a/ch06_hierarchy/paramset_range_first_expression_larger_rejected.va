@@ -1,0 +1,29 @@
+// §3.4.2: "The first expression in the range shall be numerically smaller
+// than the second expression in the range." §6.4.1 declares a paramset's
+// parameters with the same `parameter_declaration` (A.1.9
+// `paramset_item_declaration`), so the rule binds them too.
+//
+// `from [2.0:1.0]` is the empty set, decidable from the declaration alone, so
+// it is refused whether or not an instance ever selects the paramset: nothing
+// here instantiates `bad_res`, and the module `ps_range_res` is the top. The
+// neighbour is a well-ordered paramset range, accepted; the module form of
+// this rule is ../ch03_data_types/range_first_expression_larger.va.
+//
+// E0347 names the malformed bound order, not an arbitrary earlier failure.
+//
+//! lrm 3.4.2
+//! lrm 6.4.1
+//! reject-only E0347
+//! neighbour paramset_range_bound_modulus.va
+`include "disciplines.vams"
+module ps_range_res(a, b);
+    inout a, b;
+    electrical a, b;
+    parameter real r = 1.0 from (0:inf);
+    analog I(a, b) <+ V(a, b) / r;
+endmodule
+
+paramset bad_res ps_range_res;
+    parameter real rr = 1.0 from [2.0:1.0];
+    .r = rr;
+endparamset
