@@ -12,15 +12,9 @@
 // carry a timed statement.
 //! neighbour initial_and_always.v
 module triage_zero_delay_always_rejected;
-  reg [3:0] value1;
+  reg areg;
 
-  initial begin
-    if (value1 != 4'b1)
-      $display("FAILED");
-    else
-      $display("PASSED");
-    $finish(0);
-  end
-
-  always value1 = 1'b1 && 1'b1;
+  // §9.9.2's example; no $finish, which would end the step it spins in.
+  initial areg = 0;
+  always areg = ~areg;
 endmodule
