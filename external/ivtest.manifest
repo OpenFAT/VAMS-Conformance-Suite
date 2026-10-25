@@ -714,7 +714,7 @@ verilog	reject	ivltests/named_event_negedge_fail.v	-	STD=1364-2005	INCDIR=ivltes
 verilog	reject	ivltests/named_event_posedge_fail.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/nb_assign.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/nb_delay.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	passed	ivltests/nb_ec_concat.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	ok	ivltests/nb_ec_concat.v	../../gold/ivtest/nb_ec_concat.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 11.4 (c) and 9.2.2: the nonblocking update is a later NBA-region event, so the checks right after -> see the old value (iverilog assigns at once)
 verilog	ok	ivltests/nb_ec_multi_ev.v	../../gold/ivtest/nb_ec_multi_ev.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 11.4 (c) and 9.2.2: the nonblocking update is a later NBA-region event, so the checks right after -> see the old value (iverilog assigns at once)
 verilog	passed	ivltests/nb_ec_repeat_auto.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/nba_repeat_wide_count.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log

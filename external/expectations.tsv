@@ -145,6 +145,7 @@ ivtest/ivltests/macro_str_esc.v	reject	-	19.3.1; IEEE 1800-2017 22.5.1 (`` only 
 ivtest/ivltests/module_no_port_mixed_instances.v	reject	-	A.4.1.1 (module_instance requires parentheses; forbids it; suite issue #1)
 ivtest/ivltests/module_output_port_var2.v	reject	-	A.1.2/A.1.4 (forbids it; suite issue #1)
 ivtest/ivltests/multi_bit_strength.v	reject	-	IEEE 1364-2005 §17.1.1.5 (forbids it; suite issue #1)
+ivtest/ivltests/nb_ec_concat.v	ok	../../gold/ivtest/nb_ec_concat.gold	IEEE 1364-2005 11.4 (c) and 9.2.2: the nonblocking update is a later NBA-region event, so the checks right after -> see the old value (iverilog assigns at once)
 ivtest/ivltests/nb_ec_multi_ev.v	ok	../../gold/ivtest/nb_ec_multi_ev.gold	IEEE 1364-2005 11.4 (c) and 9.2.2: the nonblocking update is a later NBA-region event, so the checks right after -> see the old value (iverilog assigns at once)
 ivtest/ivltests/param_string.v	ok	../../gold/ivtest/param_string.gold	IEEE 1364-2005 17.1.1.2: an argument with no format is shown in decimal; the parameter is the 48-bit value of "PASSED", 15 columns wide (iverilog prints the text)
 ivtest/ivltests/partsel_outside_const.v	reject	-	A.8.7 (forbids it; suite issue #1)
