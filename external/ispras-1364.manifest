@@ -249,8 +249,8 @@ verilog	compile	test_15_05_01_3.v	-	STD=1364-2005
 verilog	compile	test_15_05_02_1.v	-	STD=1364-2005
 verilog	compile	test_15_05_02_2.v	-	STD=1364-2005
 verilog	compile	test_15_05_02_3.v	-	STD=1364-2005
-verilog	compile	test_15_06_00_1.v	-	STD=1364-2005
-verilog	compile	test_15_06_00_2.v	-	STD=1364-2005
+verilog	reject	test_15_06_00_1.v	-	STD=1364-2005	LRM=4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
+verilog	reject	test_15_06_00_2.v	-	STD=1364-2005	LRM=4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
 verilog	compile	test_15_06_00_3.v	-	STD=1364-2005
 verilog	compile	test_15_07_00_1.v	-	STD=1364-2005
 verilog	compile	test_16_02_01_1.v	-	STD=1364-2005
