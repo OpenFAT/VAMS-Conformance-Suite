@@ -1,6 +1,7 @@
-// §10.4 hands `define and `undef to IEEE Std 1364, whose §19.3.1 makes the use
-// of a text macro that was never defined illegal — there is no text to
-// substitute, so the token stream the parser is handed has a hole in it.
+// §10.4 hands `define and `undef to IEEE Std 1364. Its §19.3.2 says only that
+// an undefined text macro "has no value"; no clause makes its use an error.
+// VerA refuses the use (docs/specification/Vague_Decisions.md VD-126): expanding it to
+// nothing would turn a typo into a silently different expression.
 //
 // The expectation is the stable code and not the phase label ParseError, which
 // any parse-phase failure satisfies: a typo'd keyword three lines down would

@@ -6,9 +6,11 @@
 // macro name."
 //
 // `late is used on the line before its `define is processed, so at the use
-// it names no macro. Legal neighbour: text_macros.v defines every
-// macro before its first use.
-//! inherited IEEE 1364-2005 19 19.3.1
+// it names no macro. §19.3.2 only says an undefined macro "has no value"; no
+// clause makes its use an error. Refusing it is VerA's choice
+// (docs/specification/Vague_Decisions.md VD-126): expanding it to nothing would hide a
+// typo. Legal neighbour: text_macros.v defines every macro before its first use.
+//! inherited IEEE 1364-2005 19 19.3.2 (VerA's choice, VD-126)
 //! reject E0115
 //! reject undefined macro
 //! neighbour text_macros.v
