@@ -142,7 +142,7 @@ verilog	passed	ivltests/bitwidth2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work lo
 verilog	passed	ivltests/blankport.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/block_only_with_var_def.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/bnot.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	passed	ivltests/br1000.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	reject-run	ivltests/br1000.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.7.5: each always @* reads the shared i it writes, so the two retrigger each other forever at time 0; the run ends on VerA's per-time-step event budget
 verilog	passed	ivltests/br1001.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/br1006.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	ok	ivltests/br1007.v	gold/br1007.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'

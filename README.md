@@ -209,7 +209,7 @@ Columns, tab-separated: language, want, source, gold (`-` for none), then
 Two keys change the gold comparison: `FILTER` is a shell command both stdout
 and the gold pass through first (upstream's own filter, so a tool's banner
 does not count), and `RTOL`/`ATOL` compare the numbers in them within
-`atol + rtol·max(|a|, |b|)`. `STDOUT` is text the run's stdout must contain, as `//! stdout`. A test name is `<manifest>/<source>`, which is
+`atol + rtol·max(|a|, |b|)`. `STDERR` is text the run's stderr must contain (a reject-run's diagnostic). A test name is `<manifest>/<source>`, which is
 also how an xfail file lists it.
 
 Where the governing LRM (IEEE 1364-2005, VAMS-2023) decides a test

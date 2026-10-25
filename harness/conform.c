@@ -256,6 +256,8 @@ typedef struct {
     int reject, reject_run, exit_want, checks_want, needs_run, self_checks, passed;
     char *stdout_want[16];
     int nstdout;
+    char *stderr_want[16]; /* a row's STDERR= */
+    int nstderr;
     char *vcd_out, *vcd_gold;
     char *files, *libmap, *liblist, *std, *protect_keys;
     char gold[PATH_MAX], errgold[PATH_MAX]; /* empty: none */
@@ -389,7 +391,7 @@ static int parse_row(char *row, const char *mroot, Spec *sp, char *lang, char *s
             snprintf(gold, sizeof gold, "%s/%s", mroot, colon + 1);
             sp->vcd_out = xstrdup(eq + 1), sp->vcd_gold = xstrdup(gold);
         }
-        if (!strcmp(col[i], "STDOUT") && sp->nstdout < 16) sp->stdout_want[sp->nstdout++] = xstrdup(eq + 1); /* as `//! stdout` */
+        if (!strcmp(col[i], "STDERR") && sp->nstderr < 16) sp->stderr_want[sp->nstderr++] = xstrdup(eq + 1);
         if (!strcmp(col[i], "RTOL")) sp->rtol = atof(eq + 1);
         if (!strcmp(col[i], "ATOL")) sp->atol = atof(eq + 1);
     }
@@ -594,6 +596,8 @@ static int judge_output(const char *dir, const char *work, const Spec *sp, const
     if (sp->passed && !passed_line(s->out)) return snprintf(why, MSG, "no PASSED line"), 0;
     for (int i = 0; i < sp->nstdout; i++)
         if (!strstr(s->out, sp->stdout_want[i])) return snprintf(why, MSG, "stdout lacks \"%s\"", sp->stdout_want[i]), 0;
+    for (int i = 0; i < sp->nstderr; i++)
+        if (!strstr(s->err, sp->stderr_want[i])) return snprintf(why, MSG, "stderr lacks \"%s\"", sp->stderr_want[i]), 0;
     int bad = count(s->out, "ok=0"), all = count(s->out, "ok=");
     if (bad) return snprintf(why, MSG, "%d of %d assertion(s) reported ok=0", bad, all), 0;
     if (sp->checks_want >= 0 && all != sp->checks_want)
