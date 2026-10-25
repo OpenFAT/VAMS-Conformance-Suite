@@ -266,11 +266,11 @@ Measured 2026-10-25 by `.github/workflows/conformance.yml`, each tool at its lat
 
 | Language | Tool | Version | Passed | Failed | Not supported | Conformance | Time on common tests |
 |---|---|---|---:|---:|---:|---:|---:|
-| Verilog (IEEE 1364-2005) | Icarus Verilog | unpacking 'github:NixOS/nixpkgs/674a2028661e550a97400c1cc992b9cca9a668a1' into the Git cache... | 2968 | 601 | 42 | 82.2% | 518.5 s (2382) |
-| Verilog (IEEE 1364-2005) | VerA | vera 0.15.0 | 2862 | 749 | 0 | 79.3% | 51.0 s (2382) |
-| Verilog-A | VerA | vera 0.15.0 | 2003 | 449 | 0 | 81.7% | 1190.4 s (2003) |
-| Verilog-AMS | VerA | vera 0.15.0 | 537 | 217 | 0 | 71.2% | 911.4 s (537) |
-| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 598 | 439 | 36 | 55.7% | 233.9 s (598) |
+| Verilog (IEEE 1364-2005) | Icarus Verilog | unpacking 'github:NixOS/nixpkgs/674a2028661e550a97400c1cc992b9cca9a668a1' into the Git cache... | 2968 | 601 | 42 | 82.2% | 74.0 s (2382) |
+| Verilog (IEEE 1364-2005) | VerA | vera 0.15.0 | 2862 | 749 | 0 | 79.3% | 55.2 s (2382) |
+| Verilog-A | VerA | vera 0.15.0 | 2002 | 450 | 0 | 81.6% | 1711.3 s (2002) |
+| Verilog-AMS | VerA | vera 0.15.0 | 537 | 217 | 0 | 71.2% | 1322.5 s (537) |
+| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 601 | 436 | 36 | 56.0% | 422.0 s (601) |
 
 </details>
 <!-- conformance:end -->

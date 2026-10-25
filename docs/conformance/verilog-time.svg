@@ -4,9 +4,9 @@
 <text class="h" x="16" y="26">Verilog (IEEE 1364-2005): wall time, shorter is faster</text>
 <text class="m" x="16" y="44">the 2382 tests all 2 tools pass</text>
 <text x="16" y="65">VerA</text>
-<rect class="p" x="150" y="52" width="42.3" height="18" rx="4"><title>51.0 s total, median 12 ms per test</title></rect>
-<text x="202.3" y="65"><tspan font-weight="600">51.0 s</tspan><tspan class="m"> median 12 ms/test</tspan></text>
+<rect class="p" x="150" y="52" width="320.9" height="18" rx="4"><title>55.2 s total, median 15 ms per test</title></rect>
+<text x="480.9" y="65"><tspan font-weight="600">55.2 s</tspan><tspan class="m"> median 15 ms/test</tspan></text>
 <text x="16" y="99">Icarus Verilog</text>
-<rect class="p" x="150" y="86" width="430.0" height="18" rx="4"><title>518.5 s total, median 137 ms per test</title></rect>
-<text x="590.0" y="99"><tspan font-weight="600">518.5 s</tspan><tspan class="m"> median 137 ms/test</tspan></text>
+<rect class="p" x="150" y="86" width="430.0" height="18" rx="4"><title>74.0 s total, median 22 ms per test</title></rect>
+<text x="590.0" y="99"><tspan font-weight="600">74.0 s</tspan><tspan class="m"> median 22 ms/test</tspan></text>
 </svg>

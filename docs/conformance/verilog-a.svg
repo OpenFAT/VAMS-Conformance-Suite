@@ -7,7 +7,7 @@
 <rect class="trk" x="172" y="38" width="12" height="12" rx="3"/><text class="m" x="190" y="48">Not supported</text>
 <text x="16" y="77">VerA</text>
 <rect class="trk" x="150" y="64" width="430" height="18" rx="4"><title>0 not supported</title></rect>
-<rect class="p" x="150.0" y="64" width="349.3" height="18" rx="4"><title>2003 passed (81.7%)</title></rect>
-<rect class="f" x="501.3" y="64" width="76.7" height="18" rx="4"><title>449 failed (18.3%)</title></rect>
-<text x="592" y="77"><tspan font-weight="600">81.7%</tspan><tspan class="m"> 2003 / 2452</tspan></text>
+<rect class="p" x="150.0" y="64" width="349.1" height="18" rx="4"><title>2002 passed (81.6%)</title></rect>
+<rect class="f" x="501.1" y="64" width="76.9" height="18" rx="4"><title>450 failed (18.4%)</title></rect>
+<text x="592" y="77"><tspan font-weight="600">81.6%</tspan><tspan class="m"> 2002 / 2452</tspan></text>
 </svg>
