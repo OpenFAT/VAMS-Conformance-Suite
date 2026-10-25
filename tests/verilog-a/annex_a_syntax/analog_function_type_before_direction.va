@@ -1,0 +1,33 @@
+// §4.7.1 Syntax 4-5: `analog function [ analog_function_type ] name ;
+// { analog_function_item_declaration } analog_function_statement endfunction`,
+// and an analog_function_item_declaration is a block item declaration or an
+// input/output/inout declaration. The braces put no order on the items, so a
+// formal may be typed before its direction is given (gnucap dump_dep.af.0).
+//
+// `ab` writes `real a; input a;` and `input b; real b;`, both orders in one
+// function. A compiler that types only a formal declared earlier (E0225 on
+// `a`) fails the compile. Oracle: the function's own body, a*b at
+// V(p,n) = 1.5 with b = 2 is 3.0, exact in binary.
+//
+//! lrm 4.7.1
+//! lrm A.2.6
+//! bias V(p) = 1.5
+//! print none
+`include "check.vh"
+module annex_a_function_type_before_direction(p, n);
+    inout p, n;
+    electrical p, n;
+
+    analog function real ab;
+        real a;
+        input a;
+        input b;
+        real b;
+        ab = a * b;
+    endfunction
+
+    analog begin
+        `CHECKX("a formal typed before its direction", ab(V(p, n), 2.0), 3.0);
+        I(p, n) <+ ab(V(p, n), 2.0);
+    end
+endmodule
