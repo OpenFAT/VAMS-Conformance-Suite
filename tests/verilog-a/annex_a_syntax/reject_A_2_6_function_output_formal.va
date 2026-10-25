@@ -17,7 +17,7 @@
 //! lrm A.2.6:1000
 //! reject-only E0207
 //! reject-only gives a function `input` formals only
-//! neighbour function_input_formals_only.va
+//! neighbour ../../verilog-ams/annex_a_syntax/function_input_formals_only.va
 `include "check.vh"
 module annex_a_function_inputs(p, n);
     inout p, n;

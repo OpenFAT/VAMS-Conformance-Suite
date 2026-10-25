@@ -17,7 +17,7 @@
 //! lrm A.8.4
 //! lrm A.8.4:1000
 //! reject-only E0295
-//! neighbour mintypmax_constant_takes_typical.va
+//! neighbour ../../verilog-ams/annex_a_syntax/mintypmax_constant_takes_typical.va
 `include "disciplines.vams"
 module annex_a_mintypmax_in_analog(p, n);
     inout p, n;
