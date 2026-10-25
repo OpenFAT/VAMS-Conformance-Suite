@@ -153,8 +153,11 @@ ivtest/ivltests/pr1864110a.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #
 ivtest/ivltests/pr1864110b.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/pr1864115.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/pr1877743.v	reject	-	14.2.5/A.7.2; 14.2.4.1 (forbids it; suite issue #1)
+ivtest/ivltests/pr2172606b.v	ok	../../gold/ivtest/pr2172606b.gold	IEEE 1364-2005 5.1.13 Table 5-21: x ? z : z is x, so the procedural check's both-z branch prints twice (iverilog gives z)
 ivtest/ivltests/pr2257003.v	reject	-	A.4.2; 12.4 (forbids it; suite issue #1)
 ivtest/ivltests/pr2257003b.v	reject	-	A.4.2; 12.4 (forbids it; suite issue #1)
+ivtest/ivltests/pr2815398a.v	ok	../../gold/ivtest/pr2815398a.gold	IEEE 1364-2005 12.4: without __ICARUS__ the generate loop stops at 6, so res[7] and run_time[7] stay x (4.2.2, 4.8); gold is iverilog's run of the non-__ICARUS__ text
+ivtest/ivltests/pr2815398a_std.v	ok	../../gold/ivtest/pr2815398a_std.gold	IEEE 1364-2005 12.4: without __ICARUS__ the generate loop stops at 6, so res[7] and run_time[7] stay x (4.2.2, 4.8); gold is iverilog's run of the non-__ICARUS__ text
 ivtest/ivltests/pr2834340.v	reject	-	A.3.1; 7.8 (forbids it; suite issue #1)
 ivtest/ivltests/pr2834340b.v	reject	-	A.3.1; 7.8 (forbids it; suite issue #1)
 ivtest/ivltests/pr2943394.v	reject	-	IEEE 1364-2005 §9.3.2 (forbids it; suite issue #1)
@@ -169,6 +172,7 @@ ivtest/ivltests/pr938b.v	reject	-	IEEE 1364-2005 §8.6 Syntax 8-2 / A.5.4 (forbi
 ivtest/ivltests/random.v	reject	-	A.6.8/A.6.2 (forbids it; suite issue #1)
 ivtest/ivltests/resetall.v	reject	-	IEEE 1364-2005 §19.8 (forbids it; suite issue #1)
 ivtest/ivltests/scope2b.v	passed	-	IEEE 1364-2005 4.5 (an undeclared lvalue is an implicit net); 19.11: begin_keywords does not affect the semantics
+ivtest/ivltests/signed_a.v	ok	../../gold/ivtest/signed_a.gold	IEEE 1364-2005 5.2.2: array[b] with b = 2**120 + 7 is out of [1:8], so it shall be x (iverilog drops the high bits)
 ivtest/ivltests/specify_01.v	reject	-	14.2.5/A.7.2 (forbids it; suite issue #1)
 ivtest/ivltests/string12.v	reject	-	3.6/A.8.8 (forbids it; suite issue #1)
 ivtest/ivltests/timing_check_delayed_signals.v	reject	-	A.7.5.2; 15.5 (forbids it; suite issue #1)

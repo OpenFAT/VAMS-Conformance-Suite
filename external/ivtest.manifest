@@ -789,7 +789,7 @@ verilog	reject	ivltests/partsel_reversed_idx5.v	-	STD=1364-2005	INCDIR=ivltests	
 verilog	reject	ivltests/partsel_reversed_idx6.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/patch1268.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/pca1.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	passed	contrib/pic.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	ok	contrib/pic.v	gold/pic.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
 verilog	passed	ivltests/port-test2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	reject	ivltests/port-test3.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	reject	ivltests/port-test4a.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
@@ -1130,7 +1130,7 @@ verilog	passed	ivltests/pr2166188.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work lo
 verilog	passed	ivltests/pr2166311.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	ok	ivltests/pr2169870.v	gold/pr2169870.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
 verilog	passed	ivltests/pr2172606.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	passed	ivltests/pr2172606b.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	ok	ivltests/pr2172606b.v	../../gold/ivtest/pr2172606b.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 5.1.13 Table 5-21: x ? z : z is x, so the procedural check's both-z branch prints twice (iverilog gives z)
 verilog	passed	ivltests/pr2181249.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/pr2190323.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/pr2201909.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
@@ -1229,8 +1229,8 @@ verilog	reject	ivltests/pr2794144.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work lo
 verilog	passed	ivltests/pr2801134.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/pr2801662.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	reject	ivltests/pr2809288.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	ok	ivltests/pr2815398a.v	gold/pr2815398a.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
-verilog	passed	ivltests/pr2815398a_std.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	ok	ivltests/pr2815398a.v	../../gold/ivtest/pr2815398a.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'	LRM=IEEE 1364-2005 12.4: without __ICARUS__ the generate loop stops at 6, so res[7] and run_time[7] stay x (4.2.2, 4.8); gold is iverilog's run of the non-__ICARUS__ text
+verilog	ok	ivltests/pr2815398a_std.v	../../gold/ivtest/pr2815398a_std.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 12.4: without __ICARUS__ the generate loop stops at 6, so res[7] and run_time[7] stay x (4.2.2, 4.8); gold is iverilog's run of the non-__ICARUS__ text
 verilog	ok	ivltests/pr2815398b.v	gold/pr2815398b.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
 verilog	passed	ivltests/pr2818823.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	reject	ivltests/pr2823414.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
@@ -1612,7 +1612,7 @@ verilog	passed	ivltests/select6.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/select7.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/select8.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/select_padding.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	passed	ivltests/shellho1.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	ok	ivltests/shellho1.v	gold/shellho1.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
 verilog	ok	ivltests/shift1.v	gold/shift1.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
 verilog	passed	ivltests/shift2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/shift3.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
@@ -1633,7 +1633,7 @@ verilog	passed	ivltests/signed6.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/signed7.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/signed8.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/signed9.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	passed	ivltests/signed_a.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	ok	ivltests/signed_a.v	../../gold/ivtest/signed_a.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 5.2.2: array[b] with b = 2**120 + 7 is out of [1:8], so it shall be x (iverilog drops the high bits)
 verilog	passed	ivltests/signed_equality.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/signed_net_display.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/signed_part.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
