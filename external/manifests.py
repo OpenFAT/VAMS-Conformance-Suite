@@ -91,13 +91,14 @@ def read(p):
 
 
 def expectations():
-    """external/expectations.tsv: test -> (want, gold, oracle), where the
-    governing LRM decides a test differently from its upstream suite."""
+    """external/expectations.tsv: test -> (want, gold, oracle, pipe), where the
+    governing LRM decides a test differently from its upstream suite. `pipe`,
+    if any, is a stage appended to the row's FILTER (both sides pass it)."""
     out = {}
     for line in read(EXT / "expectations.tsv").splitlines():
         if line and not line.startswith("#"):
-            test, want, gold, oracle = line.split("\t")
-            out[test] = (want, gold, oracle)
+            test, want, gold, oracle, *pipe = line.split("\t")
+            out[test] = (want, gold, oracle, pipe[0] if pipe else None)
     return out
 
 
@@ -110,8 +111,10 @@ def override(name, row):
     e = EXPECT.pop(f"{name}/{row[2]}", None)
     if not e:
         return row
-    want, gold, oracle = e
+    want, gold, oracle, pipe = e
     keys = [c for c in row[4:] if want == "ok" or c.split("=", 1)[0] not in JUDGED]
+    if pipe:
+        keys = [f"{c} | {pipe}" if c.startswith("FILTER=") else c for c in keys]
     return [row[0], want, row[2], gold] + keys + [f"LRM={oracle}"]
 
 
@@ -130,10 +133,10 @@ def write(name, root, rows, skipped, note):
 
 # Lines the standard leaves to the tool, dropped from both sides: the
 # simulator's own $finish/$stop report (17.4.1), compiler warnings in a gold
-# file, VCD banners, runtime WARNING/ERROR messages and their indented quoted
+# file, VCD and SDF (IEEE 1497) banners, runtime WARNING/ERROR messages and their indented quoted
 # continuation (17.2.9 requires a message, not its text). Blank lines go too.
 IV_FILTER = ("grep -Ev '^(\\$finish at tick .*|\\$stop at tick .*|[^ ]+:[0-9]+: \\$(finish|stop)(\\([0-9]\\))? called at .*"
-             "|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*"
+             "|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*"
              "|[[:space:]]+using existing file \\(.*\\)\\.|WARNING: .*|ERROR: .*|[[:space:]]+\".*\"|\\*\\* VVP Stop\\(0\\) \\*\\*"
              "|\\*\\* Flushing output streams\\.|\\*\\* Current simulation time is .*|\\*\\* Continue with \\$stop\\."
              "|\\*\\*\\* This is .*|[[:space:]]*)$' | tr -d '\\r'")

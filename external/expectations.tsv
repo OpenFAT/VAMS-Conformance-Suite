@@ -1,5 +1,5 @@
 # Per-test expectations that override an upstream suite's own (external/manifests.py applies them).
-# test<TAB>want<TAB>gold (from #root, - for none)<TAB>oracle: the clause that decides it, written as LRM= in the row.
+# test<TAB>want<TAB>gold (from #root, - for none)<TAB>oracle: the clause that decides it, written as LRM= in the row[<TAB>a stage appended to its FILTER].
 # reject rows citing suite issue #1 are upstream tests whose construct the governing LRM forbids.
 gnucap-modelgen/dump_abstime.0.vams	reject	-	VAMS A.1.2 (forbids it; suite issue #1)
 gnucap-modelgen/dump_af.0.vams	reject	-	VAMS A.1.2; VAMS 2.6.2 (forbids it; suite issue #1)
@@ -112,6 +112,7 @@ ispras-1364/test_14_02_04_4_2.v	reject	-	IEEE 1364-2005 §14.2.4.4 (forbids it; 
 ispras-1364/test_15_05_02_3.v	reject	-	6.1.2 (a continuous assignment to a reg; forbids it; suite issue #1)
 ispras-1364/test_15_06_00_1.v	reject	-	4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
 ispras-1364/test_15_06_00_2.v	reject	-	4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
+ivtest/contrib/pic.v	ok	gold/pic.gold	IEEE 1364-2005 11.4.2: events of one time step are unordered, so the lines of one time compare as a set	sort -k1,1n -k2
 ivtest/ivltests/array_packed_2d.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/array_word_check.v	reject	-	IEEE 1364-2005 §18.1.2 Syntax 18-3; §18.2 (forbids it; suite issue #1)
 ivtest/ivltests/assign3.2E.v	reject	-	IEEE 1364-2005 §9.3 (forbids it; suite issue #1)
@@ -128,6 +129,7 @@ ivtest/ivltests/br_gh497a.v	reject	-	A.2.1.3/A.2.3 (forbids it; suite issue #1)
 ivtest/ivltests/br_gh497c.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/br_gh497e.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/br_gh531.v	reject	-	A.6.2/A.6.4 (forbids it; suite issue #1)
+ivtest/ivltests/br_gh889.v	ok	../../gold/ivtest/br_gh889.gold	IEEE 1497-2001 (INSTANCE *) annotates every XOR20; 3 ns rounds to 0 in the 1 s default timescale VerA and iverilog use (19.8 leaves it to the tool)
 ivtest/ivltests/ca_time_real.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/comment1.v	passed	-	IEEE 1364-2005 3.3: `/*` inside a block comment is comment text
 ivtest/ivltests/decl_before_use6.v	reject	-	A.2.7/A.1.4; 12.7 (forbids it; suite issue #1)
@@ -142,6 +144,7 @@ ivtest/ivltests/macro_str_esc.v	reject	-	19.3.1; IEEE 1800-2017 22.5.1 (`` only 
 ivtest/ivltests/module_no_port_mixed_instances.v	reject	-	A.4.1.1 (module_instance requires parentheses; forbids it; suite issue #1)
 ivtest/ivltests/module_output_port_var2.v	reject	-	A.1.2/A.1.4 (forbids it; suite issue #1)
 ivtest/ivltests/multi_bit_strength.v	reject	-	IEEE 1364-2005 §17.1.1.5 (forbids it; suite issue #1)
+ivtest/ivltests/nb_ec_multi_ev.v	ok	../../gold/ivtest/nb_ec_multi_ev.gold	IEEE 1364-2005 11.4 (c) and 9.2.2: the nonblocking update is a later NBA-region event, so the checks right after -> see the old value (iverilog assigns at once)
 ivtest/ivltests/param_string.v	reject	-	IEEE 1364-2005 §17.1.1, §17.1.1.2 (forbids it; suite issue #1)
 ivtest/ivltests/partsel_outside_const.v	reject	-	A.8.7 (forbids it; suite issue #1)
 ivtest/ivltests/partsel_outside_expr.v	reject	-	A.2.1.3/A.8.7 (forbids it; suite issue #1)
@@ -150,6 +153,7 @@ ivtest/ivltests/pr1701855b.v	reject	-	IEEE 1364-2005 §17.3.1 Syntax 17-9, A.9.3
 ivtest/ivltests/pr1716276.v	reject	-	12.2.2.1/A.4.1.1 (forbids it; suite issue #1)
 ivtest/ivltests/pr1787423.v	reject	-	A.3.1; 7.8 (forbids it; suite issue #1)
 ivtest/ivltests/pr1787423b.v	reject	-	A.3.1; 7.8 (forbids it; suite issue #1)
+ivtest/ivltests/pr1830834.v	ok	../../gold/ivtest/pr1830834.gold	IEEE 1364-2005 17.1.2: $strobe takes any expression (the upstream gold is iverilog's SORRY)
 ivtest/ivltests/pr1832097b.v	reject	-	IEEE 1364-2005 §9.3.2 (forbids it; suite issue #1)
 ivtest/ivltests/pr1864110a.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/pr1864110b.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
@@ -159,6 +163,8 @@ ivtest/ivltests/pr1938138.v	compile	-	IEEE 1364-2005 13.2.1.1: a module defined 
 ivtest/ivltests/pr2172606b.v	ok	../../gold/ivtest/pr2172606b.gold	IEEE 1364-2005 5.1.13 Table 5-21: x ? z : z is x, so the procedural check's both-z branch prints twice (iverilog gives z)
 ivtest/ivltests/pr2257003.v	reject	-	A.4.2; 12.4 (forbids it; suite issue #1)
 ivtest/ivltests/pr2257003b.v	reject	-	A.4.2; 12.4 (forbids it; suite issue #1)
+ivtest/ivltests/pr2453002.v	ok	../../gold/ivtest/pr2453002.gold	IEEE 1364-2005 5.1.13: an ambiguous condition with a real operand gives 0, so rl3 is 0.0
+ivtest/ivltests/pr2781595.v	ok	../../gold/ivtest/pr2781595.gold	IEEE 1364-2005 7.1 (switches) and 5.1.10: each Out is A^B; its self-check fires only when out changes, so its printed values are graded (gold: iverilog 13)
 ivtest/ivltests/pr2815398a.v	ok	../../gold/ivtest/pr2815398a.gold	IEEE 1364-2005 12.4: without __ICARUS__ the generate loop stops at 6, so res[7] and run_time[7] stay x (4.2.2, 4.8); gold is iverilog's run of the non-__ICARUS__ text
 ivtest/ivltests/pr2815398a_std.v	ok	../../gold/ivtest/pr2815398a_std.gold	IEEE 1364-2005 12.4: without __ICARUS__ the generate loop stops at 6, so res[7] and run_time[7] stay x (4.2.2, 4.8); gold is iverilog's run of the non-__ICARUS__ text
 ivtest/ivltests/pr2834340.v	reject	-	A.3.1; 7.8 (forbids it; suite issue #1)
@@ -172,8 +178,11 @@ ivtest/ivltests/pr434.v	reject	-	IEEE 1364-2005 §19.8 (forbids it; suite issue 
 ivtest/ivltests/pr478.v	reject	-	VD-126: an undefined macro is refused
 ivtest/ivltests/pr707.v	reject	-	IEEE 1364-2005 §8.6 Syntax 8-2 / A.5.4 (forbids it; suite issue #1)
 ivtest/ivltests/pr938b.v	reject	-	IEEE 1364-2005 §8.6 Syntax 8-2 / A.5.4 (forbids it; suite issue #1)
+ivtest/ivltests/pv_wr_vec4_nb_ec.v	ok	../../gold/ivtest/pv_wr_vec4_nb_ec.gold	IEEE 1364-2005 11.4 (c) and 9.2.2: the nonblocking update is a later NBA-region event, so the checks right after -> see the old value (iverilog assigns at once)
+ivtest/ivltests/pv_wr_vec4a_nb_ec.v	ok	../../gold/ivtest/pv_wr_vec4a_nb_ec.gold	IEEE 1364-2005 11.4 (c) and 9.2.2: the nonblocking update is a later NBA-region event, so the checks right after -> see the old value (iverilog assigns at once)
 ivtest/ivltests/random.v	reject	-	A.6.8/A.6.2 (forbids it; suite issue #1)
 ivtest/ivltests/resetall.v	reject	-	IEEE 1364-2005 §19.8 (forbids it; suite issue #1)
+ivtest/ivltests/scanf4.v	ok	../../gold/ivtest/scanf4.gold	IEEE 1364-2005 17.2.4.3: input that ends before the first conversion returns EOF (-1)
 ivtest/ivltests/scope2b.v	passed	-	IEEE 1364-2005 4.5 (an undeclared lvalue is an implicit net); 19.11: begin_keywords does not affect the semantics
 ivtest/ivltests/signed_a.v	ok	../../gold/ivtest/signed_a.gold	IEEE 1364-2005 5.2.2: array[b] with b = 2**120 + 7 is out of [1:8], so it shall be x (iverilog drops the high bits)
 ivtest/ivltests/specify_01.v	reject	-	14.2.5/A.7.2 (forbids it; suite issue #1)
