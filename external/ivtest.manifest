@@ -748,7 +748,7 @@ verilog	passed	ivltests/param_mod.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work lo
 verilog	passed	ivltests/param_select.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/param_select2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/param_select3.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/param_string.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 §17.1.1, §17.1.1.2 (forbids it; suite issue #1)
+verilog	ok	ivltests/param_string.v	../../gold/ivtest/param_string.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 17.1.1.2: an argument with no format is shown in decimal; the parameter is the 48-bit value of "PASSED", 15 columns wide (iverilog prints the text)
 verilog	passed	ivltests/param_tern.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/param_tern2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	ok	ivltests/param_test1.v	gold/param_test1.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
