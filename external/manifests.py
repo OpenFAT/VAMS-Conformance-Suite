@@ -154,9 +154,11 @@ def ivtest():
             seen.add(f[0])
             if lst == "regress-vlg.list" and len(f) >= 3:
                 ty, *args = f[1].split(",")
-                gold = f[3][5:] if len(f) > 3 and f[3].startswith("gold=") else None
+                # The fourth field may name the top module; gold= or diff= is then the fifth.
+                opt = next((a for a in f[3:5] if "=" in a), "")
+                gold = opt[5:] if opt.startswith("gold=") else None
                 # diff=OUT:GOLD[:N]: the file the run writes is the oracle (N header lines aside)
-                diff = ":".join(f[3][5:].split(":")[:2]) if len(f) > 3 and f[3].startswith("diff=") else None
+                diff = ":".join(opt[5:].split(":")[:2]) if opt.startswith("diff=") else None
                 entries[f[0]] = (ty, args, f"{f[2]}/{f[0]}.v", gold and f"gold/{gold}", diff)
     for line in read(iv / "regress-vvp.list").split("\n"):
         f = re.sub(r"#.*", "", line).split()
