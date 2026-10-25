@@ -1,0 +1,28 @@
+// Annex G.7 (item 7780) made `expm1` and `ln1p` VAMS-2023 keywords with
+// §4.3.2 built-in meanings. Compact models older than that (HiSIM-SOI,
+// HiSIM-SOTB) declare `analog function real expm1` themselves. VerA reads such
+// a file as its author wrote it: the declared name frees the keyword in the
+// whole file, every call reaches the declared function, and W0259 says the
+// source relies on a pre-2023 keyword set (`begin_keywords "VAMS-2.3" makes
+// the same file legal and silent, §10.6).
+//
+// Oracle: the function's own body. It returns exp(x) - 1 + 100, so a call at
+// 0 reads 100 from the declared function and 0 from the built-in.
+//! lrm 10.6
+//! lrm 4.3.2
+//! warn W0259
+//! bias V(p) = 1, V(n) = 0
+`include "check.vh"
+module ch04_own_expm1_function_warns(p, n);
+    inout p, n;
+    electrical p, n;
+    analog function real expm1;
+        input x;
+        real x;
+        expm1 = exp(x) - 1.0 + 100.0;
+    endfunction
+    analog begin
+        I(p, n) <+ V(p, n);
+        `CHECKX("a call reaches the declared expm1", expm1(0.0), 100.0);
+    end
+endmodule

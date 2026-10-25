@@ -15,14 +15,3 @@ tests/verilog/16_sdf/sdf_min_typ_max_selection.v # SDF annotation is not impleme
 tests/verilog/16_sdf/sdf_multiple_files_scoped.v # SDF annotation is not implemented; $sdf_annotate is refused with E1102.
 tests/verilog/16_sdf/sdf_ordered_increment.v # SDF annotation is not implemented; $sdf_annotate is refused with E1102.
 tests/verilog/16_sdf/sdf_timing_check_limit.v # SDF annotation is not implemented; $sdf_annotate is refused with E1102.
-tests/verilog/28_protected_envelopes/protect_author_info_metadata.v # Protect pragma metadata is refused by the preprocessor.
-tests/verilog/28_protected_envelopes/protect_author_metadata.v # Protect pragma metadata is refused by the preprocessor.
-tests/verilog/28_protected_envelopes/protect_comment_metadata.v # Protect pragma metadata is refused by the preprocessor.
-tests/verilog/28_protected_envelopes/protect_encrypt_agent_info_metadata.v # Protect pragma metadata is refused by the preprocessor.
-tests/verilog/28_protected_envelopes/protect_encrypt_agent_metadata.v # Protect pragma metadata is refused by the preprocessor.
-tests/verilog/28_protected_envelopes/protected_des_base64.v # Protected-envelope decryption and its test key-provider adapter are unavailable (E0146).
-tests/verilog/28_protected_envelopes/protected_des_uuencode.v # Protected-envelope decryption and its test key-provider adapter are unavailable (E0146).
-tests/verilog/28_protected_envelopes/protected_eight_nested_envelopes.v # Protected-envelope decryption and its test key-provider adapter are unavailable (E0146).
-tests/verilog/28_protected_envelopes/protected_md5_digest.v # Protected-envelope decryption and its test key-provider adapter are unavailable (E0146).
-tests/verilog/28_protected_envelopes/protected_session_key_block.v # Protected-envelope decryption and its test key-provider adapter are unavailable (E0146).
-tests/verilog/28_protected_envelopes/protected_sha1_digest.v # Protected-envelope decryption and its test key-provider adapter are unavailable (E0146).

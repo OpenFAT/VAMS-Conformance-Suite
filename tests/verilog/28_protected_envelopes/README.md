@@ -17,12 +17,10 @@ provisioning, CBC IV transport, padding, or a tool's invocation spelling.
 The profile chooses these details explicitly. It is not a claim that every
 vendor accepts the same encrypted file without an adapter.
 
-Current VerA rejects the protect directive with E0146. These are expected
-failures. After adding decryption support, the test host must provision
-this profile through the engine's actual key-provider interface before
-removing the marker. No such interface or engine implementation is added
-by these tests. A failure at key lookup must not be confused with a failed
-cryptographic comparison.
+Each of the six names the profile with `//@ protect-keys known_keys.json`,
+which the harness hands to the tool's key-provider interface (VerA's
+`--protect-keys FILE`). A failure at key lookup (VerA E0152) is reported
+apart from a failed cryptographic comparison (E0153).
 
 Encryption-service round trips, asymmetric public-key serialization,
 licensing callbacks and viewport access need further host profiles. Their
