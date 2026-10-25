@@ -191,6 +191,10 @@ def ivtest():
             skipped[name] = "calling a non-1364 system task"
             continue
         std = next((IVL_STD[a] for a in args if IVL_STD.get(a)), "1364-2005")
+        # `begin_keywords is 1364-2005's (19.11): a source naming a keyword set
+        # is 1364-2005 text whatever generation iverilog is given.
+        if "`begin_keywords" in strip(read(iv / src)):
+            std = "1364-2005"
         w = want[ty]
         if w == "ok" and not gold and not diff:
             w = "passed"
