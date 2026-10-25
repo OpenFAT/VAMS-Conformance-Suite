@@ -17,7 +17,7 @@
 // mem[3] is never written and keeps its initial x (%h prints xx).
 //
 // Invalid neighbour: the same file address with task bounds is the clause's
-// error, readmem_address_range_rejected.v.
+// error, readmem_address_range_load_terminated.v.
 //! inherited IEEE 1364-2005 17.2.9
 module b_17_2_9_readmem_address_outside_memory;
   reg [7:0] mem[0:3];

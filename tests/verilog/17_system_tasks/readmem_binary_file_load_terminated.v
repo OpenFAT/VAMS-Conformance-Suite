@@ -7,11 +7,14 @@
 // as a malformed word instead of the file being read to an end it lacks.
 //
 // Legal neighbour: readmem_address_restart.v loads a small file.
+// VerA reports the terminated load as warning W1157 and the simulation goes
+// on, its exit status untouched, as iverilog does (oracle: iverilog -g2005
+// prints this transcript; specification/Vague_Decisions.md VD-134).
 //! inherited IEEE 1364-2005 17.2.9
-//! reject E1100
-//! reject the memory file has a malformed data word
+//! warn W1157
+//! warn the memory file has a malformed data word
 //! neighbour readmem_address_restart.v
-module b_17_2_9_readmem_binary_file_rejected;
+module b_17_2_9_readmem_binary_file_load_terminated;
   reg [7:0] mem [0:3];
   initial begin
     $readmemh("/dev/zero", mem);

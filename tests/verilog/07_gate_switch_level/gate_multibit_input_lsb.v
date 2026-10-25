@@ -4,7 +4,7 @@
 // silent VerA does what the reference tool does: iverilog, and by its
 // gate_connect1 the other simulators, read the expression's LSB. (This
 // fixture refused the design until the conformance pass made the reference
-// the tie-break.)
+// the tie-break; specification/Vague_Decisions.md VD-137.)
 //
 // HAND DERIVATION: b0 reads in's bit 0 (1), b1 reads 2'b10's bit 0 (0), b2
 // reads 32-bit 3's bit 0 (1): "out=101" (out[2] first).

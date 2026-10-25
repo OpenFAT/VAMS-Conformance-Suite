@@ -521,7 +521,7 @@ verilog/12_hierarchy/duplicate_port_name_rejected.v	reject	accepts	0	no	accepts 
 verilog/12_hierarchy/explicit_port_names.v	transcript	accepts	0	yes	
 verilog/12_hierarchy/external_type_cells.v	transcript	accepts	0	yes	
 verilog/12_hierarchy/extra_ordered_connection_rejected.v	reject	refuses	-	yes	tests/conformance/tests/verilog/12_hierarchy/extra_ordered_connection_rejected.v:23: error: Wrong number of ports. Expecting at most 2, got 3.
-verilog/12_hierarchy/extra_ordered_value_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/12_hierarchy/extra_ordered_value_ignored.v	transcript	accepts	0	yes	
 verilog/12_hierarchy/ffnand_instances.v	transcript	accepts	0	yes	
 verilog/12_hierarchy/generate_block_continuous_assign.v	transcript	accepts	0	yes	
 verilog/12_hierarchy/generate_loop_and_case.v	transcript	accepts	0	yes	
@@ -778,39 +778,39 @@ verilog/17_system_tasks/random_seed_constant_rejected.v	reject	accepts	1	yes
 verilog/17_system_tasks/random_seed_reference.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/read_needs_read_type.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_address_outside_memory.v	transcript	accepts	0	no	stdout differs
-verilog/17_system_tasks/readmem_address_range_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/17_system_tasks/readmem_address_range_load_terminated.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_address_restart.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_address_underscore.v	transcript	accepts	0	no	stdout differs
-verilog/17_system_tasks/readmem_address_x_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/17_system_tasks/readmem_address_x_load_terminated.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_address_zero_padding.v	transcript	accepts	0	yes	
-verilog/17_system_tasks/readmem_binary_file_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/17_system_tasks/readmem_binary_file_load_terminated.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_count_warning.v	transcript	accepts	0	yes	
-verilog/17_system_tasks/readmem_edge_address_bad_digit_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_edge_address_gap_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_edge_address_overflow_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_edge_after_range_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_edge_underscore_leading_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_edge_underscore_only_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/17_system_tasks/readmem_edge_address_bad_digit_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_edge_address_gap_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_edge_address_overflow_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_edge_after_range_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_edge_underscore_leading_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_edge_underscore_only_load_terminated.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_excess_legal_neighbor.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_file_past_4mib.v	transcript	accepts	0	yes	
-verilog/17_system_tasks/readmem_invalid_high_binary_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_invalid_high_hex_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/17_system_tasks/readmem_invalid_high_binary_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_invalid_high_hex_load_terminated.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_lowest_descending.v	transcript	accepts	0	yes	
-verilog/17_system_tasks/readmem_malformed_base_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_malformed_base_wide_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_malformed_binary_digit_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_malformed_hex_digit_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/17_system_tasks/readmem_malformed_base_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_malformed_base_wide_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_malformed_binary_digit_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_malformed_hex_digit_load_terminated.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_malformed_legal_neighbors.v	transcript	accepts	0	yes	
-verilog/17_system_tasks/readmem_malformed_punctuation_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_malformed_width_rejected.v	reject	accepts	0	no	accepts and exits 0
-verilog/17_system_tasks/readmem_malformed_width_wide_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/17_system_tasks/readmem_malformed_punctuation_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_malformed_width_load_terminated.v	transcript	accepts	0	yes	
+verilog/17_system_tasks/readmem_malformed_width_wide_load_terminated.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_overflow_rejected.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_oversized_legal.v	transcript	accepts	0	no	stdout differs
 verilog/17_system_tasks/readmem_question_z.v	transcript	accepts	0	no	stdout differs
-verilog/17_system_tasks/readmem_start_address_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/17_system_tasks/readmem_start_address_load_terminated.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_start_formfeed.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_underscore_legal.v	transcript	accepts	0	yes	
-verilog/17_system_tasks/readmem_unknown_bound_rejected.v	reject	accepts	0	no	accepts and exits 0
+verilog/17_system_tasks/readmem_unknown_bound_load_terminated.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_variable_bounds.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_warn_binary_excess_start.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/readmem_warn_binary_short_start.v	transcript	accepts	0	yes	

@@ -8,7 +8,7 @@
 // its declaration (ivtest decl_before_use1), and so does VerA. (This fixture
 // accepted the design until the conformance pass made the reference the
 // tie-break.) A block's later local leaves an outer name in view instead
-// (decl_before_use6).
+// (decl_before_use6). specification/Vague_Decisions.md VD-135.
 module triage_forward_reference_reg;
   initial begin
     v = 1;

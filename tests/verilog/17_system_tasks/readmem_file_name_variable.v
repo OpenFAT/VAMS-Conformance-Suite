@@ -4,7 +4,8 @@
 // character string or is a reg containing a character string that names the
 // file to be opened". So a string parameter (iverilog's pr690) and a reg
 // holding the characters (pr704) name the file as a literal does; this
-// fixture read the parameter form as refused until the audit's correction.
+// fixture read the parameter form as refused until the audit's correction;
+// specification/Vague_Decisions.md VD-138).
 //
 // HAND DERIVATION: readmem_file_name_variable.dat holds 01 and 10 (binary).
 // Each load writes mem[0] = 1, mem[1] = 2; the reg form loads from address 1
