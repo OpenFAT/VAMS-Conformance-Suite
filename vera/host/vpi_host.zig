@@ -371,7 +371,17 @@ fn digitalHost(path: []const u8) !u8 {
     vpi.runStartupRoutines();
     var bag = vera.diag.Bag.init(arena);
     const dir = std.fs.path.dirname(path) orelse ".";
-    var run = sim.digital.elaborate(arena, source, .{ .file_name = path, .include_dirs = &.{dir}, .io = io, .systf = vpi.systf.hook, .stmt_sites = true }, &bag, out) catch |e| {
+    // The suite's `//@ protect-keys FILE`, relative to the design: the IEEE
+    // 1364-2005 §28.2 keys this host supplies, as `vera --protect-keys` does.
+    var keys: vera.Preprocessor.protect.Keys = .{};
+    var lines = std.mem.splitScalar(u8, source, '\n');
+    while (lines.next()) |line| {
+        const rest = std.mem.cutPrefix(u8, std.mem.trim(u8, line, " \t\r"), "//@ protect-keys ") orelse continue;
+        const kpath = try std.fs.path.join(arena, &.{ dir, std.mem.trim(u8, rest, " \t") });
+        const text = try Io.Dir.cwd().readFileAlloc(io, kpath, arena, .limited(1 << 20));
+        keys = try vera.Preprocessor.protect.parseKeys(arena, text);
+    }
+    var run = sim.digital.elaborate(arena, source, .{ .file_name = path, .include_dirs = &.{dir}, .io = io, .systf = vpi.systf.hook, .stmt_sites = true, .protect_keys = keys }, &bag, out) catch |e| {
         try vera.diag.render(&bag, err, .{});
         try err.print("vpi_host: `{s}` did not elaborate: {t}\n", .{ path, e });
         try err.flush();

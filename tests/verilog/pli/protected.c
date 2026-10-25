@@ -12,8 +12,8 @@
  * ------------------------------------------------------------------ DERIVATION
  *
  * "Code that is protected" is code "contained in a decryption envelope"
- * (clause 28). VerA refuses every `pragma protect (E0146), so objects.v
- * holds no protected code and every object answers FALSE, 0. Asked at
+ * (clause 28). objects.v holds no envelope, so every object answers
+ * FALSE, 0 (the TRUE half is protected_envelope.c). Asked at
  * cbEndOfCompile, where §26.2.4 makes "all functionality" available, of one
  * object of each kind the application can hold:
  *
@@ -32,8 +32,8 @@
  * vpiUndefined's failure value.
  *
  * REFUSALS. The clause's own error ("access to relationships and properties
- * of a protected object shall be an error") needs a protected object, which
- * VerA cannot hold (E0146); CLAUSES.tsv says so. What the clause does bound
+ * of a protected object shall be an error") is not asserted here; this
+ * design holds no protected object. What the clause does bound
  * is its domain, "All objects": a handle that is not an object has no
  * vpiIsProtected. Two, each beside its legal neighbour above:
  *
