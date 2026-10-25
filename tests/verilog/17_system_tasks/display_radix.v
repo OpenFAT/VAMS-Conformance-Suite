@@ -65,7 +65,7 @@
 //! lrm 9.4.1
 //! lrm 9.4.3
 //! inherited IEEE 1364-2005 17.1 (17.1.1.3 automatic sizing of displayed data)
-//! expect stdout 01_display_radix.expected.txt
+//! expect stdout display_radix.expected.txt
 `timescale 1ns/1ns
 module d09_display_radix;
   reg [7:0] v;

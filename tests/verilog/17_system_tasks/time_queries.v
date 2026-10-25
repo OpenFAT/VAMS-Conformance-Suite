@@ -54,7 +54,7 @@
 //
 //! lrm 9.10
 //! inherited IEEE 1364-2005 17.7 ($time/$stime/$realtime scaling and width)
-//! expect stdout 05_time_queries.expected.txt
+//! expect stdout time_queries.expected.txt
 `timescale 10ns/1ns
 module d09_time_queries;
   reg [63:0] cap;

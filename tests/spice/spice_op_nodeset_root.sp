@@ -14,7 +14,7 @@
 * transient point re-solves from the last, so the samples inside the run
 * are held to 1e-6.
 * Expected results: spice_op_nodeset_root.expected.json
-.hdl "spice_nodeset_cubic.va"
+.hdl "../verilog-a/ch03_data_types/spice_nodeset_cubic.va"
 N1 out 0 spice_nodeset_cubic
 .tran 1e-4 1e-3
 .end

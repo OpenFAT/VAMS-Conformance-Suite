@@ -56,7 +56,7 @@
 //! lrm 9.5 (Table 9-2)
 //! inherited IEEE 1364-2005 17.2.9 ($readmemh addressing and comments)
 //! data 08_readmemh.hex
-//! expect stdout 08_readmemh.expected.txt
+//! expect stdout readmemh.expected.txt
 `timescale 1ns/1ns
 module d09_readmemh;
   reg [7:0] m [0:7];

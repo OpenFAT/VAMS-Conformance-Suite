@@ -217,9 +217,9 @@ lib/frontend/parser/paramset.zig	7fb5a3b3	97	or->and	killed	verilog-a/ch06_hiera
 lib/frontend/parser/paramset.zig	7fb5a3b3	162	eq->ne	killed	verilog-a/ch06_hierarchy/reject_6_4_1_paramset_variable_assigns_parameter.va
 lib/frontend/parser/paramset.zig	7fb5a3b3	46	true->false	killed	unit:
 lib/frontend/parser/source.zig	55259299	169	and->or	killed	verilog-a/ch10_directives/begin_keywords_inside_a_paramset.va
-lib/frontend/parser/source.zig	55259299	337	ne->eq	killed	verilog-a/annex_a_syntax/configuration_source_text.va
+lib/frontend/parser/source.zig	55259299	337	ne->eq	killed	verilog-ams/annex_a_syntax/configuration_source_text.va
 lib/frontend/parser/source.zig	55259299	152	le->lt	killed	unit:
-lib/frontend/parser/source.zig	55259299	320	eq->ne	killed	verilog-a/annex_a_syntax/configuration_source_text.va
+lib/frontend/parser/source.zig	55259299	320	eq->ne	killed	verilog-ams/annex_a_syntax/configuration_source_text.va
 lib/frontend/parser/specify.zig	b47425a2	376	false->true	survived	
 lib/frontend/parser/specify.zig	b47425a2	463	and->or	survived	
 lib/frontend/parser/specify.zig	b47425a2	332	or->and	survived	

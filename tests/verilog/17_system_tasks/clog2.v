@@ -38,7 +38,7 @@
 //
 //! lrm 9.14 (Table 9-11)
 //! inherited IEEE 1364-2005 17.11 ($clog2 in a digital expression)
-//! expect stdout 10_clog2.expected.txt
+//! expect stdout clog2.expected.txt
 `timescale 1ns/1ns
 module d09_clog2;
   reg [7:0] w;
