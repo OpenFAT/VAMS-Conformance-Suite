@@ -710,7 +710,7 @@ verilog/17_system_tasks/descending_personality_rejected.v	reject	accepts	1	yes
 verilog/17_system_tasks/display_decimal_states.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/display_missing_argument_rejected.v	reject	accepts	0	no	accepts and exits 0
 verilog/17_system_tasks/display_named_scope.v	transcript	accepts	0	yes	
-verilog/17_system_tasks/display_packed_ascii.v	transcript	accepts	0	no	stdout differs
+verilog/17_system_tasks/display_packed_ascii.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/display_radix.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/display_unknown_radix.v	transcript	accepts	0	yes	
 verilog/17_system_tasks/display_write_runs.v	transcript	accepts	0	yes	

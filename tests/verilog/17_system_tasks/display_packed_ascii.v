@@ -1,5 +1,6 @@
 // IEEE1364-2005 17.1.1.2/.7: numeric argument contains packed8-bit ASCII.
-// Leading zeros omitted, no trailing terminator needed: 00414243 -> ABC.
+// A zero byte prints as a space under %s (VD-129, as iverilog 13; only %0s drops
+// leading ones), no trailing terminator needed: 00414243 -> " ABC".
 // Numeric literal isolates %s from unsupported string-valued expressions.
 //! inherited IEEE 1364-2005 17.1.1.2 17.1.1.7
 //! expect stdout display_packed_ascii.expected.txt

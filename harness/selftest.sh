@@ -11,7 +11,7 @@ mkdir -p "$T/s/include" "$T/s/verilog-a" "$T/s/verilog" "$T/s/spice"
 
 cat > "$T/tool.conf" <<'EOF'
 run.verilog-a = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; s=$(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0); [ "$s" = segv ] && kill -SEGV $$; [ "$s" = hang ] && sleep 30; exit $s
-run.verilog = [ -z "$CONFORM_COMPILE_ONLY" ] || exit 0; cp "$CONFORM_DIR/$CONFORM_STEM.file" out.txt 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; ${CONFORM_STD:+echo std=$CONFORM_STD}; ${CONFORM_PROTECT_KEYS:+echo keys=${CONFORM_PROTECT_KEYS##*/}}; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
+run.verilog = [ -z "$CONFORM_COMPILE_ONLY" ] || exit 0; cp "$CONFORM_DIR/$CONFORM_STEM.file" out.txt 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.err" >&2 2>/dev/null; ${CONFORM_STD:+echo std=$CONFORM_STD}; ${CONFORM_PROTECT_KEYS:+echo keys=${CONFORM_PROTECT_KEYS##*/}}; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
 run.vpi = echo "$CONFORM_LANG $(basename "$CONFORM_SRC")"
 EOF
 printf 'compile.verilog-a = exit 0\n' > "$T/compile-only.conf"
@@ -75,9 +75,9 @@ cp "$T/up/t/a.v" "$T/up/t/e.v"; printf 'std=1364-2005\n' > "$T/up/gold/e.gold"
 cp "$T/up/t/a.v" "$T/up/t/f.v"; echo 1 > "$T/up/t/f.exit"
 # g: a KEY=VALUE in the gold column is a broken row, not a gold file.
 cp "$T/up/t/a.v" "$T/up/t/g.v"
-# j, k: STDOUT= is a line the run must print, here a reject-run's diagnostic.
-cp "$T/up/t/a.v" "$T/up/t/j.v"; printf 'error: budget\n' > "$T/up/t/j.out"; echo 1 > "$T/up/t/j.exit"
-cp "$T/up/t/j.v" "$T/up/t/k.v"; cp "$T/up/t/j.out" "$T/up/t/k.out"; echo 1 > "$T/up/t/k.exit"
+# j, k: STDERR= is text the run's stderr must hold, here a reject-run's diagnostic.
+cp "$T/up/t/a.v" "$T/up/t/j.v"; printf 'error: budget\n' > "$T/up/t/j.err"; echo 1 > "$T/up/t/j.exit"
+cp "$T/up/t/j.v" "$T/up/t/k.v"; cp "$T/up/t/j.err" "$T/up/t/k.err"; echo 1 > "$T/up/t/k.exit"
 # h, i: DIFF= judges the file the run writes (tokens, as a VCD).
 cp "$T/up/t/a.v" "$T/up/t/h.v"; printf 'x 1\n' > "$T/up/t/h.file"; printf 'x  1\n' > "$T/up/gold/h.gold"
 cp "$T/up/t/a.v" "$T/up/t/i.v"; printf 'x 2\n' > "$T/up/t/i.file"; cp "$T/up/gold/h.gold" "$T/up/gold/i.gold"
@@ -92,8 +92,8 @@ verilog	compile	t/f.v
 verilog	compile	t/g.v	STD=1364-2005
 verilog	ok	t/h.v	-	DIFF=out.txt:gold/h.gold
 verilog	ok	t/i.v	-	DIFF=out.txt:gold/i.gold
-verilog	reject-run	t/j.v	-	STDOUT=error: budget
-verilog	reject-run	t/k.v	-	STDOUT=error: other
+verilog	reject-run	t/j.v	-	STDERR=error: budget
+verilog	reject-run	t/k.v	-	STDERR=error: other
 EOF2
 printf 'verilog-a/xfail.va  # a known bug\nverilog-a/xpass.va\n' > "$T/xfail"
 
