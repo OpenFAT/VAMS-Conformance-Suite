@@ -7,14 +7,14 @@
 #root iverilog/ivtest
 verilog	passed	ivltests/addsr.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/addwide.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.10A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	reject-run	ivltests/always3.1.10A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
 verilog	passed	ivltests/always3.1.11A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.11B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.12A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.12B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.12C.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.1A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.1B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	reject-run	ivltests/always3.1.1A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
+verilog	passed	ivltests/always3.1.1B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 9.9: the initial may run before the always (VerA: VD-081); 4.1.8: its x compare takes the else branch, which prints PASSED; 17.4.1: $finish ends the run
 verilog	passed	ivltests/always3.1.1C.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.1D.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.1E.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
@@ -24,26 +24,26 @@ verilog	passed	ivltests/always3.1.1H.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work
 verilog	passed	ivltests/always3.1.1I.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.1J.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.1K.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.2A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.2B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.2C.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.2D.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.2G.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.2H.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.2I.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.3A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.3B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	passed	ivltests/always3.1.2A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 9.9: the initial may run before the always (VerA: VD-081); 4.1.8: its x compare takes the else branch, which prints PASSED; 17.4.1: $finish ends the run
+verilog	passed	ivltests/always3.1.2B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 9.9: the initial may run before the always (VerA: VD-081); 4.1.8: its x compare takes the else branch, which prints PASSED; 17.4.1: $finish ends the run
+verilog	reject-run	ivltests/always3.1.2C.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
+verilog	reject-run	ivltests/always3.1.2D.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
+verilog	reject-run	ivltests/always3.1.2G.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
+verilog	reject-run	ivltests/always3.1.2H.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
+verilog	reject-run	ivltests/always3.1.2I.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
+verilog	passed	ivltests/always3.1.3A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 9.9: the initial may run before the always (VerA: VD-081); 4.1.8: its x compare takes the else branch, which prints PASSED; 17.4.1: $finish ends the run
+verilog	passed	ivltests/always3.1.3B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 9.9: the initial may run before the always (VerA: VD-081); 4.1.8: its x compare takes the else branch, which prints PASSED; 17.4.1: $finish ends the run
 verilog	passed	ivltests/always3.1.3B2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.3C.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.3D.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	passed	ivltests/always3.1.3C.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 9.9: the initial may run before the always (VerA: VD-081); 4.1.8: its x compare takes the else branch, which prints PASSED; 17.4.1: $finish ends the run
+verilog	reject-run	ivltests/always3.1.3D.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
 verilog	passed	ivltests/always3.1.3D2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.3E.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	reject-run	ivltests/always3.1.3E.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
 verilog	passed	ivltests/always3.1.3E2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.3F.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	reject-run	ivltests/always3.1.3F.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
 verilog	passed	ivltests/always3.1.3F2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.3G.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.3H.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.3J.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	reject-run	ivltests/always3.1.3G.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
+verilog	reject-run	ivltests/always3.1.3H.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
+verilog	reject-run	ivltests/always3.1.3J.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
 verilog	passed	ivltests/always3.1.4A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.4B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.4C.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
@@ -68,8 +68,8 @@ verilog	passed	ivltests/always3.1.7B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work
 verilog	passed	ivltests/always3.1.7C.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.7D.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.8A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.9A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	reject	ivltests/always3.1.9B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
+verilog	reject-run	ivltests/always3.1.9A.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
+verilog	reject-run	ivltests/always3.1.9B.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	STDERR=E1100	STDERR=keeps simulation time from advancing	EVENT_BUDGET=100000	LRM=IEEE 1364-2005 9.9.2: an always with no timing control loops at time 0 forever; the run ends on VerA's per-time-step event budget (VD-133)
 verilog	passed	ivltests/always3.1.9C.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/always3.1.9D.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	ok	ivltests/always_star_array_lval.v	gold/always_star_array_lval.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
@@ -627,7 +627,7 @@ verilog	passed	ivltests/lh_varindx.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work l
 verilog	passed	ivltests/lh_varindx2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/lh_varindx4.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/lh_varindx5.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	ok	ivltests/localparam_type.v	gold/parameter_type_std-vvp-stdout.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
+verilog	ok	ivltests/localparam_type.v	gold/parameter_type-vvp-stdout.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'	LRM=VD-120: a format-less real prints as iverilog's default %g text (vvp -compatible's _std gold is an Icarus option; 1364 is silent)
 verilog	ok	ivltests/long_div.v	gold/long_div.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
 verilog	passed	ivltests/macro2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	passed	ivltests/macro_comment1.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
@@ -772,7 +772,7 @@ verilog	reject	ivltests/parameter_override_invalid3.v	-	STD=1364-2005	INCDIR=ivl
 verilog	reject	ivltests/parameter_override_invalid4.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	reject	ivltests/parameter_override_invalid5.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	reject	ivltests/parameter_override_invalid6.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
-verilog	ok	ivltests/parameter_type.v	gold/parameter_type_std-vvp-stdout.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
+verilog	ok	ivltests/parameter_type.v	gold/parameter_type-vvp-stdout.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'	LRM=VD-120: a format-less real prints as iverilog's default %g text (vvp -compatible's _std gold is an Icarus option; 1364 is silent)
 verilog	reject	ivltests/partsel_invalid_idx1.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	reject	ivltests/partsel_invalid_idx2.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	reject	ivltests/partsel_invalid_idx3.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
@@ -925,7 +925,7 @@ verilog	ok	ivltests/pr1699519.v	gold/pr1699519.gold	STD=1364-2005	INCDIR=ivltest
 verilog	ok	ivltests/pr1701855.v	gold/pr1701855.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
 verilog	reject	ivltests/pr1701855b.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log	LRM=IEEE 1364-2005 §17.3.1 Syntax 17-9, A.9.3 (forbids it; suite issue #1)
 verilog	ok	ivltests/pr1701889.v	gold/pr1701889.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
-verilog	ok	ivltests/pr1701890.v	gold/pr1701890_std-vvp-stdout.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
+verilog	ok	ivltests/pr1701890.v	gold/pr1701890-vvp-stdout.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'	LRM=VD-120: a format-less real prints as iverilog's default %g text (vvp -compatible's _std gold is an Icarus option; 1364 is silent)
 verilog	passed	ivltests/pr1701921.v	-	STD=1364-2005	INCDIR=ivltests	DIRS=work log
 verilog	ok	ivltests/pr1702593.v	gold/pr1702593.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
 verilog	ok	ivltests/pr1703120.v	gold/pr1703120.gold	STD=1364-2005	INCDIR=ivltests	DIRS=work log	FILTER=grep -Ev '^(\$finish at tick .*|\$stop at tick .*|[^ ]+:[0-9]+: \$(finish|stop)(\([0-9]\))? called at .*|[^ ]+:[0-9]+: (warning|sorry|error): .*|[^ ]+:[0-9]+: +: .*|VCD (info|warning): .*|SDF (INFO|WARNING): .*|[[:space:]]+using existing file \(.*\)\.|WARNING: .*|ERROR: .*|[[:space:]]+".*"|\*\* VVP Stop\(0\) \*\*|\*\* Flushing output streams\.|\*\* Current simulation time is .*|\*\* Continue with \$stop\.|\*\*\* This is .*|[[:space:]]*)$' | tr -d '\r'
