@@ -7,7 +7,8 @@
 // u[1:1] is a one-element array whose element holds defparam
 // top.u[1].x.p = 5 (absolute, its own element) and x.q = 7 (relative).
 // Each g[i] holds defparam top.g[i].l.p = i + 20 (absolute, its own block).
-// Expected at t=1: u[1] p=5 q=7, g[0] p=20, g[1] p=21.
+// Expected at t=1: g[0] p=20, g[1] p=21, u[1] p=5 q=7, in the order the
+// scopes appear in the source (iverilog's; VerA's `processOrder`).
 //! lrm 6.3.1
 //! inherited IEEE 1364-2005 12.2.1
 //! neighbour defparam_absolute_out_of_array_element_rejected.v

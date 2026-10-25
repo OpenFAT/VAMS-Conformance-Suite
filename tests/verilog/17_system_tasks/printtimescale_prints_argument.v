@@ -1,6 +1,8 @@
 //! inherited IEEE 1364-2005 17.3.1
-// The module name $printtimescale prints is not fixed as full or as written;
-// VerA prints the argument as handed to it (pr1701855).
+// §17.3.1's format is "Time scale of (module_name)", and the clause does not
+// say whether the name is as written or the full hierarchical one. VerA
+// prints the full hierarchical name, as iverilog does (oracle: iverilog
+// -g2005, ivtest pr1701855, which prints `top.dut` for `$printtimescale(dut)`).
 `timescale 1ns/1ns
 module triage_printtimescale_prints_argument;
   dut_triage d();

@@ -43,8 +43,8 @@
 //   x = 1.5, t = 5, rt = 2.5, the specparam S = 4.
 // Output: "n=5 na=1 k=6 w0=2 w1=3 c2=9 dbl=4 i=1 x=1.5 t=5 rt=2.5 S=4".
 // The specify block holds a specparam only, which elaborates as a constant,
-// so a digital run has nothing in it to warn about (W0251 is for path
-// delays and pulse controls).
+// so a digital run has nothing in it to warn about (a digital run applies
+// path delays and pulse controls; W0251 is the analog compile's).
 //! inherited IEEE 1364-2005 A.1.4
 `timescale 1ns/1ns
 module b_A_1_4_child;

@@ -179,31 +179,14 @@ fixture	expect	verilator	exit	agrees	note
 17_system_tasks/queue_capacity_stats.v	transcript	refuses	-	no	%Error-UNSUPPORTED: tests/conformance/tests/verilog/17_system_tasks/queue_capacity_stats.v:12:5: Unsupported: IEEE 1364-1995 reserved word not implemented: '$q_in
 17_system_tasks/queue_order_payload.v	transcript	refuses	-	no	%Error-UNSUPPORTED: tests/conformance/tests/verilog/17_system_tasks/queue_order_payload.v:12:5: Unsupported: IEEE 1364-1995 reserved word not implemented: '$q_ini
 17_system_tasks/queue_status_boundaries.v	transcript	refuses	-	no	%Error-UNSUPPORTED: tests/conformance/tests/verilog/17_system_tasks/queue_status_boundaries.v:11:5: Unsupported: IEEE 1364-1995 reserved word not implemented: '$q
-17_system_tasks/readmem_address_range_rejected.v	reject	accepts	1	yes	
 17_system_tasks/readmem_address_restart.v	transcript	accepts	1	no	exit 1
 17_system_tasks/readmem_address_zero_padding.v	transcript	accepts	0	yes	
 17_system_tasks/readmem_count_warning.v	transcript	accepts	1	no	exit 1
-17_system_tasks/readmem_edge_address_bad_digit_rejected.v	reject	accepts	1	yes	
-17_system_tasks/readmem_edge_address_gap_rejected.v	reject	accepts	1	yes	
-17_system_tasks/readmem_edge_address_overflow_rejected.v	reject	accepts	0	no	accepts and exits 0
-17_system_tasks/readmem_edge_after_range_rejected.v	reject	accepts	1	yes	
-17_system_tasks/readmem_edge_underscore_leading_rejected.v	reject	accepts	0	no	accepts and exits 0
-17_system_tasks/readmem_edge_underscore_only_rejected.v	reject	accepts	0	no	accepts and exits 0
 17_system_tasks/readmem_excess_legal_neighbor.v	transcript	accepts	1	no	exit 1
-17_system_tasks/readmem_invalid_high_binary_rejected.v	reject	accepts	1	yes	
-17_system_tasks/readmem_invalid_high_hex_rejected.v	reject	accepts	1	yes	
 17_system_tasks/readmem_lowest_descending.v	transcript	accepts	0	yes	
-17_system_tasks/readmem_malformed_base_rejected.v	reject	accepts	1	yes	
-17_system_tasks/readmem_malformed_base_wide_rejected.v	reject	accepts	1	yes	
-17_system_tasks/readmem_malformed_binary_digit_rejected.v	reject	accepts	1	yes	
-17_system_tasks/readmem_malformed_hex_digit_rejected.v	reject	accepts	1	yes	
 17_system_tasks/readmem_malformed_legal_neighbors.v	transcript	accepts	0	yes	
-17_system_tasks/readmem_malformed_punctuation_rejected.v	reject	accepts	1	yes	
-17_system_tasks/readmem_malformed_width_rejected.v	reject	accepts	1	yes	
-17_system_tasks/readmem_malformed_width_wide_rejected.v	reject	accepts	1	yes	
 17_system_tasks/readmem_oversized_legal.v	transcript	accepts	0	yes	
 17_system_tasks/readmem_question_z.v	transcript	accepts	1	no	exit 1; golden shows x/z
-17_system_tasks/readmem_start_address_rejected.v	reject	accepts	0	no	accepts and exits 0
 17_system_tasks/readmem_start_formfeed.v	transcript	accepts	0	yes	
 17_system_tasks/readmem_underscore_legal.v	transcript	accepts	0	yes	
 17_system_tasks/readmem_warn_binary_excess_start.v	transcript	accepts	1	no	exit 1

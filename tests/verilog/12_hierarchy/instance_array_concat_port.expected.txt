@@ -1,0 +1,8 @@
+1d3b 1d 3b 1d 3b 00
+2b67 2b zz 2b zz 01
+3993 zz 93 zz 93 10
+47df zz zz zz zz 11
+540b 54 0b 54 0b 00
+6237 62 zz 62 zz 01
+7063 zz 63 zz 63 10
+9eaf zz zz zz zz 11

@@ -4,7 +4,7 @@
 //
 // VerA reads the block (A.7) and exposes it to VPI. A digital run evaluates
 // its timing checks (§15) and applies its path delay (§14.3.3), so the block
-// draws no W0251 there (that warning is now for §14.6 pulse controls alone);
+// draws no W0251 there (nor do §14.6's pulse controls, which it applies);
 // W0251 names the checks only in an analog compile, which evaluates none.
 //
 // The run stays inside both limits, so the checks report nothing (no W1199),
