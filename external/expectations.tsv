@@ -1,5 +1,5 @@
 # Per-test expectations that override an upstream suite's own (external/manifests.py applies them).
-# test<TAB>want<TAB>gold (from #root, - for none)<TAB>oracle: the clause that decides it, written as LRM= in the row[<TAB>a stage appended to its FILTER].
+# test<TAB>want<TAB>gold (from #root, - for none)<TAB>oracle: the clause that decides it, written as LRM= in the row[<TAB>KEY=VALUE ...; PIPE=CMD appends a stage to its FILTER].
 # reject rows citing suite issue #1 are upstream tests whose construct the governing LRM forbids.
 gnucap-modelgen/dump_abstime.0.vams	reject	-	VAMS A.1.2 (forbids it; suite issue #1)
 gnucap-modelgen/dump_af.0.vams	reject	-	VAMS A.1.2; VAMS 2.6.2 (forbids it; suite issue #1)
@@ -112,7 +112,7 @@ ispras-1364/test_14_02_04_4_2.v	reject	-	IEEE 1364-2005 §14.2.4.4 (forbids it; 
 ispras-1364/test_15_05_02_3.v	reject	-	6.1.2 (a continuous assignment to a reg; forbids it; suite issue #1)
 ispras-1364/test_15_06_00_1.v	reject	-	4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
 ispras-1364/test_15_06_00_2.v	reject	-	4.5 (clr is undeclared and a timing-check condition implies no net; forbids it; suite issue #1)
-ivtest/contrib/pic.v	ok	gold/pic.gold	IEEE 1364-2005 11.4.2: events of one time step are unordered, so the lines of one time compare as a set	sort -k1,1n -k2
+ivtest/contrib/pic.v	ok	gold/pic.gold	IEEE 1364-2005 11.4.2: events of one time step are unordered, so the lines of one time compare as a set	PIPE=sort -k1,1n -k2
 ivtest/ivltests/array_packed_2d.v	reject	-	A.2.1.3/A.2.2.1 (forbids it; suite issue #1)
 ivtest/ivltests/array_word_check.v	reject	-	IEEE 1364-2005 §18.1.2 Syntax 18-3; §18.2 (forbids it; suite issue #1)
 ivtest/ivltests/assign3.2E.v	reject	-	IEEE 1364-2005 §9.3 (forbids it; suite issue #1)

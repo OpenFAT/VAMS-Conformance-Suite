@@ -91,14 +91,15 @@ def read(p):
 
 
 def expectations():
-    """external/expectations.tsv: test -> (want, gold, oracle, pipe), where the
-    governing LRM decides a test differently from its upstream suite. `pipe`,
-    if any, is a stage appended to the row's FILTER (both sides pass it)."""
+    """external/expectations.tsv: test -> (want, gold, oracle, extra), where the
+    governing LRM decides a test differently from its upstream suite. `extra`
+    are KEY=VALUE columns added to the row; PIPE=CMD instead appends a stage to
+    the row's FILTER (both sides pass it)."""
     out = {}
     for line in read(EXT / "expectations.tsv").splitlines():
         if line and not line.startswith("#"):
-            test, want, gold, oracle, *pipe = line.split("\t")
-            out[test] = (want, gold, oracle, pipe[0] if pipe else None)
+            test, want, gold, oracle, *extra = line.split("\t")
+            out[test] = (want, gold, oracle, extra)
     return out
 
 
@@ -111,10 +112,13 @@ def override(name, row):
     e = EXPECT.pop(f"{name}/{row[2]}", None)
     if not e:
         return row
-    want, gold, oracle, pipe = e
+    want, gold, oracle, extra = e
     keys = [c for c in row[4:] if want == "ok" or c.split("=", 1)[0] not in JUDGED]
-    if pipe:
-        keys = [f"{c} | {pipe}" if c.startswith("FILTER=") else c for c in keys]
+    for x in extra:
+        if x.startswith("PIPE="):
+            keys = [f"{c} | {x[5:]}" if c.startswith("FILTER=") else c for c in keys]
+        else:
+            keys.append(x)
     return [row[0], want, row[2], gold] + keys + [f"LRM={oracle}"]
 
 

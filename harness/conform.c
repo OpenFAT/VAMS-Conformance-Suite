@@ -389,6 +389,7 @@ static int parse_row(char *row, const char *mroot, Spec *sp, char *lang, char *s
             snprintf(gold, sizeof gold, "%s/%s", mroot, colon + 1);
             sp->vcd_out = xstrdup(eq + 1), sp->vcd_gold = xstrdup(gold);
         }
+        if (!strcmp(col[i], "STDOUT") && sp->nstdout < 16) sp->stdout_want[sp->nstdout++] = xstrdup(eq + 1); /* as `//! stdout` */
         if (!strcmp(col[i], "RTOL")) sp->rtol = atof(eq + 1);
         if (!strcmp(col[i], "ATOL")) sp->atol = atof(eq + 1);
     }
