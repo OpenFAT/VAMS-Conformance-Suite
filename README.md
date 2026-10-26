@@ -247,7 +247,7 @@ same class, with as many tests in parallel as it has CPUs; treat differences
 under about 20% as noise.
 
 <!-- conformance:start -->
-Measured 2026-10-25 by `.github/workflows/conformance.yml`, each tool at its latest version (`tools/ci.sh` says which).
+Measured 2026-10-26 by `.github/workflows/conformance.yml`, each tool at its latest version (`tools/ci.sh` says which).
 
 ![Verilog (IEEE 1364-2005) conformance](docs/conformance/verilog.svg)
 ![Verilog (IEEE 1364-2005) speed](docs/conformance/verilog-time.svg)
@@ -266,11 +266,11 @@ Measured 2026-10-25 by `.github/workflows/conformance.yml`, each tool at its lat
 
 | Language | Tool | Version | Passed | Failed | Not supported | Conformance | Time on common tests |
 |---|---|---|---:|---:|---:|---:|---:|
-| Verilog (IEEE 1364-2005) | Icarus Verilog | unpacking 'github:NixOS/nixpkgs/674a2028661e550a97400c1cc992b9cca9a668a1' into the Git cache... | 2968 | 601 | 42 | 82.2% | 74.0 s (2382) |
-| Verilog (IEEE 1364-2005) | VerA | vera 0.15.0 | 2862 | 749 | 0 | 79.3% | 55.2 s (2382) |
-| Verilog-A | VerA | vera 0.15.0 | 2002 | 450 | 0 | 81.6% | 1711.3 s (2002) |
-| Verilog-AMS | VerA | vera 0.15.0 | 537 | 217 | 0 | 71.2% | 1322.5 s (537) |
-| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 601 | 436 | 36 | 56.0% | 422.0 s (601) |
+| Verilog (IEEE 1364-2005) | VerA | vera 0.20.0 | 3609 | 2 | 0 | 99.9% | 125.5 s (3609) |
+| Verilog-A | VerA | vera 0.20.0 | 2452 | 0 | 0 | 100.0% | 2174.7 s (2452) |
+| Verilog-AMS | VerA | vera 0.20.0 | 728 | 26 | 0 | 96.6% | 1727.4 s (728) |
+| SPICE | ESPice | espice espice 0.3.0 (VerA 0.20.0 8f9cb28cfd746da377b9638c504da6946a38be00; backends: cpu) | 924 | 113 | 36 | 86.1% | 258.4 s (551) |
+| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 599 | 438 | 36 | 55.8% | 194.1 s (551) |
 
 </details>
 <!-- conformance:end -->
