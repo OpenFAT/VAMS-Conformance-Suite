@@ -4,7 +4,12 @@
   "purpose": "Noise input reference source must exist.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Noise input reference source must exist."
+    "derivation": "Noise input reference source must exist.",
+    "source": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 11.3.4, .NOISE: \"src is the name of an independent source to which input noise is referred\"; the deck has no source named Missing.",
+    "confirmed": {
+      "tool": "manual",
+      "result": "ngspice exit 1; Xyce exit 0 (***** Number of Unknowns = 3 / Number Failed Steps Attempted:  0)"
+    }
   },
   "expect": {
     "status": "error",

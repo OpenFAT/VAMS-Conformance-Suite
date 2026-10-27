@@ -4,7 +4,12 @@
   "purpose": "Noise output node must exist.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Noise output node must exist."
+    "derivation": "Noise output node must exist.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: run simulation(s) aborted; Xyce exit 1: ***** Number of Unknowns = 3 / Netlist error: Output function variable MISSING not found"
+    }
   },
   "expect": {
     "status": "error",

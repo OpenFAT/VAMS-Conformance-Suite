@@ -5,7 +5,12 @@
   "origin": "benchmark/fixtures/topology/floating_node/circuit.sp",
   "oracle": {
     "kind": "analytic",
-    "derivation": "At DC both capacitors are open. Island voltage is undetermined; report a floating-node/nonunique-operating-point diagnostic rather than a made-up golden voltage."
+    "derivation": "At DC both capacitors are open. Island voltage is undetermined; report a floating-node/nonunique-operating-point diagnostic rather than a made-up golden voltage.",
+    "source": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 2.1.4, Topological constraints: \"The circuit cannot contain a loop of voltage sources and/or inductors and cannot contain a cut-set of current sources and/or capacitors. Each node in the circuit must have a dc path to ground. Every node must have at least two connections\": node island touches only C1 and C2, so it has no dc path to ground.",
+    "confirmed": {
+      "tool": "manual",
+      "result": "ngspice exit 0; Xyce exit 0 (***** Number of Unknowns = 3 / Number Failed Steps Attempted:  0)"
+    }
   },
   "expect": {
     "status": "error",

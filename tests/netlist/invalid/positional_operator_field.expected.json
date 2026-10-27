@@ -6,10 +6,9 @@
   "kind": "diagnostic",
   "derivation": "R card syntax (ngspice manual, Resistors): RXXX n+ n- value <mname> <l=length> <w=width> <temp=t> ...; the fourth field %3 names a model that does not exist. Xyce 7.10.0 exits 1 (netlist error at line 6); ngspice-44.2 and 45 exit 1 (\"can't find model '%3'\", \"unknown parameter (%3)\").",
   "confirmed": {
-   "tool": "xyce",
-   "version": "7.10.0-opensource",
-   "command": "Xyce positional_operator_field.sp",
-   "result": "exit 1"
+   "tool": "ngspice and xyce",
+   "version": "44.2 / 7.10.0-opensource",
+   "result": "ngspice exit 1: Error on line 6 or its substitute: / unknown parameter (%3); Xyce exit 1: Netlist error in file d.sp at or near line 6 / Netlist error in file d.sp at or near line 6"
   }
  },
  "origin": "tests/fixtures/invalid/positional_operator_field.sp",

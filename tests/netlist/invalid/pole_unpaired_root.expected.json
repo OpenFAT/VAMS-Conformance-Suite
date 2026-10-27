@@ -4,7 +4,12 @@
   "purpose": "A POLE complex root without its conjugate is refused at build, not run as NaN.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "A POLE complex root without its conjugate is refused at build, not run as NaN."
+    "derivation": "A POLE complex root without its conjugate is refused at build, not run as NaN.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Error on line: / MIF-ERROR - model: a$poly$e1 - Bad real value; Xyce exit 1: Netlist error in file d.sp at or near line 6 / Netlist error in file d.sp at or near line 6"
+    }
   },
   "expect": {
     "status": "error",

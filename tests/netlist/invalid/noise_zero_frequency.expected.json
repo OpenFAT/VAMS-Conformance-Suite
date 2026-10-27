@@ -4,7 +4,12 @@
   "purpose": "Logarithmic noise sweep cannot include zero.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Logarithmic noise sweep cannot include zero."
+    "derivation": "Logarithmic noise sweep cannot include zero.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Error on line 6 or its substitute: / Simulation interrupted due to error!; Xyce exit 1: ***** Number of Unknowns = 3 / Netlist error: Illegal values for start or end frequencies on .NOISE line."
+    }
   },
   "expect": {
     "status": "error",

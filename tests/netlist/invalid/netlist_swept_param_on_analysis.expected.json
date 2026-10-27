@@ -4,7 +4,12 @@
   "purpose": "A swept parameter on an analysis card is refused, naming the card.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "ESPice re-reads swept values only in device and model values; an analysis card naming one is refused (UnsupportedCard) with its line."
+    "derivation": "A .step-swept parameter named on an analysis card has no single value when the analysis is set up; ngspice-44.2 has no .step and refuses the card, Xyce 7.10.0 refuses the swept list on the analysis line (\"Cannot convert 'list' to double\").",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Error on line 7 or its substitute: / Simulation interrupted due to error!; Xyce exit 1: ***** Number of Unknowns = 2 / Netlist error: Cannot convert 'list' to double for expression VAL"
+    }
   },
   "expect": {
     "status": "error",

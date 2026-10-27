@@ -4,7 +4,12 @@
   "purpose": "Sweep target must identify an existing source or parameter.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Sweep target must identify an existing source or parameter."
+    "derivation": "Sweep target must identify an existing source or parameter.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Fatal error: DC Transfer Function: Voltage source, current source, or resistor named \"missing\" is not in the circuit / run simulation(s) abo; Xyce exit 1: ***** Number of Unknowns = 3 / Netlist error: Function or variable Missing is not defined"
+    }
   },
   "expect": {
     "status": "error",

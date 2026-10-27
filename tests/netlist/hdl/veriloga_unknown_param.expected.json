@@ -4,7 +4,12 @@
   "purpose": "A misspelled .hdl instance parameter is an error (UnknownParameter), not a silent default.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "A misspelled .hdl instance parameter is an error (UnknownParameter), not a silent default."
+    "derivation": "A misspelled .hdl instance parameter is an error (UnknownParameter), not a silent default.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Circuit: * misspelled .hdl instance parameter (rr for r) must be an error, not the default / Error on line 3 or its substitute:; Xyce exit 1: Netlist error in file d.sp at or near line 4 / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+    }
   },
   "expect": {
     "status": "error",

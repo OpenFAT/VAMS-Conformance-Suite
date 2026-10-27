@@ -4,7 +4,11 @@
   "purpose": "Logarithmic frequencies must be positive.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Logarithmic frequencies must be positive."
+    "derivation": "Logarithmic frequencies must be positive.",
+    "confirmed": {
+      "tool": "two simulators",
+      "result": "ngspice-44.2 diagnoses the card (\"Check your input line '.ac dec 10 -1 100'\", though it exits 0); Xyce 7.10.0 exits 1: \"Illegal values for start or end frequencies on .AC line\"."
+    }
   },
   "expect": {
     "status": "error",

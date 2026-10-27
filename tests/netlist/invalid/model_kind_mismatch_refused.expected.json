@@ -6,10 +6,9 @@
   "kind": "diagnostic",
   "derivation": "A D element names a D model (ngspice manual, Junction Diodes: DXXXX n+ n- mname, with .model mname D); qm is an NPN model. Xyce 7.10.0 exits 1 (netlist error at line 4); ngspice-44.2 and 45 exit 1 (\"model type mismatch\").",
   "confirmed": {
-   "tool": "xyce",
-   "version": "7.10.0-opensource",
-   "command": "Xyce model_kind_mismatch_refused.sp",
-   "result": "exit 1"
+   "tool": "ngspice and xyce",
+   "version": "44.2 / 7.10.0-opensource",
+   "result": "ngspice exit 1: Error on line 4 or its substitute: / Simulation interrupted due to error!; Xyce exit 1: Netlist error in file d.sp at or near line 4 / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
   }
  },
  "origin": "tests/fixtures/invalid/model_kind_mismatch_refused.sp",

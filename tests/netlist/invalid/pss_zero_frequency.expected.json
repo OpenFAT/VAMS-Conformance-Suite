@@ -4,7 +4,12 @@
   "purpose": "Periodic steady state requires a positive fundamental frequency.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Periodic steady state requires a positive fundamental frequency."
+    "derivation": "Periodic steady state requires a positive fundamental frequency.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Error on line 6 or its substitute: / Simulation interrupted due to error!; Xyce exit 1: Netlist error: No analysis specified. / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+    }
   },
   "expect": {
     "status": "error",

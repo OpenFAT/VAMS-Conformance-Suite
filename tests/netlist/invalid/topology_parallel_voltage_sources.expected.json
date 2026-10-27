@@ -6,11 +6,11 @@
     "kind": "ngspice-45",
     "derivation": "ngspice 45 reports a singular matrix and does not simulate the operating point. The loop current of V1 and V2 appears in no equation, so any split of the 1 mA load satisfies KCL and KVL.",
     "confirmed": {
-      "tool": "xyce",
-      "version": "7.10.0-opensource",
-      "command": "Xyce topology_parallel_voltage_sources.sp",
-      "result": "exit 1: Numerically singular matrix found by Amesos"
-    }
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: DC solution failed - / Warning: singular matrix:  check node v1#branch; Xyce exit 1: ***** Number of Unknowns = 3 / Netlist warning: Numerically singular matrix found by Amesos, returning zero"
+    },
+    "source": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 2.1.4, Topological constraints: \"The circuit cannot contain a loop of voltage sources and/or inductors and cannot contain a cut-set of current sources and/or capacitors. Each node in the circuit must have a dc path to ground. Every node must have at least two connections\": V1 and V2 in parallel form a loop of voltage sources."
   },
   "expect": {
     "status": "error",

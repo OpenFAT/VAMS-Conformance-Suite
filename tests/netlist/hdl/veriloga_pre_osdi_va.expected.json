@@ -1,10 +1,16 @@
 {
   "schema_version": 1,
   "analysis": "op",
-  "purpose": "pre_osdi is an error (OsdiUnsupported): espice compiles Verilog-A through VerA and loads no OSDI, not even a .va beside the .osdi.",
+  "purpose": "pre_osdi names an .osdi library that does not exist beside the deck (only the .va source is there).",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "pre_osdi is an error (OsdiUnsupported): espice compiles Verilog-A through VerA and loads no OSDI."
+    "derivation": "pre_osdi names an .osdi library that does not exist beside the deck (only the .va source is there), so nothing defines va_rh and the deck fails.",
+    "source": "pre_osdi names veriloga_hdl_errors.assets/va_rh.osdi, which does not exist beside the deck (only va_rh.va does), so the library cannot load and N1 names no model.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Circuit: * pre_osdi is an error: espice never loads osdi, even with a .va beside the .osdi / Error opening osdi lib \"veriloga_hdl_errors.ass; Xyce exit 1: Netlist error in file d.sp at or near line 4 / Netlist error in file d.sp at or near line 4"
+    }
   },
   "expect": {
     "status": "error",

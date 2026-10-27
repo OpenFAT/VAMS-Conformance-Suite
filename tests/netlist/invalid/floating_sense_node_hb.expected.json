@@ -6,10 +6,9 @@
     "kind": "ngspice-45",
     "derivation": "ngspice 45 stops with 'singular matrix: check node a'. Nothing stamps node a's KCL row, so v(a) is free and every analysis is singular.",
     "confirmed": {
-      "tool": "xyce",
-      "version": "7.10.0-opensource",
-      "command": "Xyce floating_sense_node_hb.sp",
-      "result": "exit 1: Netlist error: Device B1 refers to unknown solution node A (with .hb 1k)"
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Error on line 10 or its substitute: / Simulation interrupted due to error!; Xyce exit 1: Netlist error in file d.sp at or near line 10 / Netlist error in file d.sp at or near line 10"
     }
   },
   "expect": {

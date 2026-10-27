@@ -4,7 +4,12 @@
   "purpose": "No branch can carry the injected DC current.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "No branch can carry the injected DC current."
+    "derivation": "No branch can carry the injected DC current.",
+    "source": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 2.1.4, Topological constraints: \"The circuit cannot contain a loop of voltage sources and/or inductors and cannot contain a cut-set of current sources and/or capacitors. Each node in the circuit must have a dc path to ground. Every node must have at least two connections\": node out has one connection (I1) and no dc path to ground.",
+    "confirmed": {
+      "tool": "manual",
+      "result": "ngspice exit 0; Xyce exit -11 (***** Number of Unknowns = 1 / Netlist error: Empty matrix has been found, this linear solve has failed!)"
+    }
   },
   "expect": {
     "status": "error",

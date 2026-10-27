@@ -4,7 +4,12 @@
   "purpose": "An unknown instance parameter fails the deck.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "ngspice 44.2 refuses `ww=10u` on an M card (unknown parameter) and the run stops."
+    "derivation": "ngspice 44.2 refuses `ww=10u` on an M card (unknown parameter) and the run stops.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Circuit: * an unknown instance parameter fails the deck, as in ngspice 44.2 (#35). / Error on line 6 or its substitute:; Xyce exit 1: Netlist error in file d.sp at or near line 6 / Netlist error in file d.sp at or near line 6"
+    }
   },
   "expect": {
     "status": "error",

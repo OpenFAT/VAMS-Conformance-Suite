@@ -4,7 +4,12 @@
   "purpose": "A two-tone .disto needs a DISTOF2 source, as ngspice E_NOF2SRC.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "A two-tone .disto needs a DISTOF2 source, as ngspice E_NOF2SRC."
+    "derivation": "A two-tone .disto needs a DISTOF2 source, as ngspice E_NOF2SRC.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: run simulation(s) aborted; Xyce exit 1: Netlist error: No analysis specified. / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+    }
   },
   "expect": {
     "status": "error",

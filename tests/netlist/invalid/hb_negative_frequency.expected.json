@@ -4,7 +4,12 @@
   "purpose": "Harmonic balance fundamental must be positive.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Harmonic balance fundamental must be positive."
+    "derivation": "Harmonic balance fundamental must be positive.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Error on line 6 or its substitute: / Simulation interrupted due to error!; Xyce exit 1: ***** Number of Unknowns = 3 / Netlist error: Frequency of oscillation -1000 is less than or equal to zero,"
+    }
   },
   "expect": {
     "status": "error",

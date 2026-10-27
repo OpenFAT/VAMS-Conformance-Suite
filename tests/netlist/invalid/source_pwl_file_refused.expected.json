@@ -6,10 +6,9 @@
   "kind": "diagnostic",
   "derivation": "nonexist.txt does not exist beside the deck, so no reading of `pwl file=nonexist.txt` can produce the waveform: the source has no value and the deck fails. Xyce 7.10.0 exits 1 (netlist error at line 2); ngspice-44.2 and 45 exit 1 (fatal error).",
   "confirmed": {
-   "tool": "xyce",
-   "version": "7.10.0-opensource",
-   "command": "Xyce source_pwl_file_refused.sp",
-   "result": "exit 1"
+   "tool": "ngspice and xyce",
+   "version": "44.2 / 7.10.0-opensource",
+   "result": "ngspice exit 1: ERROR: fatal error in ngspice, exit(1); Xyce exit 1: Netlist error in file d.sp at or near line 2 / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
   }
  },
  "origin": "tests/fixtures/invalid/source_pwl_file_refused.sp",

@@ -4,7 +4,12 @@
   "purpose": "An .hdl instance with more nodes than the module's ports is an error (WrongNodeCount). Fewer nodes float the trailing ports (veriloga_trailing_port_floats).",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "An .hdl instance with more nodes than the module's ports is an error (WrongNodeCount). Fewer nodes float the trailing ports (veriloga_trailing_port_floats)."
+    "derivation": "An .hdl instance with more nodes than the module's ports is an error (WrongNodeCount). Fewer nodes float the trailing ports (veriloga_trailing_port_floats).",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Circuit: * an .hdl instance with more nodes than module ports must be an error / Error on line 3 or its substitute:; Xyce exit 1: Netlist error in file d.sp at or near line 4 / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+    }
   },
   "expect": {
     "status": "error",

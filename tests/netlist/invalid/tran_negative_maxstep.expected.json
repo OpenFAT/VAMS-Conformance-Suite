@@ -4,7 +4,12 @@
   "purpose": "Maximum integration step must be positive.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Maximum integration step must be positive."
+    "derivation": "Maximum integration step must be positive.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: doAnalyses: TRAN:  Timestep too small; time = -1e-07, timestep = -2e-06: cause unrecorded. / run simulation(s) aborted; Xyce exit 1: ***** Number of Unknowns = 3 / *** Xyce Abort ***"
+    }
   },
   "expect": {
     "status": "error",

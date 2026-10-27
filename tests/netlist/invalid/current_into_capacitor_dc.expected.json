@@ -4,7 +4,12 @@
   "purpose": "Capacitor is open at DC, so no finite DC operating point exists.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Capacitor is open at DC, so no finite DC operating point exists."
+    "derivation": "Capacitor is open at DC, so no finite DC operating point exists.",
+    "source": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 2.1.4, Topological constraints: \"The circuit cannot contain a loop of voltage sources and/or inductors and cannot contain a cut-set of current sources and/or capacitors. Each node in the circuit must have a dc path to ground. Every node must have at least two connections\": I1 and C1 form a cut-set of a current source and a capacitor, and node out has no dc path to ground.",
+    "confirmed": {
+      "tool": "manual",
+      "result": "ngspice exit 0; Xyce exit 1 (***** Number of Unknowns = 1 / Number Failed Steps Attempted:  1)"
+    }
   },
   "expect": {
     "status": "error",

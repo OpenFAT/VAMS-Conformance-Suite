@@ -4,7 +4,13 @@
   "purpose": "Ideal voltage loop violates KVL.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Ideal voltage loop violates KVL."
+    "derivation": "Ideal voltage loop violates KVL.",
+    "source": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 2.1.4, Topological constraints: \"The circuit cannot contain a loop of voltage sources and/or inductors and cannot contain a cut-set of current sources and/or capacitors. Each node in the circuit must have a dc path to ground. Every node must have at least two connections\": the sources form a loop of voltage sources.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: DC solution failed - / Warning: singular matrix:  check node v1#branch; Xyce exit 1: ***** Number of Unknowns = 5 / Netlist warning: Numerically singular matrix found by Amesos, returning zero"
+    }
   },
   "expect": {
     "status": "error",

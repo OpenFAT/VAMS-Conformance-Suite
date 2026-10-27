@@ -6,10 +6,9 @@
   "kind": "diagnostic",
   "derivation": "SPICE E card syntax (ngspice manual, Linear Voltage-Controlled Voltage Sources): E n+ n- nc+ nc- value. Here nc+ = CCCS and nc- = Vs, nodes that touch only the controlling port, which draws no current: they have no DC path to ground and the MNA matrix is singular. Xyce 7.10.0 exits 1 (nodes CCCS and VS \"connected to only 1 device terminal\"); ngspice-44.2 and 45 exit 1 (\"singular matrix: check node cccs\").",
   "confirmed": {
-   "tool": "xyce",
-   "version": "7.10.0-opensource",
-   "command": "Xyce cccs_word_on_e_refused.sp",
-   "result": "exit 1"
+   "tool": "ngspice and xyce",
+   "version": "44.2 / 7.10.0-opensource",
+   "result": "ngspice exit 1: DC solution failed - / Warning: singular matrix:  check node cccs; Xyce exit 1: ***** Number of Unknowns = 8 / Netlist warning: Numerically singular matrix found by Amesos, returning zero"
   }
  },
  "origin": "tests/fixtures/invalid/cccs_word_on_e_refused.sp",

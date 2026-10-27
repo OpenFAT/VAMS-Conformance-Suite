@@ -4,7 +4,12 @@
   "purpose": "An unfolded parameter value is rejected, not replaced by a default.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "An unfolded parameter value is rejected, not replaced by a default."
+    "derivation": "An unfolded parameter value is rejected, not replaced by a default.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Circuit: * a resistor value naming no parameter and no model is an error, not / Error on line 5 or its substitute:; Xyce exit 1: Netlist error in file d.sp at or near line 5 / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+    }
   },
   "expect": {
     "status": "error",

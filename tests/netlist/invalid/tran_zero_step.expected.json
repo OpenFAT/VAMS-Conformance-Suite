@@ -4,7 +4,11 @@
   "purpose": "Transient output step must be positive.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Transient output step must be positive."
+    "derivation": "Transient output step must be positive.",
+    "confirmed": {
+      "tool": "two simulators",
+      "result": "ngspice-44.2 exits 1 (error on the .tran line); VACASK (unstable-2026) on the same circuit with `analysis tran1 tran step=0 stop=1m` prints \"Transient time step must be greater than zero.\" and runs no transient. Xyce 7.10.0 accepts it."
+    }
   },
   "expect": {
     "status": "error",

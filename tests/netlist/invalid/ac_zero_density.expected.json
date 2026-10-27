@@ -4,7 +4,11 @@
   "purpose": "A zero point density cannot define a sweep.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "A zero point density cannot define a sweep."
+    "derivation": "A zero point density cannot define a sweep.",
+    "confirmed": {
+      "tool": "two simulators",
+      "result": "ngspice-44.2 diagnoses the card (\"Check your input line '.ac dec 0 1 100'\", though it exits 0); Xyce 7.10.0 exits 1: \"Points Value parameter on .AC line must be >= 1\"."
+    }
   },
   "expect": {
     "status": "error",

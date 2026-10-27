@@ -4,7 +4,12 @@
   "purpose": "An analysis card before the .step that sweeps its parameter is refused, not run at the nominal.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "The .step cards are read before the other directives, so the swept name is live when .tran reads it (UnsupportedCard)."
+    "derivation": "The .step cards are read before the other directives, so the swept name is live when .tran reads it (UnsupportedCard).",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Error on line 7 or its substitute: / Simulation interrupted due to error!; Xyce exit 1: ***** Number of Unknowns = 2 / Netlist error: Cannot convert 'list' to double for expression VAL"
+    }
   },
   "expect": {
     "status": "error",

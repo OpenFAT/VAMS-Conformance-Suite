@@ -4,7 +4,12 @@
   "purpose": "A PAT source with a Z state is refused as unsupported.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "A V or I source cannot drive a high-impedance state; the card is UnsupportedCard with its line."
+    "derivation": "A V or I source cannot drive a high-impedance state; the card is UnsupportedCard with its line.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: Error on line 3 or its substitute: / unknown parameter (pat); Xyce exit 1: Netlist error in file d.sp at or near line 3 / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+    }
   },
   "expect": {
     "status": "error",

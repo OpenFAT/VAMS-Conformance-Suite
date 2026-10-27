@@ -4,7 +4,12 @@
   "purpose": "A PWL repeat time that is not one of its time points is refused.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "ngspice-45 vsrcpar.c refuses r= that matches no PWL time point (E_PARMVAL)."
+    "derivation": "ngspice-45 vsrcpar.c refuses r= that matches no PWL time point (E_PARMVAL).",
+    "source": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 4.1.4, Piece-Wise Linear: \"The r value has to be one of the time points of the PWL source\"; r=0.5u is none of 0, 1u, 2u.",
+    "confirmed": {
+      "tool": "manual",
+      "result": "ngspice exit 1; Xyce exit 0 (***** Number of Unknowns = 2 / Number Failed Steps Attempted:  0)"
+    }
   },
   "expect": {
     "status": "error",

@@ -4,7 +4,12 @@
   "purpose": "Transfer input must identify an existing independent source.",
   "oracle": {
     "kind": "input_contract",
-    "derivation": "Transfer input must identify an existing independent source."
+    "derivation": "Transfer input must identify an existing independent source.",
+    "confirmed": {
+      "tool": "ngspice and xyce",
+      "version": "44.2 / 7.10.0-opensource",
+      "result": "ngspice exit 1: run simulation(s) aborted; Xyce exit 1: Netlist error: No analysis specified. / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+    }
   },
   "expect": {
     "status": "error",
