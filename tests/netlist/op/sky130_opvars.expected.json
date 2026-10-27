@@ -7,14 +7,14 @@
     "tool": "ngspice",
     "version": "45",
     "command": "ngspice -b -r sky130_opvars.raw sky130_opvars.sp",
-    "derivation": "ngspice 45, the BSIM4 C model (level 54, sky130 version 4.5 cards), on this deck at its default options; values from sky130_opvars.raw. The @m...[param] names are ngspice's dialect for device operating-point variables.",
+    "derivation": "ngspice 45, the BSIM4 C model (level 54, sky130 version 4.5 cards), on this deck at its default options; values from sky130_opvars.raw. The @m...[param] names are ngspice's dialect for device operating-point variables. Conventions pinned by the ngspice-45 manual 27.6.9, BSIM4 accessible instance parameters: id is \"Drain current\", gm \"Transconductance\", gds \"Drain-Source conductance\", vth \"Threshold voltage\", vdsat \"Saturation voltage\", with no sign fixed for either polarity; so every id column and every pfet column is compared in magnitude (magnitude: true), the only convention-free reading. The nfet gm, gds, vth and vdsat are positive in any reading and stay signed. cgg is \"Intrinsic Gate capacitance\" in that list (BSIM4's cggb, without overlap capacitance); it is not checked, because no second source here reports it.",
     "confirmed": {
       "tool": "xyce",
       "version": "7.10.0-opensource",
-      "command": "Xyce on the deck translated by tools/xcheck.py (level 54 -> Xyce BSIM4 level 14), .dc vgn 0.8 0.9 0.1, .print dc I(VDN) I(VDP) {N(XN:MSKY130_FD_PR__NFET_01V8:GM)} ... :GDS, :VTH, :VDSAT; id as the drain source current (-I(VDN), I(VDP)); the OP row is the vgn = 0.9 point",
+      "command": "Xyce on the deck translated by tools/xcheck.py (level 54 -> Xyce BSIM4 level 14), .dc vgn 0.8 0.9 0.1, .print dc I(VDN) I(VDP) {N(XN:MSKY130_FD_PR__NFET_01V8:GM)} ... :GDS, :VTH, :VDSAT; id as the drain supply current I(VDN), I(VDP), compared in magnitude like every pfet column; the OP row is the vgn = 0.9 point",
       "max_rel_err": 0.000309,
       "max_tolerance_ratio": 0.308,
-      "note": "Xyce's BSIM4 prints gm, gds, vth and vdsat as named device variables, the same BSIM4 internal quantities. It has no cgg output, so the cgg columns were dropped: no second source confirms them."
+      "note": "Xyce's BSIM4 prints gm, gds, vth and vdsat as named device variables, the same BSIM4 internal quantities; its supply currents carry Xyce's own sign, so id is compared in magnitude. Xyce has no cgg output: cgg is not checked."
     },
     "tolerance_basis": "rtol 1e-3 on every column: the widest spread between ngspice 45 at default options and Xyce at nonlinear reltol 1e-7 is 0.00031 relative (the pfet id, where the two BSIM4 implementations differ), so 1e-3 holds it with a 3.2x margin; ngspice's own default operating point carries no more than its reltol 1e-3. atol: 1e-12 A on currents and conductances, 1e-6 V on vth and vdsat, both under 1e-3 of every value."
   },
@@ -31,7 +31,8 @@
             "atol": 1e-12,
             "values": [
               9.113134032726919e-05
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xn.msky130_fd_pr__nfet_01v8[gm]": {
             "unit": "S",
@@ -71,7 +72,8 @@
             "atol": 1e-12,
             "values": [
               2.559896926674892e-07
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xp.msky130_fd_pr__pfet_01v8[gm]": {
             "unit": "S",
@@ -79,7 +81,8 @@
             "atol": 1e-12,
             "values": [
               4.409405556232683e-06
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xp.msky130_fd_pr__pfet_01v8[gds]": {
             "unit": "S",
@@ -87,7 +90,8 @@
             "atol": 1e-12,
             "values": [
               3.0261446261093676e-08
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xp.msky130_fd_pr__pfet_01v8[vth]": {
             "unit": "V",
@@ -95,7 +99,8 @@
             "atol": 1e-06,
             "values": [
               0.9629522099971006
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xp.msky130_fd_pr__pfet_01v8[vdsat]": {
             "unit": "V",
@@ -103,7 +108,8 @@
             "atol": 1e-06,
             "values": [
               0.06030319560890788
-            ]
+            ],
+            "magnitude": true
           }
         },
         "row_count": 1
@@ -119,7 +125,8 @@
             "values": [
               4.3617889682413095e-05,
               9.113134032726919e-05
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xn.msky130_fd_pr__nfet_01v8[gm]": {
             "unit": "S",
@@ -164,7 +171,8 @@
             "values": [
               2.559896926674892e-07,
               2.559896926674892e-07
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xp.msky130_fd_pr__pfet_01v8[gm]": {
             "unit": "S",
@@ -173,7 +181,8 @@
             "values": [
               4.409405556232683e-06,
               4.409405556232683e-06
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xp.msky130_fd_pr__pfet_01v8[gds]": {
             "unit": "S",
@@ -182,7 +191,8 @@
             "values": [
               3.0261446261093676e-08,
               3.0261446261093676e-08
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xp.msky130_fd_pr__pfet_01v8[vth]": {
             "unit": "V",
@@ -191,7 +201,8 @@
             "values": [
               0.9629522099971006,
               0.9629522099971006
-            ]
+            ],
+            "magnitude": true
           },
           "@m.xp.msky130_fd_pr__pfet_01v8[vdsat]": {
             "unit": "V",
@@ -200,7 +211,8 @@
             "values": [
               0.06030319560890788,
               0.06030319560890788
-            ]
+            ],
+            "magnitude": true
           }
         },
         "row_count": 2
