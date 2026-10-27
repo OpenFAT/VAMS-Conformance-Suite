@@ -1,12 +1,15 @@
 # IEEE Std 1364-2005: every numbered heading, the denominator of
 # tools/coverage.py. The standard is licensed and not in git; this is its
 # stand-in, headings only, no body text.
-# Columns: clause, kind, title.
+# Columns: clause, kind, title, and for the last two kinds the reason.
 #   kind  `-`               an ordinary clause
 #         `no-prohibition`  states no illegal input; tested by accepting and running
 #         `optional`, `implementation-defined`, `unspecified`
 #         `non-normative`   states no rule
 #         `tool-option`     a rule about simulator invocation, with no source form
+#         `unobservable`    nothing a decrypting, simulating tool does shows it
+#         `optional-method` meaningful only under an encryption method the
+#                           standard lists as Optional (Table 28-3)
 1	non-normative	Overview
 1.1	non-normative	Scope
 1.2	non-normative	Conventions used in this standard
@@ -616,11 +619,11 @@
 28.3	-	Protect pragma directives
 28.4	-	Protect pragma keywords
 28.4.1	-	begin
-28.4.1.1	-	Syntax
-28.4.1.2	-	Description
+28.4.1.1	unobservable	Syntax	only an encrypting tool acts on it; DECRYPTION INPUT: none
+28.4.1.2	unobservable	Description	only an encrypting tool acts on it; DECRYPTION INPUT: none
 28.4.2	-	end
-28.4.2.1	-	Syntax
-28.4.2.2	-	Description
+28.4.2.1	unobservable	Syntax	only an encrypting tool acts on it; DECRYPTION INPUT: none
+28.4.2.2	unobservable	Description	only an encrypting tool acts on it; DECRYPTION INPUT: none
 28.4.3	-	begin_protected
 28.4.3.1	-	Syntax
 28.4.3.2	-	Description
@@ -652,8 +655,8 @@
 28.4.12.1	-	Syntax
 28.4.12.2	-	Description
 28.4.13	-	data_public_key
-28.4.13.1	-	Syntax
-28.4.13.2	-	Description
+28.4.13.1	optional-method	Syntax	a public key is used only by the asymmetric methods Table 28-3 lists as Optional
+28.4.13.2	optional-method	Description	a public key is used only by the asymmetric methods Table 28-3 lists as Optional
 28.4.14	-	data_decrypt_key
 28.4.14.1	-	Syntax
 28.4.14.2	-	Description
@@ -670,8 +673,8 @@
 28.4.18.1	-	Syntax
 28.4.18.2	-	Description
 28.4.19	-	digest_public_key
-28.4.19.1	-	Syntax
-28.4.19.2	-	Description
+28.4.19.1	optional-method	Syntax	a public key is used only by the asymmetric methods Table 28-3 lists as Optional
+28.4.19.2	optional-method	Description	a public key is used only by the asymmetric methods Table 28-3 lists as Optional
 28.4.20	-	digest_decrypt_key
 28.4.20.1	-	Syntax
 28.4.20.2	-	Description
@@ -691,8 +694,8 @@
 28.4.25.1	-	Syntax
 28.4.25.2	-	Description
 28.4.26	-	key_public_key
-28.4.26.1	-	Syntax
-28.4.26.2	-	Description
+28.4.26.1	optional-method	Syntax	a public key is used only by the asymmetric methods Table 28-3 lists as Optional
+28.4.26.2	optional-method	Description	a public key is used only by the asymmetric methods Table 28-3 lists as Optional
 28.4.27	-	key_block
 28.4.27.1	-	Syntax
 28.4.27.2	-	Description
@@ -710,7 +713,7 @@
 28.4.31.2	-	Description
 28.4.32	-	viewport
 28.4.32.1	-	Syntax
-28.4.32.2	-	Description
+28.4.32.2	unobservable	Description	the access granted is an implementation-specified relaxation of protection
 A	-	Formal syntax definition
 A.1	non-normative	Source text
 A.1.1	-	Library source text

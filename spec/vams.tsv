@@ -1,13 +1,15 @@
 # Verilog-AMS LRM 2023: its normative sentences, the denominator of
 # tools/coverage.py. Verilog-A is this LRM's analog subset (Annex C), so it
 # has no list of its own.
-# Columns: id, modal, pol, kind, text.
+# Columns: id, modal, pol, kind, text, and for an unobservable row its reason.
 #   id     clause:n, the clause's n-th sentence with a modal verb; n >= 1000 is
 #          a rule stated without one (`declar.`)
 #   modal  shall, shall-not, must, error, may, impl-defined, unspecified, declar.
 #   pol    what a test of it does: + accept and check, - reject, +- both, 0 none
 #   kind   `-` ordinary; otherwise non-normative, optional, unspecified,
-#          implementation-defined, resource-limit
+#          implementation-defined, resource-limit, or unobservable: a rule
+#          with nothing a source-and-run test can see (a report's format, a
+#          manual, an undefined convergence test); its pol is 0
 1.2:1000	declar.	+-	-	One module mixes analog and digital; digital values read anywhere; analog contributions only inside an analog block
 1.3.1:1	shall	+	-	The flow is shared so flow from all continuous ports and nets at a node shall sum to zero (0).
 1.3.1.1:1	shall	+	-	In this case, the node associated with the net shall be the global reference node in the circuit.
@@ -88,7 +90,7 @@
 2.8.4:2	shall	+-	-	The directive shall remain in effect for the rest of the compilation unless a different compiler directive specifies otherwise.
 2.8:5	shall	+-	-	Identifiers shall be case sensitive.
 2.8:6	shall	+	resource-limit	Examples: shiftreg_a busa_index error_condition merge_ab _bus3 n$657 Implementations may set a limit on the maximum length of identifiers, but the limit shall be at least 1024 characters.
-2.8:7	error	-	resource-limit	If an identifier exceeds the implementation-specified length limit, an error shall be reported.
+2.8:7	error	0	unobservable	If an identifier exceeds the implementation-specified length limit, an error shall be reported.	the limit is implementation-specified and may be absent, so no identifier is known to exceed it
 2.9:1	shall	0	unspecified	These properties shall be referred to as attributes.
 2.9.1:1000	declar.	+-	-	Attribute slots of Syntax 2-5..2-10 (module, port, item, block, function port, connection, UDP)
 2.9:2	shall	+-	-	This section specifies the syntactic mechanism that shall be used for specifying attributes.
@@ -96,8 +98,8 @@
 2.9.2:2	must	-	-	The attribute must be assigned a string.
 2.9.2:3	must	-	-	The attribute must be assigned a value, which must be either "yes" or "no".
 2.9.2:4	must	-	-	The attribute must be assigned one of the following string values: "multiply", "divide", or "none".
-2.9.2:1001	declar.	+	-	"If the attribute is specified with the value "no", then the parameter or variable will be omitted from the short report"
-2.9.2:1002	declar.	+	-	multiplicity "multiply"/"divide": the value "will be multiplied [divided] by the value of $mfactor for the instance in any report of operating-point values"
+2.9.2:1001	declar.	0	unobservable	"If the attribute is specified with the value "no", then the parameter or variable will be omitted from the short report"	the short operating-point report's format and contents are the simulator's
+2.9.2:1002	declar.	0	unobservable	multiplicity "multiply"/"divide": the value "will be multiplied [divided] by the value of $mfactor for the instance in any report of operating-point values"	an operating-point report is simulator output with no form a source can read back
 2.9:3	shall	+	-	If a value is not specifically assigned to the attribute, then its value shall be 1.
 2.9:4	shall	+	-	If the same attribute name is defined more than once for the same language element, the last attribute value shall be used and a tool can give a warning that a duplicate attribute specification has occurred.
 2.9:5	error	-	-	It shall be illegal to specify the value of an attribute with a constant expression that contains an attribute instance.
@@ -142,7 +144,7 @@
 3.4.7:2	shall	+	-	The type of an alias (real, integer, or string) shall be determined by the original parameter, as is its range of allowed values, if specified.
 3.4.7:3	shall-not	-	-	The alias_identifier shall not occur anywhere else in the module; in particular, it shall not conflict with a different parameter_identifier, and the equations in the module shall reference the parameter by its original name, not the alias.
 3.4.7:4	error	-	-	When overriding parameters, it shall be an error to specify an override for a parameter by its original name and one or more aliases, or by more than one alias, regardless of how the override is done (by name or using the defparam statement).
-3.4.7:5	shall	+	-	When the simulator generates a list of parameter values used, such as for an operating point analysis, only the original name shall appear in the list.
+3.4.7:5	shall	0	unobservable	When the simulator generates a list of parameter values used, such as for an operating point analysis, only the original name shall appear in the list.	the operating-point parameter list is simulator output with no form a source can read back
 3.4.7:6	error	0	non-normative	This last instantiation is an error: nmos2 #(.trise(5), .dtemp(5)) m3(.d(d), .g(g), .s(s), .b(b)); //error because an override is specified for the parameter dtemp and its alias, even though the values are equal.
 3.4.7:7	may	+	-	Parameter aliases may also be declared for the hierarchical parameter system functions (see 9.18) as in the example below: aliasparam m = $mfactor;
 3.4.7:1001	declar.	+	-	"Multiple aliases can point to the same parameter."
@@ -479,7 +481,7 @@
 5.6.7.2:1000	declar.	+-	-	Indirect and direct contributions on the same net pair (or a parallel branch) are refused; different pairs are legal.
 5.6.7:3	shall-not	-	-	The constant expression shall not include the analysis() function with an argument that can result in different return values during a single analysis, such as the "ic" or "nodeset" arguments.
 5.6.7:1001	declar.	+	-	V(out): V(in) == 0; which reads 'drive V(out) so that V(in) == 0' ... Any branches referenced in the equation are only probed and not driven.
-5.6.7:1002	declar.	+	-	The tolerance for the equation is taken from the argument on the left side of the equality operator
+5.6.7:1002	declar.	0	unobservable	The tolerance for the equation is taken from the argument on the left side of the equality operator	the tolerance feeds the convergence test, which the LRM leaves undefined
 5.6.8.1:1	shall	-	-	V(top.drv.x) <+ 1.8; // creates an unnamed voltage source branch of 1.2 // volts between nets top.drv.x and top.drv.y V(top.drv.x, top.drv.y) <+ 1.2; // creates an unnamed voltage source branch of 0.9 // volts between the local net m and top.drv.y V(m, top.drv.y) <+ 0.9; end endmodule The simulator shall check if the contribution produces a solvable set of equations, e.g. no voltage source loops c
 5.6.8.1:1001	declar.	+	-	Direct contribution statements can contribute to a branch between combinations of local and hierarchical nets. In these cases, a new unnamed branch is created in the module containing the direct contribution statements.
 5.6.8.2:1	error	-	-	Reasons that a hierarchical branch contribution would not be allowed are: — Invalid access function used for the contribution to the particular branch — The hierarchical contribution changes the branch into a switch branch The simulator shall check if a hierarchical contribution produces a solvable set of equations, e.g. no voltage source loops created.
@@ -563,7 +565,7 @@
 5.10.3.4:1001	declar.	+-	-	"This function is only allowed in an initial or always block of a Verilog-AMS module."
 5.10.3.4:1002	declar.	+	-	"A specified time_tol that is smaller than the time precision is ignored and the time precision is used instead."
 5.10.3.4:1003	declar.	+	implementation-defined	"If the tolerances are not specified, then the tool (e.g., the simulator) sets them."
-5.10.3.4:1004	declar.	+	-	"The absdelta() function does not force timesteps in the analog solver"
+5.10.3.4:1004	declar.	0	unobservable	"The absdelta() function does not force timesteps in the analog solver"	states what absdelta() does not do; no set of timepoints is forbidden by it
 5.10.3.4:1005	declar.	+	-	"The absdelta() function generates events ... During initialization or dc sweep analysis. When the enable argument changes from zero to non-zero."
 5.10.3.4:1006	declar.	+	-	"When the expr value changes in absolute value by more than delta, relative to the previous absdelta() event (but not when ... within time_tol of the previous absdelta() event)"
 5.10.3.4:1007	declar.	+	implementation-defined	"The simulator is allowed to schedule this event at any time between ... (delta - expr_tol) and ... (delta + expr_tol)"
@@ -604,7 +606,7 @@
 6.2:7	may	+	-	A module definition may have multiple analog blocks.
 6.2:8	shall	+	-	The behavior of multiple analog blocks shall be defined by assuming they internally combine into a single analog block in the order that the analog blocks appear in the module description (i.e., they are concatenated in order).
 6.2:9	impl-defined	+	implementation-defined	Concurrent evaluation of multiple analog blocks is implementation dependent as long as the behavior is similar to concatenation.
-6.2:10	shall	+	-	A module can have a description attribute, which shall be used by the simulator when generating help messages for the module.
+6.2:10	shall	0	unobservable	A module can have a description attribute, which shall be used by the simulator when generating help messages for the module.	help messages are simulator output with no defined form
 6.2:11	may	0	optional	An implementation may choose to treat module definitions beginning with macromodule differently.
 6.2:1001	declar.	+	-	"The keyword macromodule can be used interchangeably with module." [fixtures: macromodule_unsupported.va]
 6.3:1	shall	+	-	There are three ways to alter parameter values: Method Description defparam statement Allows assignment to parameters using their hierarchical names Module instance parameter value assignment Allows values to be assigned inline during module instantiation (by order or by name) paramset Described in 6.4 If a defparam assignment conflicts with a module instance parameter, the parameter shall take th
@@ -668,7 +670,7 @@
 6.4.3:2	may	+	-	A paramset output variable's value may be computed from values of any output parameters of the module by using the special syntax .module_output_variable_identifier.
 6.4.3:1001	declar.	+	-	"If a paramset output variable has the same name as a module output variable, the paramset's value is reported for instances using the paramset."
 6.4:4	may	+	-	Also like the SPICE model card, paramsets may be overloaded, as described in 6.4.2.
-6.4:5	shall	+	-	A paramset can have a description attribute, which shall be used by the simulator when generating help messages.
+6.4:5	shall	0	unobservable	A paramset can have a description attribute, which shall be used by the simulator when generating help messages.	help messages are simulator output with no defined form
 6.4:1001	declar.	-	-	"The only restriction on the associated module is that it does not contain a defparam statement in or under its hierarchy." [fixtures: paramset_defparam_direct_rejected.va E0926, nbr paramset_defparam_hierarchy_legal.va]
 6.5.1:1	may	+-	-	Syntax 6-5—Syntax for port port ::= [ port_expression ] | . port_identifier ( [ port_expression ] ) port_expression ::= port_reference | { port_reference { , port_reference } } The port expression in the port definition can be one of the following: A simple net identifier A scalar member of a vector net or port declared within the module A sub-range of a vector net or port declared within the modu
 6.5.1:1001	declar.	+	-	"The port expression is optional because ports can be defined which do not connect to anything internal to the module."
@@ -978,7 +980,7 @@
 9.5.9:2	shall	+	-	If $fdebug is evaluated during an iteration, the write operation shall occur even if the evaluation occurred during an iteration that was rejected.
 9.5.9:3	may	0	optional	The features of the underlying implementation of file I/O on the host system may prevent the file position being reset after an iteration is rejected.
 9.5.9:1001	declar.	+	-	"If a file is being read from during an iterative solve and if that iteration is rejected, then the file pointer is reset to the file position that it pointed to before the iterative solve started."
-9.5.9:1002	declar.	+	implementation-defined	"In this case, a fatal error will be reported." (host cannot reset the read position)
+9.5.9:1002	declar.	0	unobservable	"In this case, a fatal error will be reported." (host cannot reset the read position)	whether the host prevents the reset is the tool's (it may buffer the file); the pass condition, reset or fatal, is a disjunction no fixed verdict holds
 9.5:1000	declar.	0	non-normative	Overview of the file I/O categories; per-task analog-context support is Table 9-2 (9.2:1000)
 9.6:1000	declar.	+-	-	Timescale tasks keep their IEEE 1364 behaviour in the digital context and are refused in analog (Table 9-3)
 9.7.1:1	may	0	non-normative	That asymmetry is preserved here; it does not assert that an opening parenthesis is optional independently of the closing parenthesis.
@@ -994,7 +996,7 @@
 9.7.3:2	shall	+-	-	The first argument passed to $fatal shall be consistent with the corresponding argument to the Verilog $finish system task, which sets the level of diagnostic information reported by the tool.
 9.7.3:3	error	+	-	$error shall be a run-time error.
 9.7.3:4	shall	+	-	$warning shall be a run-time warning, which can be suppressed in a tool-specific manner.
-9.7.3:5	shall	+	-	$info shall indicate that the assertion failure carries no specific severity.
+9.7.3:5	shall	0	unobservable	$info shall indicate that the assertion failure carries no specific severity.	how a report indicates severity is the tool's wording
 9.7.3:6	shall	+	-	Non-fatal system severity tasks ($error, $warning, $info) called during a rejected iteration shall have no effect.
 9.7.3:7	shall	+	-	If $fatal is executed within an analog initial block, then after outputting the message, the initialization may be aborted, and in no case shall simulation proceed past initialization.
 9.7.3:8	may	0	optional	Some of the system severity task calls may not be executed either.
@@ -1139,7 +1141,7 @@
 9.23.2:1000	declar.	+	-	$driver_next_state returns the pending state (or the current one if none) as 0, 1, x or z
 9.23.3:1000	declar.	+	-	$driver_next_strength returns the pending (or current) strength as an integer 0..7
 9.23.4:1000	declar.	+	-	$driver_type returns the driver_access.vams type bits for the driver; 0 (DRIVER_UNKNOWN) if unknown
-9.23.4:1001	declar.	+	implementation-defined	"A simulator that cannot provide proper information for a given driver type should return 0 (`DRIVER_UNKNOWN)."
+9.23.4:1001	declar.	0	unobservable	"A simulator that cannot provide proper information for a given driver type should return 0 (`DRIVER_UNKNOWN)."	'should': which drivers a simulator cannot describe is its own capability
 9.23:1000	declar.	+-	-	Supplementary driver functions are supported in a connectmodule's digital context only (Table 9-20)
 9:1000	declar.	0	non-normative	Chapter heading: chapter 9's rules are in 9.1-9.23
 10.1:1000	declar.	+-	-	Directives start with accent grave (0x60), an apostrophe is refused; scope runs across files until superseded.
@@ -1154,7 +1156,7 @@
 10.5:1	shall	+	-	This macro shall always be defined during the parsing of Verilog-AMS source text.
 10.5:2	shall	+	-	This predefined macro is called __VAMS_COMPACT_MODELING__ and shall be defined during the parsing of Verilog-AMS source text if and only if all the compact modeling extensions are supported by the simulator.
 10.5:3	shall	+	implementation-defined	The following example computes noise of a nonlinear resistor only if the extensions, specifically ddx, are supported. module nonlin_res(a, b); input a, b; electrical a, b; parameter real rnom = 1; parameter real vc1 = 0; real reff, iab; analog begin iab = V(a,b) / (rnom * (1.0 + vc1 * V(a,b))); I(a,b) <+ iab; `ifdef __VAMS_COMPACT_MODELING__ reff = ddx(iab, V(a)); I(a,b) <+ white_noise(4.0*`P_K*$t
-10.5:4	shall	+	implementation-defined	This macro shall be documented in the Verilog-AMS section of the simulator manual.
+10.5:4	shall	0	unobservable	This macro shall be documented in the Verilog-AMS section of the simulator manual.	a requirement on the simulator's manual, not its behaviour
 10.6:1	must	+	-	The version specifiers "1364-1995", "1364-2001", "1364-2005" and "VAMS-2.3" must also be supported.
 10.6:2	shall	+	implementation-defined	Without this directive, the set of reserved keywords in effect for this module shall be the implementation’s default set of reserved keywords. module m1; // module definition with no `begin_keywords directive ... endmodule The following example specifies a `begin_keywords "1364-2005" directive.
 10.6:3	shall	-	-	This example shall result in an error because sin is reserved as a keyword in this standard.

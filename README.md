@@ -240,7 +240,12 @@ cites an LRM sentence as `//! lrm 4.5.7:2` (clause 4.5.7, its second
 sentence with a modal verb) or a whole clause as `//! lrm 4.5.7`, and IEEE
 1364-2005 as `//! inherited IEEE 1364-2005 9.7.4`. A rule is testable when a
 test can observe it: an LRM sentence whose `pol` is not `0`, or a 1364 leaf
-heading that is not non-normative, unspecified or a tool option.
+heading that is not non-normative, unspecified or a tool option. A rule with
+nothing a source-and-run test can see (a report's format, help text, a
+manual, an undefined convergence test) has kind `unobservable` and its
+reason in the row's last column; for the LRM its `pol` is `0`. IEEE 1364's
+public-key pragmas, used only by the encryption methods Table 28-3 lists as
+Optional, have kind `optional-method`. Neither kind counts as testable.
 
 ```
 python3 tools/coverage.py                      # rules cited, per language

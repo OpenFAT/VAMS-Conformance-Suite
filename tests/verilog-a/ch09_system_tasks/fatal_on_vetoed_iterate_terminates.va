@@ -1,0 +1,44 @@
+// §9.7.3: "$fatal terminates the simulation without checking whether the
+// iteration would be rejected."
+//
+// fatal_in_iteration_terminates.va reaches its iterate by
+// $simparam("iteration"); this one reaches it by the node values alone, with
+// no display task in the block, so a tool that runs a block's tasks in
+// iterates only when the block asks for the iteration count or a $debug is
+// caught here.
+//
+// THE SWEEP. `//! solve` frees p; the branch is I = exp(V(p,n)) - 2 - V(c),
+// so point 0 (V(c) = 0) solves to V(p,n) = ln 2 and point 1 (V(c) = 1) to
+// ln 3. At point 0 the guard is off: the solve is accepted and the check
+// prints ok=1. At point 1 the solver starts away from ln 3 (from ln 2, or
+// from wherever it starts), so the guard |V(p,n) - ln 3| > 1e-6 holds on an
+// iterate. That iterate also calls $discontinuity(-1), which §9.17.3 calls
+// "In order to prevent convergence", so it is never the accepted one: the
+// $fatal sits only in iterations that are rejected.
+//
+// THE OBSERVABLE is when the run ends. A tool that honours the rule stops at
+// point 1's first guarded iterate with $fatal's errorcode (`//! exit 1`,
+// fatal_terminates.va's convention) after one ok= line. A tool that performs
+// $fatal only at accepted solutions never reaches it, accepts point 1, prints
+// the check's ok=0 and exits 0.
+//
+//! lrm 9.7.3
+//! lrm 9.7.3:1001
+//! lrm 9.17.3
+//! solve
+//! bias V(n) = 0
+//! sweep V(c) = 0.0, 1.0
+//! exit 1
+//! checks 1
+`include "check.vh"
+module fatal_on_vetoed_iterate_terminates(p, n, c);
+  inout p, n, c; electrical p, n, c;
+  analog begin
+    if (V(c) > 0.5 && abs(V(p, n) - ln(3.0)) > 1e-6) begin
+      $discontinuity(-1);
+      $fatal(1, "fatal on a vetoed iterate");
+    end
+    I(p, n) <+ exp(V(p, n)) - 2.0 - V(c);
+    `CHECKI("printed at the first point only: $fatal ends the run at the second", V(c) < 0.5, 1);
+  end
+endmodule

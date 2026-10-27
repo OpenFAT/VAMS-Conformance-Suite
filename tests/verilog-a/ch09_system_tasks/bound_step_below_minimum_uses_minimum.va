@@ -1,0 +1,28 @@
+// §9.17.2: "If the value is less than the simulator's minimum allowable time
+// step, the simulator's minimum time step shall be used instead."
+//
+// $bound_step(0) is legal ("The expression argument shall be non-negative")
+// and below any simulator's minimum step. It runs only at t = 0, so it bounds
+// the first step alone, and the rest of the run steps as usual: the run's
+// length does not depend on how small the tool's minimum is.
+//
+// THE OBSERVABLE is that the run goes on. A tool that takes the bound as given
+// steps by 0: $abstime stays 0, the call runs again, and the run never ends
+// (conform's timeout fails it). A tool that refuses a bound below its minimum
+// (a "timestep too small" abort) exits non-zero. A tool that uses its
+// minimum advances, and at final_step $abstime is the stop time.
+//
+//! lrm 9.17.2
+//! lrm 9.17.2:2
+//! analysis tran
+//! time 0, 1n
+//! checks 1
+`include "check.vh"
+module bound_step_below_minimum_uses_minimum(p, n);
+  inout p, n; electrical p, n;
+  analog begin
+    if ($abstime == 0.0) $bound_step(0.0);
+    I(p, n) <+ V(p, n) / 1k;
+    @(final_step) `CHECK("the run reached its stop time", $abstime, 1n, 1e-18);
+  end
+endmodule

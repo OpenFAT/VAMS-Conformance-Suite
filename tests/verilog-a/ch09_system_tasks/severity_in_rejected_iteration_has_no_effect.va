@@ -4,15 +4,21 @@
 // THE REJECTED ITERATION is finish_in_rejected_iteration_has_no_effect.va's:
 // §9.17.3 calls $discontinuity(-1) "In order to prevent convergence", so an
 // iteration that calls it cannot be accepted. The call and the three tasks sit
-// in one guarded statement, V(p,n) < 0.5e-10, which holds on iterates short of
-// the solution V(p,n) = 1e-10 and not at it. No iteration number is assumed.
+// in one guarded statement, |V(p,n) - ln 2| > 1e-6, which holds on iterates
+// short of the solution of I = exp(V(p,n)) - 2 and not at it. The branch is
+// nonlinear, so the solver evaluates the block away from ln 2 before it gets
+// there. No iteration number is assumed.
 //
 // THE OBSERVABLE. A severity task's effect is its message. Each message
 // carries "ok=0", and the harness fails a run whose output has a line saying
 // ok=0, so any one of the three printing fails this file. (A tool that prints
 // them only to stderr hides them from that rule; the check below still holds
-// it to reaching the accepted solution.) A tool whose first iterate is
-// already the solution never takes the guard and passes trivially.
+// it to reaching the accepted solution.) A tool that runs a block's tasks
+// only at accepted solutions passes without ever running the guarded
+// statement in an iterate; that is the passing kind, not a blind spot. The
+// guarded $debug, which §9.4.1 says "displays its arguments for each
+// iteration of the analog solver", logs each vetoed iterate, so a transcript
+// shows the guard was taken.
 //
 //! lrm 9.7.3
 //! lrm 9.7.3:6
@@ -24,13 +30,14 @@
 module b6_severity_in_rejected_iteration_has_no_effect(p, n);
   inout p, n; electrical p, n;
   analog begin
-    if (V(p, n) < 0.5e-10) begin
+    if (abs(V(p, n) - ln(2.0)) > 1e-6) begin
       $discontinuity(-1);
+      $debug("guard held on a vetoed iterate at V(p,n) = %g", V(p, n));
       $error("ok=0 $error in a rejected iteration was reported");
       $warning("ok=0 $warning in a rejected iteration was reported");
       $info("ok=0 $info in a rejected iteration was reported");
     end
-    I(p, n) <+ V(p, n) - 1e-10;
-    `CHECK("the run reached the accepted solution", V(p, n), 1e-10, 1e-18);
+    I(p, n) <+ exp(V(p, n)) - 2.0;
+    `CHECK("the run reached the accepted solution", V(p, n), ln(2.0), 1e-6);
   end
 endmodule

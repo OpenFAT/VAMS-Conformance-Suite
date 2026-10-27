@@ -11,7 +11,8 @@ govern Verilog-A) and spec/ieee1364.tsv (IEEE 1364-2005's headings). A test
 cites them with `//! lrm C[:N]` and `//! inherited IEEE 1364-2005 C`
 (and their `-reject` forms). A testable rule is one that states something a
 test can observe: pol other than 0 for the LRM, a leaf heading other than
-non-normative, unspecified or tool-option for 1364.
+non-normative, unspecified, tool-option, unobservable or optional-method for
+1364.
 
 An LRM sentence `C:N` is covered exactly by a test citing `C:N`, and by
 clause by a test citing only `C`. A 1364 heading is covered by a test citing
@@ -60,7 +61,7 @@ def rules():
     heads = rows(ROOT / "spec/ieee1364.tsv")
     ids = {r[0] for r in heads}
     leaf = [r for r in heads if not any(i.startswith(r[0] + ".") for i in ids)]
-    ieee = [(r[0], r[2]) for r in leaf if r[1] not in ("non-normative", "unspecified", "tool-option")]
+    ieee = [(r[0], r[2]) for r in leaf if r[1] not in ("non-normative", "unspecified", "tool-option", "unobservable", "optional-method")]
     return {"vams": vams, "ieee1364": ieee}
 
 
