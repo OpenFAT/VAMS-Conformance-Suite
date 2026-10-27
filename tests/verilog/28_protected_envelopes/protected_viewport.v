@@ -10,6 +10,7 @@
 //   initial begin hidden_r = 1'b1; $display("decrypted=%0d",`PROTECTED_VALUE); $finish(0); end
 // Oracle: printf '%s\n%s\n' "$LINE1" "$LINE2" | openssl enc -des-cbc
 //   -K 0123456789abcdef -iv 1234567890abcdef | base64
+// gold: OpenSSL 3.6.2 decrypts the data_block (verify_vectors.py, or `openssl enc -d -des-cbc` with known_keys.json) to a $display of `PROTECTED_VALUE, defined 42 above: "decrypted=42" (§28.4)
 //@ protect-keys known_keys.json
 //! inherited IEEE 1364-2005 28.4.32.1
 `define PROTECTED_VALUE 42

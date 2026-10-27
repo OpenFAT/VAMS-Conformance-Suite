@@ -2,6 +2,7 @@
 // padding; `//@ protect-keys` hands it to the tool's key provider (VerA:
 // --protect-keys). Oracle: verify_vectors.py decrypts the same envelope
 // with OpenSSL; the cleartext prints decrypted=42 only if decrypted.
+// gold: OpenSSL 3.6.2 decrypts the data_block (verify_vectors.py, or `openssl enc -d -des-cbc` with known_keys.json) to a $display of `PROTECTED_VALUE, defined 42 above: "decrypted=42" (§28.4)
 //@ protect-keys known_keys.json
 //! inherited IEEE 1364-2005 28 28.1 28.2 28.2.2 28.3 28.4 28.4.3 28.4.3.1 28.4.3.2 28.4.4 28.4.4.1 28.4.4.2 28.4.9 28.4.9.1 28.4.9.2 28.4.10 28.4.10.1 28.4.10.2 28.4.11 28.4.11.1 28.4.11.2 28.4.12 28.4.12.1 28.4.12.2 28.4.15 28.4.15.1 28.4.15.2
 `define PROTECTED_VALUE 42

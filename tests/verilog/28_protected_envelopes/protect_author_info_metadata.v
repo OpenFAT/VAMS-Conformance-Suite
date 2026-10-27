@@ -1,6 +1,7 @@
 // This metadata has no decryption action. Outside an envelope it must not
 // alter the surrounding unprotected program. This checks acceptance only,
 // not encryption, key handling or preservation by an encryption service.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 28.3 28.4.6.1
 `pragma protect author_info="test metadata"
 module protect_author_info_metadata;

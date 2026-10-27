@@ -26,6 +26,7 @@
 // and the same for the data_block's cleartext, which prints decrypted=42.
 // A digest mismatch has no outcome the clause requires, so this asserts
 // that the key_block, digest key and all, is read and the data decrypts.
+// gold: OpenSSL 3.6.2 decrypts the data_block (verify_vectors.py, or `openssl enc -d -des-cbc` with known_keys.json) to a $display of `PROTECTED_VALUE, defined 42 above: "decrypted=42" (§28.4)
 //@ protect-keys known_keys.json
 //! inherited IEEE 1364-2005 28.4.20.1 28.4.20.2
 `define PROTECTED_VALUE 42

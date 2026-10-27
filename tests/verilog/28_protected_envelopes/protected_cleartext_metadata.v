@@ -8,6 +8,7 @@
 //
 // Host profile: known_keys.json. The data_block is protected_des_base64.v's,
 // which verify_vectors.py checks; the cleartext prints decrypted=42.
+// gold: OpenSSL 3.6.2 decrypts the data_block (verify_vectors.py, or `openssl enc -d -des-cbc` with known_keys.json) to a $display of `PROTECTED_VALUE, defined 42 above: "decrypted=42" (§28.4)
 //@ protect-keys known_keys.json
 //! inherited IEEE 1364-2005 28.4.5.2 28.4.6.2 28.4.7.2 28.4.8.2 28.4.30.2
 `define PROTECTED_VALUE 42

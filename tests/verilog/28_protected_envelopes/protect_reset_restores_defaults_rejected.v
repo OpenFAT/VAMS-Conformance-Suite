@@ -3,13 +3,14 @@
 // envelopes where a specific pragma keyword is absent, the Verilog tool shall
 // use the default value."
 //
-// protected_keywords_before_envelope.v with a reset between the key
-// directives and the envelope. The envelope names no key owner, key or
+// protected_des_base64.v's data_block, its key directives moved before the
+// envelope with a reset between them and it. The envelope names no key owner, key or
 // method, so only the defaults apply, and clause 28 defines no default that
 // names the user's des-fixture key: the data_block cannot be decrypted and
 // "decrypted=42" must not run. A tool that ignored the reset would decrypt.
 //
-// Legal neighbour: protected_keywords_before_envelope.v.
+// Legal neighbour: protected_des_base64.v, whose key directives are inside
+// the envelope.
 //@ protect-keys known_keys.json
 //! inherited IEEE 1364-2005 28.4.31.2
 //! reject the envelope's key was reset; the data_block cannot be decrypted
