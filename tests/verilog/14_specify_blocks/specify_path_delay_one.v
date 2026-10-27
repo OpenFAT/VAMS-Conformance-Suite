@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees (iverilog -gspecify)
 //! inherited IEEE 1364-2005 14
 // A module path delay applies: o follows i one time unit later even though
 // the continuous assignment is immediate (br1006).

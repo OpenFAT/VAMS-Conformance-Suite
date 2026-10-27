@@ -30,6 +30,7 @@
 //   t = 51:  prints OUT=1 o1=00 Q=1 Y=1. Then IN=0 C1=1 opcode=10 D=0 A=1.
 //   t = 61:  CLK falls (Q keeps 1).
 //   t = 101: prints OUT=0 o1=07 Q=1 Y=0.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.2.4.4
 `timescale 1ns/1ns
 module b_14_2_4_4_ifnone_c1(C1, IN, OUT);

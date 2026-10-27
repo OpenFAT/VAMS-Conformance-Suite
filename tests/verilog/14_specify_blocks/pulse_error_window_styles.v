@@ -1,5 +1,6 @@
 // Input pulse [20,24] schedules output edges [30,34]. Width 4 lies between reject 2 and error 5.
 // On-detect enters X at 24; on-event enters X at 30. Both return to 0 at 34.
+// gold: hand derivation, §14.6 and §14.6.4.1: the width-4 pulse at [30, 34] lies in [reject 2, error 5), so it is filtered to x, at 30 on-event and at 24 on-detect
 //! inherited IEEE 1364-2005 14.6 14.6.1 14.6.4 14.6.4.1
 `timescale 1ns/1ns
 module pulse_event_cell(input a,output y);

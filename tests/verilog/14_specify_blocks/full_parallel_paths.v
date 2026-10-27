@@ -33,6 +33,7 @@
 //   t = 1:  in1 = 8'hA5, in2 = 8'h3C, s = 0: q = in1 = a5, nib = a, ns = 1,
 //           ns2 = 1
 //   t = 51: s = 1: q = in2 = 3c, nib = a, ns = 0, ns2 = 0
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.2.5
 `timescale 1ns/1ns
 module b_14_2_5_full_parallel_paths_mux8(in1, in2, s, q, nib, ns, ns2);

@@ -36,6 +36,7 @@
 //   t = 111: clock and clk rise: e1 out <= 0; e2 q <= 10; e3 q <= {1, 0} = 10.
 //   t = 151: prints out=0 q2=10 q3=10.
 // Data is set before the edges that sample it, so no edge races its data.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.2.4.3
 `timescale 1ns/1ns
 module b_14_2_4_3_edge_state_dependent_paths_e1(clock, reset, clear, in, out);

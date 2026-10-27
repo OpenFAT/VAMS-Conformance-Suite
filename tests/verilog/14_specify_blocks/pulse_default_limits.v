@@ -1,5 +1,6 @@
 // With no pulse options or PATHPULSE$ declaration, both limits are 100%
 // of the path delay (10). A width-4 pulse is suppressed; width 12 passes.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.6.2
 `timescale 1ns/1ns
 module default_pulse_cell(input a, output y);

@@ -29,7 +29,10 @@
 // MODE 2 is LT = 5'b11100, MODE 5 is 5'b00000, MODE 0 is 5'b11111. "when
 // MODE is 2, the first three specify paths are active. A rise transition would
 // select a delay of 4 ... A fall transition would select a delay of 5":
-//   t = 1:   LT = 11100, A2 = 0: Y2 x -> 0, min(9, 8, 5) = 5: at 6
+//   t = 1:   LT = 11100 since t = 0, A2 = 0: Y2 x -> 0, min(9, 8, 5) = 5:
+//            at 6 (LT is set a step ahead: in one step its port update and
+//            A2's are unordered, §11.4.2, and an x condition counts as true,
+//            §14.2.4.1)
 //   t = 20:  A2 = 1: rise, min(5, 4, 6) = 4: Y2 = 1 at 24
 //   t = 40:  A2 = 0: fall, min(9, 8, 5) = 5: Y2 = 0 at 45
 //   t = 61:  LT = 00000 (MODE 5) since t = 60, A2 = 1: no path active, no
@@ -37,11 +40,7 @@
 //   t = 81:  LT = 11111 (MODE 0) since t = 80, A2 = 0: fall, min of all five,
 //            2: Y2 = 0 at 83
 //   t = 100: A2 = 1: rise, min(5, 4, 6, 3, 7) = 3: Y2 = 1 at 103
-// (iverilog 13 lands Y2's first x -> 0 at 1, with no path delay: LT was set
-// in the same statement list just before A2, so every condition reads true
-// when the transition is scheduled, and §14.2.4.1 would count an x or z
-// condition as true anyway, "If the conditional expression evaluates to x or
-// z, it shall be treated as true".)
+// gold: Icarus Verilog 13.0 agrees (iverilog -gspecify)
 //! inherited IEEE 1364-2005 14.3.3 14.2.4
 `timescale 1ns/1ns
 module b_14_3_3_delay_selection_ex1(A, B, Y);
@@ -86,7 +85,8 @@ module b_14_3_3_delay_selection;
     #20 a = 0; b = 0;
   end
   initial begin
-    #1 lt = 5'b11100; a2 = 0;
+    lt = 5'b11100;
+    #1 a2 = 0;
     #19 a2 = 1;
     #20 a2 = 0;
     #20 lt = 5'b00000;

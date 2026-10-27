@@ -34,6 +34,7 @@
 //            clock 1 -> 0: no posedge, out keeps 1; out_any <= 0.
 //   t = 111: prints out=1 out_n=1 out_any=0.
 // in is set before the edges that sample it, so no edge races its data.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.2.3
 `timescale 1ns/1ns
 module b_14_2_3_edge_sensitive_paths_cell(clock, clockv, in, out, out_n, out_any);

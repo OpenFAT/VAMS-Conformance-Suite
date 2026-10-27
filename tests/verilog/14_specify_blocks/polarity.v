@@ -31,6 +31,7 @@
 //   t = 1:   In1 = 0, s = 1: q = 1, qp = 1, qn = ~0 = 1
 //   t = 51:  In1 = 1:        q = 0, qp = 1, qn = ~1 = 0
 //   t = 101: s = 0:          q = 1, qp = 1, qn = 1
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.2.7 14.2.7.1 14.2.7.2 14.2.7.3
 `timescale 1ns/1ns
 module b_14_2_7_polarity_cell(In1, s, q, qp, qn);

@@ -33,6 +33,7 @@
 //   t = 51:  a=1, opcode=01: xor = 1^1 = 0; o1 = i1 = 12; y = 0
 //   t = 101: opcode=10: o1 = i2 = 34
 //   t = 151: opcode=11: o1 = 00
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.2.4 14.2.4.1 14.2.4.2
 `timescale 1ns/1ns
 module b_14_2_4_state_dependent_paths_xor(a, b, out);

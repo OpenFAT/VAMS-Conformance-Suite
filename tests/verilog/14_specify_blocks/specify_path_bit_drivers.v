@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.2
 // A specify path's destination may have one driver on each bit; each of these
 // buf gates drives one bit of P (specify1). The initial block makes the run

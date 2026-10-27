@@ -1,5 +1,6 @@
 // A width-4 pulse is rejected by the generic (7,9) limits.
 // The path-specific (0,0) override on z passes it unchanged at t=30..34.
+// gold: hand derivation, §14.6.1: (7,9) rejects the width-4 pulse on y; PATHPULSE$a$z=(0,0) passes it on z, high from 30 to 34
 //! inherited IEEE 1364-2005 14.6 14.6.1
 `timescale 1ns/1ns
 module pulse_specific_cell(input a,output y,output z);

@@ -13,6 +13,7 @@
 //   d holds until t = 10: hold 10 - 5 >= 1 is met.
 //   q takes d = 1 at t = 5, and the (clk => q) path delay makes it land at
 //   5 + 3 = 8, so t = 9 prints q=1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.1
 //! expect stdout specify_timing_checks_named_by_w0251.expected.txt
 module specify_timing_checks_named_by_w0251_ff(clk, d, q);

@@ -24,6 +24,7 @@
 //   t = 450: C = 1, Q z -> 1 at 460
 // The t = 0 settling of Q is not printed (its order against the always
 // block is open, §11).
+// gold: Icarus Verilog 13.0 agrees (iverilog -gspecify)
 //! inherited IEEE 1364-2005 14.3.2 14.3.1
 `timescale 1ns/1ns
 module b_14_3_2_x_transition_delays_cell(C, Q);

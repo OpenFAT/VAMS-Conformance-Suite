@@ -1,6 +1,7 @@
 // A falling input at 20 schedules output at 26; a rise at 21 schedules output at 25.
 // With on-detect and showcancelled, detecting the negative pulse at 21 immediately gives X.
 // The noshowcancelled control remains 1. The sample at 22 precedes both scheduled edges.
+// gold: hand derivation, §14.6.4.2: the fall schedules y at 26, the rise at 25; showcancelled with on-detect sets shown to x at 21, noshowcancelled cancels the leading edge and hidden stays 1
 //! inherited IEEE 1364-2005 14.6.4 14.6.4.2
 `timescale 1ns/1ns
 module negative_show_cell(input a,output y);

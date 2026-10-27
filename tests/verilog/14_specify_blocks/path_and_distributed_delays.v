@@ -13,6 +13,7 @@
 // for A, B and C are not on the D path the figures discuss):
 //   t = 1:   D = 0: Q3 = 0 at 1 + 22 = 23, Q4 = 0 at 1 + 30 = 31
 //   t = 100: D = 1: Q3 = 1 at 122, Q4 = 1 at 130
+// gold: Icarus Verilog 13.0 agrees (iverilog -gspecify)
 //! inherited IEEE 1364-2005 14.4
 `timescale 1ns/1ns
 module b_14_4_path_and_distributed_delays_fig3(D, Q);

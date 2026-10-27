@@ -34,6 +34,7 @@
 //             printed at t = 1001
 //   t = 1001: clr=1 C=0:             q = 1 & ~1 = 0;     Q1 Q2 Q3 Q6 = 0000,
 //             printed at t = 2001
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 14.3 14.3.1
 `timescale 1ns/1ns
 module b_14_3_1_mintypmax_path_delays_cell(clk, clr, pre, q, C, Q1, Q2, Q3, Q6);

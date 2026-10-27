@@ -37,6 +37,7 @@
 //           Q = 0 | (1^1) = 0; qr = 0; q1 = 1&1&1 = 1; q2 = {1, 1} = 11
 // Stimulus starts at t = 1, not 0, so `always @(io)` is already waiting when
 // io first changes (§11 leaves the t = 0 order of the two processes open).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 14.2 14.2.1 14.2.2 14.2.6
 `timescale 1ns/1ns
 module b_14_2_module_paths_cell(A, B, C, D, Q, io, qr, a, b, c, q1, q2);

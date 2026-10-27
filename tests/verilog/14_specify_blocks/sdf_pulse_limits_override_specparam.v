@@ -1,4 +1,5 @@
 // The SDF PATHPULSE (0,0) overrides the source PATHPULSE$ (7,9), preserving the width-4 output pulse.
+// gold: hand derivation, §14.6.3 and §16.5: PATHPULSE (0) (0) replaces (7,9), so the width-4 pulse passes, high from 30 to 34
 //! inherited IEEE 1364-2005 14.6.3 16.5
 `timescale 1ns/1ns
 module sdf_pulse_cell(input a,output y);
