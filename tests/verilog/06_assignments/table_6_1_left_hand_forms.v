@@ -24,6 +24,7 @@
 //   iv = 0; iv[31] = 1; iv[3:0] = 4'hF     -> 8000000f (integer, 32 bits)
 //   tv = 0; tv[63] = 1; tv[7:4] = 4'hA     -> 80000000000000a0 (time, 64 bits)
 //   mem[2] = 8'h3C                         -> 3c (memory word)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6
 module b_6_table_6_1_left_hand_forms;
   reg a;

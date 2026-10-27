@@ -2,6 +2,7 @@
 // not a continuous driver. No competing time-zero writes to the initialized
 // reg are used. A later procedural assignment replaces its value; the net
 // declaration assignment tracks that change (§6.1.1).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1.1 6.2.1
 module audit_assignment_variable_initializer;
   reg [7:0] value = 2*3+1;

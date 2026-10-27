@@ -18,6 +18,7 @@
 //   {p, {q, r1}} = 9'b1010_0110_1   -> p = 1010, q = 0110, r1 = 1
 //   rw = 0; {rw[0], rw[7:6]} = 3'b110      -> rw[0] = 1, rw[7:6] = 10
 //                                   -> 1000_0001 -> 81
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6
 module b_6_table_6_1_select_and_concatenation_lhs;
   reg a;

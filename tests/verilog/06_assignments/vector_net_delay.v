@@ -15,6 +15,7 @@
 //   t=20  2 -> 0: nonzero to zero, falling 5 -> every view moves at 25
 // Samples at 12 (old value), 14 (nd, ca moved), 16 (nn moved by now),
 // 24 (old), 26 (moved).
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 6.1.3
 `timescale 1ns/1ns
 module b_6_1_3_vector_net_delay;

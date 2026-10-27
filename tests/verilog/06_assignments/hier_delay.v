@@ -12,6 +12,7 @@
 // the queueing of the second update cannot begin until the first one has been
 // applied, because §8.5.3.1 keys the process on a CHANGE of its source.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5.3.1
 //! lrm 6.2.2
 //! lrm annex A.6.1

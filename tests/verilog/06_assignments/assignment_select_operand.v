@@ -11,6 +11,7 @@
 // selects in both of its 64-bit halves are read. `star` is an `@*` block
 // (§9.7.5) over the same kind of operands.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5.3.1
 //! lrm 8.5.3.1:1000
 //! timescale 1ns/1ns

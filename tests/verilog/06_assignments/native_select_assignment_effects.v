@@ -10,6 +10,7 @@
 // then writes a to m[1][5:2] at t=2 (28), despite later index changes.
 // The function does not modify any index, avoiding an unspecified ordering
 // between LHS and RHS evaluations. Width-invalid neighbours are in ch05.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.1 5.2.2 9.2 9.2.2
 // native-required
 `timescale 1ns/1ns

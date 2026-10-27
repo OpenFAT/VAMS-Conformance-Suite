@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1.3 7.14 A.2.2.3
 // A continuous assignment's delay may be a variable expression, evaluated when
 // the assignment is scheduled: #d with d=3 delays three time units (delay3).

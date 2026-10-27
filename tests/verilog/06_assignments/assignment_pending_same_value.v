@@ -1,6 +1,7 @@
 // IEEE1364-2005 §6.1.3(b): cancel pending propagation only if the newly
 // evaluated RHS differs from the pending value. At10 a rises, scheduling1
 // at15. At12 b rises too, but(a|b) is still1: delivery remains15, not17.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1.3
 `timescale 1ns/1ns
 module audit_assignment_pending_same_value;

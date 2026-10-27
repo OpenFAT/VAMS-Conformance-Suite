@@ -3,6 +3,7 @@
 // a vector transition to x does not select the minimum delay.
 // #(7,5,2): start00; at10 assign0x -> due17; at19 assign1z -> due26;
 // at28 assignzz -> due30. Samples avoid update instants.
+// gold: hand derivation, §6.1.3 (above): 0x and 1z are neither zero nor z, so they rise 7; zz turns off 2
 //! inherited IEEE 1364-2005 6.1.3
 `timescale 1ns/1ns
 module audit_assignment_vector_delay_unknown;

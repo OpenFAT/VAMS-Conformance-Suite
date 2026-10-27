@@ -13,6 +13,7 @@
 // schedules nothing when the new RHS equals the current LHS. Together these
 // suppress the narrow pulse exercised here.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5.3.1
 //! lrm annex A.6.1
 //! timescale 1ns/1ns

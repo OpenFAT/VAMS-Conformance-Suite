@@ -10,6 +10,7 @@
 //   ina = 3, inb = 4, carry_in = 0   -> 7  = 0_0111
 //   ina = f, inb = 1, carry_in = 1   -> 17 = 1_0001
 //   ina = f, inb = f, carry_in = 1   -> 31 = 1_1111
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1.2
 module adder (sum_out, carry_out, carry_in, ina, inb);
 output [3:0] sum_out;

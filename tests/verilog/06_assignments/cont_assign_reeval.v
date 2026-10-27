@@ -16,6 +16,7 @@
 //       asserted: IEEE 1364-2005 §11.5 gives this exact program shape and says
 //       "The simulator is correct in displaying either a 1 or a 0."
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5.3.1
 //! lrm 8.5.3.3 (the `#0` inactive-region sampling idiom used to read settled values)
 //! lrm 8.5.3.1:1000

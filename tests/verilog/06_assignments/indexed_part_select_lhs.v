@@ -13,6 +13,7 @@
 //   rv = 0; rv[k +: 4] = 4'b1111      -> rv[5:2] = 1111 -> 00111100
 //   iv = 0; iv[31 -: 8] = 8'hAB       -> iv[31:24] = ab -> ab000000
 //   tv = 0; tv[k*8 +: 8] = 8'hCD      -> tv[23:16] = cd -> 0000000000cd0000
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6
 module b_6_indexed_part_select_lhs;
   reg [3:0] a4;

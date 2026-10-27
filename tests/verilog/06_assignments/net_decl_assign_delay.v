@@ -17,6 +17,7 @@
 // `wire #3 y; assign y = ~a;` also delays other drivers. Additional separate
 // drivers are not forbidden; this fixture exercises only one driver.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.2.1.3
 //! lrm annex A.2.4
 //! lrm 8.5.3.1

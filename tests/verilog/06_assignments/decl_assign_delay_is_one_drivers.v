@@ -20,6 +20,7 @@
 //         t=32 w=1 ca=1 nn=1    t=34 w=0 ca=0 nn=0
 // The bug (the declaration's delay on the net) prints w as nn: t=11 w=1 and
 // t=21 w=x.
+// gold: hand derivation, §6.1.3 (above)
 //! inherited IEEE 1364-2005 6.1.3 7.14
 `timescale 1ns/1ns
 module b_6_1_3_decl_assign_delay_is_one_drivers;

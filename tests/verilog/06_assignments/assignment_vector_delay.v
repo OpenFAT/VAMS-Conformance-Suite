@@ -1,6 +1,7 @@
 // IEEE1364-2005 §6.1.3: vector nonzero-to-nonzero uses rising delay,
 // even if one bit falls. Whole-vector transition to zero uses falling delay;
 // all-z uses turnoff. Samples deliberately avoid exact update-time races.
+// gold: hand derivation, §6.1.3: 00->01 and 01->10 rise 2, 10->00 falls 7, 00->zz turns off 4; each sample is 1 off an update
 //! inherited IEEE 1364-2005 6.1.3
 `timescale 1ns/1ns
 module audit_assignment_vector_delay;

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1.4 7.10
 // Drive strengths on continuous assignments to two different part-selects of
 // one net are kept per bit: (pull1,strong0) drivers on w[1:0] and w[3:2]

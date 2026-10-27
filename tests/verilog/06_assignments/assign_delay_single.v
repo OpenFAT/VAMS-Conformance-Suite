@@ -19,6 +19,7 @@
 // value and a read at t+1 showing the new value bracket the delivery to
 // exactly t+1.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.6.1
 //! lrm annex A.2.2.3
 //! lrm 8.5.3.1

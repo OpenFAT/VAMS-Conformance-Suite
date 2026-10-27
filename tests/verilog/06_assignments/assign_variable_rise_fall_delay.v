@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1.3 7.14 A.2.2.3
 // §7.14: a delay3 is (rise, fall); each value of a continuous assignment's
 // delay may be a variable, evaluated when the change is scheduled. Every value

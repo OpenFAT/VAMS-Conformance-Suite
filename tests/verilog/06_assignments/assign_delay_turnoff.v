@@ -15,6 +15,7 @@
 // update event to be added to the event queue". Which of the three delays
 // times that event is decided by the value being driven.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.2.2.3
 //! lrm annex A.6.1
 //! lrm 8.5.3.1

@@ -33,6 +33,7 @@
 //                                         -> 2.500000 3000000.000000
 //   t1 = 25, rt1 = 2.5                    -> 25 2.500000
 //   Holds until the next assignment: a = a + 1 at time 1 -> 5, read at 2.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.2.1
 module b_6_2_1_examples;
   reg[3:0] a = 4'h4;

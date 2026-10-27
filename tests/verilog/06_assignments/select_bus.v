@@ -17,6 +17,7 @@
 //   s = 0 -> 1111, s = 1 -> 2222, s = 2 -> 3333, s = 3 -> 4444.
 // enable = 0 (s still 3): busout = Zee -> zzzz, data still 4444.
 // Each read is one time unit after the change.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1 6.1.2
 module select_bus(busout, bus0, bus1, bus2, bus3, enable, s);
 parameter n = 16;

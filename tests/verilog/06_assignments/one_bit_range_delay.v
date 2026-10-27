@@ -9,6 +9,7 @@
 //   s  [0:0]: gate rule 2 or vector rule 7: due by 17, not before 12
 //   v  [1:0]: vector rule, 00 -> xx is "otherwise", rising 7     -> due 17
 // Samples at 11 (neither moved), 13 (v not yet) and 18 (both moved).
+// gold: hand derivation, §6.1.3 (above)
 //! inherited IEEE 1364-2005 6.1.3
 `timescale 1ns/1ns
 module b_6_1_3_one_bit_range_delay;

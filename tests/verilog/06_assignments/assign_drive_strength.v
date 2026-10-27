@@ -21,6 +21,7 @@
 // net's value is the resolution of all of its drivers, which is why a strength
 // annotation is observable at all.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.6.1
 //! lrm annex A.2.2.2
 //! lrm 9.22.4

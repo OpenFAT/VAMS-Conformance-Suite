@@ -13,6 +13,7 @@
 // queue"; which of the two values is used is chosen by the DESTINATION value
 // of that update, not by the source that triggered it.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.2.2.3
 //! lrm annex A.6.1
 //! lrm 8.5.3.1

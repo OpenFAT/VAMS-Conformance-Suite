@@ -13,6 +13,7 @@
 // (§8.5.3.1's active update event is queued for the current time) and every
 // observed lag comes from the declaration of the net.
 //
+// gold: Verilator 5.052 agrees
 //! lrm annex A.2.1.3
 //! lrm annex A.2.2.3
 //! lrm 8.5.3.1

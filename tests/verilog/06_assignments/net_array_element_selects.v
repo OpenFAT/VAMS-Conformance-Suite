@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1.1 A.8.5
 // A constant bit- or part-select of a net array element is a net_lvalue:
 // b[i][j] and out[0][1:0] (genvar_scopes/pr1820472).

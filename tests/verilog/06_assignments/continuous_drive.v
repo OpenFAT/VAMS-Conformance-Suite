@@ -11,6 +11,7 @@
 //                                 0000; y holds              -> 1 0000
 //   t4: b = 0, r = 4'b10x0     -> y = 0; an x operand bit makes every bit of
 //                                 the sum x (§5.1.5)        -> 0 xxxx
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1
 module b_6_1_continuous_drive;
   reg a, b;

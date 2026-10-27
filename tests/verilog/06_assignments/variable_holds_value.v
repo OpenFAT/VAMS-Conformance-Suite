@@ -22,6 +22,7 @@
 //                                                    -> 80
 // clk goes x -> 0 at time 0, which is not a posedge, so the always block
 // runs only at t6.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.2
 module b_6_2_variable_holds_value;
   reg [7:0] v;
