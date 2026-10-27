@@ -11,7 +11,9 @@
       ".print line ignored since rawfile was produced.",
       ".plot line ignored since rawfile was produced.",
       ".plot line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "Xyce 7.10.0's step control fails at 20 ns (timestep too small) at both reltol 1e-6 and 1e-5; no closed form covers the MOS memory cell."
   },
   "origin": "benchmark/fixtures/ngspice/mosmem/circuit.sp",
   "expect": {

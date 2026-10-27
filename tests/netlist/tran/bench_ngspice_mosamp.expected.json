@@ -5,7 +5,18 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "Converged reference: ngspice 45 run of the deck with \".options reltol=1e-7 abstol=1e-15 vntol=1e-9 method=gear\" (trtol at its default) and the .tran line replaced by \".tran 0.1us 10us 0 0.05ns\" (tmax 0.05 ns): 200513 accepted points. Rows: linear interpolation at the 263 sample times of the previous oracle. Agreement at the same settings (worst column, in units of the tolerances below): espice 0.29x (i(vin) at 2.53 ns), espice with tmax 0.02 ns 0.41x (i(vin) at 21 ns); ngspice 45 stops with 'timestep too small' at tmax 0.02 ns and at abstol=1e-16. The trapezoid rule converges to the same voltages (reltol=1e-7, tmax 0.05 ns: 0.25x) but not the source currents: it rings undamped in i(vin) (+-1.4e-7 A over 0.2-0.5 us around the gear value, 1.1e3x) and i(vb) (33x) at any tolerance, because both sources sit across pure capacitance (the gate of m10, the bulk junctions). Physically both settle: after 7 us i(vin) is 0 (a MOS gate draws no DC current) and i(vb) is the bulk junction leakage 9.1378e-10 A, the operating-point value; gear reproduces both, while the trapezoid rule at reltol=1e-6 holds i(vin) at +2.04e-11 A (ngspice) and -3.72e-11 A (espice), i(vb) at 8.951e-10 and 9.896e-10 A. Convergence (worst column vs this reference): gear reltol=1e-6 tmax 0.1 ns 3.2x (i(vin) at 21 ns), trtol=1 0.51x; gear reltol=3e-7 1.4x; trapezoidal reltol=1e-6 tmax 0.1 ns (the previous oracle's settings) 1.4e4x (i(vin)), 78x (i(vb)), voltages 0.13x. VACASK (spice/mos2.osdi, hand-converted netlist) settles on a different operating point (v(8) = 1266 V) and is not used.",
-    "command": "ngspice -n -b -r reference.raw deck.sp  (deck with its reltol line replaced by \".options reltol=1e-7 abstol=1e-15 vntol=1e-9 method=gear\", .tran -> \".tran 0.1us 10us 0 0.05ns\")"
+    "command": "ngspice -n -b -r reference.raw deck.sp  (deck with its reltol line replaced by \".options reltol=1e-7 abstol=1e-15 vntol=1e-9 method=gear\", .tran -> \".tran 0.1us 10us 0 0.05ns\")",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/tran/bench_ngspice_mosamp.expected.json  (.tran tmax 0.5n)",
+      "max_tolerance_ratio": 0.276,
+      "unconfirmed": [
+        "Transient Analysis:i(vb)",
+        "Transient Analysis:i(vin)"
+      ],
+      "note": "Xyce's trapezoid rule rings in i(vb) (34x) and i(vin) (4.1x) as the oracle's derivation describes for ngspice's; Xyce's gear fails its step control at 0.4 ps, so the gear values of these two columns stay unconfirmed."
+    }
   },
   "origin": "benchmark/fixtures/ngspice/mosamp/circuit.sp",
   "expect": {

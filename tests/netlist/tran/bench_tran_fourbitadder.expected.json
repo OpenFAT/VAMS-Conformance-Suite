@@ -9,7 +9,9 @@
     "source_sha256": "941b8840f013e064d1c2a66e1d62b35e4724de6406ffc600b1a29261387665bf",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "Xyce 7.10.0 aborts at t = 0 (maximum number of failures); no closed form covers the BJT adder."
   },
   "origin": "benchmark/fixtures/tran/fourbitadder/circuit.sp",
   "expect": {

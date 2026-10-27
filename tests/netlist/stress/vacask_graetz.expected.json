@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "258c23de71778e406c0fa9c574a9199652a1f42826ffba55b6ba99646130ed70"
+    "source_sha256": "258c23de71778e406c0fa9c574a9199652a1f42826ffba55b6ba99646130ed70",
+    "confirmed": null,
+    "confirmed_reason": "VACASK (spice/diode.osdi, the same circuit at reltol 1e-6, tmax 1 us) agrees at most samples but differs up to 314x the tolerance on i(vs) and 23x on v(inn), v(outn) at the diodes' conduction edges, where the bridge floats on 1 Mohm; ngspice at reltol 1e-7 stops (timestep too small) and Xyce 7.10.0's step control fails at 5.79 ms, so no converged reference decides."
   },
   "origin": "benchmark/fixtures/vacask/graetz/circuit.sp",
   "expect": {

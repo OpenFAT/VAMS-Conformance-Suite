@@ -5,7 +5,9 @@
  "oracle": {
   "kind": "ngspice-44.2",
   "derivation": "ngspice-44.2 binary raw of this deck (xmu=0.45); espice's grid matches it row for row. Check: over [0.7 us, 1 us] i(vm) is analytically C*d/dt tanh(...) < 1e-12 A; the damped residue stays under 2.3e-6 A, where xmu = 0.5 rings at +-4.0e-4 A in both simulators.",
-  "command": "ngspice -n -b -r reference.raw trap_xmu_damping.sp"
+  "command": "ngspice -n -b -r reference.raw trap_xmu_damping.sp",
+  "confirmed": null,
+  "confirmed_reason": "The deck measures ngspice's trapezoidal integrator at xmu = 0.45 (its damping of the point-to-point ringing), an integrator artefact rather than a circuit quantity; Xyce has no xmu, and the converged answer is the analytic bound the oracle already checks."
  },
  "expect": {
   "status": "success",

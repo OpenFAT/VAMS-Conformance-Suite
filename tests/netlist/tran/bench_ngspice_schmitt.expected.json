@@ -7,7 +7,7 @@
     "tool": "xyce",
     "version": "7.10.0-opensource",
     "command": "python3 tools/xcheck.py tests/netlist/tran/bench_ngspice_schmitt.expected.json  (.tran tmax 2e-11)",
-    "derivation": "ngspice's ECL Schmitt trigger example. Dropped column(s) i(vin): the two converged references disagree on more than 10% of the rows (static leakage, set by where each simulator stamps GMIN). Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 2.58x its tolerance off it on the rows kept.",
+    "derivation": "ngspice's ECL Schmitt trigger example. Dropped column(s) i(vin): the two converged references disagree on more than 10% of the rows (pA-level offsets while the circuit is quiet: where each simulator stamps GMIN, and its charge residue). Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 2.58x its tolerance off it on the rows kept.",
     "confirmed": {
       "tool": "ngspice",
       "version": "44.2",

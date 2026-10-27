@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "6275d608621a54c64a8e9bc7746feb064f00a4d92f2b7600a1a809a12da89088"
+    "source_sha256": "6275d608621a54c64a8e9bc7746feb064f00a4d92f2b7600a1a809a12da89088",
+    "confirmed": null,
+    "confirmed_reason": "The deck uses ngspice's own syntax (SIN without parentheses, r= and c= on R and C cards), which Xyce rejects; it was not hand-translated, and no closed form covers the diode multiplier."
   },
   "origin": "benchmark/fixtures/vacask/mul/circuit.sp",
   "expect": {

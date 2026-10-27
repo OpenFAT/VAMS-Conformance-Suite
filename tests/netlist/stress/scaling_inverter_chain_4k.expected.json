@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "23dde4f80295860bc4c358e9ff997a439fe4fdca7912114c3697fd897cb62619"
+    "source_sha256": "23dde4f80295860bc4c358e9ff997a439fe4fdca7912114c3697fd897cb62619",
+    "confirmed": null,
+    "confirmed_reason": "Xyce 7.10.0 does not finish the 4000-stage chain in 300 s. Its 256-stage sibling, converged by Xyce and ngspice, was 8.7e5x off its ngspice oracle at shifted edges, so this oracle is likely off the same way; it is unverified."
   },
   "origin": "benchmark/fixtures/scaling/inverter_chain_4k/circuit.sp",
   "expect": {

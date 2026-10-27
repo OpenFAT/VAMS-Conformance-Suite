@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "ded9781bce4da0c284e117ed4e72471dc4a10ac18079712c57bc05d5baac1ca4"
+    "source_sha256": "ded9781bce4da0c284e117ed4e72471dc4a10ac18079712c57bc05d5baac1ca4",
+    "confirmed": null,
+    "confirmed_reason": "Xyce 7.10.0 needs more than the 2 GB memory cap for the 15008-unknown sweep (killed); no closed form covers the MOS sweep."
   },
   "origin": "benchmark/fixtures/sweep/opamp_wl_5000/circuit.sp",
   "expect": {
