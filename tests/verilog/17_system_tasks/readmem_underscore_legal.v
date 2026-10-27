@@ -1,5 +1,6 @@
 // IEEE1364-2005 3.5 Syntax3-1/3.5.1 and17.2.9: underscores after
 // the initial digit are ignored, including repeated and trailing separators.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.9
 module audit_readmem_underscore_legal;
   reg [7:0] h[0:0],b[0:0];

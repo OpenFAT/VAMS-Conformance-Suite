@@ -1,6 +1,7 @@
 // IEEE1364-2005 17.2.9 file digits and inherited assignment truncation:
 // discarded valid high digits do not make a file number malformed.
 // Both words have retained low8bits=00010001, or hexadecimal11.
+// gold: Icarus Verilog 13.0 agrees once its own `WARNING:` lines on excess digits are dropped
 //! inherited IEEE 1364-2005 17.2.9
 module audit_readmem_oversized_legal;
   reg [7:0] h[0:0],b[0:0];

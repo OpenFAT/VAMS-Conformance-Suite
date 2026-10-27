@@ -1,6 +1,7 @@
 // IEEE1364-2005 17.2.9: addresses are hexadecimal numbers. Leading
 // zeros do not increase the represented address or create arithmetic overflow.
 // Address000...A is index10, safely inside task range10..10.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.9
 module audit_readmem_address_zero_padding;
   reg [7:0] mem[10:10];

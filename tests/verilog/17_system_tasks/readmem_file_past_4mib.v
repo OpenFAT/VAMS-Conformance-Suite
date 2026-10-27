@@ -11,6 +11,7 @@
 // address 2, so mem[2] = 8'h5a and mem[3] = 8'hc3. mem[0] and mem[1] are
 // never written and keep a reg's initial x (§3.2): "xx". The file gives an
 // address, so §17.2.9's word-count warning does not apply.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.9
 //! expect stdout readmem_file_past_4mib.expected.txt
 module b_17_2_9_readmem_file_past_4mib;

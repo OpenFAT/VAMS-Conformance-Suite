@@ -9,6 +9,7 @@
 // literal bounds do, and m[1], m[6] keep x. Printed ascending m[1]..m[6]:
 //     xxxx 1111 x1z0 0010 0001 xxxx
 // A refusal of the variable bounds (the defect this pins) compiles nothing.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.5 (Table 9-2)
 //! inherited IEEE 1364-2005 17.2.9
 //! data 09_readmemb_range.bin

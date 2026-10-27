@@ -5,11 +5,13 @@
 // Loading stops at the highest location; the fifth word has no destination.
 // The former rejection rule wrongly required an error. That claim is withdrawn
 // to IEEE-FILE-MEM-002 in docs/conformance-ieee-fileio-review.md at 8b1514d4.
-// The positive runner requires successful continuation, exact loaded data,
-// and a warning diagnostic header matching both the code and specific phrase.
-// These warning expectations are the new bounded implementation contract;
-// the previous CLI loaded the data but silently omitted the required warning.
+// The run must continue, load exactly these four words, and warn.
+// §17.2.9 requires the warning in no set words or stream, so the run is
+// judged by its value line(s) and `//! diagnostic`, not an exact transcript.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.9
+//! stdout 11 22 33 44
+//! diagnostic
 //! data 91_readmem_overflow_rejected.hex
 `timescale 1ns/1ns
 module d09_readmem_overflow;

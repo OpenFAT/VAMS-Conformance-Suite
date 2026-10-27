@@ -1,6 +1,7 @@
 // IEEE1364-2005 §17.2.9, printed296: without explicit task addresses,
 // loading begins at the LOWEST address, not the left declaration index.
 // Both memories must map file words11,22,33,44 to indices4,5,6,7.
+// gold: Icarus Verilog 13.0 agrees once its own `WARNING:` line (a note on its changed mem[N:0] behaviour) is dropped
 //! inherited IEEE 1364-2005 17.2.9
 //! data audit_readmem_four.hex
 module audit_readmem_lowest_descending;

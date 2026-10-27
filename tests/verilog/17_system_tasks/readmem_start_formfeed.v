@@ -3,6 +3,7 @@
 // that direction. Formfeed (byte0c) is a whitespace separator, not data.
 // Each memory starts aa; indices2,3 receive11,22. The addressed binary file
 // writes index3 first, then @2 restarts upward and replaces both indices2,3.
+// gold: Icarus Verilog 13.0 agrees once its own `WARNING:` line (a note on its changed mem[N:0] behaviour) is dropped
 //! inherited IEEE 1364-2005 17.2.9
 module audit_readmem_start_formfeed;
   reg [7:0] descending[3:0];
