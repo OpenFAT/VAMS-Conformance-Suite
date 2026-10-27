@@ -2,6 +2,7 @@
  * variable arrays (including real) instead iterate var-select objects.
  * All traversal is deferred to the legal end-of-compile phase (26.2.4).
  */
+// gold: hand derivation, §26.6.7 to §26.6.9: the memory is a vpiRegArray of two 8-bit vpiReg words, the real array a vpiRealVar array of two vpiVarSelect
 //! lrm 11.3.1
 //! lrm 11.6.11
 //! lrm 12.2

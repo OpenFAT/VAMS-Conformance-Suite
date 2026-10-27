@@ -1,5 +1,6 @@
 /* IEEE 1364-2005 27.33.2: time callbacks require a real/simulation time
  * format; suppress-time and NULL time are errors and create no callback. */
+// gold: hand derivation, §27.33: cbAfterDelay with vpiSuppressTime or a NULL time "will result in an error", so both registrations fail
 //! lrm 11.2.3
 //! lrm 12.2
 //! lrm-reject 12.31.2

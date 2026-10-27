@@ -3,6 +3,7 @@
  * Iterate members without assuming their order. Numeric array indices are
  * obtained from expression handles, not invented integer properties.
  */
+// gold: hand derivation, §26.6.1(d) and §26.6.2: u[1:0] is a vpiModuleArray of size 2 whose members have indices 0 and 1, top has none
 //! lrm 11.3.1
 //! lrm 12.2
 //! lrm 12.3

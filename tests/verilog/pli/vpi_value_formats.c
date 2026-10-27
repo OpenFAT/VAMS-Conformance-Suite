@@ -1,6 +1,7 @@
 /* IEEE 1364-2005 27.14/27.32: runtime value conversion and independent
  * get_value/get_str buffers. Startup only registers a permitted callback.
  * No substitute header or local VPI declarations: missing API is real debt. */
+// gold: hand derivation, §27.14 Table 27-3: aval 1100/bval 0110 is 1xz0, vpiIntVal maps x/z to 0 (8), -2.5 rounds to -3 (§4.8.2)
 //! lrm 11.3.2
 //! lrm 12.2
 //! lrm 12.12

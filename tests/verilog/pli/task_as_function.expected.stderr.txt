@@ -1,1 +1,0 @@
-vpi_host: `$random` is registered as a system task and called as a function (IEEE 1364-2005 §20.3)

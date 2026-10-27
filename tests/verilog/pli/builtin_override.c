@@ -5,6 +5,7 @@
  * The production host currently lacks registration/value APIs; do not add
  * compatibility declarations or replace this required behavior by rejection.
  */
+// gold: hand derivation, §20.4, §26.1.1 and §26.1.2: the 40-bit override returns 8000000001 at both calls, sizetf runs once and compiletf twice
 //! lrm 11.6.16
 //! lrm 12.5
 //! lrm 12.12

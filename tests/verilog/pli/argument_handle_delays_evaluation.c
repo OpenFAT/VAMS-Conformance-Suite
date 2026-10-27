@@ -2,6 +2,7 @@
  * handle does not evaluate it; asking for its value executes its HDL call.
  * Load before elaboration. No manual callback invocation or header shims.
  */
+// gold: hand derivation, §26.6.19(e): bump runs only when its value is requested, on the second call: "unread=0", "read=1"
 //! lrm 11.6.16
 //! lrm 12.16
 //! lrm 12.19

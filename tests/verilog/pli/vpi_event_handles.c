@@ -1,5 +1,6 @@
 /* IEEE 1364-2005 27.32: freeing a handle does not cancel its event;
  * cancellation does not undo previous inertial cancellation. No same-time race. */
+// gold: hand derivation, §27.32: freeing a handle keeps its event (a=1 at 3), cancelling removes it (b=0), and the inertial put already removed c@2 (c=0)
 //! lrm 12.2
 //! lrm 12.4
 //! lrm 12.5

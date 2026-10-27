@@ -2,6 +2,7 @@
  * Full API access begins at cbEndOfCompile.26.3.2 requires both numeric and
  * string forms of vpiType. All outputs are observed after the legal boundary.
  */
+// gold: Icarus Verilog 13.0 agrees (iverilog-vpi)
 //! lrm 11.6.1
 //! lrm 12.2
 //! lrm 12.5

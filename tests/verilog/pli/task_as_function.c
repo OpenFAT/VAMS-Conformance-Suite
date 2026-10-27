@@ -14,16 +14,16 @@
  * The startup routine registers $random as a vpiSysTask, which overrides the
  * built-in function (§20.4). The design's `x = $random;` then puts a task
  * where only an expression can stand; a task returns no value, so the design
- * is refused before time 0: the host exits 1, naming $random, and neither
- * this application's cbStartOfSimulation nor the design's $display runs.
- * Its `//! exit 1` and `.expected.stderr.txt` pin the refusal. Legal neighbour:
- * systf.c, whose $unsigned override is registered as a vpiSysFunc and
- * called as a function.
+ * is refused: the run fails with a diagnostic. The clause names no exit
+ * status, message or stream, so `//! reject-run` asks only for a failed run
+ * that says why. Legal neighbour: systf.c, whose $unsigned override is
+ * registered as a vpiSysFunc and called as a function.
  */
+// gold: hand derivation, §20.3 and §20.4 (above): the run must fail; no transcript is pinned
 
 //! inherited-reject IEEE 1364-2005 20.3
 //! design task_as_function.v
-//! exit 1
+//! reject-run $random registered as a system task and called as a function
 
 #include "b_check.h"
 
