@@ -1,0 +1,39 @@
+// AMS §5.10.3.3: "If the start_time or period expressions change value during
+// the evaluation of the analog block, the next event will be scheduled based
+// on the latest value of the start_time and period." Here the period reads a
+// two-bit reg that only a digital process writes (§7.3: a variable is written
+// only from its own domain; §5.7 refuses a reg on an analog left-hand side).
+// §7.3.1 Table 7-1 reads the reg as an integer whose bits above the bus are
+// zero, so the 7 written at 1 ns reads as 3, not 7.
+//
+// DERIVATION. period*rate/2 is 2 ns while rate reads 2 (t < 1 ns) and 3 ns
+// once it reads 3. The first event is start_time 0. The 1 ns write lands
+// before the obsolete 2 ns deadline, and the 1.5 ns point re-evaluates the
+// timer, so the next events are the 3 ns multiples 3 ns and 6 ns (the same
+// whether "multiples of period" counts from start_time or from the last
+// event, 0). An event time point is "at, or just beyond" its event, so
+// fires = 1 + (t >= 3n) + (t >= 6n) at every point. A tool that misses the
+// write fires at 2 ns (2 at 2 ns); one that reads 7 waits for 7 ns (1 at
+// 3.5 ns). §7.3.6.5 makes the write visible at its delivery tick, as in
+// ch02_lexical/digital_delay_notation.va, so rate = 2 + (t >= 1n).
+//! lrm 5.10.3.3
+//! lrm 7.3.1
+//! analysis tran
+//! time 0, 0.5n, 1.5n, 2n, 2.5n, 3.5n, 4n, 5n, 6.5n, 7n, 7.5n
+`timescale 1ns/1ps
+`include "check.vh"
+module timer_period_reads_digital_reg(p);
+  inout p;
+  electrical p;
+  parameter real period = 2n;
+  reg [1:0] rate;
+  integer fires;
+  initial rate = 2;
+  initial #1 rate = 7;
+  analog begin
+    @(timer(0, period * rate / 2.0)) fires = fires + 1;
+    `CHECKI("the reg reads as its two low bits", rate, 2 + ($abstime >= 1n));
+    `CHECKI("the timer follows the reg's latest value", fires, 1 + ($abstime >= 3n) + ($abstime >= 6n));
+    I(p) <+ fires * 1m;
+  end
+endmodule

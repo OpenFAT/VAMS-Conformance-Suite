@@ -19,7 +19,10 @@
 // are declared below. That is a parse-level claim and this directory does not
 // usually credit one, which is why the file also asserts values: the four
 // variable declarations carry initializers (A.2.2.1's `variable_type` second
-// arm — the `= constant_expression` one), and each one is read back.
+// arm — the `= constant_expression` one), and each one is read back. The
+// vector `reg` has no initializer; a digital `initial` writes it, since §7.3
+// lets only its own domain write a reg, and the analog block reads 8'h5a back
+// as the integer 90 (§7.3.1 Table 7-1).
 //
 // WHAT IS DELIBERATELY NOT DONE. The nets are declared and NOT read: reading a
 // digital net inside an `analog` block is E0315 ("net must be read through an
@@ -78,6 +81,7 @@ module annex_a_types(p, n);
     real dv = 1.5;
     integer iv = 7;
     reg [7:0] rbus;
+    initial rbus = 8'h5a;
 
     analog begin
         `CHECKX("the file declaring all eleven net_type spellings compiles and runs",
@@ -86,8 +90,7 @@ module annex_a_types(p, n);
         `CHECKX("a `realtime` variable is a real", rtv, 2.5);
         `CHECKX("a `real` variable", dv, 1.5);
         `CHECKI("an `integer` variable", iv, 7);
-        rbus = 8'h5a;
-        `CHECKI("a vector `reg` declared without an initializer", rbus, 90);
+        `CHECKI("a vector `reg` declared without an initializer reads as an integer", rbus, 90);
         I(p, n) <+ V(p, n);
     end
 endmodule

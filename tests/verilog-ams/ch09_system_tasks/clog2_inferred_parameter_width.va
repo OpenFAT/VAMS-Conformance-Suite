@@ -6,7 +6,9 @@
 // An explicit [3:0] range fixes four bits despite an eight-bit initializer:
 // ff is truncated to f, so both direct and dependent $clog2 are 4.
 // The child's parameter-bound range has the same result after flattening,
-// as does its packed reg whose four one bits read as analog integer 15.
+// as does its packed reg, which a digital initial block sets to -1 (only a
+// digital process writes a reg, §7.3), whose four one bits read as analog
+// integer 15 -> 4.
 //
 // CARD VALUES. A `//! param` line overrides a top-level parameter with the
 // decimal it writes, an unsized integer. IEEE 1364-2005 12.2: an untyped,
@@ -40,11 +42,11 @@ module clog2_width_child;
   parameter [BITS-1:0] packed_child = 8'hff;
   localparam integer derived = $clog2(code);
   reg [BITS-1:0] bits;
+  initial bits = -1;
   analog begin
     `CHECKI("HDL override supplies its 64-bit width", $clog2(code), 64);
     `CHECKI("dependent default uses overridden HDL width", derived, 64);
     `CHECKI("child packed range follows its renamed parameter", $clog2(packed_child), 4);
-    bits = -1;
     `CHECKI("child reg width follows its renamed parameter", $clog2(bits), 4);
   end
 endmodule
