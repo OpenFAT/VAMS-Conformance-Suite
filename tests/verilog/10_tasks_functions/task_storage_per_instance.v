@@ -27,6 +27,7 @@
 //   and o are x again, even though the previous activation set both to 1.
 //   `seen` records a === x and o === x on entry for two calls:
 //     "auto 11 11"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.2.3
 `timescale 1ns/1ns
 module b_10_2_3_task_storage_per_instance;

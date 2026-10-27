@@ -33,6 +33,7 @@
 // The observation is at t=6, two nanoseconds past the resumption that must not
 // happen, so the fixture cannot pass by merely being early.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.3
 //! lrm A.6.4
 //! lrm A.6.5

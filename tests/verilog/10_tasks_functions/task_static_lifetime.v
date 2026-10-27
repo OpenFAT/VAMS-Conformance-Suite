@@ -25,6 +25,7 @@
 // fresh `n` is x, x + 1 is x, and o is x.
 // Re-running the clear on every call would give "static 0001 0001".
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.2.7
 //! lrm 1.1
 //! lrm A.2.7:1000

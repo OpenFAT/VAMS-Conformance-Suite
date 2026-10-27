@@ -11,6 +11,7 @@
 // (§4.8.2). Next, held=-3.75+5=1.25 and array output=2.5.
 // Legal real/realtime results neighbor the existing illegal function
 // output/NBA/timing fixtures in this directory; no new prohibition here.
+// gold: hand derivation, §4.8, §10.2.2, §10.2.3 and §10.4.1 (above)
 //! inherited IEEE 1364-2005 4.8 4.8.2 10.2.2 10.2.3 10.4.1 10.4.2
 // native-required
 module native_real_subroutines;

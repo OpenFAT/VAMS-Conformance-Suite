@@ -1,5 +1,6 @@
 // Legal controls for the task-port rejection cases: one completion, matching
 // ranges, and a type supplied only when the input declaration has none.
+// gold: Icarus Verilog 13.0 agrees
 //@ std 1364-2005
 //! inherited IEEE 1364-2005 10.2.1 12.3.3
 module nonansi_task_port_completion;

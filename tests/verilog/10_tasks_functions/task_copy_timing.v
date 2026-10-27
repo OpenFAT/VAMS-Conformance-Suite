@@ -4,6 +4,7 @@
 // At enable i=2, io=11; task sets o=4, io=13, i=99. At time1 callers
 // still show out9/io11, and caller source changes to7. At time2 copy-out
 // yields out4/io13 while input source remains7, not99.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 1.1
 //! inherited IEEE 1364-2005 10.2.2
 //! expect stdout task_copy_timing.expected.txt

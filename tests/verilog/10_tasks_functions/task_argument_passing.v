@@ -38,6 +38,7 @@
 // No delays anywhere, so the program needs no `timescale (untimed programs do
 // not require one).
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.2.7
 //! lrm A.6.4
 //! lrm 1.1

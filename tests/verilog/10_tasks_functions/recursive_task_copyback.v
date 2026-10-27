@@ -14,6 +14,7 @@
 // it in its own bits[1], then mark(2) receives it in its own bits[0], so
 // selected=1. No data value makes copy-back invalid. The separate invalid
 // lvalue neighbour is task_output_expression_rejected.v.
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 4.8.2 10.2.2 10.2.3
 module b_10_2_recursive_task_copyback;
   integer result, tally, rounded;

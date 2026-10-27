@@ -13,6 +13,7 @@
 //   getbyte(16'h0010) + getbyte(16'h0020) = 8'h10 + 8'h20 = 8'h30, in a
 //   16-bit context -> 16'h0030; add(getbyte(16'h0102), 8'h03) = 02 + 03 = 05
 //                                                      -> "0030 05"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.4.3
 module b_10_4_3_function_call_operand;
   reg [15:0] msbyte, lsbyte, word, sum;

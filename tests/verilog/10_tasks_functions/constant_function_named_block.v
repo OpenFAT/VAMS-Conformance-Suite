@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.4.5
 // A constant function may contain a named block (constfunccall1).
 module triage_constant_function_named_block;

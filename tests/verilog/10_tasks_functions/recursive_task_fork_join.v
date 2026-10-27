@@ -23,6 +23,7 @@
 // The three lines at t = 3 are one causal chain, not a race. One join count
 // shared by the activations would let t(1)'s arm 1 finishing at t = 2 release
 // a join early, and a "joined" line would print at t = 2.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.2.3
 //! inherited IEEE 1364-2005 9.8.2
 `timescale 1ns/1ns

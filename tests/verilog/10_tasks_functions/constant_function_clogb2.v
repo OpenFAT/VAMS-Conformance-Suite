@@ -18,6 +18,7 @@
 // calls: clogb2(5): 4 = 3'b100 needs 3 shifts -> 3.
 // Each instance prints at t = data_width (8 and 32), so no two lines race:
 //   "8 255 3" then "9 511 3".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.4.5
 `timescale 1ns/1ns
 module b_10_4_5_constant_function_clogb2;

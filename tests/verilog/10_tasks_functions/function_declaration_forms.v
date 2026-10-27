@@ -22,6 +22,7 @@
 //     %0d of a signed 4-bit -2 prints "-2"            -> "-2"
 //   auto_f(5) (automatic, second form, a block item declaration) = 5 + 1 = 6
 //                                                     -> "6"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.4.1
 module b_10_4_1_function_declaration_forms;
   function [7:0] getbyte1;

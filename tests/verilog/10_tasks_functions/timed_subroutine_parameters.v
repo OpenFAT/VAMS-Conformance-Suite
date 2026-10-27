@@ -7,6 +7,7 @@
 // call sum(3) starts at t=2 and returns 9 at t=5. This exercises the saved
 // frames of recursive timed activations and their constant values.
 // Rejection neighbour: subroutine_parameter_assignment_rejected.v.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10 10.2.3 A.2.8
 // native-required
 `timescale 1ns/1ns

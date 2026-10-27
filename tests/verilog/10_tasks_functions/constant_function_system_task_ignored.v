@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.4.5
 // A system task in a constant function is ignored when the call is evaluated
 // at elaboration (constfunc13).

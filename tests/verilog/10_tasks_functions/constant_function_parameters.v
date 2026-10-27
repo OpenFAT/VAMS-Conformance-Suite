@@ -8,6 +8,7 @@
 // constant values must survive each fresh elaboration-time activation.
 // The function's parameters precede the calls, as §10.4.5 requires.
 // Rejection neighbour: subroutine_parameter_assignment_rejected.v.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10 10.4.5 A.2.8
 module b_10_constant_function_parameters;
   function integer add(input integer n);

@@ -13,6 +13,7 @@
 // but no statement of the design has run yet. sq(3) = 3 * 3 = 9, so the `yes`
 // branch is generated and the `no` branch is not.
 // Output: "sq(3) = 9: yes".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.4.5
 `timescale 1ns/1ns
 module b_10_4_5_constant_function_generate_condition;

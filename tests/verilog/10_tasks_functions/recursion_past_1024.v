@@ -5,6 +5,7 @@
 //
 // HAND DERIVATION. f(n) = 1 + f(n - 1) and f(0) = 0, so f(n) = n. f(5000)
 // nests 5001 activations, past the old 1024, and prints 5000.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.4.2
 //! expect stdout recursion_past_1024.expected.txt
 module b_10_4_recursion_past_1024;

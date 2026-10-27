@@ -14,6 +14,7 @@
 // Had control returned when outer's own statements were reached but inner or
 // middle still waited, the return time would be below 7 or trace would miss
 // digits.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.2
 `timescale 1ns/1ns
 module b_10_2_nested_task_completion;

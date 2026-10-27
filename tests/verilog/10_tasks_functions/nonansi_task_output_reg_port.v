@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.2.1
 // A non-ANSI output port's type and range may come from the following
 // reg declaration (task_iotypes).

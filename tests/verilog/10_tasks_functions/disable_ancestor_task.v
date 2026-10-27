@@ -1,4 +1,5 @@
 // IEEE1364-2005 10.3 printed150-152; block lifecycle also9.8 and11.4.1.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 1.1
 //! inherited IEEE 1364-2005 10.3
 //! expect stdout disable_ancestor_task.expected.txt

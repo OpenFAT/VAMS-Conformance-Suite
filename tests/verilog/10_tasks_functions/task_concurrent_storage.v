@@ -3,6 +3,7 @@
 // The first entries save10 at time0, later entries overwrite/save20 at
 // time1. Resume times2 and3 are distinct. Thus static reports20 twice,
 // automatic reports10 then20. Output observations are staggered as well.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 1.1
 //! inherited IEEE 1364-2005 10.2.3
 //! expect stdout task_concurrent_storage.expected.txt

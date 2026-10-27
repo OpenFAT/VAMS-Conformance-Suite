@@ -3,6 +3,7 @@
 // An output is NOT copied in from the caller. Set first formal to0101,
 // change actual to1010, then leave formal unwritten. Static returns0101;
 // automatic returnsxxxx. Do not assume any integer default is zero.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 1.1
 //! inherited IEEE 1364-2005 10.2.3
 //! expect stdout task_output_lifetime.expected.txt

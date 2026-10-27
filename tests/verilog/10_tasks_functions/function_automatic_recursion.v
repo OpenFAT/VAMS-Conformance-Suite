@@ -33,6 +33,7 @@
 // the left operand n before descending recursively can also produce120; this
 // row must not be claimed to rule out every incorrect static implementation.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.2.6
 //! lrm 1.1
 //! lrm A.2.6:1000

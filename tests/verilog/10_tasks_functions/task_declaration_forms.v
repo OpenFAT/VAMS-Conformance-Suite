@@ -20,6 +20,7 @@
 // Typed ports: `task half(input real r, output integer i)`, i = r / 2 with
 //   r = 5.0: 2.5 converted to integer rounds away from zero (§4.8.2) -> 3:
 //   "half 3".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.2.1
 module b_10_2_1_task_declaration_forms;
   reg [3:0] v, w, x, y, z;

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.2.1
 // A non-ANSI task input may be typed real by a following declaration
 // (task_nonansi_real1).

@@ -22,6 +22,7 @@
 //   and A's n=1 is alive while B's n=2 level is entered at t=3: if they
 //   shared one frame, B's n (2) would overwrite A's n (1) and A would print
 //   total 2 and ra = 4.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.2.3 (automatic task storage per activation)
 //! inherited IEEE 1364-2005 10.2.2 (output copy-back)
 // native-required

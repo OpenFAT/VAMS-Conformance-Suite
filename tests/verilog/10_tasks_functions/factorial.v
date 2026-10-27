@@ -14,6 +14,7 @@
 // factorial(n) = n * factorial(n - 1) for n >= 2, else 1. The results the
 // clause prints (p. 156):
 //   0! = 1, 1! = 1, 2! = 2, 3! = 6, 4! = 24, 5! = 120, 6! = 720, 7! = 5040.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.4.4
 module b_10_4_4_factorial;
   // define the function

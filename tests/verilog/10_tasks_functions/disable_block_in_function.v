@@ -10,6 +10,7 @@
 //   first_set(8'b0010_1000) -> bit 3 is the lowest 1 -> 3
 //   first_set(8'b0000_0000) -> the loop runs out -> 8
 //   "3 8"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.3
 module b_10_3_disable_block_in_function;
   function integer first_set;

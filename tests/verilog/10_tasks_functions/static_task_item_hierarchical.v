@@ -12,6 +12,7 @@
 // it -> "t.v = 5".
 // The rejected automatic counterpart is
 // automatic_task_item_hierarchical_rejected.v.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.2.1
 module b_10_2_1_static_task_item_hierarchical;
   task t;

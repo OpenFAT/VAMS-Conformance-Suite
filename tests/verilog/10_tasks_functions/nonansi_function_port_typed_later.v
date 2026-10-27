@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.4.1
 // A non-ANSI function input may be given its type by a following declaration
 // (function7's clog2).

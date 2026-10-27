@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.2.3
 // Each activation of an automatic task has its own variables, so the event
 // declared inside one activation is not the event another activation waits on

@@ -10,6 +10,7 @@
 // recursive activation neither initializes nor restores constants as
 // unknown variable storage. The rejection neighbour
 // subroutine_parameter_assignment_rejected.v forbids writing step.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10 4.10.2 10.2.3 10.4.2 A.2.8
 module b_10_automatic_subroutine_parameters;
   integer result;

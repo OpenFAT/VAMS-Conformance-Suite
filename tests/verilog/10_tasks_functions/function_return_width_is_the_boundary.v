@@ -22,6 +22,7 @@
 // the two arguments are chosen so that exactly one of them overflows four bits:
 // the discriminating digit is the one contributed by tw(4'd10).
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.2.6
 //! lrm A.8.2
 //! lrm 1.1

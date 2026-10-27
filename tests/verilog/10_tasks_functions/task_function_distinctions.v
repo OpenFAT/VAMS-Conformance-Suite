@@ -19,6 +19,7 @@
 //     (a task can enable both): at t = 3 it runs switch_task (+3 -> t = 6)
 //     writing pair_t = b2a1, then pair_f = switch_fn(16'h0102) = 0201.
 //     -> "6 b2a1 0201".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 10.1
 `timescale 1ns/1ns
 module b_10_1_task_function_distinctions;

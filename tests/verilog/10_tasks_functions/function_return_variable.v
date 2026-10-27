@@ -3,6 +3,7 @@
 // function-name variable may be read in expressions inside its function.
 // scalar(2)->0, scalar(3)->1. staged(3): assign3 then3+2 ->5 (0101).
 // Separate statements avoid unspecified function argument evaluation order.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 1.1
 //! inherited IEEE 1364-2005 10.4.1
 //! inherited IEEE 1364-2005 10.4.2
