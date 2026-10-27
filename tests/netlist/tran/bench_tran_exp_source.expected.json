@@ -4,7 +4,14 @@
   "purpose": "EXP stimulus into an RC: no other deck in the suite used one.",
   "oracle": {
     "kind": "analytic",
-    "derivation": "ngspice-45 manual 4.1.3 EXP: v(in) = 5(1 - exp(-(t-1u)/2u)) for 1u <= t < 6u, minus 5(1 - exp(-(t-6u)/3u)) after 6u. Through R = 1k into C = 1n (tc = 1 us) each term 1 - exp(-x/ts) gives v(out) = 1 - (ts exp(-x/ts) - tc exp(-x/tc))/(ts - tc); i(v1) = -(v(in) - v(out))/R. The previous oracle, ngspice-44.2 at default options, puts no timepoint at TD1 = 1 us (its step runs 0.964 -> 1.014 us across the corner), so its v(out) was 133x the tolerance off at 1.014 us and over 1x until 1.31 us; Xyce 7.10.0 at reltol 1e-6 agrees with this closed form."
+    "derivation": "ngspice-45 manual 4.1.3 EXP: v(in) = 5(1 - exp(-(t-1u)/2u)) for 1u <= t < 6u, minus 5(1 - exp(-(t-6u)/3u)) after 6u. Through R = 1k into C = 1n (tc = 1 us) each term 1 - exp(-x/ts) gives v(out) = 1 - (ts exp(-x/ts) - tc exp(-x/tc))/(ts - tc); i(v1) = -(v(in) - v(out))/R. The previous oracle, ngspice-44.2 at default options, puts no timepoint at TD1 = 1 us (its step runs 0.964 -> 1.014 us across the corner), so its v(out) was 133x the tolerance off at 1.014 us and over 1x until 1.31 us; Xyce 7.10.0 at reltol 1e-6 agrees with this closed form.",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/tran/bench_tran_exp_source.expected.json",
+      "max_rel_err": 7.05e-05,
+      "max_tolerance_ratio": 0.0235
+    }
   },
   "origin": "benchmark/fixtures/tran/exp_source/circuit.sp",
   "expect": {
