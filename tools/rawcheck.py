@@ -16,7 +16,8 @@ A port of ESPice's tests/test_correctness.zig judge, tool-neutral:
   matches its own error category, which other tools do not print.
 - plots: the `exact`, `selected_rows`, `samples` and `unordered` match
   modes, |got - want| <= atol + rtol*|want| on the complex plane.
-- checks: `measure` (a `.meas` line on stdout). The other check kinds exit 77
+- checks: `measure` (a `.meas` line on stdout; a tool that prints none while
+  writing the raw file, as ngspice, is run once more with RAW unset). The other check kinds exit 77
   (SKIP). ponytail: port them from test_correctness.zig when a tool needs them.
 """
 import json, math, os, re, struct, subprocess, sys
@@ -236,7 +237,13 @@ def main():
         sys.stdout.write(p.stdout)
         sys.exit(p.returncode)
     raw = open(env["RAW"], "rb").read() if os.path.exists(env["RAW"]) else b""
-    for label, ok, detail in judge(oracle, p.returncode, p.stdout, raw):
+    stdout = p.stdout
+    if any(c["kind"] == "measure" and measure(stdout, c)[1].startswith("got=missing") for c in oracle["expect"].get("checks", [])):
+        # ngspice prints no .meas result when it writes a rawfile (-r): run again without RAW
+        env.pop("RAW")
+        q = subprocess.run(["sh", "-c", cmd], cwd=os.path.dirname(src), env=env, capture_output=True, text=True, errors="replace")
+        stdout += q.stdout
+    for label, ok, detail in judge(oracle, p.returncode, stdout, raw):
         print(f"{label} {detail} ok={int(ok)}")
 
 
