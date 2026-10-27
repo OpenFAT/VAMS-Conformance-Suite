@@ -17,6 +17,7 @@
 //            (95, 105): nh = 0
 // DERIVATION: t=0 clk x -> 0 (no posedge) and dat x -> 'b00101110 (a data
 // event); t=100 dat -> 'b01010011; t=105 clk rises: (95, 105) holds 100.
+// gold: hand derivation, §15.7 (above)
 //! inherited IEEE 1364-2005 15.7
 `timescale 1ns/1ns
 module b_15_7_vector_ff(clk, dat);

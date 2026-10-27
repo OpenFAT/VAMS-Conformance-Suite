@@ -25,6 +25,7 @@
 //   t=35  "t=35 ntfr=0".
 // §15.2 says only "report a timing violation", in no set form, so the
 // notifier's transcript lines above are what this checks.
+// gold: hand derivation, §15.2.5 (above)
 //! inherited IEEE 1364-2005 15.2 15.2.5 15.5
 `timescale 1ns/1ns
 module b_15_2_5_recovery_ff(clr, clk);

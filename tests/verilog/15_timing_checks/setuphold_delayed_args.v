@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 15.5.1
 // $setuphold's delayed_reference and delayed_data arguments (8 and 9) are
 // legal: C and BL_X[0] here (pr1520314).

@@ -1,4 +1,5 @@
 // The first separation is 2 <= 3; the second is 5 > 3. Only the second toggles the notifier.
+// gold: hand derivation, §15.3.1: d@12 is 2 after clk@10, within 3; d@25 is 5 after clk@20, a violation
 //! inherited IEEE 1364-2005 15.3.1
 `timescale 1ns/1ns
 module skew_cell(input clk, input d);

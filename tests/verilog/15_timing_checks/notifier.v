@@ -21,6 +21,7 @@
 //        nz=z.
 // The notifier-free copy violates too; §15.2's report of it has no set
 // form, so it is here only for running at all.
+// gold: hand derivation, §15.5 Table 15-13 (above)
 //! inherited IEEE 1364-2005 15.5
 `timescale 1ns/1ns
 module b_15_5_notifier_ff(clk, d);

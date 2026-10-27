@@ -33,6 +33,7 @@
 // So at t=14, 24 and 34:
 //   plain 0 1 1, inv 0 0 1, ceq 0 1 1, eq 1 0 0, neq 1 0 0, cneq 0 1 1,
 //   vec 0 0 1, expr 1 0 0.
+// gold: hand derivation, §15.6 (above)
 //! inherited IEEE 1364-2005 15.6
 `timescale 1ns/1ns
 module b_15_6_conditions_ff(clk, d, en, bus);

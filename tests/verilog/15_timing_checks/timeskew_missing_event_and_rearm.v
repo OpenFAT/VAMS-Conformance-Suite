@@ -1,4 +1,5 @@
 // No data after t=10 expires the timer. Data at t=22 satisfies the rearmed timer; later data cannot retrigger a dormant check.
+// gold: hand derivation, §15.3.2: the timer of clk@10 expires at 13; d@22 is within 3 of clk@20 and makes the check dormant, so d@30 reports nothing
 //! inherited IEEE 1364-2005 15.3.2
 `timescale 1ns/1ns
 module timeskew_cell(input clk,input d);

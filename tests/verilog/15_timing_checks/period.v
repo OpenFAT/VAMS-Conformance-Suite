@@ -14,6 +14,7 @@
 //     "t=28 ntfr=1"), 12 (none). The first posedge has no period before it.
 //   1 -> 0 edges 15, 25, 30 (clk's x -> 0 at 0 is x0, not 10): periods 10
 //     (none), 5 (VIOLATION: n2 0 -> 1). "t=45 n2=1".
+// gold: hand derivation, §15.3.5 and §15.4 (above)
 //! inherited IEEE 1364-2005 15.3 15.3.5 15.4 15.5
 `timescale 1ns/1ns
 module b_15_3_5_period_ff(clk);

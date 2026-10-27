@@ -1,4 +1,5 @@
 // With event_based and remain_active both set, late data at t=14 and t=16 each toggle the notifier.
+// gold: hand derivation, §15.3.2: with both flags set it is $skew, so d@14 (4 > 3) and d@16 (6 > 3) each toggle note
 //! inherited IEEE 1364-2005 15.3.2
 `timescale 1ns/1ns
 module timeskew_active_cell(input clk,input d);

@@ -30,6 +30,7 @@
 //   t=45  both of n0's limits are zero: "t=45 n0=0".
 // §15.2 says only "report a timing violation", in no set form, so the
 // notifier's transcript lines above are what this checks.
+// gold: hand derivation, §15.2.3 (above)
 //! inherited IEEE 1364-2005 15.2 15.2.3 15.5
 `timescale 1ns/1ns
 module b_15_2_3_setuphold_ff(clk, d);

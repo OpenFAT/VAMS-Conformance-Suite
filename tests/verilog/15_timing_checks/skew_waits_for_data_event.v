@@ -1,4 +1,5 @@
 // An event-based skew check cannot fire while no data event occurs; a late data event then toggles it.
+// gold: hand derivation, §15.3.1: no data event until t=30, then 20 > 3 toggles note
 //! inherited IEEE 1364-2005 15.3.1
 `timescale 1ns/1ns
 module skew_wait_cell(input clk,input d);

@@ -21,6 +21,7 @@
 //         en 0, the last timestamp clk@12: none.
 //   t=32  clk rises; d@30 had en 1 (en falls at 31), in (28, 32]:
 //         "t=32 11". t=33 d falls; clk@32 had en 0: none.
+// gold: hand derivation, §15.5.2 (above)
 //! inherited IEEE 1364-2005 15.5.1 15.5.2
 //! neighbour setuphold_timecheck_condition.v
 `timescale 1ns/1ns

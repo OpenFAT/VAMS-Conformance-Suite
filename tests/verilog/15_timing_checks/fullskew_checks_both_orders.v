@@ -1,4 +1,5 @@
 // The reference-first timer uses limit 3; the data-first timer uses limit 5. Sample after each expiration.
+// gold: hand derivation, §15.3.3: forward times out 3 after a@10 (t=13), reverse 5 after d@10 (t=15)
 //! inherited IEEE 1364-2005 15.3.3
 `timescale 1ns/1ns
 module fullskew_cell(input r,input d);

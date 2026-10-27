@@ -24,6 +24,7 @@
 //         [22, 24), the timecheck (d) sees en 0: none.
 //   t=26  en rises. t=30 d rises; t=31 en falls; t=32 clk rises: en 0 at the
 //         timecheck again: none; t=33 d falls: none.
+// gold: hand derivation, §15.5.2 (above)
 //! inherited IEEE 1364-2005 15.5.1 15.5.2
 //! neighbour setuphold_timestamp_condition.v
 `timescale 1ns/1ns

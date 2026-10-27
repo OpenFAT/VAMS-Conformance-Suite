@@ -23,6 +23,7 @@
 //   t=30  clk rises, then clr rises, at once: 30 is (27, 30)'s open end, and
 //         the data event before it, at 20, is outside: none.
 //   t=35  "t=35 ntfr=1".
+// gold: hand derivation, §15.2.4 (above)
 //! inherited IEEE 1364-2005 15.2 15.2.4 15.5
 `timescale 1ns/1ns
 module b_15_2_4_removal_ff(clr, clk);

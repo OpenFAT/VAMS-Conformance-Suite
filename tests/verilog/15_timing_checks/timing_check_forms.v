@@ -43,6 +43,7 @@
 //   t = 250: d falls (edge 10): $hold, $setuphold, the edge-list $hold:
 //            250 - 100 = 150, not within 10 of the posedge.
 //   t = 300: prints q: the one posedge (t = 100) took d = 1, so q=1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 15.1 15.4
 `timescale 1ns/1ns
 module b_15_1_timing_check_forms_ff(clk, clkb, d, clr, en, q);

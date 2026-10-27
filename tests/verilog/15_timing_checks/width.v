@@ -24,6 +24,7 @@
 //     5: none below 4, so n2 stays 0: "t=45 n2=0".
 // §15.2 says only "report a timing violation", in no set form, so the
 // notifier's transcript lines above are what this checks.
+// gold: hand derivation, §15.3.4 (above)
 //! inherited IEEE 1364-2005 15.3 15.3.4 15.5
 `timescale 1ns/1ns
 module b_15_3_4_width_ff(clk);
