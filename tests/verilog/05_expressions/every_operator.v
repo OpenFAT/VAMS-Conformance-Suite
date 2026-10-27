@@ -18,6 +18,7 @@
 //   &a 0, ~&a 1, |a 1, ~|a 0, ^a 0 (two ones), ~^a 1, ^~a 1
 //   a<<1 = 1000, a>>1 = 0110, a<<<1 = 1000, a>>>1 = 0110 (unsigned: zero fill)
 //   a ? b : t -> a is nonzero, so b = 1010
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1
 module b_5_1_every_operator;
   reg [3:0] a, b, t;

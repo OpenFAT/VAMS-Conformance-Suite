@@ -1,4 +1,5 @@
 // IEEE1364-2005 §§5.1.14,5.5: explicit expected bits, no generated oracle.
+// gold: hand derivation, §5.1.14 and §5.5 (its first three lines are §5.5's own example); zero replication per §5.1.14
 //! inherited IEEE 1364-2005 5.1.14 5.5
 module concatenation;
   reg [7:0] a;

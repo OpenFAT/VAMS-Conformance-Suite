@@ -1,6 +1,7 @@
 // IEEE1364-2005 §5.2.3: strings are packed8-bitASCII numbers. Padding
 // remains in concatenation:16-bit"A" plus16-bit"B" is00410042, not"AB".
 // Nullstring isASCII NUL0, distinctfromASCII digit"0" (30hex).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.3
 module audit_expr_string_numeric_padding;
   reg [15:0] a,b;

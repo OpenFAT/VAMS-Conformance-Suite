@@ -2,6 +2,7 @@
 // extends that state into a context wider than32 bits. A sized unsigned
 // 4'bx instead has only four x bits; assignment pads the remaining125 zero.
 // Comparisons use independent explicit129-bit expected patterns.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.4.1 5.5.3
 module audit_expr_unsized_unknown_extension;
   reg [128:0] xwide, zwide, sized;

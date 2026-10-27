@@ -14,6 +14,7 @@
 //   a < 2 && b == c        = 1 && 1 -> 1   (were && above ==: a < (2&&b) == c
 //                            = (1<1) == 2 = 0 == 2 -> 0)
 // Negation: !237 -> 0, !0 -> 1, !(4'b00x0) -> ambiguous -> x.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.9
 module b_5_1_9_logical_connectives;
   integer alpha, beta, a, b, c;

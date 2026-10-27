@@ -14,6 +14,7 @@
 // mem[-1]: neg[-1]=1, neg[-1 -:4]=a (a5's high nibble), and
 // mem[-1][3:0]=c (3c's low nibble).
 // These legal values require runtime behavior, not an invented rejection.
+// gold: hand derivation, §5.2.1 (above)
 //! inherited IEEE 1364-2005 4.3.1 5.2.1 5.2.2
 // native-required
 module native_select_boundaries;

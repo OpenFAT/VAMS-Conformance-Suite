@@ -2,6 +2,7 @@
 // extension; unsigned assignment/concatenation pads zero instead.
 // Casting the same4-bit unsigned value to signed restores x sign extension.
 // Arithmetic addition with a signed unknown operand yields all x.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.5.1 5.5.3 5.5.4
 module audit_expr_unknown_extension;
   reg signed [3:0] sx, sz;

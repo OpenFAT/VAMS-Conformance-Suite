@@ -17,6 +17,7 @@
 // The clause prints the first line with %s as well; this fixture prints the
 // padded value with %h only, since the padding NUL bytes are not printable
 // characters. "Any operator": "ab" + 16'd1 = 16'h6162 + 1, 16 bits -> 6163.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.3
 module b_5_2_3_string_test;
   reg [8*14:1] stringvar;

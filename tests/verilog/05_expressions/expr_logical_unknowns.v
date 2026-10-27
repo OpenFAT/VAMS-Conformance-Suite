@@ -1,5 +1,6 @@
 // IEEE1364-2005 §5.1.9: truth is not bitwise identity; a known1 makes
 // a mixed vector true. Controlling0 for&& and1 for|| resolve ambiguity.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.9
 module audit_expr_logical_unknowns;
   initial begin

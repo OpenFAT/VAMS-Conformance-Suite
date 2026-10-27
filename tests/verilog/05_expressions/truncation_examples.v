@@ -13,6 +13,7 @@
 //   reg [7:0] a3; reg signed [7:0] b3; reg signed [5:0] c3, d3:
 //     a3 = 8'hff; c3 = a3 -> 6'h3f; b3 = -113; d3 = b3 -> 6'h0f
 // %h of 6 and 5 bits is two digits: 3f 1f 0f 0f, c2 printed %0d: 15.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.6
 module b_5_6_truncation_examples;
   reg [5:0] a;

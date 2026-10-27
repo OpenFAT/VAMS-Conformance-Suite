@@ -30,6 +30,7 @@
 //                                  zero-extended to 4 bits (Table 5-22,
 //                                  max(L(i),L(j))): 0110&0001 = 0000
 //                                  left: (0110)==0110 = 1 -> 0001
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.2
 module b_5_1_2_precedence;
   initial begin

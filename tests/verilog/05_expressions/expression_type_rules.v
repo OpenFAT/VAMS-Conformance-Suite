@@ -26,6 +26,7 @@
 // Numbers: -1 < 0 (both decimal, signed) -> 1; -1 < 'd0 ('d0 unsigned, so
 //   unsigned compare of 2**n-1 < 0) -> 0; -1 < 'sd0 (s notation) -> 1.
 // Real: 1 + 0.5 -> real 1.5.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.5.1
 module b_5_5_1_expression_type_rules;
   reg signed [3:0] s;

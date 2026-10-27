@@ -13,6 +13,7 @@
 //   regS = $signed(4'b1100): 4-bit signed 1100 = -4, sign-extended -> -4
 // Same size: {$signed(4'b1100)} is 4 bits (concatenation is self-determined),
 //   so {1'b1, $signed(4'b1100)} -> 11100.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.5
 module b_5_5_signed_unsigned_functions;
   reg [7:0] regA, regB;

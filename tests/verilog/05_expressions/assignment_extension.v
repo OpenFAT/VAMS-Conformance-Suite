@@ -10,6 +10,7 @@
 //   reg signed [7:0] s = 4'sb0110  RHS signed, sign bit 0 -> 00000110
 //   integer i = 4'sb1111           RHS signed   -> -1 (%0d)
 //   integer i = 4'b1111            RHS unsigned -> 15
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.5.3
 module b_5_5_3_assignment_extension;
   reg [7:0] u;

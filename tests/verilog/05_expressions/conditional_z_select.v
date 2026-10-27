@@ -1,3 +1,4 @@
+// gold: hand derivation, §5.1.13 Table 5-21: z combined with z is x
 //! inherited IEEE 1364-2005 5.1.13
 // An x/z condition over z and z gives x, not z (pr2172606b).
 module triage_conditional_z_select;

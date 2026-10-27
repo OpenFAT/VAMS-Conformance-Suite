@@ -10,6 +10,7 @@
 // then clears bits 7:6 of e5, giving 25. Constant bounds and widths may
 // also be wide integer expressions. Invalid width neighbors are the
 // native_select_{zero,variable}_width_rejected fixtures.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.1 9.2.2
 // native-required
 module native_wide_index_edges;

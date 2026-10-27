@@ -10,6 +10,7 @@
 //     -> 0000000000000000
 //   sumB = a + b, sumB 17 bits: evaluated in 17 bits, keeps the carry
 //     -> 10000000000000000
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.4
 module b_5_4_sum_width_from_lhs;
   reg [15:0] a, b;

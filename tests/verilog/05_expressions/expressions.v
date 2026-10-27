@@ -1,4 +1,5 @@
 // IEEE1364-2005 §§5.4.2,5.4.3,5.5.1–5.5.3; no simulator-derived oracle.
+// gold: Icarus Verilog 13.0 agrees on every line but legacy-z-merge, which is hand derived: §5.1.13 Table 5-21 combines z with z to x, so 4'bzz11 twice gives xx11
 //! inherited IEEE 1364-2005 5.1.5 5.1.11 5.1.13 5.4.1 5.4.2 5.4.3 5.5.1 5.5.2 5.5.3
 module expressions;
   reg [15:0] a, b, answer;

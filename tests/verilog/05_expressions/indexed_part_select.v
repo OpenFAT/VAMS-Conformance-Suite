@@ -23,6 +23,7 @@
 //     v[7:6] = 10 -> xx10
 //   write v[b +: 4] = 4'b0101: only bits 7:6 are written, with the low two
 //     bits of the value, 01 -> v = 01_10_0101 -> 01100101
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.1
 module b_5_2_1_indexed_part_select;
   reg [31:0] big_vect;

@@ -17,6 +17,7 @@
 //   |4'b0z00: 0|z = x, x|0 = x, x|0 = x -> x;   ~| -> x
 //   |4'b0z10: 0|z = x, x|1 = 1, 1|0 = 1 -> 1;   ~| -> 0
 //   ^4'b10z0: 1^0 = 1, 1^z = x, x^0 = x -> x;   ~^ -> x
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.11
 module b_5_1_11_reduction_steps;
   reg [3:0] v [0:3];

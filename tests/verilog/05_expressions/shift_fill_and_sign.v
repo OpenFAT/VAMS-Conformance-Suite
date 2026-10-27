@@ -28,6 +28,7 @@
 //   0000_0100; + 0 -> 00000100.
 // Same without the unsigned operand: s8 = $signed(4'b1000) >>> 1 into a
 //   signed 8-bit s8: signed, sign-extended to 1111_1000, >>> 1 -> 11111100.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.12
 module b_5_1_12_shift_fill_and_sign;
   reg [3:0] start, result, u;

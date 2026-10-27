@@ -14,6 +14,7 @@
 //   twod_array[1][3][sel], sel = 7 -> 0 ("use variable bit-select")
 // One dimension, reg [7:0] mema[0:3], mema[2] = 8'h3C = 0011_1100:
 //   mema[2][5:2] -> 1111, mema[2][0] -> 0
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.2 5.2
 module b_5_2_2_element_selects;
   reg [7:0] twod_array[0:255][0:255];

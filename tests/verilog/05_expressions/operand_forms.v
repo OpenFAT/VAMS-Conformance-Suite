@@ -17,6 +17,7 @@
 //                 t[35:32] = 0001
 //   nested concatenation {v[7:6], {n[1:0], P[1:0]}} = 10_10_00 -> 101000
 //   function call inv(v) = ~v -> 5a
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2
 module b_5_2_operand_forms;
   parameter P = 8'h3C;

@@ -23,6 +23,7 @@
 // Propagation to a primary, sign-extended only if the propagated type is
 //   signed: u8 = 4'sb1000 + 4'sb0001 -> signed, 11111000 + 1 = 11111001;
 //   u8 = 4'sb1000 + 4'b0001 -> unsigned, 00001000 + 1 = 00001001.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.5.2
 module b_5_5_2_real_and_relational_operands;
   reg [15:0] w;

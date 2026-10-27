@@ -22,6 +22,7 @@
 //                       = 9223372036854775807
 //   wire signed [7:0] sn = -8'sd6 -> sn/3 = -2 (signed, truncated toward 0)
 //   wire [7:0]        un = -8'sd6 -> 8'hFA = 250; un/3 = 83 (unsigned)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.6
 module b_5_1_6_reg_integer_interpretation;
   integer intA;

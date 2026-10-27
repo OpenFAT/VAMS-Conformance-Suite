@@ -17,6 +17,7 @@
 //   ~ (5-16) of k = 01xz: 10xx
 // Zero fill: 4'b1111 & 8'b1010_1010: 4'b1111 -> 0000_1111 -> 0000_1010;
 //            4'b1111 | 8'b1010_1010 -> 1010_1111.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.10
 module b_5_1_10_bitwise_tables;
   reg [15:0] i, j;

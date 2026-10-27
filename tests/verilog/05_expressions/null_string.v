@@ -4,6 +4,7 @@
 //
 //   n = "" -> 00;   n = "\0" -> 00;   n = "0" -> 30 ("0" is ASCII 8'h30)
 //   "" == "\0" -> 1;  "" == 0 -> 1;  "" == "0" -> 0
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.3.3
 module b_5_2_3_3_null_string;
   reg [7:0] n;

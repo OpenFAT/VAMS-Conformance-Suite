@@ -25,6 +25,7 @@
 // data = 16'h00ff:
 //   drive_busa = 1 -> 00ff;  0 -> zzzz;
 //   x -> each bit merges data with z: (0,z) = x, (1,z) = x -> xxxx
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.13
 module b_5_1_13_conditional_ambiguous;
   reg drive_busa;

@@ -2,6 +2,7 @@
 // and compound expressions use corresponding members. No chosen toolcorner
 // is assumed: results must be13,22 or31, not necessarilythemiddle value.
 // §7.14.1 permits unordered component triples;3:2:1 is not invalid.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.3 7.14.1
 module audit_expr_mintypmax_context;
   reg [7:0] value;

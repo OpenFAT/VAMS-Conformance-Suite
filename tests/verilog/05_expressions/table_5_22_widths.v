@@ -24,6 +24,7 @@
 //   c ? a : b  (max(L(j),L(k)) = 6, a zero-extended): 1_001111
 //   {a, c}  L(a)+L(c) = 6:                   1_111110
 //   {2{c, a}}  2*(2+4) = 12:                 1_101111101111
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.4.1
 module b_5_4_1_table_5_22_widths;
   reg [3:0] a;

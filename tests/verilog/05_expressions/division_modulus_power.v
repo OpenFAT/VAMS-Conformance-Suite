@@ -26,6 +26,7 @@
 //       (§5.1.2) -> 9.0.
 // x results, into reg [3:0] (context 32 bits, all bits x, truncated to 4):
 //       7/0 -> xxxx, 7%0 -> xxxx, 0 ** -1 -> xxxx.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.5
 module b_5_1_5_division_modulus_power;
   reg [3:0] q, m, p;

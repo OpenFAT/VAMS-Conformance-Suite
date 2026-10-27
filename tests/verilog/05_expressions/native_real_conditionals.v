@@ -5,6 +5,7 @@
 // Results are 1.25/1 call, 9.5/2 calls, then zero/4 and zero/6 calls.
 // The constant expression with equal real arms must use the same rule.
 // This operator has no prohibited input; no rejection is invented.
+// gold: hand derivation, §5.1.13: a known condition evaluates one arm, an x/z one both, giving 0 with real arms (above)
 //! inherited IEEE 1364-2005 5.1.13 10.4.1
 // native-required
 module native_real_conditionals;

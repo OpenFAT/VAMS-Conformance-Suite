@@ -10,6 +10,7 @@
 //       Q has no range, so it takes the size of its value (§4.10.1):
 //       max(4, 1) = 4 bits; 10 + 1 = 11 fits -> 11.
 //   U = dbl(21), dbl returns 2*x: a constant function call (§10.4.5) -> 42.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5
 module b_5_constant_select_and_function;
   parameter P = 8'hA5;

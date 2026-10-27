@@ -1,5 +1,6 @@
 // IEEE1364-2005 §5.1.14: zero replication contributes no bits when an
 // immediate concatenation sibling has positive width. Sizeda+5 givesa5.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.14
 module audit_expr_concat_zero_neighbor;
   reg [7:0] value;

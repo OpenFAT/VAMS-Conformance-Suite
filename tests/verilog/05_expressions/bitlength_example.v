@@ -13,6 +13,7 @@
 //   (never assigned: x in every bit); c ? (a&b) : d. c is 1 (known), so the
 //   result is a&b = 1001 & 1000 = 1000, in max(L(a&b), L(d)) = 5 bits ->
 //   "answer = 01000", the clause's stated output.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.4.2
 module b_5_4_2_bitlength_example;
   reg [15:0] a16, b16, answer;

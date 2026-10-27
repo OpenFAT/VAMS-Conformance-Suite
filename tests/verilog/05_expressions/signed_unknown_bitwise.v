@@ -13,6 +13,7 @@
 //   ~4'sb10x1           -> 01x0
 //   1'bx ? 4'sb10x1 : 4'sb10x1 -> 10x1 (Table 5-21 keeps equal bits)
 // Each line prints 1 when the result is one of its two values.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.5.4
 module b_5_5_4_signed_unknown_bitwise;
   reg signed [3:0] e;

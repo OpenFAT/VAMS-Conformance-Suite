@@ -14,6 +14,7 @@
 //      32 bits (IntA and the literal 3) and all signed, so 4'sd12 is
 //      sign-extended to -4; -(-4) = 4; 4/3 = 1.
 // The clause gives all four results: -4, 1431655761, -4, 1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.3
 module b_5_1_3_integer_number_signedness;
   integer IntA;

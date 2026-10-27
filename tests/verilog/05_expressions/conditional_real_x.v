@@ -1,3 +1,4 @@
+// gold: hand derivation, §5.1.13: an x condition with a real arm gives 0
 //! inherited IEEE 1364-2005 5.1.13
 // With an x/z condition the result is the bitwise blend of the two operands;
 // for a real result that blend is 0, not either arm (pr2453002).

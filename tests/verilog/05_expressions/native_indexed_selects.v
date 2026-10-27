@@ -14,6 +14,7 @@
 // storage offset 60 in 130 bits sets bits 129:60 and leaves 59:0 zero.
 // Reading four bits beyond that vector returns xxxx11, preserving the
 // two valid top bits. Width-invalid neighbours are native_select_*_rejected.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.1 5.5.1
 // native-required
 module native_indexed_selects;

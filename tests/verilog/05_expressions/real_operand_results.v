@@ -15,6 +15,7 @@
 //   {r>s, r>=s, r<s, r<=s} = 1100
 //   {r==s, r!=s} = 01
 //   {!r, r&&s, r||0.0} = 011
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.1 4.8.1
 module b_5_1_1_real_operand_results;
   real r, s;

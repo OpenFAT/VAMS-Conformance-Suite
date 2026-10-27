@@ -22,6 +22,7 @@
 //   a < foo - 1        = a < (foo - 1) = 4 < 4 -> 0
 //   foo - (1 < a)      = 5 - 1 -> 4
 //   foo - 1 < a        = (5 - 1) < 4 -> 0
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.7
 module b_5_1_7_relational_extension;
   integer foo, a;

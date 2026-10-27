@@ -1,6 +1,7 @@
 // IEEE1364-2005 §5.6: discard MSBs regardless of declared index direction;
 // signed8'h8f truncates to signed5'b01111, changing sign to positive15.
 // Low bits retain x/z exactly; width mismatch needs no warning or rejection.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.6
 module audit_expr_truncation_direction;
   reg signed [7:0] source;

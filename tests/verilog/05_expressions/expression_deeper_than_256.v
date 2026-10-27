@@ -4,6 +4,7 @@
 //
 // HAND DERIVATION. A left-associative sum of 300 ones is 299 levels deep,
 // past the old 256, and its value is 300. %0d prints it unpadded.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.5
 //! expect stdout expression_deeper_than_256.expected.txt
 module b_5_expression_deeper_than_256;

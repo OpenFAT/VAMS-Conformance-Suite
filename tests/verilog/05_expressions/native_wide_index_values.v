@@ -10,6 +10,7 @@
 // Their signed counterpart -1 remains a legal index, producing m[-1]=66.
 // Zero/variable-width restrictions have named legal-neighbor rejections
 // in native_select_{zero,variable}_width_rejected.v.
+// gold: hand derivation, §5.2.1 and §5.2.2 (above)
 //! inherited IEEE 1364-2005 5.2.1 5.2.2
 // native-required
 module native_wide_index_values;

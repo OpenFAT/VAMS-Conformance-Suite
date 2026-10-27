@@ -13,6 +13,7 @@
 // m[1][0] stays 3c. Array and packed unknown writes leave both unchanged.
 // A wide element's write crosses the 64-bit storage boundary, yet only
 // bank[1]'s bits 71:60 receive abc; bank[0] stays zero.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.1 5.2.2 5.5.1 9.2.2
 // native-required
 `timescale 1ns/1ns

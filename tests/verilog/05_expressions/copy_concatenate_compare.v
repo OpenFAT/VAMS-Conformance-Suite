@@ -7,6 +7,7 @@
 //   copy: a = "abc" (24 bits), b = a -> b is "abc"
 //   concatenate: c = {a, "def"} (48 bits) -> "abcdef"
 //   compare: b == "abc" -> 1; b == "abd" -> 0; c != "abcdef" -> 0
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.3.1
 module b_5_2_3_1_copy_concatenate_compare;
   reg [8*3:1] a, b;

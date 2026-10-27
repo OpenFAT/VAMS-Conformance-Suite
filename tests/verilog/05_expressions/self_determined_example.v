@@ -15,6 +15,7 @@
 // zeros are always displayed"): a*b is 6 bits -> 2 digits "16", c is 16 bits
 // -> 4 digits, "0001" and "ac61". The values are the clause's; the padding
 // is §17.1.1.3's.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.4.3
 module b_5_4_3_self_determined_example;
   reg [3:0] a;

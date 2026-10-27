@@ -23,6 +23,7 @@
 // real: 2.0 == 2 -> 2 converted to 2.0 -> 1
 // prec: 1 == 2 > 1   relational first: 1 == (1) -> 1
 //                    (the other grouping, (1==2) > 1 = 0 > 1, gives 0)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.8
 module b_5_1_8_equality_extension_and_unknowns;
   initial begin

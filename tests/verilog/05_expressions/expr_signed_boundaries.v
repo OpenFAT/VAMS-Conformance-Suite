@@ -2,6 +2,7 @@
 // $unsigned(-4'sd4) is4'b1100 and zero-extends. Signed8'h80 extends with
 // ones, but its full part-select, bit-select and concatenation are unsigned.
 // Destination signedness cannot change an unsigned RHS into signed operands.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.5 5.5.1 5.5.3
 module audit_expr_signed_boundaries;
   reg signed [7:0] s;

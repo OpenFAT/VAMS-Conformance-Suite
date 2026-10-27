@@ -14,6 +14,7 @@
 // §5.5.4):
 //   e = 4'sb10x1 + 4'sd1 -> xxxxxxxx
 //   e = 4'sb1z01 * 4'sd1 -> xxxxxxxx
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.5.4
 module b_5_5_4_signed_unknown_bits;
   reg signed [7:0] e;

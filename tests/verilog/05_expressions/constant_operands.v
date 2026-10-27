@@ -15,6 +15,7 @@
 //   P = B + 1 where B = 41: a previously defined parameter -> 42.
 //   C = $clog2(9): §17.11.1 ceiling of log2; 2**3 = 8 < 9 <= 16 = 2**4 -> 4.
 //   R = $rtoi(2.7): §17.8 converts by truncation -> 2.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5
 module b_5_constant_operands;
   parameter B = 41;

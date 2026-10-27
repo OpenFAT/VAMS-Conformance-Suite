@@ -14,6 +14,7 @@
 // col = 1 -> 5c; col = 256 (out of bounds) -> xx.
 // The out-of-bounds indices are variables, so NOTE 2 of §5.2.1 (constant
 // indices "may be flagged as a compile time error") does not apply.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.2
 module b_5_2_2_memory_indirection;
   reg [7:0] mem_name[0:1023];

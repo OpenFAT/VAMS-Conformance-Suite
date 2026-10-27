@@ -1,6 +1,7 @@
 // IEEE1364-2005 §§5.1.5/5.1.7: signed division truncates toward0,
 // remainder follows dividend. Divide/modulo by0 and arithmeticx/z yieldallx;
 // any relationalx/z operand produces1-bitx even if known bits differ.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.5 5.1.7
 module audit_expr_arithmetic_unknowns;
   reg signed [7:0] a,b,q,r;

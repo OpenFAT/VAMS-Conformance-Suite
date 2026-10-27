@@ -17,6 +17,7 @@
 //   acc[15] is the MSB -> 0; acc2[17] is the LSB -> 1; acc2[2] the MSB -> 0.
 // Out-of-bounds indices are variables, not constants, so NOTE 2 (p. 57: such
 // constant indices "may be flagged as a compile time error") does not apply.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.1
 module b_5_2_1_bit_part_select_addressing;
   reg [7:0] vect;

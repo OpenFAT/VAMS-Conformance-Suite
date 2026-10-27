@@ -13,6 +13,7 @@
 //     zero" (p. 60)
 // The NUL rule: {s1,s2} == "\0\0\0\0\0Hello\0\0\0 world!", whose zero bytes
 // are \0 characters (5 + 5 + 3 + 7 = 20 characters = 160 bits), -> 1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.3.2
 module b_5_2_3_2_padding_breaks_compare;
   reg [8*10:1] s1, s2;
