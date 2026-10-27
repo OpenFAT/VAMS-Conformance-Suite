@@ -165,7 +165,7 @@
           ];
         };
 
-        checks.selftest = pkgs.runCommand "conform-selftest" { nativeBuildInputs = [ built.conform ]; } ''
+        checks.selftest = pkgs.runCommandCC "conform-selftest" { nativeBuildInputs = [ built.conform ]; } ''
           sh ${./harness/selftest.sh} conform
           touch $out
         '';

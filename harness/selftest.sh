@@ -10,11 +10,30 @@ trap 'rm -rf "$T"' EXIT
 mkdir -p "$T/s/include" "$T/s/verilog-a" "$T/s/verilog" "$T/s/spice"
 
 cat > "$T/tool.conf" <<'EOF'
-run.verilog-a = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; s=$(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0); [ "$s" = segv ] && kill -SEGV $$; [ "$s" = hang ] && sleep 30; [ "$s" = hog ] && exec awk 'BEGIN { s = "x"; while (1) s = s s }'; [ "$s" = sip ] && exec awk 'BEGIN { s = "x"; for (i = 0; i < 20; i++) s = s s; exit 1 }'; exit $s
+run.verilog-a = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; s=$(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0); [ "$s" = segv ] && kill -SEGV $$; [ "$s" = hang ] && sleep 30; [ "$s" = hog ] && exec "$CONFORM_DIR/../../mem" 512 512 30000; [ "$s" = reserve ] && exec "$CONFORM_DIR/../../mem" 2048 16 300; exit $s
 run.verilog = [ -z "$CONFORM_COMPILE_ONLY" ] || exit 0; cp "$CONFORM_DIR/$CONFORM_STEM.file" out.txt 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.err" >&2 2>/dev/null; ${CONFORM_STD:+echo std=$CONFORM_STD}; ${CONFORM_PROTECT_KEYS:+echo keys=${CONFORM_PROTECT_KEYS##*/}}; ${CONFORM_NEGATIVE_TIMING:+echo negative-timing=$CONFORM_NEGATIVE_TIMING}; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
 run.vpi = echo "$CONFORM_LANG $(basename "$CONFORM_SRC")"
 EOF
 printf 'compile.verilog-a = exit 0\n' > "$T/compile-only.conf"
+# mem R T MS: reserve R MiB, touch T of them, hold them MS ms, print "held".
+${CC:-cc} -o "$T/mem" -x c - <<'EOF'
+#define _DEFAULT_SOURCE
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/mman.h>
+#include <unistd.h>
+int main(int argc, char **argv) {
+    if (argc != 4) return 2;
+    size_t reserve = strtoul(argv[1], 0, 10) << 20, touch = strtoul(argv[2], 0, 10) << 20;
+    char *p = mmap(0, reserve, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS | MAP_NORESERVE, -1, 0);
+    if (p == MAP_FAILED) return 1;
+    memset(p, 1, touch);
+    usleep(atoi(argv[3]) * 1000);
+    puts("held");
+    return 0;
+}
+EOF
 
 # case <dir> <name> <directives> <stdout> <exit>
 case_() {
@@ -44,10 +63,10 @@ case_ verilog-a timeout '//! bias V(p) = 1' '' hang
 case_ verilog-a xfail '//! bias V(p) = 1' 'ok=0\n' 0
 case_ verilog-a xpass '//! bias V(p) = 1' 'ok=1\n' 0
 case_ verilog-a tool_cannot '//! bias V(p) = 1' '' 77
-# -M 128 below: a tool that grows past the limit fails a reject test it
-# "rejects"; one that stays small rejects cleanly.
+# -M 128 below: a tool that touches 512 MiB fails a reject test it would
+# "reject" when killed; one that reserves 2048 MiB and touches 16 passes.
 case_ verilog-a reject_out_of_memory '//! reject E0001' '' hog
-case_ verilog-a reject_small_heap '//! reject E0001' '' sip
+case_ verilog-a big_reservation '//! stdout held' '' reserve
 case_ spice no_command '//! bias V(p) = 1' '' 0
 printf 'module g; endmodule\n' > "$T/s/verilog/golden.v"
 printf 'hi\n' > "$T/s/verilog/golden.expected.txt"
@@ -165,7 +184,7 @@ XFAIL	verilog-a/xfail.va
 XPASS	verilog-a/xpass.va
 SKIP	verilog-a/tool_cannot.va
 FAIL	verilog-a/reject_out_of_memory.va
-PASS	verilog-a/reject_small_heap.va
+PASS	verilog-a/big_reservation.va
 SKIP	spice/no_command.va
 PASS	verilog/golden.v
 PASS	verilog/app.v
@@ -196,6 +215,6 @@ FAIL	verilog-a/reject_ok.va
 EOF
 diff "$T/want" "$T/got"
 [ "$exit_status" = 1 ] || { echo "conform exited $exit_status, want 1"; exit 1; }
-grep -q 'reject_out_of_memory.va	[0-9]*	run exceeded 128 MiB' "$T/got.tsv" || { echo "out of memory not reported"; exit 1; }
+grep -q 'reject_out_of_memory.va	[0-9]*	run exceeded 128 MiB resident' "$T/got.tsv" || { echo "out of memory not reported"; exit 1; }
 grep -q 'compile-only' "$T/compile.tsv" || { echo "compile-only pass not labelled"; exit 1; }
 echo "selftest: ok"

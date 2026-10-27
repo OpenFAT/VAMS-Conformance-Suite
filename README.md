@@ -35,10 +35,11 @@ XPASS verilog/09_behavioral_modeling/case_default.v: expected to fail, passed
 `conform` exits 1 on any FAIL or XPASS. `-o results.tsv` writes every
 verdict with its wall time in milliseconds; `-x tools/<tool>.xfail` turns known failures into XFAIL, so a CI gate
 fails only when something changes. A stage gets `-T` seconds (default 120),
-and each process it starts `-M` MiB of data (default 4096, as
-`RLIMIT_DATA`); a stage that times out or fails past an eighth of that
-memory fails its test (`compile exceeded 4096 MiB`), never a skip or a pass,
-so one runaway tool cannot take the machine. `harness/selftest.sh` feeds the harness a
+and its process group `-M` MiB resident (default 4096, sampled every
+100 ms; address space reserved and never touched does not count); a stage
+past either limit is killed and fails its test
+(`compile exceeded 4096 MiB resident`), never a skip or a pass, so one
+runaway tool cannot take the machine. `harness/selftest.sh` feeds the harness a
 scripted fake tool and checks every verdict (`nix flake check` runs it).
 
 ## Layout

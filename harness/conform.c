@@ -8,7 +8,6 @@
  * POSIX C99, no dependencies: cc -O2 -o conform conform.c
  */
 #define _XOPEN_SOURCE 700
-#define _DEFAULT_SOURCE /* wait4: a stage's peak resident set */
 #include <assert.h>
 #include <ctype.h>
 #include <errno.h>
@@ -37,7 +36,7 @@ static int nconf;
 static char conf_dir[PATH_MAX];
 static char work_root[PATH_MAX];
 static int timeout_s = 120;
-static int mem_mib = 4096; /* RLIMIT_DATA of each process a stage starts */
+static int mem_mib = 4096; /* resident set of each stage's process group */
 static int jobs = 1;
 static int verbose;
 static int keep_work;
@@ -464,10 +463,46 @@ static void link_inputs(const char *src, const char *dir, const char *work) {
     free(text);
 }
 
+/* The resident set of process group `pgrp`, in MiB: field 24 of each
+ * /proc/<pid>/stat, in pages, summed over the processes in the group (a
+ * library two of them map counts twice). Threads are not listed in /proc.
+ * ponytail: one read per process on the machine per sample, 2 ms for 600
+ * processes; walk the group's children instead if a busy machine makes the
+ * scan show. */
+static long group_rss_mib(pid_t pgrp) {
+    assert(pgrp > 0);
+    DIR *d = opendir("/proc");
+    if (!d) return 0;
+    long pages = 0;
+    size_t seen = 0;
+    char path[64], buf[1024];
+    for (struct dirent *e; (e = readdir(d));) {
+        seen++;
+        assert(seen <= 1u << 22); /* PID_MAX_LIMIT */
+        if (!isdigit((unsigned char)e->d_name[0])) continue;
+        snprintf(path, sizeof path, "/proc/%s/stat", e->d_name);
+        int fd = open(path, O_RDONLY);
+        if (fd < 0) continue; /* exited since readdir */
+        ssize_t n = read(fd, buf, sizeof buf - 1);
+        close(fd);
+        if (n <= 0) continue;
+        buf[n] = 0;
+        char *p = strrchr(buf, ')'); /* field 2, the command, may hold ')' */
+        int group; /* field 5, read alone first: most processes are not ours */
+        long rss = 0;
+        if (p && sscanf(p + 1, "%*s %*s %d", &group) == 1 && group == pgrp &&
+            sscanf(p + 1, "%*s %*s %*d" "%*s %*s %*s %*s %*s %*s %*s %*s %*s"
+                   "%*s %*s %*s %*s %*s %*s %*s %*s %*s %ld", &rss) == 1)
+            pages += rss;
+    }
+    closedir(d);
+    assert(pages >= 0);
+    return pages * (sysconf(_SC_PAGESIZE) >> 10) >> 10;
+}
+
 enum { CRASHED = -1, TIMED_OUT = -2, OUT_OF_MEMORY = -3 }; /* Stage.status below 0 */
 typedef struct {
     int status; /* exit code, or CRASHED, TIMED_OUT, OUT_OF_MEMORY */
-    long peak_mib; /* the largest resident set of the stage's processes */
     char *out, *err;
 } Stage;
 
@@ -485,11 +520,6 @@ static Stage run_stage(const char *cmd, const char *work, const char *name) {
          * down with it; past this it gets SIGXFSZ and the stage fails. */
         struct rlimit fsize = {256 << 20, 256 << 20};
         setrlimit(RLIMIT_FSIZE, &fsize);
-        /* A runaway tool (ivlpp expanding two macros that name each other)
-         * takes every byte the machine has. RLIMIT_DATA, not RLIMIT_AS: Zig
-         * and LLVM reserve address space they never touch. */
-        struct rlimit data = {(rlim_t)mem_mib << 20, (rlim_t)mem_mib << 20};
-        setrlimit(RLIMIT_DATA, &data);
         int o = open(out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
         int e = open(err, O_WRONLY | O_CREAT | O_TRUNC, 0644);
         int nul = open("/dev/null", O_RDONLY);
@@ -500,33 +530,30 @@ static Stage run_stage(const char *cmd, const char *work, const char *name) {
     }
     setpgid(pid, pid);
     int st;
-    struct rusage ru = {0};
     struct timespec tick = {0, 5000000};
     time_t deadline = time(NULL) + timeout_s;
-    for (;;) {
-        pid_t r = wait4(pid, &st, WNOHANG, &ru);
+    for (int t = 1;; t++) {
+        pid_t r = waitpid(pid, &st, WNOHANG);
         if (r == pid) break;
         if (r < 0 && errno != EINTR) die("waitpid: %s", strerror(errno));
-        if (time(NULL) >= deadline) {
+        int late = time(NULL) >= deadline;
+        /* A runaway tool (ivlpp expanding two macros that name each other)
+         * takes every byte the machine has, so the group dies when its
+         * resident set passes the limit, sampled every 100 ms. Not an
+         * rlimit: RLIMIT_DATA and RLIMIT_AS count what Zig and LLVM reserve
+         * and never touch, and openvaf-r fails under 4096 MiB of either at
+         * 2540 MiB resident. */
+        int fat = !late && t % 20 == 0 && group_rss_mib(pid) > mem_mib;
+        if (late || fat) {
             kill(-pid, SIGKILL);
             waitpid(pid, &st, 0);
-            s.status = TIMED_OUT;
+            s.status = late ? TIMED_OUT : OUT_OF_MEMORY;
             goto done;
         }
         nanosleep(&tick, NULL);
     }
     s.status = WIFEXITED(st) ? WEXITSTATUS(st) : CRASHED;
-    s.peak_mib = ru.ru_maxrss >> 10; /* KiB, of the child and every descendant it waited for */
-    /* A refused allocation leaves no trace but the tool's own message, so a
-     * stage that failed after its resident set passed an eighth of the limit
-     * ran out of memory. The limit counts what a process holds, the resident
-     * set only what it touched: ivlpp, expanding two macros that name each
-     * other, fails at a quarter of the limit (1063 MiB of 4096), and a tool
-     * runs this suite's tests in under 200 MiB. ponytail: one allocation of
-     * most of the limit, made from a small heap, still reads as the tool's
-     * own failure; a cgroup's memory.events would see it. */
-    if (s.status != 0 && s.peak_mib >= mem_mib / 8) s.status = OUT_OF_MEMORY;
-    assert(s.status >= OUT_OF_MEMORY);
+    assert(s.status >= CRASHED);
     assert(s.status <= 255);
     kill(-pid, SIGKILL); /* stray background children */
 done:
@@ -539,7 +566,7 @@ done:
 
 static const char *describe(const Stage *s, const char *name, char *buf) {
     if (s->status == TIMED_OUT) snprintf(buf, MSG, "%s timed out after %ds", name, timeout_s);
-    else if (s->status == OUT_OF_MEMORY) snprintf(buf, MSG, "%s exceeded %d MiB (failed at %ld MiB resident)", name, mem_mib, s->peak_mib);
+    else if (s->status == OUT_OF_MEMORY) snprintf(buf, MSG, "%s exceeded %d MiB resident", name, mem_mib);
     else if (s->status == CRASHED) snprintf(buf, MSG, "%s crashed (signal)", name);
     else if (s->status >= 126) snprintf(buf, MSG, "%s could not run the command (exit %d)", name, s->status);
     else snprintf(buf, MSG, "%s exited %d", name, s->status);
@@ -978,7 +1005,7 @@ static void usage(void) {
           "  -j        tests run in parallel (default 1)\n"
           "  -x        expected failures: one test name (as printed) per line\n"
           "  -T        per-stage timeout (default 120)\n"
-          "  -M        memory limit of each process a stage starts, in MiB (default 4096)\n"
+          "  -M        resident memory limit of each stage's process group, in MiB (default 4096)\n"
           "  -o        write every verdict as `STATUS<TAB>name<TAB>milliseconds<TAB>detail`\n"
           "  -k        keep every work directory (failures always keep theirs)\n"
           "  -v        print passing tests too\n",
