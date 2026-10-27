@@ -1,0 +1,43 @@
+// §4.5.3 Table 4-17 gives ddt() three forms, and all three compute the same
+// thing: "ddt(expr) Returns d/dt x(t), the time-derivative of x, where x is
+// expr"; "ddt(expr, abstol) Same as above, except absolute tolerance is
+// specified explicitly"; "ddt(expr, nature) Same as above, except nature is
+// specified explicitly". Then: "In DC analysis, ddt() returns zero (0)." and
+// "The absolute tolerance, abstol or derived from nature, applies to the
+// output of the ddt operator".
+//
+// So the tolerance argument changes no value: each form is 0 at the DC point.
+// The integration method is the simulator's, so a transient d/dt would be one
+// implementation's number; the DC zero is the value the LRM fixes. The
+// operating point is V(in) = 0.75, so a ddt() that passed its argument
+// through would read 0.75e-9, not 0.
+//
+// The tolerance half: each form held in a variable is its own unknown, ddt$0,
+// ddt$1 and ddt$2 in source order (ddt_in_expression_is_a_charge_site.va),
+// so "the output of the ddt operator" is that unknown. The abstol form names
+// 1e-3; the nature form names annex D's Current, the nature of a d/dt of
+// charge, abstol 1e-12 (D.1, CURRENT_ABSTOL unset).
+//
+//! lrm 4.5.3
+//! lrm 4.5.3:1000
+//! bias V(in) = 0.75
+//! print none
+//! abstol ddt$1 = 1e-3
+//! abstol ddt$2 = 1e-12
+//! checks 5
+`include "check.vh"
+module ddt_forms_are_the_time_derivative(in, d);
+    inout in, d;
+    electrical in, d;
+    real x, y, z;
+
+    analog begin
+        x = ddt(1n * V(in));
+        y = ddt(1n * V(in), 1e-3);
+        z = ddt(1n * V(in), Current);
+        `CHECKX("ddt(expr) is zero in DC", x, 0.0);
+        `CHECKX("ddt(expr, abstol) is zero in DC", y, 0.0);
+        `CHECKX("ddt(expr, nature) is zero in DC", z, 0.0);
+        I(d) <+ x + y + z;
+    end
+endmodule

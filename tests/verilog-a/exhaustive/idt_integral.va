@@ -4,14 +4,19 @@
 //
 // The kernel accumulates on ACCEPTED steps: `eval` returns `v*dt + acc` and
 // `updateState` sets `acc += v*dt`. For a constant input that is exact, so the
-// want at t = k*dt is v*t with NO tolerance for discretization. With no `ic`,
-// Table 4-18 adds "c ... the initial starting point as determined by the
-// simulator"; VerA's c is 0 (specification/Vague_Decisions.md), which the first check
-// pins:
+// want at t = k*dt is ic + v*t with NO tolerance for discretization:
 //
-//   t=0     dt=0   -> the initial condition (§4.5.4: idt is `ic` in DC)
-//   t=1ns          -> 2.0 * 1e-9 = 2e-9
-//   t=4ns          -> 2.0 * 4e-9 = 8e-9
+//   t=0     dt=0   -> the initial condition (§4.5.4: "When used in DC or IC
+//                     analyses, idt() returns the initial condition (ic) if
+//                     specified")
+//   t=1ns          -> 5 + 2.0 * 1e-9
+//   t=4ns          -> 5 + 2.0 * 4e-9
+//
+// Only the ic form is asserted. Without ic, Table 4-18's c is "the initial
+// starting point as determined by the simulator", and §4.5.4: "If not
+// specified, the idt operator must be contained within a negative feedback
+// loop that forces its argument to zero. Otherwise the output of the idt
+// operator is undefined." A constant integrand is no such loop.
 //
 //! param k = 2.0
 //! bias V(n) = 0
@@ -30,21 +35,12 @@ module ex062_idt(p, n);
     //
     // RELATIONAL, and it has to be: the want is a different number at every one
     // of the five time points, and a stateful operator shown a single point
-    // says nothing at all (dt = 0 puts its state straight onto the input). The
-    // closed form k*t is §4.5.4's definition for a constant integrand, so the
-    // only VerA machinery the two sides share is `k` and `$abstime` — both
-    // pinned by literal checks elsewhere in this suite.
-    `CHECKEQ("idt(k) == k*t", idt(k), k * $abstime, 1e-24);
-    // §4.5.4 the initial-condition form: idt(x, ic) starts from `ic`, so it
-    // stays `ic` above the analytic integral. Looser tolerance here than above:
-    // the accumulator adds 2e-9 to 5.0 once per step, and summing in that order
-    // is a last-bit different from the closed form (1e-16 fails by exactly one
-    // ulp of 5). That is the summation, not the operator.
-    `CHECKEQ("idt(k, ic) == ic + k*t", idt(k, 5.0), 5.0 + k * $abstime, 1e-15);
-    // The one part of the claim that IS a number at every point: the ic form
-    // sits exactly `ic` above the plain one, forever.
-    `CHECK("the ic form is offset by exactly ic", idt(k, 5.0) - idt(k), 5.0, 1e-15);
-    // And the parameter both wants above are built from.
+    // says nothing at all. The closed form ic + k*t is §4.5.4's definition for
+    // a constant integrand. The tolerance covers rounding only: adding 2e-9 to
+    // 5.0 once per step may round each sum by half an ulp of 5 (4.4e-16), four
+    // times over.
+    `CHECKEQ("idt(k, ic) == ic + k*t", idt(k, 5.0), 5.0 + k * $abstime, 1e-14);
+    // And the parameter the want is built from.
     `CHECK("k took the override", k, 2.0, 0.0);
     I(p, n) <+ 0.0;
   end

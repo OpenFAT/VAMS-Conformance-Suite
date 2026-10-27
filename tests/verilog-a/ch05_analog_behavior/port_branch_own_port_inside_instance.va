@@ -1,0 +1,31 @@
+// The port-branch spelling of port_access_own_port_inside_instance.va.
+// §3.12.1: "A port branch is a special type of branch used to access the
+// flow into a port of a module (see 5.4.3). It is a branch between the upper
+// and lower connections of the port." So `I(pb)` over `branch (<a>) pb;` names
+// the same quantity as `I(<a>)`: inside an instance, the flow into that
+// instance's own port.
+//
+// BY HAND, at V(p) = 0.5: inside u1 (r = 2k), I(pb) = 2.5e-4; inside u2
+// (r = 1k), 5e-4. Each is its own V(a) / r; the top's port flow, 7.5e-4,
+// would fail both. Two checks.
+//
+//! lrm 3.12.1
+//! lrm 5.4.3
+//! bias V(p) = 0.5
+//! solve
+//! checks 2
+`include "check.vh"
+module pbop_g(a);
+  inout a; electrical a;
+  parameter real r = 1k;
+  branch (<a>) pb;
+  analog begin
+    I(a) <+ V(a) / r;
+    `CHECKEQ("a port branch carries the instance's own V(a) / r", I(pb), V(a) / r, 1e-12);
+  end
+endmodule
+module pbop_top(p);
+  inout p; electrical p;
+  pbop_g #(.r(2k)) u1(p);
+  pbop_g #(.r(1k)) u2(p);
+endmodule

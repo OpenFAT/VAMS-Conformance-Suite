@@ -4,10 +4,9 @@
  * IEEE 1364-2005 §26.3.5, p. 381: "All objects have a vpiIsProtected
  * property" ... "The vpiIsProtected property shall be TRUE if the
  * object_handle represents code that is protected; otherwise, it shall be
- * FALSE." Annex G's vpi_user.h numbers no vpiIsProtected; its vpiProtected
- * (10) is §26.6.1's "source protected module". VerA's vpi_user.h defines
- * vpiIsProtected as vpiProtected (specification/Vague_Decisions.md VD-045), so the
- * module property and the all-objects property are one question.
+ * FALSE." Annex G's vpi_user.h numbers no vpiIsProtected (its vpiProtected,
+ * 10, is §26.6.1's "source protected module"), so the property's number is
+ * the tool's header's, and this asks it by name only.
  *
  * ------------------------------------------------------------------ DERIVATION
  *
@@ -47,7 +46,7 @@
 //! inherited IEEE 1364-2005 26.3.5
 //! inherited-reject IEEE 1364-2005 26.3.5
 //! design ../../verilog-ams/ch11_vpi/objects.v
-//! stdout p02: b_26_3_5_protected checks=43
+//! stdout p02: b_26_3_5_protected checks=42
 
 #include "b_check.h"
 
@@ -69,7 +68,6 @@ static PLI_INT32 eoc(p_cb_data d)
 {
   vpiHandle top, itr, port;
   (void)d;
-  CHECK(vpiIsProtected == vpiProtected, "VD-045: vpiIsProtected is Annex G's vpiProtected");
   top = p02_by_name("p04_objects");
   is_false(top, "the top module");
   is_false(p02_by_name("p04_objects.u"), "a module instance");

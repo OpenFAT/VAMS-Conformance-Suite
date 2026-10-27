@@ -1,0 +1,36 @@
+// §10.2: "In addition to `resetall, if this directive is used without a
+// discipline name, discipline resolution will not use a default discipline
+// for nets declared after this directive is encountered in the text stream."
+//
+// The withdrawal is positional: it covers nets declared AFTER the bare
+// directive, and §10.2's opening sentence keeps the default on every net
+// that "appear[s] in the text stream following the use of the
+// `default_discipline directive, until ... another `default_discipline
+// directive ... is found". So the ports below, declared between
+// `default_discipline electrical and the bare reset, keep electrical even
+// though the reset is the last word in the file and discipline resolution
+// runs only at elaboration, after the whole text stream has been read.
+//
+// default_discipline_reset_leaves_no_default.va is the other half: the same
+// port shape declared after the bare directive has no discipline and is
+// refused. A tool that applied whichever `default_discipline it saw last
+// passes that file and fails this one.
+//
+// BY HAND. p and n are electrical through the default alone, so V(p,n) is the
+// branch potential, 0.75 - 0.25 = 0.5 V (§1.3.1), exact in binary.
+//
+//! lrm 10.2
+//! lrm 10.2:1000
+//! lrm 10.2:1001
+//! bias V(p) = 0.75, V(n) = 0.25
+//! checks 1
+`include "check.vh"
+`default_discipline electrical
+module ch10_default_discipline_reset_spares_earlier_nets(p, n);
+  inout p, n;
+  analog begin
+    `CHECKX("a net declared before the bare directive keeps the default", V(p, n), 0.5);
+    I(p, n) <+ V(p, n);
+  end
+endmodule
+`default_discipline

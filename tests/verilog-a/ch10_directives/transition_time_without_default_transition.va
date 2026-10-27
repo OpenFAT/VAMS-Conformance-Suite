@@ -1,0 +1,35 @@
+// §10.3: "If a `default_transition directive is not used in the description,
+// transition_time is controlled by the simulator."
+//
+// No `default_transition appears in this compilation (check.vh and annex D
+// set none), and the filter below has no rise or fall argument, so its ramp
+// time is the simulator's choice. The LRM fixes no number, so none is
+// asserted. What every choice must still give is a transition() that works
+// (§4.5.8): "In DC analysis, transition() passes the value of the expr
+// directly to its output", and the output moves from the old level toward
+// the new one, never outside them (§4.5.8's ramp is linear between them, and
+// a zero transition time is the step itself).
+//
+// BY HAND. The operand is 0 before 1 ns and 1 after it (a piecewise-constant
+// operand, as §4.5.8 asks). So:
+//   - at the DC point and at every time before 1 ns the output is exactly 0;
+//   - at and after 1 ns it lies in [0, 1], whatever the transition time.
+// The DC point and 0.5 ns take the first arm, 1 ns onward the second.
+//
+//! lrm 10.3
+//! lrm 10.3:1002
+//! lrm 4.5.8
+//! analysis tran
+//! time 0, 0.5n, 1n, 2n, 5n, 20n
+//! checks 6
+`include "check.vh"
+module ch10_transition_time_without_default_transition(p, n);
+  inout p, n; electrical p, n;
+  real x;
+  analog begin
+    x = transition($abstime >= 1n ? 1.0 : 0.0);
+    `CHECKI("the default-timed filter holds the old level before the change, then stays between the levels",
+            $abstime < 1n ? x == 0.0 : (x >= 0.0 && x <= 1.0), 1);
+    I(p, n) <+ V(p, n) + x;
+  end
+endmodule

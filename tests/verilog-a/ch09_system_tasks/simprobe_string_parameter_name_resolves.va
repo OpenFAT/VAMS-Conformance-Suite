@@ -1,16 +1,21 @@
 // §9.16: "The arguments inst_name and param_name are string values, either a
-// string literal, string parameter, or a string variable." This is the legal
-// neighbour of reject_simprobe_runtime_name.va: the same probe with the
-// names in string parameters, which VerA resolves at compile time.
+// string literal, string parameter, or a string variable." Here both names are
+// string parameters; simprobe_runtime_name_resolves.va holds the instance name
+// in a string variable instead.
 //
-// The monitor u_m is a sibling of u_a under the top, and u_a's gain is
-// overridden to 3.0, so $simprobe(inst, par) with inst = "u_a" and
-// par = "gain" is 3.0 by "the simulator will look for an instance called
-// inst_name in the parent of the current instance". The fallback -1.0 is
-// chosen so that a probe that fails to resolve cannot pass.
+// §9.16: "$simprobe() queries the simulator for an output variable named
+// param_name in a sibling instance called inst_name", and "the simulator will
+// look for an instance called inst_name in the parent of the current
+// instance". u_m and u_a are siblings under the top. g is u_a's output
+// variable (§3.2.1: "Module scope variables with a description or units
+// attribute, or both, shall be known as output variables"), assigned u_a's
+// gain, overridden to 3.0. So $simprobe(inst, par) with inst = "u_a" and
+// par = "g" is 3.0. The fallback -1.0 is chosen so that a probe that fails to
+// resolve cannot pass.
 //
 //! lrm 9.16
 //! lrm 9.16:1001
+//! lrm 3.2.1
 //! bias V(p) = 0.75, V(n) = 0.25
 //! checks 1
 `include "check.vh"
@@ -25,18 +30,22 @@ module simprobe_spn_dev(c, d);
   inout c, d;
   electrical c, d;
   parameter real gain = 1.0;
-  analog I(c, d) <+ gain * V(c, d);
+  (* desc = "gain" *) real g;
+  analog begin
+    g = gain;
+    I(c, d) <+ gain * V(c, d);
+  end
 endmodule
 
 module simprobe_spn_mon(c, d);
   inout c, d;
   electrical c, d;
   parameter string inst = "u_a";
-  parameter string par = "gain";
+  parameter string par = "g";
   real got;
   analog begin
     got = $simprobe(inst, par, -1.0);
-    `CHECKX("string parameters name the sibling's parameter", got, 3.0);
+    `CHECKX("string parameters name the sibling's output variable", got, 3.0);
     I(c, d) <+ 0.0 * V(c, d);
   end
 endmodule

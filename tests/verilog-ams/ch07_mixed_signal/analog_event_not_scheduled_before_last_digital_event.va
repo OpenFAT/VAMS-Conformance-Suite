@@ -1,0 +1,54 @@
+// §7.3.6.1: "When it is determined the event has occurred in the analog
+// domain, the statements under the event control shall be scheduled in the
+// digital domain at the nearest digital time tick to the time of the analog
+// event. This event shall not be schedule in the digital domain earlier than
+// the last or current digital event (see 8.3.3), however it may appear to be
+// in a delta cycle belonging to a tick started at an earlier or later time."
+//
+// THE CONSTRUCTION. `//! wave` walks V(vi) along 0.1 V/ns, so
+// cross(V(vi) - 1.24, +1) has one rising crossing, at 12.4 ns; its nearest
+// tick (timescale 1ns/1ns) is 12. The digital side has its own events at
+// ticks 12 and 13, each recording its tick in `t_last`. The handler records
+// the tick it runs at and whether that tick is at or after `t_last`, the last
+// digital event that ran before it.
+//
+// WHAT EVERY CONFORMING SCHEDULE GIVES. If tick 12 is still current when the
+// crossing is known, the handler runs at 12 (before or after the `t_last = 12`
+// event, in either delta order: both satisfy t_cross >= t_last). If the
+// digital engine has already run tick 13 by then, the sentence forbids 12 and
+// the handler runs in a delta cycle of 13. So t_cross is 12 or 13, and never
+// below t_last; a tool that ran the handler at tick 12 after tick 13 had
+// executed reads t_cross = 12 < t_last = 13. Exactly one crossing, so the
+// handler runs once.
+//
+// Pinned from 15 ns, two ticks clear of everything; bounded before that.
+//
+//! lrm 7.3.6.1
+//! lrm 7.3.6.1:2
+//! analysis tran
+//! time 0, 12n, 13n, 15n, 20n
+//! wave V(vi) = 0, 1.2, 1.3, 1.5, 2.0
+`timescale 1ns/1ns
+`include "check.vh"
+module analog_event_not_scheduled_before_last_digital_event(vi, vo);
+  inout vi, vo; electrical vi, vo;
+  integer t_last, t_cross, fired, in_order;
+  initial begin
+    t_last = 0; t_cross = 0; fired = 0; in_order = 1;
+    #12 t_last = $time;
+    #1  t_last = $time;
+  end
+  always @(cross(V(vi) - 1.24, +1, 1p, 1u)) begin
+    fired = fired + 1;
+    t_cross = $time;
+    if ($time < t_last) in_order = 0;
+  end
+  analog begin
+    `CHECKI("the handler never runs at a tick before the last digital event",
+            in_order, 1);
+    `CHECKI("one crossing, one run, at tick 12 or in a delta of 13",
+            ($abstime >= 15n) ? (fired == 1 && (t_cross == 12 || t_cross == 13))
+                              : (fired <= 1), 1);
+    V(vo) <+ 0.0;
+  end
+endmodule

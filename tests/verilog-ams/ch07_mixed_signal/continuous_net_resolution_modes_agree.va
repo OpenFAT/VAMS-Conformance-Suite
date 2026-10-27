@@ -3,15 +3,12 @@
 // resolution algorithms listed in Annex F. Both algorithms will give the same
 // result as there are no discrete disciplines to propagate upwards."
 //
-// §7.4.4 makes basic "the default" and leaves only the SELECTION of a mode
-// vendor-specific, so a fixture that pins basic mode with no selection tests
-// the normative default (basic_resolution_continuous_beats_discrete.va), and detail mode is testable once
-// selected (Vague_Decisions VD-008; VerA's selector is
-// `--discipline-resolution=detail`, whose top-down pass decides Figure 7-4
-// differently: discipline_resolution_detail_figure_7_4.va). §7.4.5 is
-// the case where the modes cannot disagree, because there is nothing discrete
-// in the design for them to propagate differently. Every net below is
-// continuous, so both algorithms must land on the same discipline.
+// §7.4.4: "There are two modes for this method of resolution, basic (the
+// default) and detail", and "The selection of these discipline resolution
+// modes shall be vendor-specific." §7.4.5 is the case where the modes cannot
+// disagree, because there is nothing discrete in the design for them to
+// propagate differently, so this file needs no mode selected. Every net below
+// is continuous, so both algorithms must land on the same discipline.
 //
 // THE NUMBER IS THE NET'S OWN NATURE ATTRIBUTE, read through §5.5.3 Syntax 5-4
 // — `net_identifier . potential_or_flow . nature_attribute_identifier`, the one

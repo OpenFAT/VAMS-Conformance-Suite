@@ -1,0 +1,58 @@
+// §9.17.3: "if the simulator determines that limiting is needed to improve
+// convergence, it will pass the following quantities as arguments to the
+// user-defined function: The first argument of the user-defined function shall
+// be the value of the access function reference for the current iteration.
+// The second argument shall be the appropriate internal state; generally, this
+// is the value that was returned by the $limit() function on the previous
+// iteration."
+//
+// THE CIRCUIT. `//! solve` frees p with n held at 0.75 V, and the branch
+// equation is exp(vlim) = exp(2), so the solved branch is V(p,n) = 2, i.e.
+// V(p) = 2.75. The limiter `walk` lets its result move at most 0.5 V from its
+// second argument and calls $discontinuity(-1) whenever its result is not its
+// first argument, as §9.17.3 requires of a user-defined limiter, so no
+// iteration it clamps can terminate the solve (§9.17.3: "the simulator is
+// prevented from terminating the iteration").
+//
+// WHAT ONLY THE TWO RULES MAKE TRUE. At the accepted solution `walk` returned
+// its first argument (else $discontinuity(-1) would have kept iterating), so
+// vlim IS that first argument, and the branch equation forces it to 2:
+//
+//   - first argument = V(p,n) for the current iteration: V(p,n) == 2, and so
+//     vlim == V(p,n). A tool passing V(p) (the node, 2.75 at the solution) or
+//     a stale iterate settles somewhere else or never settles.
+//   - second argument = an internal state that follows the solve (generally
+//     the previous return): from the 0 V start, 2 V is four 0.5 V moves away,
+//     reachable only if the second argument advances with the iterations. A
+//     state frozen at its first value never lets the clamp release, and the
+//     solve cannot converge.
+//
+// Which iterations are limited and how many it takes are the tool's; a tool
+// that never calls `walk` (§9.17.3:2 lets $limit return its first argument)
+// gives the same digits, so nothing here depends on that choice.
+//
+//! lrm 9.17.3
+//! lrm 9.17.3:6
+//! lrm 9.17.3:7
+//! solve
+//! bias V(n) = 0.75
+`include "check.vh"
+module limit_user_function_receives_branch_value_and_state(p, n);
+  inout p, n; electrical p, n;
+  real vlim;
+  analog function real walk;
+    input vnew, vold;
+    real vnew, vold;
+    begin
+      walk = vold + max(-0.5, min(0.5, vnew - vold));
+      if (abs(walk - vnew) > 1e-12) $discontinuity(-1);
+    end
+  endfunction
+  analog begin
+    vlim = $limit(V(p, n), walk);
+    I(p, n) <+ exp(vlim) - exp(2.0);
+    `CHECK("the solve settles on the branch equation: V(p,n) = 2", V(p, n), 2.0, 1e-6);
+    `CHECK("$limit returned the access function's own value at the accepted iteration",
+           vlim - V(p, n), 0.0, 1e-9);
+  end
+endmodule

@@ -1,0 +1,22 @@
+// §9.7.1: "If $finish is called from within an analog initial block, the
+// simulator shall report that the call was made during initialization in
+// place of the simulation time."
+//
+// $finish(1) is the level whose report carries the time (Table 9-25: "Prints
+// simulation time and location"); called from the analog initial block, the
+// report carries the phase instead. The source names no phase anywhere the
+// tool would echo (the module and file name avoid the word), so "initial" in
+// stdout comes from the report. The wording is the tool's; "initialization",
+// "during initial" and "analog initial block" all contain "initial".
+//
+//! lrm 9.7.1
+//! lrm 9.7.1:5
+//! lrm 5.2.1
+//! print none
+//! stdout initial
+`include "disciplines.vams"
+module finish_before_first_solution_reports_phase(p, n);
+  inout p, n; electrical p, n;
+  analog initial $finish(1);
+  analog I(p, n) <+ V(p, n) / 1k;
+endmodule

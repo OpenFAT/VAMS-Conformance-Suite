@@ -6,10 +6,11 @@
 // The two populated elements are 2.5 and -2.5, giving integers 3 and -3.
 // §9.2.2 captures the array target and value when scheduling the NBA, so
 // moving i,j afterwards leaves a[2][-1]=6.25 and a[1][0]=-2.5.
-// An invalid array write changes no element but still evaluates its RHS;
-// bump therefore runs twice. For invalid reads VerA converts §5.2.2's x
-// reference through §4.8.2 to +0.0; Vague_Decisions.md records that boundary,
-// rather than interpreting an unknown bit-plane as a host NaN.
+// A write to a[3][0], a word the declaration does not have, still evaluates
+// its right-hand side (§9.2.1), so bump runs once, and it cannot land on
+// a[2][-1] or a[1][0]. What a read of such a word returns, and what a write
+// through an x or z address does, §5.2.2 states only for memories that can
+// hold x, so neither is read here.
 // A valid element's explicit NaN payload is preserved by §17.8 conversions.
 // Legal whole-element reads here neighbor native_real_select_rejected.v.
 //! inherited IEEE 1364-2005 4.8 4.8.2 4.9.2 9.2.2
@@ -33,9 +34,6 @@ module native_real_arrays;
     i = 1; j = 0;
     #3 $display("nba %.2f %.2f", a[2][-1], a[i][j]);
     i = 3; a[i][0] = bump(0);
-    $display("outside %.2f", a[i][0]);
-    i = 32'bz; a[i][0] = bump(0);
-    $display("unknown %.2f", a[i][0]);
     $display("unchanged %0d %.2f %.2f", calls, a[2][-1], a[1][0]);
     t[-1] = $bitstoreal(64'h7ff8000000000001);
     $display("real-bits %h", $realtobits(t[-1]));

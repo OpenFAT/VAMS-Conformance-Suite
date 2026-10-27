@@ -1,0 +1,79 @@
+// Annex F.2.2 step 4, the depth-first pass of the alternate algorithm:
+//
+//   F.2.2:7 "Any net whose child nets are all digital shall be considered
+//   digital."
+//
+// SELECTED BY THE OPTION F.2.2:2 requires: `//! discipline-resolution detail`.
+//
+// THE DESIGN. The top declares `nd` annex_f_c7_d, so it is digital from step
+// 2 and no step revisits it (a top segment has no parent for step 5 to
+// read). `annex_f_c7_mid` declares its port `p` annex_f_c7_d (discrete),
+// and instantiates `annex_f_c7_x` on it. x's port `q` is undeclared; its two
+// children, the ports of two annex_f_c7_leaf instances, are annex_f_c7_d.
+// Nothing uses q in behavioral code.
+//
+// BY HAND. Step 4 reaches x.q after its leaves: both children digital, so
+// x.q is digital (F.2.2:7) and step 4b gives it its children's only
+// discipline, annex_f_c7_d. Step 5 re-determines it because step 4 made it
+// digital: its parent mid.p is digital, so it stays digital (F.2.2:13), and it
+// already has a discipline. Every port on that signal then joins two
+// annex_f_c7_d segments: no mixed port, no connect module.
+//
+// A step 4 that made x.q analog instead, which is the basic algorithm's "any
+// others shall be considered analog" applied to it, leaves it final there:
+// no analog child discipline to take, so its discipline is unknown, and it
+// connects through ports to digital segments above and below. F.2.2 makes
+// that an error; a tool that bridges it instead inserts connect modules at
+// x's port and at both leaves.
+//
+// THE COUNT. Each d2a instance prints one CHECK line, so `//! checks` counts
+// bridges plus the analog block's own CHECK. The control signal `nc` joins
+// an electrical port (ablk) and a discrete leaf: step 4 makes it analog, so
+// the leaf's port is mixed and takes exactly one d2a, loading 1 kohm, and
+// ablk's 1 mA reads V = 1.0. That is two lines: the control's bridge and
+// ablk's check. Bridges on the q signal would add three more.
+//
+//! lrm F.2.2
+//! lrm F.2.2:2
+//! lrm F.2.2:7
+//! discipline-resolution detail
+//! solve
+//! checks 2
+`include "check.vh"
+discipline annex_f_c7_d; domain discrete; enddiscipline
+connectmodule annex_f_c7_d2a(d, a);
+  input d; annex_f_c7_d d;
+  output a; electrical a;
+  analog begin
+    `CHECKX("a d2a bridges a mixed port", 1.0, 1.0);
+    I(a) <+ V(a) / 1000.0;
+  end
+endmodule
+connectrules annex_f_c7_rules;
+  connect annex_f_c7_d2a input annex_f_c7_d, output electrical;
+endconnectrules
+module annex_f_c7_leaf(out);
+  output out; annex_f_c7_d out;
+endmodule
+module annex_f_c7_x(q);
+  output q;
+  annex_f_c7_leaf l1(q);
+  annex_f_c7_leaf l2(q);
+endmodule
+module annex_f_c7_mid(p);
+  output p; annex_f_c7_d p;
+  annex_f_c7_x x(p);
+endmodule
+module annex_f_c7_ablk(out);
+  output out; electrical out;
+  analog begin
+    I(out) <+ -1.0e-3;
+    `CHECK("the control's one d2a loads 1 kohm: V = 1.0", V(out), 1.0, 1e-12);
+  end
+endmodule
+module annex_f_c7_top;
+  annex_f_c7_d nd;
+  annex_f_c7_mid m(nd);
+  annex_f_c7_leaf cl(nc);
+  annex_f_c7_ablk a(nc);
+endmodule

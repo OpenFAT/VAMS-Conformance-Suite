@@ -1,0 +1,50 @@
+// §9.15: "There is no fixed list of simulation parameters. However, simulators
+// shall accept the strings in Table 9-27 to access commonly-known simulation
+// parameters, if they support the parameter." and "If the optional expression
+// is supplied, its value is returned if param_name is not known and no error
+// is generated." "$simparam() shall always return a real value; simulation
+// parameters that have integer values shall be coerced to real."
+//
+// Table 9-27's thirteen strings: gdev, gmin, imax, imelt, iteration, scale,
+// shrink, simulatorSubversion, simulatorVersion, sourceScaleFactor, tnom,
+// timeUnit, timePrecision. Whether a simulator supports each is its own, so
+// with a fallback no call may fail: the model compiles and runs whatever the
+// set. The digits of each are the simulator's, except for what the table
+// itself fixes:
+//
+//   iteration    "Iteration number of the analog solver", an integer coerced
+//                to real, so it is integral; the fallback -1 is too.
+//   timeUnit     "Time unit as specified in `timescale in seconds": under
+//                `timescale 1ns/1ps, 1e-9, or the fallback -1 if unsupported.
+//   timePrecision  likewise 1e-12 or -1.
+//
+// The sum of all thirteen values is printed, not checked: the check is that
+// none of the calls fails. Three checks.
+//
+//! lrm 9.15
+//! lrm 9.15:3
+//! bias V(p) = 0.5, V(n) = 0
+//! checks 3
+`timescale 1ns/1ps
+`include "check.vh"
+module simparam_standard_names_accepted(p, n);
+  inout p, n; electrical p, n;
+  real it, tu, tp, all;
+  analog begin
+    it = $simparam("iteration", -1.0);
+    tu = $simparam("timeUnit", -1.0);
+    tp = $simparam("timePrecision", -1.0);
+    all = $simparam("gdev", 0.0) + $simparam("gmin", 0.0) + $simparam("imax", 0.0)
+        + $simparam("imelt", 0.0) + it + $simparam("scale", 0.0)
+        + $simparam("shrink", 0.0) + $simparam("simulatorSubversion", 0.0)
+        + $simparam("simulatorVersion", 0.0) + $simparam("sourceScaleFactor", 0.0)
+        + $simparam("tnom", 0.0) + tu + tp;
+    $strobe("Table 9-27 sum %g", all);
+    `CHECKI("iteration is integral, or the fallback", it == floor(it), 1);
+    `CHECKI("timeUnit is 1 ns in seconds, or the fallback",
+            (tu == -1.0) || (abs(tu - 1e-9) <= 1e-21), 1);
+    `CHECKI("timePrecision is 1 ps in seconds, or the fallback",
+            (tp == -1.0) || (abs(tp - 1e-12) <= 1e-24), 1);
+    I(p, n) <+ V(p, n) / 1k;
+  end
+endmodule

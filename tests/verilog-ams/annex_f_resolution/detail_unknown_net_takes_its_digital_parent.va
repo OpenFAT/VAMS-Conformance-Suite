@@ -1,0 +1,90 @@
+// Annex F.2.2, steps 4 and 5 of the alternate algorithm, on a net with no
+// domain evidence of its own:
+//
+//   F.2.2:9 (step 4) "Any others shall still be considered unknown."
+//   F.2.2:13 (step 5) "Any net whose parent nets are digital shall be
+//   considered digital."
+//
+// SELECTED BY THE OPTION F.2.2:2 requires: `//! discipline-resolution detail`.
+//
+// THE DESIGN. The top declares `nd` annex_f_c13_d, so it is digital from
+// step 2 and no step revisits it. `annex_f_c13_mid` declares its port `p` annex_f_c13_d
+// (discrete) and instantiates `annex_f_c13_x` on it; x instantiates
+// `annex_f_c13_leaf` on its port `q`. Neither x.q nor leaf.r is declared,
+// used in behavioral code, or connected to any declared child.
+//
+// BY HAND. Step 4 finds no digital use, no all-digital children and no
+// analog connection on x.q or leaf.r, so both stay unknown (F.2.2:9). Step 5
+// goes top-down: x.q's parent mid.p is digital, so x.q is digital
+// (F.2.2:13) and takes mid.p's discipline, annex_f_c13_d; then leaf.r's
+// parent x.q is digital, so leaf.r is too. No port on that signal is mixed:
+// no connect module.
+//
+// Either violation is visible. Deciding x.q analog in step 4 (the basic
+// algorithm's "any others shall be considered analog") makes it final there,
+// with no discipline and a digital segment above it. A step 5 that does not
+// take the digital parent ends at "Any others shall be considered analog",
+// the same answer. Both leave a continuous segment of unknown discipline on a
+// port to a digital one: an error, or connect modules if a tool bridges it.
+//
+// THE COUNT. As in detail_step4_digital_children_make_a_digital_net.va, each
+// d2a prints one CHECK line. The control signal `nc` joins an electrical port
+// and a discrete leaf, so it is analog and takes exactly one d2a: ablk's 1 mA
+// into 1 kohm reads V = 1.0. Two lines in all.
+//
+//! lrm F.2.2
+//! lrm F.2.2:2
+//! lrm F.2.2:9
+//! lrm F.2.2:13
+//! discipline-resolution detail
+//! solve
+//! checks 2
+`include "check.vh"
+discipline annex_f_c13_d; domain discrete; enddiscipline
+connectmodule annex_f_c13_d2a(d, a);
+  input d; annex_f_c13_d d;
+  output a; electrical a;
+  analog begin
+    `CHECKX("a d2a bridges a mixed port", 1.0, 1.0);
+    I(a) <+ V(a) / 1000.0;
+  end
+endmodule
+connectmodule annex_f_c13_a2d(a, d);
+  input a; electrical a;
+  output d; annex_f_c13_d d;
+  analog begin
+    `CHECKX("an a2d bridges a mixed port", 1.0, 1.0);
+    I(a) <+ V(a) / 1000.0;
+  end
+endmodule
+connectrules annex_f_c13_rules;
+  connect annex_f_c13_d2a input annex_f_c13_d, output electrical;
+  connect annex_f_c13_a2d input electrical, output annex_f_c13_d;
+endconnectrules
+module annex_f_c13_dleaf(out);
+  output out; annex_f_c13_d out;
+endmodule
+module annex_f_c13_leaf(r);
+  output r;
+endmodule
+module annex_f_c13_x(q);
+  output q;
+  annex_f_c13_leaf l(q);
+endmodule
+module annex_f_c13_mid(p);
+  output p; annex_f_c13_d p;
+  annex_f_c13_x x(p);
+endmodule
+module annex_f_c13_ablk(out);
+  output out; electrical out;
+  analog begin
+    I(out) <+ -1.0e-3;
+    `CHECK("the control's one d2a loads 1 kohm: V = 1.0", V(out), 1.0, 1e-12);
+  end
+endmodule
+module annex_f_c13_top;
+  annex_f_c13_d nd;
+  annex_f_c13_mid m(nd);
+  annex_f_c13_dleaf cl(nc);
+  annex_f_c13_ablk a(nc);
+endmodule

@@ -1,4 +1,1 @@
-[   Hello]
-[Hello]
-[     a b]
-[a b]
+first=[ nul=0 tail=1

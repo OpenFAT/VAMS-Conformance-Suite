@@ -105,8 +105,7 @@ static P02_UNUSED vpiHandle p02_by_name(const char *name)
  * the latter only for cbEndOfCompile, cbStartOfSimulation, cbEndOfSimulation,
  * cbUnresolvedSystf, cbError and cbPLIError. When cbEndOfCompile runs, "all
  * functionality is available". So a startup routine hands the rest of its
- * work to p02_defer(fn), which runs fn at cbEndOfCompile (docs/
- * Vague_Decisions.md VD-044). Not a CHECK: the census counts are the
+ * work to p02_defer(fn), which runs fn at cbEndOfCompile. Not a CHECK: the census counts are the
  * application's own assertions. One deferral per application. */
 static P02_UNUSED void (*p02_deferred)(void);
 

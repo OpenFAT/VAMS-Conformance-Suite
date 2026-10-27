@@ -1,0 +1,24 @@
+// The design reject_step_file_read_position.c runs on: it rejects a transient
+// step through vpi_sim_control(vpiRejectTransientStep), and writes the input
+// file before the analysis. See that file for the derivation; this one only
+// exposes the last value read as a potential.
+//
+// @(timer(1, 1)) reads the next integer at t = 1, 2, 3 (§5.10.3.3, §9.5.4.2's
+// $fscanf); `v` holds between reads, and V(out) == v.
+`include "disciplines.vams"
+
+module file_read_probe(p, n);
+  inout p, n; electrical p, n;
+  integer fd, rc, v;
+  analog begin
+    @(initial_step) fd = $fopen("reject_step_file_read_position.dat", "r");
+    @(timer(1, 1)) rc = $fscanf(fd, "%d", v);
+    V(p, n) <+ v;
+  end
+endmodule
+
+module reject_step_file_read_position;
+  electrical out, gnd;
+  ground gnd;
+  file_read_probe probe(.p(out), .n(gnd));
+endmodule

@@ -1,0 +1,40 @@
+// §9.17.3: "If more than two arguments are given to the $limit() function,
+// then the third and subsequent arguments are passed as the third and
+// subsequent arguments of the user-defined function."
+//
+// `$limit(V(p,n), walk, 0.5, 7.0)` hands `walk` the step bound 0.5 as its third
+// argument and the tag 7 as its fourth. `walk` clamps its move to the third
+// argument, and when the arguments it received are not (0.5, 7) it returns
+// its first argument plus one and calls $discontinuity(-1), which no
+// iteration can terminate on (§9.17.3: "the simulator is prevented from
+// terminating the iteration"). So a tool that drops, reorders or replaces
+// the extra arguments, whenever it calls `walk`, never converges or settles
+// off the branch equation; one that passes them settles on exp(vlim) =
+// exp(2), V(p,n) = 2. A tool that never calls `walk` (§9.17.3:2) settles
+// there too: the rule is about what is passed when the function is called.
+//
+//! lrm 9.17.3
+//! lrm 9.17.3:1004
+//! solve
+//! bias V(n) = 0
+`include "check.vh"
+module limit_user_function_receives_extra_arguments(p, n);
+  inout p, n; electrical p, n;
+  real vlim;
+  analog function real walk;
+    input vnew, vold, step, tag;
+    real vnew, vold, step, tag;
+    begin
+      if (step == 0.5 && tag == 7.0)
+        walk = vold + max(-step, min(step, vnew - vold));
+      else
+        walk = vnew + 1.0;
+      if (abs(walk - vnew) > 1e-12) $discontinuity(-1);
+    end
+  endfunction
+  analog begin
+    vlim = $limit(V(p, n), walk, 0.5, 7.0);
+    I(p, n) <+ exp(vlim) - exp(2.0);
+    `CHECK("the solve settles on the branch equation: V(p,n) = 2", V(p, n), 2.0, 1e-6);
+  end
+endmodule

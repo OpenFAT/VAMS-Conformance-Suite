@@ -6,10 +6,11 @@
 // The consequence this file pins is the other direction of "as soon as": a
 // `define has NO effect on text the compiler read before it. `GAIN is used in
 // the analog block and defined only after `endmodule`, so at the point of use
-// no macro GAIN exists. IEEE 1364-2005 §19.3.2 gives such a macro no value and
-// makes no error of it; VerA refuses the use (docs/specification/Vague_Decisions.md VD-126),
-// since expanding it to nothing hides a typo. Moving the `define above the
-// module makes the same file legal.
+// no macro GAIN exists. IEEE 1364-2005 §19.3.2: "An undefined text macro has
+// no value, just as if it had never been defined." Whether a tool diagnoses
+// the use itself or substitutes nothing, the statement left is `x = ;`, which
+// A.6 does not derive, so the file is refused either way. Moving the `define
+// above the module makes the same file legal.
 //
 // VerA reports E0115 "undefined macro: `GAIN".
 //

@@ -3,7 +3,7 @@
 // just as if it had never been defined."
 //
 // `w is defined, undefined, then used: it names no macro, as a name never
-// defined does (use_before_define_rejected.v). Legal neighbour:
+// defined does. Legal neighbour:
 // undef.v, which reads `width only while it is defined.
 //! inherited IEEE 1364-2005 19.3.2
 //! reject E0115

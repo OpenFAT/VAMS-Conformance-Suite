@@ -1,8 +1,7 @@
 // E.3.1 lists the SPICE controlled sources a subcircuit may hold, and E.2
 // makes "the subcircuits and models contained within the SPICE netlist"
 // module definitions. This is the voltage-controlled voltage source, the `E`
-// card in its plain four-node form, and the legal neighbour of
-// reject_spice_poly_controlled_source.va.
+// card in its plain four-node form.
 //
 // THE NETLIST. A gain-of-two amplifier driving a load:
 //

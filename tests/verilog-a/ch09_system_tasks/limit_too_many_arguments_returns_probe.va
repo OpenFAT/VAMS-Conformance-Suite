@@ -1,11 +1,12 @@
-// §9.17.3: "In all cases, the simulator is responsible for determining if
-// limiting should be applied and what the return value is on a given iteration.
-// In particular, the simulator may simply choose to have $limit() return the
-// value of its first argument". After an algorithm's own arguments VerA reads
-// an optional frame sign and then an optional seed (specification/Vague_Decisions.md);
-// steplim's own is the step, so its fullest call has five arguments. A sixth
-// has no meaning VerA gives it, so the site is declined: it compiles, warns
-// W0853, and returns the probe unchanged. 230 is the too-few side.
+// §9.17.3, Syntax 9-12: `$limit ( access_function_reference , string,
+// arg_list )`. The arg_list is the built-in's own; the clause fixes no length.
+// "In all cases, the simulator is responsible for determining if limiting
+// should be applied and what the return value is on a given iteration", but
+// "On any iteration where the output value is not the same as the value of
+// the access function (within appropriate tolerances), the simulator is
+// prevented from terminating the iteration." So however a tool reads the
+// extra arguments, the converged return is the probe. (VerA declines the site
+// with W0853 and returns the probe unchanged.)
 //
 // Two 100 ohm resistors divide V(p) = 1 V, so V(a) = 0.5 V, independent of any
 // limiting; the returned value is used in the contribution, so a return other
@@ -13,8 +14,6 @@
 //
 //! lrm 9.17.3
 //! lrm 9.17.3:2
-//! warn W0853
-//! warn too many arguments for the algorithm
 //! solve
 //! bias V(p) = 1, V(n) = 0
 `include "check.vh"
@@ -25,6 +24,6 @@ module limit_too_many_arguments_returns_probe(p, n);
     v = $limit(V(a,n), "steplim", 0.1, 1, 0.5, 7);
     I(p,a) <+ V(p,a) / 100.0;
     I(a,n) <+ v / 100.0;
-    `CHECKR("a steplim with a sixth argument returns the probe", v, 0.5, 1e-4);
+    `CHECKR("the converged $limit is the probe", v, 0.5, 1e-4);
   end
 endmodule

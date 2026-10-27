@@ -13,11 +13,11 @@
 // difference is the presence of the fallback, and the rule under test is
 // exactly that difference. The failure mode a naive implementation ships is
 // returning 0.0 here — indistinguishable from a simulator that really does
-// have a parameter called "vera_no_such_simparam" and really does read zero,
+// have a parameter called "conform_no_such_simparam" and really does read zero,
 // which is why the LRM makes it an error rather than a default.
 //
 // THE REJECT SUBSTRING IS RULE-DERIVED, NOT NAME-DERIVED. It used to be the
-// literal `vera_no_such_simparam`, which is the least portable form the contract
+// literal `conform_no_such_simparam`, which is the least portable form the contract
 // allows: §9.15 does not require a diagnostic to echo the parameter name ("there
 // is no fixed list of simulation parameters ... simulators can also accept other
 // strings"), so a conforming tool that says only "simulation parameter is not
@@ -37,6 +37,6 @@
 module ch09_simparam_unknown_no_fallback_rejected(p, n);
   inout p, n; electrical p, n;
   analog begin
-    I(p,n) <+ $simparam("vera_no_such_simparam") + 0.0*V(p,n);
+    I(p,n) <+ $simparam("conform_no_such_simparam") + 0.0*V(p,n);
   end
 endmodule

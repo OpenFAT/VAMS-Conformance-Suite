@@ -1,11 +1,10 @@
 // §3.13.2: "Furthermore, the access function of each base nature shall be
 // unique."
 //
-// specification/Vague_Decisions.md VD-096: VerA's preloaded annex D natures take part in
-// this rule when the source includes D.1 itself (`disciplines.vams`, or its
-// Verilog-A 1.0 name `discipline.h`, VD-093). This source does, so annex D's
-// base nature Voltage (access V) is declared by the source, and so is
-// ch3_vd096_volt with access V: two base natures, one access function. The
+// This source includes D.1 (`disciplines.vams`), which declares the base
+// nature Voltage with `access = V` and Current with `access = I`. The source
+// then declares ch3_vd096_volt with access V: two base natures, one access
+// function. The
 // same holds for Current and ch3_vd096_amp (access I). E0335 names each pair.
 //
 // The legal neighbour is the same text without the include

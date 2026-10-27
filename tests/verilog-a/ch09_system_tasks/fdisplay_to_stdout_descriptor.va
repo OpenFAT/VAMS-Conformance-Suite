@@ -1,0 +1,25 @@
+// §9.5.1: "Three file descriptors are pre-opened; they are STDIN, STDOUT, and
+// STDERR, which have the values 32'h8000_0000, 32'h8000_0001, and
+// 32'h8000_0002, respectively. STDIN is pre-opened for reading, and STDOUT and
+// STDERR are pre-opened for append."
+//
+// So 'h8000_0001 is a descriptor the model never opened, and §9.5.2's
+// $fdisplay writes to it: the text lands on the standard output. The marker
+// appears nowhere else the tool prints, so stdout containing it is the
+// verdict. Where 'h8000_0002 goes is not visible to a harness whose adapter
+// merges the two streams, so STDERR is left out.
+// (file_open_close.va pins the other half: a NEW fd is none of the three.)
+//
+//! lrm 9.5.1
+//! lrm 9.5.1:1004
+//! lrm 9.5.2
+//! print none
+//! stdout pre-opened-stdout-marker 42
+`include "disciplines.vams"
+module fdisplay_to_stdout_descriptor(p, n);
+  inout p, n; electrical p, n;
+  analog begin
+    @(initial_step) $fdisplay('h8000_0001, "pre-opened-stdout-marker %0d", 42);
+    I(p, n) <+ V(p, n) / 1k;
+  end
+endmodule

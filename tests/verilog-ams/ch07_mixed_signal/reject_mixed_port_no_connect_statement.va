@@ -6,10 +6,12 @@
 //
 // `basic_resolution_continuous_beats_discrete.va` without its `connectrules` block: `shared` is undeclared and
 // resolves continuous (§7.4.4.1), so child1's discrete port is mixed and no
-// connect statement matches it. A port is mixed by the disciplines of its two
-// connections, not by whether anything crosses (Vague_Decisions VD-007), so
-// the empty bodies change nothing. Zero matches break "one (and only one)" as
-// two do (E0922).
+// connect statement matches it. §7.8.4 makes a port mixed by the disciplines
+// of its two connections ("A connection element is selected for each port
+// where one connection is analog and the other digital"), not by whether
+// anything crosses, so the empty bodies change nothing. Zero matches break
+// "one (and only one)" as two do, and §3.11's Signal Domain Rule makes the
+// connection "an error ... unless there is a connect statement".
 //
 // Legal neighbour: `basic_resolution_continuous_beats_discrete.va`, the same design plus one connect
 // statement, compiles and reads `shared` as a continuous node.

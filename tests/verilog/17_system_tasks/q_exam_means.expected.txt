@@ -1,3 +1,0 @@
-shortest=x
-interarrival=2 status=0
-wait=5 status=0

@@ -2,8 +2,9 @@
 // interconnect is undeclared"), detail resolution (§7.4.4.2), merged. The
 // figure lists "d2a at top.mix.blk2, d2a at top.digital_blk.(blk1-blk2), and
 // d2a at top.digital_blk.twoblks (three connect modules)", the same line as
-// Case 1's. §7.8.4's merge rule applied to Case 2 gives two, and VerA follows
-// the rule (specification/Vague_Decisions.md VD-092). This file pins the two.
+// Case 1's. §7.8.4's merge rule applied to Case 2 gives two (derivation
+// below). The figure and the rule disagree, so this file asserts only what
+// both allow: two or three connect modules, not split's four or one.
 //
 // The design is auto_insertion_figure_7_6_detail_merged.va's (Case 1) with
 // one change: twoblks declares its port, NetB, `cmos1`. Every digital module
@@ -14,9 +15,7 @@
 // Each connect module loads its electrical side with 1 kohm and ablk drives
 // the node with 1 mA, so the node reads V = 1e-3 * 1000 / N for N instances.
 //
-// DERIVATION, F.2.2, re-derived for this file from §7.8.1, §7.8.4 and Annex
-// F.2.2 (the VD-092 derivation of 2026-10-04 had no second reading; this is
-// that second reading, and it agrees):
+// DERIVATION of the rule's count, from §7.8.1, §7.8.4 and Annex F.2.2:
 //  Steps 2-3. NetB is cmos1 by its in-context declaration; the leaf ports are
 //    cmos1 (blk) and electrical (ablk).
 //  Step 4 (depth-first, nets "not yet assigned a discipline"): NetB is
@@ -44,8 +43,8 @@
 //  The figure's third instance, "d2a at top.digital_blk.twoblks", is Case 1's
 //    bridge inside twoblks on NetB; in Case 2 both connections of blk3's and
 //    blk4's ports are cmos1, so no port there is mixed, and twoblks' own port
-//    shares NetA's instance. A tool that let step 5 turn the declared NetB
-//    electrical would read 3 (V = 1/3), and split would read 4 (V = 0.25).
+//    shares NetA's instance. The figure's reading, three, reads V = 1/3;
+//    split would read 4 (V = 0.25).
 //
 //! lrm 7.4.4.2
 //! lrm 7.4.4.2:1000
@@ -74,7 +73,7 @@ module f76c2m_ablk(out);
   output out; electrical out;
   analog begin
     I(out) <+ -1.0e-3;
-    `CHECK("2 connect modules load the node: V = 1 mA * 1 kohm / 2", V(out), 0.5, 1e-12);
+    `CHECK("2 (rule) or 3 (figure) connect modules load the node: V = 1/2 or 1/3", min(abs(V(out) - 0.5), abs(V(out) - 1.0 / 3.0)), 0.0, 1e-12);
   end
 endmodule
 module f76c2m_twoblks(out);

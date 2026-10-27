@@ -53,17 +53,10 @@
  *   vector[1].aval = 0x00000001   (bits 63:32, only bit 32 set)
  *   both bval = 0
  *
- * The same `wide` as vpiIntVal. Table 12-4: "Integer value of the handle",
- * and value.integer is a PLI_INT32, which 64 bits do not fit. VerA keeps the
- * low 32 bits, two's complement (specification/Vague_Decisions.md VD-049; IEEE
- * 1364-2005 5.6's rule for storing a wide value in a narrower integer, with
- * no diagnostic): bits 31:0 are 0xFFFFFFFF, so value.integer == -1. A tool
- * that saturated would give 0x7FFFFFFF, and one that refused would set an
- * error; the full value stays readable through vpiVectorVal above. The width
- * has no invalid form under this reading (refusing it would refuse every
- * `time` read), so no refusal is paired with it; Table 12-4's refusals are
- * a format the object cannot take (value_time_refusals.c,
- * ieee_pli/values.c).
+ * The same `wide` is not read as vpiIntVal. Table 12-4 gives that format
+ * only "Integer value of the handle", and value.integer is a PLI_INT32 that
+ * 64 bits do not fit; the LRM does not say which 32 bits, or whether the read
+ * is an error, so no outcome is asserted.
  *
  * p02_design.text is `reg [39:0]` = 40'h5665724121. Table 12-4 for
  * vpiStringVal: "A string where each 8-bit group of the value of the object is
@@ -116,7 +109,7 @@
 //! lrm 12.33.2:2
 //! lrm 12.33.2:4
 //! design ../digital/design.v
-//! stdout p02: 01_get_value_formats checks=50
+//! stdout p02: 01_get_value_formats checks=48
 //! stdout p02_design: t=20 reached
 
 #include "p02_check.h"
@@ -203,11 +196,6 @@ static int read_values(p_cb_data cb_data)
   CHECK(v.value.vector[1].aval == 0x00000001u,
         "wide[63:32] should be 0x00000001, got 0x%x", (unsigned)v.value.vector[1].aval);
   CHECK(v.value.vector[1].bval == 0u, "wide[63:32] has no x or z");
-  v.format = vpiIntVal;
-  vpi_get_value(wide, &v);
-  expect_no_error("vpi_get_value(wide, vpiIntVal)");
-  CHECK(v.value.integer == (PLI_INT32)0xFFFFFFFFu,
-        "wide as vpiIntVal keeps bits 31:0, -1, got %d", (int)v.value.integer);
 
   /* --- vpiStringVal, and the same bits as hex ---------------------------- */
   CHECK(vpi_get(vpiSize, text) == 40, "text should be 40 bits");

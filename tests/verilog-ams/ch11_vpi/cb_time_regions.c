@@ -116,22 +116,14 @@
  * only be returned as part of the iteration if there are events that precede
  * read only sync." 11.6.25 NOTE 5: "If any events after read only sync remain
  * in the current queue, then it shall not be returned as part of the
- * iteration." The two differ when an event AND a read-only-sync callback are
- * both pending now; specification/Vague_Decisions.md VD-046 takes 26.6.40's reading
- * (NOTE 5 as "if only events after read only sync remain"). Two walks at t=7,
- * where this file has cbReadOnlySynch(7) pending throughout:
- *
- *   cbAtStartOfSimTime(7)  the s block's #7 event is still to run, and it
- *                          precedes read-only sync -> the first queue is t=7
- *   cbReadWriteSynch(7)    "after execution of events for a specified time":
- *                          the s event has run and nothing else is due at 7
- *                          (the n block finished at 4, g waits for 10). Only
- *                          cbReadOnlySynch(7) is left -> t=7 is absent, and
- *                          the first queue is the g block's t=10
- *
- * The first walk is the mixed case, so it separates 26.6.40 from NOTE 5 read
- * literally; the second is the case both readings omit. Neither has an
- * invalid form: what the iteration contains is not something a caller can
+ * iteration." The two disagree when an event AND a read-only-sync callback are
+ * both pending now, so that case is not asserted. They agree when only
+ * read-only sync is left: 26.6.40(c) has no preceding event, and NOTE 5 has
+ * one remaining after read only sync. That is cbReadWriteSynch(7) here,
+ * "after execution of events for a specified time": the s event has run,
+ * nothing else is due at 7 (the n block finished at 4, g waits for 10), and
+ * cbReadOnlySynch(7) is pending -> t=7 is absent, and the first queue is the
+ * g block's t=10. What the iteration contains is not something a caller can
  * get wrong (the refusals of vpi_iterate(vpiTimeQueue, ...) are p04_04's and
  * ieee_pli/behaviour.c's).
  */
@@ -160,7 +152,7 @@
 //! lrm 12.31.2:3
 //! lrm 12.31.2:6
 //! design ../digital/design.v
-//! stdout p02: 05_cb_time_regions checks=82
+//! stdout p02: 05_cb_time_regions checks=79
 //! stdout p02_design: t=20 reached
 
 #include "p02_check.h"
@@ -219,9 +211,6 @@ static int on_start_of_sim_time(p_cb_data cb_data)
         cb_data->time->real);
   check_time_is(7, "cbAtStartOfSimTime(7)");
   CHECK(byte_of(s) == 0x01, "before the t=7 queue, s must still be 0x01");
-  CHECK(first_queue_time() == 7,
-        "26.6.40(c): the s event precedes read-only sync, so the current t=7 "
-        "queue is returned although cbReadOnlySynch(7) is pending too");
   return 0;
 }
 
@@ -245,8 +234,8 @@ static int on_read_write(p_cb_data cb_data)
   check_time_is(7, "cbReadWriteSynch(7)");
   CHECK(byte_of(s) == 0x42, "after the t=7 queue, s must be 0x42");
   CHECK(first_queue_time() == 10,
-        "26.6.40(c): only cbReadOnlySynch(7) is left at t=7, so the current "
-        "queue is not returned and the first is t=10");
+        "26.6.40(c) and 11.6.25 NOTE 5: only cbReadOnlySynch(7) is left at "
+        "t=7, so the current queue is not returned and the first is t=10");
   return 0;
 }
 

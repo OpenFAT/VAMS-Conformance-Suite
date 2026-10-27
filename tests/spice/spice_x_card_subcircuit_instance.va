@@ -30,8 +30,7 @@
 // 6/7 = 0.857; X2's R ignored (1k, M = 2), 0.5/1.5 = 0.333.
 //
 // No refusal neighbour: an X card has no form of its own that E.2 forbids.
-// One that names no module is §6's unknown module (E0904), and one whose
-// value is unreadable is the expression rules' (reject_spice_expression_value.va).
+// One that names no module is §6's unknown module (E0904).
 // Node 0 has no invalid use.
 //
 //! lrm E.2

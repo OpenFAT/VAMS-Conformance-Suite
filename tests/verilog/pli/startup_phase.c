@@ -15,37 +15,26 @@
  * LRM 12.33.2: "This array of C functions shall be for registering system
  * tasks and functions." Its "performing any other desired task just after
  * the simulator is invoked" is met by registering a callback that performs
- * it, as 12.31.4's setup_report_cpu example does (specification/Vague_Decisions.md
- * VD-044: VerA refuses every other routine at startup, with an error that
- * cites 26.2.4).
+ * it, as 12.31.4's setup_report_cpu example does. What a call to any other
+ * routine at startup does, 26.2.4 does not say (and 12.33.2's "any other
+ * desired task" may allow it), so none is made here.
  *
  * ------------------------------------------------------------------ DERIVATION
  *
- * AT STARTUP, allowed, each with no error:
+ * AT STARTUP, each with no error:
  *   vpi_register_systf($b264)                    a handle
  *   vpi_register_cb for cbEndOfCompile, cbStartOfSimulation,
  *     cbEndOfSimulation, cbError, cbPLIError      five handles
  * $b264's compiletf and sizetf are NULL: 12.33.1 "One or more of the
  * compiletf, calltf, and sizetf fields can be set to NULL if they are not
  * needed." The registration is accepted and reports no error.
- * (cbUnresolvedSystf is not asserted: VerA delivers no such callback and
- * refuses the reason at any time.) vpi_chk_error() is how each refusal below
- * is read; §27.1 resets the status on every call but it, so it is usable here.
+ * (cbUnresolvedSystf, the sixth reason, is not registered here.)
  *
- * AT STARTUP, refused, each returning its routine's failure value with an
- * error whose message names 26.2.4:
- *   vpi_register_cb(cbReadOnlySynch, t=0)   NULL   a reason not in the list
- *   vpi_handle_by_name("p04_objects", NULL) NULL
- *   vpi_iterate(vpiModule, NULL)             NULL
- *   vpi_get_vlog_info(&info)                 0 (FALSE)
- *   vpi_printf("b264 startup\n")             EOF, and prints nothing
- *
- * THE LEGAL NEIGHBOURS, the same five calls from cbEndOfCompile, where "all
- * functionality is available": the cbReadOnlySynch(0) registers, and fires
- * once at t=0; the top module is found by name and is the first (only)
- * vpiModule of the NULL iteration; vpi_get_vlog_info returns TRUE;
- * vpi_printf("b264 eoc\n") writes its 9 characters. So stdout holds
- * "b264 eoc" and never "b264 startup".
+ * FROM cbEndOfCompile, where "all functionality is available": a
+ * cbReadOnlySynch(0) registers, and fires once at t=0; the top module is
+ * found by name and is the first (only) vpiModule of the NULL iteration;
+ * vpi_get_vlog_info returns TRUE; vpi_printf("b264 eoc\n") writes its 9
+ * characters, so stdout holds "b264 eoc".
  *
  * ORDER (§26.2.4 and 12.31.4): cbEndOfCompile fires once before
  * cbStartOfSimulation, which fires once before the t=0 cbReadOnlySynch;
@@ -53,14 +42,12 @@
  */
 
 //! inherited IEEE 1364-2005 26.2.4
-//! inherited-reject IEEE 1364-2005 26.2.4
 //! lrm 12.33.2
-//! lrm-reject 12.33.2
 //! lrm 12.33.2:1001
 //! lrm 12.33.1:1001
 //! design ../../verilog-ams/ch11_vpi/objects.v
 //! stdout b264 eoc
-//! stdout p02: b_26_2_4_startup_phase checks=27
+//! stdout p02: b_26_2_4_startup_phase checks=17
 
 #include "b_check.h"
 
@@ -134,7 +121,6 @@ static void startup(void)
   static s_cb_data eos = { cbEndOfSimulation, end_of_simulation, NULL, NULL, NULL, 0, NULL };
   static s_cb_data err = { cbError, nothing, NULL, NULL, NULL, 0, NULL };
   static s_cb_data pli = { cbPLIError, nothing, NULL, NULL, NULL, 0, NULL };
-  s_vpi_vlog_info info;
 
   /* The two routines, and five of the six reasons. */
   CHECK(vpi_register_systf(&tf) != NULL, "26.2.4: vpi_register_systf at startup");
@@ -145,18 +131,6 @@ static void startup(void)
   CHECK(vpi_register_cb(&err) != NULL, "26.2.4: cbError at startup");
   CHECK(vpi_register_cb(&pli) != NULL, "26.2.4: cbPLIError at startup");
   expect_no_error("vpi_register_cb for the startup reasons");
-
-  /* Everything else. */
-  CHECK(vpi_register_cb(&ro_cb) == NULL, "26.2.4: cbReadOnlySynch is not a startup reason");
-  expect_refusal_saying("vpi_register_cb(cbReadOnlySynch) at startup", "26.2.4");
-  CHECK(vpi_handle_by_name("p04_objects", NULL) == NULL, "26.2.4: no vpi_handle_by_name at startup");
-  expect_refusal_saying("vpi_handle_by_name at startup", "26.2.4");
-  CHECK(vpi_iterate(vpiModule, NULL) == NULL, "26.2.4: no vpi_iterate at startup");
-  expect_refusal_saying("vpi_iterate at startup", "26.2.4");
-  CHECK(vpi_get_vlog_info(&info) == 0, "26.2.4: no vpi_get_vlog_info at startup");
-  expect_refusal_saying("vpi_get_vlog_info at startup", "26.2.4");
-  CHECK(vpi_printf("b264 startup\n") == EOF, "26.2.4: no vpi_printf at startup");
-  expect_refusal_saying("vpi_printf at startup", "26.2.4");
 }
 
 void (*vlog_startup_routines[])(void) = { startup, 0 };

@@ -1,0 +1,27 @@
+// The design reject_step_held_sformat_string.c runs on: it rejects a transient step
+// through vpi_sim_control(vpiRejectTransientStep). See that file for the
+// derivation; this one only exposes the held string as a potential.
+//
+// `s` is assigned only under @(timer(1, 1)) (§5.10.3.3: events at 1, 2, 3, ...),
+// by §9.5.3's $sformat with %g of 10*$abstime: "10", "20", "30". `code` maps
+// the text the evaluation READS, before this evaluation's timer statement, to
+// a number, and the probe's branch carries it: V(out) == code.
+`include "disciplines.vams"
+
+module held_string_probe(p, n);
+  inout p, n; electrical p, n;
+  string s = "none";
+  real code;
+  analog begin
+    code = (s == "none") ? 0.0 : (s == "10") ? 10.0 : (s == "20") ? 20.0
+         : (s == "30") ? 30.0 : -1.0;
+    V(p, n) <+ code;
+    @(timer(1, 1)) $sformat(s, "%g", 10 * $abstime);
+  end
+endmodule
+
+module reject_step_held_sformat_string;
+  electrical out, gnd;
+  ground gnd;
+  held_string_probe probe(.p(out), .n(gnd));
+endmodule

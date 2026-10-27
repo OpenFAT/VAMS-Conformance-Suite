@@ -1,0 +1,72 @@
+// §10.5: "This predefined macro is called __VAMS_COMPACT_MODELING__ and shall
+// be defined during the parsing of Verilog-AMS source text if and only if all
+// the compact modeling extensions are supported by the simulator."
+//
+// The "only if" direction is the one a source can check: under the macro's
+// `ifdef every compact modeling extension must work. "The compact modeling
+// extensions" are the v2.1 -> v2.2 additions, Annex G Table G.3.
+// compact_modeling_macro_implies_its_extensions.va and
+// compact_modeling_extension_set.va take items 3, 5, 8, 12, 14, 17, 18
+// ($mfactor, $xposition), 20, 25 and 28 (`M_TWO_PI). This file takes items
+// they leave out, each with a value the LRM fixes:
+//
+//   items 1, 4, 15, 16  attributes (§2.9): a module description (§6.2), a net
+//            description (§3.6.3.1) and an attribute on a module item
+//            declaration. Accepting them is the claim; no value.
+//   item 18  the rest of Table 9-29's top-level values, unchanged when no
+//            instance specifies one: $yposition 0.0, $angle 0, $hflip +1,
+//            $vflip +1. The child is instantiated with no override, so it
+//            reads the top-level values.
+//   item 19  paramsets (§6.4): the instance names d10_g3_ps, which sets the
+//            module parameter k = 4.0 over its default 1.0.
+//   item 24  $discontinuity(-1) (§9.17), a statement with no value.
+//   item 28  `P_H is Planck's constant and not Boltzmann's (D.3): the two
+//            macros differ.
+//
+// A tool lacking any one of these must leave the macro undefined; then the
+// `else arm runs and makes no claim beyond the biased input. Absence of the
+// macro is not checked: whether the tool supports every extension is not
+// visible from source.
+//
+//! lrm 10.5
+//! lrm 10.5:2
+//! bias V(p) = 0.75, V(n) = 0.25
+`include "check.vh"
+`ifdef __VAMS_COMPACT_MODELING__
+(* desc="G.3 probe child" *)
+module d10_g3_child(a, b);
+  inout a, b; electrical a, b;
+  parameter real k = 1.0;
+  (* desc="internal node" *) electrical q;
+  (* desc="last angle", units="degrees" *) real ang;
+  analog begin
+    ang = $angle;
+    `CHECKX("G.3 item 19: the paramset set k", k, 4.0);
+    `CHECKX("G.3 item 18: $yposition at the top is 0.0", $yposition, 0.0);
+    `CHECKX("G.3 item 18: $angle at the top is 0", ang, 0.0);
+    `CHECKX("G.3 item 18: $hflip at the top is +1", $hflip, 1.0);
+    `CHECKX("G.3 item 18: $vflip at the top is +1", $vflip, 1.0);
+    `CHECKI("G.3 item 28: `P_H is not `P_K", `P_H != `P_K, 1);
+    $discontinuity(-1);
+    V(q) <+ 0.0;
+    I(a, b) <+ k * V(a, b);
+  end
+endmodule
+
+paramset d10_g3_ps d10_g3_child;
+  parameter real kk = 4.0;
+  .k = kk;
+endparamset
+`endif
+
+module d10_compact_modeling_macro_promises_the_rest_of_g3(p, n);
+  inout p, n; electrical p, n;
+`ifdef __VAMS_COMPACT_MODELING__
+  d10_g3_ps u(p, n);
+`else
+  analog begin
+    `CHECKX("the absent-macro branch retains the biased input", V(p, n), 0.5);
+    I(p, n) <+ V(p, n);
+  end
+`endif
+endmodule

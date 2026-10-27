@@ -5,8 +5,9 @@
 // §2.7 makes an unsigned integer constant (the neighbour,
 // cross_string_literal_is_an_integer.va, monitors "s" = 115 and never fires).
 // The grammar does not separate the two (A.8.3's analog_expression derives
-// both), so this is the clause's type rule, not a syntax one
-// (specification/Vague_Decisions.md VD-107).
+// both), so this is the type rule, not a syntax one: Table 3-3 lists the only
+// operators a string operand has (equality, comparison, concatenation and
+// the like, between strings), and none gives it a number to compare with 0.
 //
 // VerA refuses the string-typed operand with E0517, the 5.10.3 event-argument
 // code; the code is pinned.

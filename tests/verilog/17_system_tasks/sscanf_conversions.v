@@ -18,9 +18,9 @@
 //   "12 3f 17 101 Z" with "%d %h %o %b %c": five items; a = 12, h = 8'h3f,
 //     o = 8'o17 (%o of 8 bits: three digits, 017), bb = 8'b00000101, and the
 //     blank before %c skips to Z = 8'h5a -> "5 12 3f 017 00000101 5a"
-//   "-45 xyz" with "%d %s": a = -45, s = "xyz" (zero-padded; %s shows the
-//     two leading zero bytes of the 40-bit s as spaces, VD-129) ->
-//     "2 -45 [  xyz]"
+//   "-45 xyz" with "%d %s": a = -45, s = "xyz", zero-padded in the 40-bit
+//     s; %h shows the padding, which %s would leave open (§17.1.1.7) ->
+//     "2 -45 000078797a"
 //   "k=+9 50%" with "k=%d %d%%": k and = match literally, a = +9, b = 50,
 //     %% matches the % -> "2 9 50"
 //   "c3" with "%x": x is h -> "1 c3"
@@ -38,7 +38,7 @@ module b_17_2_4_3_sscanf_conversions;
     code = $sscanf("12 3f 17 101 Z", "%d %h %o %b %c", a, h, o, bb, ch);
     $display("%0d %0d %h %o %b %h", code, a, h, o, bb, ch);
     code = $sscanf("-45 xyz", "%d %s", a, s);
-    $display("%0d %0d [%s]", code, a, s);
+    $display("%0d %0d %h", code, a, s);
     code = $sscanf("k=+9 50%", "k=%d %d%%", a, b);
     $display("%0d %0d %0d", code, a, b);
     code = $sscanf("c3", "%x", h);

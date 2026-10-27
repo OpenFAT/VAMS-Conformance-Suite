@@ -1,0 +1,32 @@
+// §9.7.1: "If $finish is called from the analog context during a dc sweep
+// (but outside of an analog initial block), the simulator shall report the
+// current value of the swept variable in place of the simulation time."
+// Table 9-25: $finish(1) "Prints simulation time and location", so level 1 is
+// a call whose report carries the time, and the sweep replaces it.
+//
+// The swept variable is the parameter `drive`, at 0.5 then 1.375. The call
+// fires at the second point only, so the value the report must carry is
+// 1.375. The node the sweep solves is V(p) = 2 * drive = 2.75, so a transcript
+// that prints only the solution never contains the digits; neither does the
+// message, the module, or the file name. How the value is worded is the
+// tool's ("1.375", "1.375e+00", "drive=1.375" all contain the digits), so the
+// verdict is that stdout contains "1.375". A tool that writes its reports to
+// stderr runs under an adapter that merges the two.
+//
+//! lrm 9.7.1
+//! lrm 9.7.1:6
+//! analysis dc
+//! solve
+//! bias V(n) = 0
+//! psweep drive = 0.5, 1.375
+//! print none
+//! stdout 1.375
+`include "disciplines.vams"
+module finish_in_dc_sweep_reports_swept_value(p, n);
+  inout p, n; electrical p, n;
+  parameter real drive = 0.5 from [0:10];
+  analog begin
+    I(p, n) <+ V(p, n) - 2.0 * drive;
+    if (drive > 1.0) $finish(1);
+  end
+endmodule

@@ -1,0 +1,25 @@
+// §9.7.3: "For simulation tools, these tasks shall also report the
+// simulation run time at which the severity system task is called."
+//
+// $info fires once, at the solution at t = 1.375 s (the guard is a window
+// around it and no other point falls inside). The message names no time, so
+// the time in the report is the tool's addition. Its wording and unit are the
+// tool's; seconds are the analog time unit (§9.10), so the verdict is that
+// stdout contains "1.375". A tool whose transcript already prints each
+// solution time passes this without the report: the check catches a tool
+// that reports nothing, or the wrong time, under a transcript that is silent.
+//
+//! lrm 9.7.3
+//! lrm 9.7.3:11
+//! analysis tran
+//! time 0, 1, 1.375, 2
+//! print none
+//! stdout 1.375
+`include "disciplines.vams"
+module info_in_transient_reports_time(p, n);
+  inout p, n; electrical p, n;
+  analog begin
+    I(p, n) <+ V(p, n) / 1k;
+    if ($abstime > 1.2 && $abstime < 1.5) $info("transient report");
+  end
+endmodule

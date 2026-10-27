@@ -3,7 +3,7 @@
 // additive." A.6.5's `disable` transfers control out of the named block
 // (IEEE 1364-2005 9.6.2, inherited); no clause undoes a statement that
 // already ran, so a contribution made before the `disable` stands and only
-// the ones after it are skipped (specification/Vague_Decisions.md VD-010).
+// the ones after it are skipped.
 //
 // §5.6.1.3: "Unlike variables, the contributed value for a branch is only
 // valid for the current iteration." The check at 1n is the observation: the

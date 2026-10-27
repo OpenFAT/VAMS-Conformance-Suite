@@ -22,9 +22,8 @@
 //     pulse ends there.
 //   low pulses, fall to rise: [0, 10] 10, [13, 20] 7, [21, 30] 9, [35, 40]
 //     5: none below 4, so n2 stays 0: "t=45 n2=0".
-// W1199 reports a check once, at its first violation (a diagnostic is
-// reported once per site, VD-105); the later ones show in the notifier's
-// transcript lines above.
+// §15.2 says only "report a timing violation", in no set form, so the
+// notifier's transcript lines above are what this checks.
 //! inherited IEEE 1364-2005 15.3 15.3.4 15.5
 `timescale 1ns/1ns
 module b_15_3_4_width_ff(clk);

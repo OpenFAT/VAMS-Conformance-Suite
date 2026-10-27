@@ -5,25 +5,19 @@
 // the selected connect module, i.e., one connect module instance per port",
 // and §7.8.5 names a split one SigName__InstName__PortName. Each element of
 // the array is an instance with ports of its own (§7.8.5.1's names), so each
-// gets its own bridge. VerA's InstName for an element is the element's
-// instance name `g[k]`, as for a module instance array (§6.2.2's
-// `adder1[5]`), so the names hold `[` and `]` and a defparam reaches one with
-// an escaped identifier (IEEE 1364-2005 §3.7.1). The naming is VerA's choice
-// (specification/Vague_Decisions.md VD-115).
+// gets its own bridge. Neither standard spells an array element's InstName,
+// so this file reaches no bridge by name and counts them by their load.
 //
 // THE DESIGN. `and g[1:0] (y, a, b)`: y is a 2-bit wire (one bit per gate),
 // a is the scalar electrical node (every gate's in1), b a 2-bit reg (one bit
 // per gate). Under `default_discipline ddiscrete (§3.9) each element's in1
-// is a mixed INPUT port the a2d bridges (§7.6 Example 2), split:
+// is a mixed INPUT port the a2d bridges (§7.6 Example 2), split: two
+// bridges, one per element.
 //
-//     a__g[1]__in1    a__g[0]__in1
-//
-// DERIVATION. Each a2d loads `a` with I(el) <+ V(el)/rin, rin = 1 kohm
-// unless overridden; the defparam makes a__g[1]__in1's 3 kohm. With the
-// module's own 1 kohm shunt and 1 mA into `a`:
-//     V/1000 + V/1000 + V/3000 = 1e-3  =>  V(a) = 3/7  (python3: 0.42857142857142855)
-// One bridge for the whole array reads 1/2 (or 3/4 with the override); none
-// reads 1.
+// DERIVATION. Each a2d loads `a` with I(el) <+ V(el)/rin, rin = 1 kohm.
+// With the module's own 1 kohm shunt and 1 mA into `a`:
+//     V/1000 + V/1000 + V/1000 = 1e-3  =>  V(a) = 1/3
+// One bridge for the whole array reads 1/2; none reads 1.
 // Each a2d drives its discrete side to 1 at time zero. b = 2'b10, so g[1]
 // (bit 1, the leftmost) gives y[1] = 1 & 1 = 1 and g[0] gives y[0] = 1 & 0 =
 // 0 (IEEE 1364-2005 §7.2 Table 7-1): y = 2, copied into yr. A gate array
@@ -63,15 +57,13 @@ module b5_prim_connect_gate_array;
 
   and g[1:0] (y, a, b);
 
-  defparam \a__g[1]__in1 .rin = 3000.0;
-
   always @(y) yr = y;
   initial b = 2'b10;
 
   analog begin
     I(a) <+ V(a) / 1000.0;
     I(a) <+ -1.0e-3;
-    `CHECK("one a2d per element, a__g[1]__in1 at 3 kohm: V = 3/7", V(a), 0.42857142857142855, 1e-12);
+    `CHECK("one a2d per element: V = 1/3", V(a), 1.0 / 3.0, 1e-12);
     `CHECKI("each element reads its own bridge: y = {1 & b[1], 1 & b[0]} = 2", yr, 2);
   end
 endmodule

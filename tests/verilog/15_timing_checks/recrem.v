@@ -23,9 +23,8 @@
 //   t=30  clr rises, then clk rises, at once: simultaneous: VIOLATION,
 //         "t=30 ntfr=1" (the data event before, 22, is outside (28, 30]).
 //   t=35  "t=35 ntfr=1".
-// W1199 reports a check once, at its first violation (a diagnostic is
-// reported once per site, VD-105); the later ones show in the notifier's
-// transcript lines above.
+// §15.2 says only "report a timing violation", in no set form, so the
+// notifier's transcript lines above are what this checks.
 //! inherited IEEE 1364-2005 15.2 15.2.6 15.5
 `timescale 1ns/1ns
 module b_15_2_6_recrem_ff(clr, clk);

@@ -1,0 +1,24 @@
+// The design reject_step_absdelta_events.c runs on: it rejects several
+// transient solutions through vpi_sim_control(vpiRejectTransientStep), and
+// reads `k` and `bad` through VPI. See that file for the derivation.
+//
+// V(a) is the ramp 1000 * $abstime, 0 to 5 V over the 5 ms run, and the digital
+// process takes every absdelta(V(a), 0.25, 1p, 1m) event (§5.10.3.4). On a
+// monotone ramp each event after the first is 0.25 V +/- expr_tol past the
+// one before it, so `bad` counts the events that are not.
+`timescale 1ns/1ps
+`include "disciplines.vams"
+module reject_step_absdelta_events;
+  electrical a, gnd;
+  ground gnd;
+  integer k, bad;
+  real last, step;
+  initial begin k = 0; bad = 0; last = 0.0; end
+  always @(absdelta(V(a), 0.25, 1p, 1m)) begin
+    step = V(a) - last;
+    if (k > 0 && (step < 0.248 || step > 0.252)) bad = bad + 1;
+    last = V(a);
+    k = k + 1;
+  end
+  analog V(a, gnd) <+ 1000.0 * $abstime;
+endmodule

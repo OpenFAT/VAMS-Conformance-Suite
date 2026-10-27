@@ -14,8 +14,10 @@
 // output is 0.625 at every point. The CHECK's 1e-9 is the steady-state
 // tolerance asked of the transient.
 //
-// WHAT IT PINS (specification/Vague_Decisions.md, AMS 4.5.11 transient realisation).
-// Direct form on the bilinear-mapped coefficients makes the discrete fixed
+// WHAT IT CATCHES. §4.5.11: "The Laplace transform filters implement lumped
+// linear continuous-time filters", and a continuous LTI filter at its steady
+// state does not move. How a tool discretises it is its own; this realisation
+// fails: direct form on the bilinear-mapped coefficients makes the discrete fixed
 // point Σb/Σa, and with ω·dt = 1e-5 that sum is roundoff: the output drifted
 // 5.3e-7 off H(0) in these 200 steps (and 1e-3 in 2000). The state-space
 // trapezoidal step keeps A·x + B·u = 0 at a held input, so it stays put.

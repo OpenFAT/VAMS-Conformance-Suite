@@ -1,7 +1,8 @@
-// §10.4 hands `define and `undef to IEEE Std 1364. Its §19.3.2 says only that
-// an undefined text macro "has no value"; no clause makes its use an error.
-// VerA refuses the use (docs/specification/Vague_Decisions.md VD-126): expanding it to
-// nothing would turn a typo into a silently different expression.
+// §10.4 hands `define and `undef to IEEE Std 1364. Its §19.3.2: "An undefined
+// text macro has no value, just as if it had never been defined." No clause
+// makes the use itself an error, but either reading leaves `<+ *V(p,n)` (or an
+// unexpanded `MISSING token), which A.6.10 does not derive, so the file is
+// refused either way. VerA diagnoses the use itself (E0115).
 //
 // The expectation is the stable code and not the phase label ParseError, which
 // any parse-phase failure satisfies: a typo'd keyword three lines down would

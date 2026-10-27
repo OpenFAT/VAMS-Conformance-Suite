@@ -1,14 +1,16 @@
-// AMS §4.2.4 requires an error for a zero modulus divisor. §4.2.3 allows
-// optimizations only when simulation behaviour is preserved: discarding a
-// variable's unused value must not discard this evaluated runtime error.
-// d=3 is legal and prints one verdict; d=0 reports E0601 before another print.
-// The executable's exit-1 policy is documented in Vague_Decisions.md.
+// AMS §4.2.4: "It shall be an error to pass zero (0) as the second argument
+// to the modulus operator." §4.2.3: "All other operators shall not use
+// short-circuit evaluation - all of their operand expressions are always
+// evaluated", and only short-circuiting excuses a runtime error, so a
+// remainder nobody reads is still evaluated and still an error.
+// d=3 is legal and prints one verdict; d=0 is the error, so the run fails
+// (with any status: §4.2.4 names none). VerA reports E0601 and exits 1.
 // The legal unused-but-guarded neighbour is modulo_integer_short_circuit.va.
 //! lrm 4.2.3
 //! lrm 4.2.4
 //! lrm 4.2.4:1
 //! sweep V(p) = 3, 0
-//! exit 1
+//! reject-run §4.2.4: a zero modulus divisor is an error
 //! checks 1
 //! print none
 //! fd-exempt §4.2.4: the device stops with E0601 wherever round(V(p,n)) = 0, which L4b's random unknowns reach; stopping there is the rule this fixture pins

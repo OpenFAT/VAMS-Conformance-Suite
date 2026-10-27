@@ -10,7 +10,7 @@
 // block; nothing else differs.
 //
 // VerA refuses each connection with E0927 (a mixed port matches no connect
-// statement, VD-007), naming the port, its discipline and the net's.
+// statement), naming the port, its discipline and the net's.
 //
 //! lrm 3.11
 //! lrm 3.11:3

@@ -1,0 +1,29 @@
+// §9.7.3: "If any of these tasks is called from an analog context during a dc
+// sweep, the simulator shall report the current value of the swept variable
+// in place of the simulation run time."
+//
+// $info is one of "these tasks" ($fatal, $error, $warning, $info), and the
+// only one that leaves the sweep running, so it fires at one point and the
+// sweep goes on. The swept parameter `drive` is 0.5, 1.375, 2.25; the call
+// fires only at 1.375 (the guard is a window), and the solved node is
+// V(p) = 2 * drive = 1, 2.75, 4.5, so the digits 1.375 appear in no solution,
+// message, module or file name. The report's wording is the tool's; the
+// verdict is that stdout contains "1.375".
+//
+//! lrm 9.7.3
+//! lrm 9.7.3:12
+//! analysis dc
+//! solve
+//! bias V(n) = 0
+//! psweep drive = 0.5, 1.375, 2.25
+//! print none
+//! stdout 1.375
+`include "disciplines.vams"
+module info_in_dc_sweep_reports_swept_value(p, n);
+  inout p, n; electrical p, n;
+  parameter real drive = 0.5 from [0:10];
+  analog begin
+    I(p, n) <+ V(p, n) - 2.0 * drive;
+    if (drive > 1.0 && drive < 2.0) $info("sweep report");
+  end
+endmodule

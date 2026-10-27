@@ -19,9 +19,8 @@
 //        violation each again.
 //   t=25 nx is still 0 or 1 (it toggled from one to the other); n0=0, n1=1,
 //        nz=z.
-// The notifier-free copy violates too, which only its W1199 report shows
-// (each check reports its first violation, VD-105); it is here for running
-// at all.
+// The notifier-free copy violates too; §15.2's report of it has no set
+// form, so it is here only for running at all.
 //! inherited IEEE 1364-2005 15.5
 `timescale 1ns/1ns
 module b_15_5_notifier_ff(clk, d);

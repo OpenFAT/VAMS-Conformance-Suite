@@ -1,0 +1,20 @@
+// §5.7, for scalar variable assignments: "The left-hand side of a procedural
+// assignment shall be scalar, either an integer, real, or string identifier
+// or an element of an integer, real or string array." A 40-bit `reg` is
+// none of those, so assigning it in an analog block is an error. Nothing
+// here reads `r` in the continuous context, so §7.3.1 Table 7-1's 31-bit
+// limit on access is not what refuses it.
+//
+//! lrm 5.7
+//! lrm 5.7:1
+//! reject left-hand side of an analog procedural assignment is a reg vector
+//! neighbour ../../verilog-a/ch05_analog_behavior/procedural_assignments.va
+`include "disciplines.vams"
+module ch5_analog_assignment_to_reg_vector(p);
+  inout p; electrical p;
+  reg [39:0] r;
+  analog begin
+    r = 1;
+    I(p) <+ V(p);
+  end
+endmodule

@@ -1,0 +1,21 @@
+// §9.7.3: "If the task is called from an analog initial block, the simulator
+// shall report that the call was made during initialization."
+//
+// The call's message names no phase, and neither does the module or file
+// name, so the word must come from the tool. The wording is the tool's
+// ("initialization", "during initial", "analog initial block"); every one of
+// them contains "initial", which is the verdict. $info leaves the run going
+// (§9.7.3: "$warning and $info, only output their text message but do not
+// affect the rest of the initialization and the simulation").
+//
+//! lrm 9.7.3
+//! lrm 9.7.3:13
+//! lrm 5.2.1
+//! print none
+//! stdout initial
+`include "disciplines.vams"
+module info_before_first_solution_reports_phase(p, n);
+  inout p, n; electrical p, n;
+  analog initial $info("startup report");
+  analog I(p, n) <+ V(p, n) / 1k;
+endmodule

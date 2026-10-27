@@ -88,8 +88,10 @@ static void b7_after_compile(void)
   P03_CHECK(vpi_register_cb(&fin_cb) != NULL, "acbFinalStep registration failed");
 }
 
-/* IEEE 1364-2005 26.2.4: a startup routine only registers; the callbacks
- * above register at cbEndOfCompile (p03_defer, VD-044). */
+/* IEEE 1364-2005 26.2.4: while the startup routines run, "Only two routines
+ * can be called at this time" (vpi_register_systf, vpi_register_cb); from
+ * cbEndOfCompile "all functionality is available", so the callbacks above
+ * register there (p03_defer). */
 static void b7_startup(void)
 {
   static s_vpi_analog_systf_data cfn;

@@ -16,10 +16,6 @@
 // capture per call site (shared by the instances) would give lb v = 1.5,
 // v/k = 0.75.
 //
-// The rejected-step half of the A05 note (capture around a step a host
-// rejects) is specification/Vague_Decisions.md VD-095, asserted by
-// table_capture_rejected_step_recaptures.va.
-//
 //! lrm 9.21.1
 //! lrm 9.21.1:1001
 //! analysis tran

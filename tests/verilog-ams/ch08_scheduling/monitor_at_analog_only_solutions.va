@@ -33,13 +33,12 @@
 //     t = 3 ns   V(vo) still 4:       no report
 //     t = 4 ns   V(vo) still 4:       no report
 //
-// Three reports. Each prints ok = whether its (time, value) pair is one of
-// the three above. A tool that re-checked the monitor only at digital time
-// steps would print the 0 ns report alone (six checks, not eight). A tool
-// that compared the third argument whole would see it fall from 1 to 0 at
-// 3 ns, where only $realtime moved, and report there with ok=0: the
-// clause's $realtime exception holds inside an expression too
-// (specification/Vague_Decisions.md VD-111).
+// Three reports, the count pinned by `//! checks`. Each prints ok = whether
+// its value is one of the three above. A tool that re-checked the monitor
+// only at digital time steps would print the 0 ns report alone (six checks,
+// not eight). At 3 ns and 4 ns only $realtime moves, a direct argument
+// 17.1.3 excepts, so neither reports. The ok expression reads no clock
+// function, so it changes only when V(vo) does.
 //
 // Exactness: $abstime * 2.0e9 is fl(k e-9) * 2e9, exactly 2k for k = 0..4
 // (python3; 2e9 is exact in binary), and the solve of a potential source
@@ -70,8 +69,7 @@ module monitor_at_analog_only_solutions(vo);
   inout vo; electrical vo;
   initial begin
     $monitor("monitor t=%0t v=%g ok=%0d", $realtime, V(vo),
-             ($realtime == 0.0 && V(vo) == `VERA_PW(0.0)) || ($realtime == 1.0 && V(vo) == `VERA_PW(2.0)) ||
-             ($realtime == 2.0 && V(vo) == `VERA_PW(4.0)));
+             V(vo) == `VERA_PW(0.0) || V(vo) == `VERA_PW(2.0) || V(vo) == `VERA_PW(4.0));
     #10 $monitoroff;
   end
   analog begin

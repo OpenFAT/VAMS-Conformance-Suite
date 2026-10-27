@@ -42,10 +42,8 @@
 #define TSTOP 5.0e-3
 #define TOL   1e-12
 
-/* 12.36 names the operation and gives it no number, so the value is VerA's
- * (specification/Vague_Decisions.md) and a host compiled against vpi_user.h depends on
- * it staying put. */
-_Static_assert(vpiRejectTransientStep == 730, "VerA's vpiRejectTransientStep is 730");
+/* 12.36 names the operation and prints no number for it, so the plugin uses
+ * the symbol from the tool's vpi_user.h and never its value. */
 
 static int rejections, backed_up, accepted_after_reject, awaiting_backup;
 static double rejected_t = -1.0;

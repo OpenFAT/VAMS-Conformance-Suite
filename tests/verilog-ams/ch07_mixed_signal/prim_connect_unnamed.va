@@ -1,35 +1,32 @@
-// §7.8.5 split: "the instance name of the connect module is
-// SigName__InstName__PortName where InstName and PortName are the local
-// instance name of the port and its instance respectively", and §7.8.5.1
-// gives a built-in primitive's ports "predictable names". IEEE 1364-2005
-// A.3.1 makes a primitive's instance name optional (`[ name_of_gate_instance
-// ]`) and neither standard names an unnamed one; VerA's VPI gives it no
-// vpiName either. VerA's InstName for one is `<gatetype>$<n>`, n counting
-// from 1 the module's unnamed instances of that gate type in source order
-// (specification/Vague_Decisions.md VD-115). `$` is an identifier character
-// (IEEE 1364-2005 §3.7.1), so a defparam names the bridge without escaping.
-// THIS FILE TESTS THAT CHOICE.
+// §7.8.4 insertion rule 4: "All other ports shall have an instance of the
+// selected connect module, i.e., one connect module instance per port", and
+// §7.8.5.1 gives a built-in primitive's terminals port names "for the
+// purpose of naming the connect modules". IEEE 1364-2005 A.3.1 makes a
+// primitive's instance name optional (`[ name_of_gate_instance ]`); an
+// unnamed primitive still has ports, so each of its mixed ones gets a
+// bridge. Neither standard spells an unnamed primitive's InstName (§7.8.5's
+// `SigName__InstName__PortName`), so this file reaches only the named one
+// by defparam and leaves the unnamed ones at their defaults.
 //
 // THE DESIGN. Three unnamed primitives and one named one, under the
 // `default_discipline ddiscrete (§3.9), each with its output on an
 // electrical net, a mixed OUTPUT port the d2a bridges (§7.6 Example 1):
 //
-//     and (a, x, x1)        -> a__and$1__out       (the first unnamed and)
-//     and g1 (b, x, x1)     -> b__g1__out          (named: not counted)
-//     and (c, x, x0)        -> c__and$2__out       (the second unnamed and)
-//     pulldown (d)          -> d__pulldown$1__out  (counted per type)
+//     and (a, x, x1)        unnamed: defaults vh = 1.0, vl = 0.25
+//     and g1 (b, x, x1)     -> b__g1__out (§7.8.5 split, §7.8.5.1 `out`)
+//     and (c, x, x0)        unnamed: defaults
+//     pulldown (d)          unnamed: defaults
 //
 // The bridge drives V(el) <+ vh at 1, vl at 0 and 0.5 at x or z (§7.3.2's
-// `===`); the defparams set vh or vl per bridge.
+// `===`); the defparam sets b's vh.
 //
 // DERIVATION. x = x1 = 1 and x0 = 0 (IEEE 1364-2005 §7.2 Table 7-1):
-//     a = 1 & 1 = 1  -> V(a) = vh of a__and$1__out = 0.7
-//     b = 1 & 1 = 1  -> V(b) = vh of b__g1__out    = 0.6
-//     c = 1 & 0 = 0  -> V(c) = vl of c__and$2__out = 0.2
-//     d = 0 (pulldown, IEEE 1364-2005 §7.8) -> V(d) = vl of d__pulldown$1__out = 0.1
-// Counting the named g1 would name c's bridge `and$3` and its defparam would
-// name nothing (E0907), as would counting the pulldown among the ands.
-// Checked at 10n and 20n: 4 checks x 2 points.
+//     a = 1 & 1 = 1  -> V(a) = vh = 1.0
+//     b = 1 & 1 = 1  -> V(b) = vh of b__g1__out = 0.6
+//     c = 1 & 0 = 0  -> V(c) = vl = 0.25
+//     d = 0 (pulldown, IEEE 1364-2005 §7.8) -> V(d) = vl = 0.25
+// A tool that inserted no bridge on an unnamed primitive does not read vh
+// or vl there. Checked at 10n and 20n: 4 checks x 2 points.
 //
 //! lrm 7.8.5
 //! lrm 7.8.5.1
@@ -48,7 +45,7 @@ connectmodule b5_pun_d2a(cm, el);
   ddiscrete cm;
   electrical el;
   parameter real vh = 1.0;
-  parameter real vl = 0.0;
+  parameter real vl = 0.25;
   analog V(el) <+ (cm === 1'b1) ? vh : (cm === 1'b0) ? vl : 0.5;
 endmodule
 
@@ -62,18 +59,15 @@ module b5_prim_connect_unnamed;
   and (c, x, x0);
   pulldown (d);
 
-  defparam a__and$1__out.vh = 0.7;
   defparam b__g1__out.vh = 0.6;
-  defparam c__and$2__out.vl = 0.2;
-  defparam d__pulldown$1__out.vl = 0.1;
 
   initial begin x = 1'b1; x1 = 1'b1; x0 = 1'b0; end
 
   analog begin
-    `CHECK("the first unnamed and is and$1", V(a), 0.7, 1e-12);
-    `CHECK("a named and is its own name", V(b), 0.6, 1e-12);
-    `CHECK("the second unnamed and is and$2", V(c), 0.2, 1e-12);
-    `CHECK("the first unnamed pulldown is pulldown$1", V(d), 0.1, 1e-12);
+    `CHECK("the first unnamed and drives a through a bridge", V(a), 1.0, 1e-12);
+    `CHECK("a named and is reached as b__g1__out", V(b), 0.6, 1e-12);
+    `CHECK("the second unnamed and drives c through a bridge", V(c), 0.25, 1e-12);
+    `CHECK("the unnamed pulldown drives d through a bridge", V(d), 0.25, 1e-12);
   end
 endmodule
 `default_discipline

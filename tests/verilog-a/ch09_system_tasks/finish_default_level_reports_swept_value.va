@@ -1,0 +1,32 @@
+// §9.7.1: "If an expression is supplied to this task, its value determines
+// which diagnostic messages are printed after the $finish call is executed, as
+// shown in Table 9-25. One (1) is the default if no argument is supplied."
+// Table 9-25: 0 "Prints nothing", 1 "Prints simulation time and location".
+//
+// So a bare `$finish;` reports, where `$finish(0)` would not. What it reports
+// in place of the time during a dc sweep is fixed by the next paragraph: "the
+// current value of the swept variable" (finish_in_dc_sweep_reports_swept_value.va
+// pins that with an explicit 1). Here the sweep makes the level visible: the
+// swept parameter is 1.375 when the call fires, the solved node is 2.75, and
+// nothing else in the source spells the digits, so stdout contains "1.375"
+// only if the default level printed its report. A tool defaulting to 0 prints
+// nothing and fails.
+//
+//! lrm 9.7.1
+//! lrm 9.7.1:1001
+//! lrm 9.7.1:6
+//! analysis dc
+//! solve
+//! bias V(n) = 0
+//! psweep drive = 0.5, 1.375
+//! print none
+//! stdout 1.375
+`include "disciplines.vams"
+module finish_default_level_reports_swept_value(p, n);
+  inout p, n; electrical p, n;
+  parameter real drive = 0.5 from [0:10];
+  analog begin
+    I(p, n) <+ V(p, n) - 2.0 * drive;
+    if (drive > 1.0) $finish;
+  end
+endmodule

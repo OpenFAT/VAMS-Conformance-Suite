@@ -11,22 +11,13 @@
 // differential equations." The ddt is one new unknown s and one new equation
 // s - d/dt V(p,n) = 0, and the branch carries first('{s, 0.0}) = s.
 //
-// So the device publishes exactly one charge site, on the new row: the charge
-// V(p,n) stamped with sign -1 (the row is s - d/dt V(p,n)). The unknown is
-// named `ddt$0`, spelled `ddtZ240` in the device's `U`, as in
-// ch04_expressions/ddt_in_expression_is_a_charge_site.va:
-// `//! qsite ddtZ240- lte`. A compiler that lowered the call as a resistive
-// backward-Euler difference publishes no charge site at all, and a host's AC
-// analysis sees no capacitance.
-//
-// The CHECK pins the other half — `first` returns element 0 of its pattern —
-// on the same shape without the ddt: V(p,n) = 1.0 at the declared bias.
+// The CHECK pins that `first` returns element 0 of its pattern, on the same
+// shape without the ddt: V(p,n) = 1.0 at the declared bias.
 //
 //! lrm 4.5.3
 //! lrm 4.5.2
 //! bias V(p) = 1.0, V(n) = 0.0
 //! print none
-//! qsite ddtZ240- lte
 `include "disciplines.vams"
 `include "check.vh"
 module ch5_ddt_inside_array_pattern(p, n);

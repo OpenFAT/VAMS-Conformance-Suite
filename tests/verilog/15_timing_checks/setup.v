@@ -29,9 +29,8 @@
 //         (50, 55); the one at 52 inside: VIOLATION, ntfr 1 -> 0,
 //         "t=55 ntfr=0".
 //   t=60  n0's limit is zero, so it never toggled: "t=60 n0=0".
-// W1199 reports a check once, at its first violation (a diagnostic is
-// reported once per site, VD-105); the later ones show in the notifier's
-// transcript lines above.
+// §15.2 says only "report a timing violation", in no set form, so the
+// notifier's transcript lines above are what this checks.
 //! inherited IEEE 1364-2005 15.2 15.2.1 15.5
 `timescale 1ns/1ns
 module b_15_2_1_setup_ff(clk, d);

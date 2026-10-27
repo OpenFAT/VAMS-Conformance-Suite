@@ -8,21 +8,23 @@
 // The target obeys the validity rules: "The hierarchical_reference_string
 // shall refer to a scalar continuous node or a scalar element of a continuous
 // vector node", and if any rule is violated "the system function shall return
-// a value of zero (0)". A valid target is aliased: "the analog_net_reference
-// will be aliased to that hierarchical node and shall refer to the same
-// circuit matrix position". A whole vector aliased to one scalar node
-// therefore puts every element on that node's matrix position (the reading
-// recorded in specification/Vague_Decisions.md, AMS 9.20).
+// a value of zero (0)". "If the return value is zero (0), then the node
+// referenced by the analog_net_reference shall be treated as a normal
+// continuous node declared in the module containing the system function
+// call." What a whole vector aliased to one scalar node does to each of its
+// elements the clause does not say ("shall refer to the same circuit matrix
+// position" names one position), so no element of `bus` is read; each
+// carries a 1 Tohm load so that any reading leaves the matrix solvable.
 //
 // By hand, with the top's a biased to 5 V and vb[0], vb[1] to 2 V and 3 V:
-//   bus[0:1] -> "nalias_vec_top.a":  status 1, V(bus[0]) = V(bus[1]) = 5;
+//   bus[0:1] -> "nalias_vec_top.a":  a is a valid scalar node, status 1;
 //   wide[0:1] -> "nalias_vec_top.vb": vb is a vector, not a scalar node or
 //     element, so status 0, and wide stays the checker's own nodes, which
-//     nothing drives (bias 0): V(wide[0]) = 0.
+//     only their own 1 ohm loads touch: V(wide[0]) = 0.
 //! lrm 9.20
 //! lrm 9.20:17
 //! bias V(a) = 5.0, V(g) = 0.0, V(vb[0]) = 2.0, V(vb[1]) = 3.0
-//! checks 5
+//! checks 3
 `include "check.vh"
 
 module nalias_vec_top(a, g, vb);
@@ -46,11 +48,11 @@ module nalias_vec_checker;
   end
   analog begin
     `CHECKI("a whole vector aliased to a scalar node returns 1", status, 1);
-    `CHECKX("its first element is that node", V(bus[0]), 5.0);
-    `CHECKX("and so is its second", V(bus[1]), 5.0);
     `CHECKI("a vector target is not a scalar node: 0", bad, 0);
     `CHECKX("and the reference stays a local node", V(wide[0]), 0.0);
     I(wide[0]) <+ V(wide[0]);
     I(wide[1]) <+ V(wide[1]);
+    I(bus[0]) <+ V(bus[0]) * 1.0e-12;
+    I(bus[1]) <+ V(bus[1]) * 1.0e-12;
   end
 endmodule

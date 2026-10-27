@@ -28,9 +28,8 @@
 //   t=40  clk rises, then d rises, at once: simultaneous again, the other
 //         order: VIOLATION, "t=40 ntfr=0".
 //   t=45  both of n0's limits are zero: "t=45 n0=0".
-// W1199 reports a check once, at its first violation (a diagnostic is
-// reported once per site, VD-105); the later ones show in the notifier's
-// transcript lines above.
+// §15.2 says only "report a timing violation", in no set form, so the
+// notifier's transcript lines above are what this checks.
 //! inherited IEEE 1364-2005 15.2 15.2.3 15.5
 `timescale 1ns/1ns
 module b_15_2_3_setuphold_ff(clk, d);

@@ -3,9 +3,9 @@
  * IEEE 1364-2005 §26.3.5, p. 381: "The vpiIsProtected property shall be TRUE
  * if the object_handle represents code that is protected; otherwise, it shall
  * be FALSE." Protected code is the cleartext of a §28 decryption envelope,
- * which VerA decrypts with the key provider's keys (VD-127; the design names
- * them with `//@ protect-keys`). VerA's vpi_user.h makes vpiIsProtected
- * Annex G's vpiProtected (VD-045).
+ * which §28.2 has a tool decrypt "where the proper key is supplied by the
+ * user" (the design supplies it with `//@ protect-keys`). vpiIsProtected is
+ * the tool's vpi_user.h's number: Annex G gives the property none.
  *
  * ------------------------------------------------------------------ DERIVATION
  *

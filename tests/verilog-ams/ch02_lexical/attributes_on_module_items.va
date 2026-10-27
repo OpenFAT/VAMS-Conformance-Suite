@@ -1,9 +1,9 @@
 // §2.9: "An attribute_instance can appear in the Verilog-AMS description as a
 // prefix attached to a declaration, a module item, a statement, or a port
 // connection." §2.9.1 then gives each slot. This file fills the slots no other
-// chapter-2 fixture reaches, each with an attribute VerA does not know, which
-// a tool reads or ignores as it chooses (§2.9: attributes are "properties ...
-// that can be used by various tools"); the claim is only that each position
+// chapter-2 fixture reaches, each with an attribute no tool knows
+// (`conform_unknown_*`), which a tool reads or ignores as it chooses (§2.9:
+// attributes are "properties ... that can be used by various tools"); the claim is only that each position
 // is legal and that the item it decorates still means what it says:
 //
 //   Syntax 2-7 `{ attribute_instance } continuous_assign`   w = r
@@ -49,14 +49,14 @@ module ch02_attributes_on_module_items(p);
   wire [1:0] gw;
   integer t2;
   genvar k;
-  (* vera_test_assign *) assign w = r;
-  (* vera_test_initial *) initial begin q = 1'b0; t2 = 0; r = 1'b0; #0.25 r = 1'b1; end
-  (* vera_test_always *) always @(r) begin q = r; t2 = twice(3); end
-  (* vera_test_generate *) for (k = 0; k < 2; k = k + 1) begin : g
+  (* conform_unknown_assign *) assign w = r;
+  (* conform_unknown_initial *) initial begin q = 1'b0; t2 = 0; r = 1'b0; #0.25 r = 1'b1; end
+  (* conform_unknown_always *) always @(r) begin q = r; t2 = twice(3); end
+  (* conform_unknown_generate *) for (k = 0; k < 2; k = k + 1) begin : g
     assign gw[k] = r;
   end
-  (* vera_test_instance *) ch02_attr_child u1 ((* vera_test_port *) .a(p));
-  function integer twice((* vera_test_fport *) input integer x);
+  (* conform_unknown_instance *) ch02_attr_child u1 ((* conform_unknown_port *) .a(p));
+  function integer twice((* conform_unknown_fport *) input integer x);
     twice = 2 * x;
   endfunction
   analog begin

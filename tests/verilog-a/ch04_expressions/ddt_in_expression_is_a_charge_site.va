@@ -1,7 +1,5 @@
-// Full operator behavior is observed by tests/host.py;
-// these local value/Jacobian checks alone do not prove the live tolerance or AC rule.
 // §4.5.3 a ddt() that is NOT a linear factor of a contribution is still a time
-// derivative the simulator integrates, so the host sees it as a charge site.
+// derivative the simulator integrates.
 //
 //   Table 4-17 ddt(expr): "Returns d/dt x(t), the time-derivative of x".
 //   "In DC analysis, ddt() returns zero (0)."
@@ -13,8 +11,7 @@
 // `x = ddt(V(p)); I(p) <+ x*x;` squares the derivative, so no contribution
 // carries it as a charge (§5.6.1.2 strips a ddt only from a multiplicative
 // spine). It is one new unknown s and one new equation s - d/dt V(p) = 0:
-// the row's resistive half is s, and its charge site is V(p) stamped with
-// sign -1. The unknown is named `ddt$0`, spelled `ddtZ240` in the device's `U`.
+// the branch carries s*s.
 //
 // THE HAND DERIVATION. V(p) is driven 0, 1, 2 at t = 0, 0.5, 1, a straight line
 // of slope 2 V/s after the DC point:
@@ -35,7 +32,6 @@
 //! time 0, 0.5, 1
 //! analysis tran
 //! print none
-//! qsite ddtZ240- lte
 `include "check.vh"
 module ddt_in_expression_is_a_charge_site(p);
     inout p;

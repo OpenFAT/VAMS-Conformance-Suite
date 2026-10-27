@@ -26,11 +26,12 @@
 // `$strobe;` takes the other A.6.9 bracket, the whole argument list omitted;
 // it prints nothing a check can read, so it only has to compile. A tool that
 // dropped a null argument writes "ab", "xy" and "z" (VerA did until
-// 2026-10-08). A null argument a conversion consumes is VD-101's
-// (ch09_system_tasks/null_argument_consumed_by_s.va).
+// 2026-10-08). No null argument here meets a `%` conversion: whether one can
+// satisfy a conversion's "corresponding expression argument" is not stated.
 //
 //! lrm A.6.9
 //! lrm 9.4.1
+//! lrm 9.4.1:1001
 //! lrm 9.5.3
 //! lrm A.6.9:1000
 //! bias V(p) = 0.5

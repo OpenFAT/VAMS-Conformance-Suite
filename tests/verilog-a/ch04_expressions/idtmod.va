@@ -33,8 +33,8 @@
 // Both are identities between two VerA expressions with no digits of their own,
 // so both are CHECKEQ. The one-argument idtmod(expr) is written into the
 // contribution but not asserted here. §4.5.5's prose requires its constant
-// to default to zero, and idtmod_one_argument_starts_at_zero.va asserts that
-// (specification/Vague_Decisions.md VD-058).
+// to default to zero ("If the initial condition is not specified, it defaults
+// to zero (0)"), and idtmod_one_argument_starts_at_zero.va asserts that.
 //
 //! lrm 4.5.5
 //! lrm 4.5.5:3

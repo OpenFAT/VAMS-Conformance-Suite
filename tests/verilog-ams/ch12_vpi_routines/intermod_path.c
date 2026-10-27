@@ -14,44 +14,41 @@
  * vpi_handle_multi(vpiInterModPath, port1, port2) can be used."
  *
  * DERIVATION. specify.v: u1's port y is an output, u2's port a an input,
- * both one bit, joined by net n. That is the list 12.22 names, so the call
- * returns a handle, of type vpiInterModPath. No annotation is needed first:
- * vpi_put_delays() on this very handle is how an interconnect delay is
- * written, so the handle exists before any delay does. Then, in the 1 ns
+ * both one bit, joined by net n. That is the list 12.22 names, and 12.22
+ * says the routine "shall return a handle" for it, of type vpiInterModPath;
+ * it sets no other condition, so none is needed first. Then, in the 1 ns
  * unit of both cells (integers, compared with ==):
  *     put 2 (1, 2)       -> get 2: 1, 2
  *     put 3 (1, 2, 3)    -> get 3: 1, 2, 3
  *
- * THE REFUSALS, each NULL or no change plus an error (12.2):
- *   vpi_handle_multi(vpiInterModPath, u2.a, u1.y): the list is "output port
- *     and input port", and u2.a is an input: no path.
+ * THE REFUSALS, each no change plus an error (12.2):
  *   vpi_get_delays and vpi_put_delays with no_of_delays 1 and 4 on the path:
  *     12.11 and 12.29 allow 2 or 3. The 3-delay put stands after the refused
  *     put, so a get of 3 still reads 1, 2, 3.
  * Their legal neighbours are the calls above.
  *
- * This asserts the handle and the delays the object holds, not timing: like
- * a module path's, VerA's inter-module path delays reach no simulation, and
- * a put warns W0251 (specification/Vague_Decisions.md VD-114). Only the
- * ledger rows are cited, not the bare clauses.
+ * The pair in the other order (u2.a, u1.y) is not asserted: 12.22's
+ * "list of output port and input port reference objects" does not order the
+ * list. This asserts the handle and the delays the object holds, not timing:
+ * no clause above says what an inter-module path delay does to a run. Only
+ * the ledger rows are cited, not the bare clauses.
  *
  * CHECKS (p02_check.h: an expect_error is 3, its state and code included):
  * 1 registration; 2 lookups by name, a CHECK and a no-error each (4); 2 port
  * shapes; the path, its no-error and its type (3); per round trip a put's
- * and a get's no-error and n values (2 + 2, 2 + 3: 9); the reversed pair
- * and its error (1 + 3); four refused counts, an error each (12); the 3
- * values read after them, with a get's no-error (4).
- * 1 + 4 + 2 + 3 + 9 + 4 + 12 + 4 = 39.
+ * and a get's no-error and n values (2 + 2, 2 + 3: 9);
+ * four refused counts, an error each (12); the 3 values read after them,
+ * with a get's no-error (4).
+ * 1 + 4 + 2 + 3 + 9 + 12 + 4 = 35.
  */
 
 //! lrm 12.22:1
 //! lrm 12.11:11
 //! lrm 12.29:11
-//! lrm-reject 12.22
 //! lrm-reject 12.11
 //! lrm-reject 12.29
 //! design specify.v
-//! stdout p02: b7_intermod_path checks=39
+//! stdout p02: b7_intermod_path checks=35
 
 #include "../ch11_vpi/p02_check.h"
 
@@ -111,8 +108,6 @@ static PLI_INT32 walk(p_cb_data cb)
   round_trip(path, 2);
   round_trip(path, 3);
 
-  CHECK(vpi_handle_multi(vpiInterModPath, a2, y1) == NULL, "12.22: an input port first is no inter-module path");
-  expect_error("vpi_handle_multi(vpiInterModPath, u2.a, u1.y)");
   {
     static const int bad[2] = { 1, 4 };
     int k;

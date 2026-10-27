@@ -6,12 +6,11 @@
 //
 // A time_tol of 1e-30 s cannot be met near 3.3 ns: one ulp of 3.3e-9 s is
 // 2^-81 = 4.1e-25 s, so no two representable times lie closer than that
-// around the step. The tightest box VerA can give is the pair of adjacent
-// floats that holds the step, and it delivers the event from there
-// (specification/Vague_Decisions.md §7). Before #35 that pair was a fixed
-// point: the -1 -> 3 step puts the secant's crossing a quarter of the way
-// in, which rounds back onto the lower float, so each step re-solved there,
-// lost the crossing and advanced nothing, and the run hung.
+// around the step. Whatever box a tool settles for, §5.10.3.1 still makes
+// the crossing an event, so it fires once. A tool that kept cutting the step
+// toward an unreachable tolerance hangs (VerA before #35: the -1 -> 3 step
+// puts the secant's crossing a quarter of the way in, which rounds back onto
+// the lower float, so each step re-solved there and advanced nothing).
 //
 // DERIVATION: V(vo) is -1 V before 3.3 ns and 3 V from it, so V(vo) rises
 // through zero once, at 3.3 ns, and nowhere falls. The event fires once:

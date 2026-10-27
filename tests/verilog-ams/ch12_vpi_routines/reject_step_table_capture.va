@@ -1,0 +1,30 @@
+// The design reject_step_table_capture.c runs on: it rejects a transient step
+// through vpi_sim_control(vpiRejectTransientStep). See that file for the
+// derivation; this one only exposes the table's result as a potential.
+//
+// The data source is the two-point line xs = {0, 1}, ys = {0, $abstime},
+// rewritten every evaluation. The table is first called at the first
+// evaluation past t = 1 (the one-shot timer puts an accepted point exactly at
+// 1, where it is not called). Looked up at 0.5 with "1L" (§9.21.2 linear), it
+// is half the ys[1] it captured: y = t_capture / 2, and V(out) == y.
+`include "disciplines.vams"
+
+module table_probe(p, n);
+  inout p, n; electrical p, n;
+  real xs[0:1], ys[0:1];
+  real y;
+  integer hit;
+  analog begin
+    xs[0] = 0.0; xs[1] = 1.0;
+    ys[0] = 0.0; ys[1] = $abstime;
+    if ($abstime > 1.0) y = $table_model(0.5, xs, ys, "1L");
+    V(p, n) <+ y;
+    @(timer(1)) hit = 1;
+  end
+endmodule
+
+module reject_step_table_capture;
+  electrical out, gnd;
+  ground gnd;
+  table_probe probe(.p(out), .n(gnd));
+endmodule

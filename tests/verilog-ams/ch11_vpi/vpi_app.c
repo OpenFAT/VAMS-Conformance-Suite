@@ -9,7 +9,7 @@
  * The array's routine only registers a cbEndOfCompile callback, where the
  * walk runs: IEEE 1364-2005 26.2.4 allows nothing but vpi_register_systf()
  * and vpi_register_cb() while the startup routines run, and "all
- * functionality is available" from cbEndOfCompile on (VD-044).
+ * functionality is available" from cbEndOfCompile on.
  *
  * WHY THIS AND NOT A ZIG UNIT TEST. Three things are only under test from here:
  *

@@ -1,7 +1,6 @@
 // IEEE 1364-2005 §4.3.1: "Implementations may set a limit on the maximum
 // length of a vector, but the limit shall be at least 65536 (2^16) bits."
-// A sized constant (§3.5.1) of that width is legal source, and VerA takes
-// sizes up to 2^24 bits (specification/Vague_Decisions.md, E1019 past it).
+// A sized constant (§3.5.1) of that width is therefore legal source.
 //
 // HAND DERIVATION. 65536'h1 has bit 0 set and the other 65535 bits clear. r
 // holds it, so r[0] is 1 and r[65535] is 0.

@@ -14,8 +14,7 @@
 // Until 2026-10-15 this file's step was `i = i - 1`. A genvar is a §3.2
 // integer, whose arithmetic wraps at 32 bits, so that loop runs 0, -1, ...,
 // -2^31, wraps to 2^31 - 1 and ends: 2^31 + 1 iterations, legal, and unrolled
-// in full now that no cap refuses it. The claim moved to the E0420 explain
-// text (`vera --explain E0420`) and Vague_Decisions.md §7.
+// in full now that no cap refuses it.
 //
 // The block body is an EMPTY `begin end`, and that is deliberate. Syntax 6-8 reads
 // `generate_block ::= module_or_generate_item | begin [ : id ] { module_or_generate_item }

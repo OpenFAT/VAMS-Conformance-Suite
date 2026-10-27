@@ -1,0 +1,54 @@
+// §9.16: "The arguments inst_name and param_name are string values, either a
+// string literal, string parameter, or a string variable." and "If either the
+// inst_name or param_name cannot be resolved, and the optional expression is
+// not supplied, then an error shall be generated. If the optional expression
+// is supplied, its value will be returned in lieu of raising an error."
+//
+// Here inst_name is a string variable whose value the solution picks, so the
+// name exists only when the analog block runs. "Cannot be resolved" is about
+// whether the name exists, not when the tool learns it: "the simulator will
+// look for an instance called inst_name in the parent of the current
+// instance", and u_a is u_m's sibling. param_name is "g", an output variable
+// of u_a (§3.2.1: "Module scope variables with a description or units
+// attribute ... shall be known as output variables"), which holds u_a's gain.
+//
+// BY HAND, at V(p, n) = 0.5 > 0: inst = "u_a", whose g = gain = 3.0, so the
+// probe returns 3.0, not the fallback -1.0 (chosen so that a probe that fails
+// to resolve cannot pass). One check.
+//
+//! lrm 9.16
+//! lrm 9.16:1
+//! lrm 3.2.1
+//! bias V(p) = 0.5, V(n) = 0
+//! checks 1
+`include "check.vh"
+module simprobe_runtime_name_resolves(p, n);
+  inout p, n;
+  electrical p, n;
+  simprobe_rt_dev #(.gain(3.0)) u_a(p, n);
+  simprobe_rt_mon u_m(p, n);
+endmodule
+
+module simprobe_rt_dev(c, d);
+  inout c, d;
+  electrical c, d;
+  parameter real gain = 1.0;
+  (* desc = "gain" *) real g;
+  analog begin
+    g = gain;
+    I(c, d) <+ gain * V(c, d);
+  end
+endmodule
+
+module simprobe_rt_mon(c, d);
+  inout c, d;
+  electrical c, d;
+  string inst;
+  real got;
+  analog begin
+    inst = (V(c, d) > 0.0) ? "u_a" : "u_b";
+    got = $simprobe(inst, "g", -1.0);
+    `CHECKX("a string variable names the sibling u_a, whose g is 3", got, 3.0);
+    I(c, d) <+ 0.0 * V(c, d);
+  end
+endmodule

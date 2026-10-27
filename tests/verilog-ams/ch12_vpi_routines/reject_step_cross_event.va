@@ -1,0 +1,17 @@
+// The design reject_step_cross_event.c runs on: it rejects the transient
+// solution that produced a cross() event through
+// vpi_sim_control(vpiRejectTransientStep), and reads `n` through VPI. See that
+// file for the derivation.
+//
+// V(a) is the ramp 1000 * $abstime, so cross(V(a) - 2.5, +1) has one rising
+// crossing in the run, at 2.5 ms; the digital process counts its events in n.
+`timescale 1ns/1ps
+`include "disciplines.vams"
+module reject_step_cross_event;
+  electrical a, gnd;
+  ground gnd;
+  integer n;
+  initial n = 0;
+  always @(cross(V(a) - 2.5, +1, 1p, 1u)) n = n + 1;
+  analog V(a, gnd) <+ 1000.0 * $abstime;
+endmodule

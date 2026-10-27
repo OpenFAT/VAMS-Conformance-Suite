@@ -1,0 +1,48 @@
+// §5.5.5: "To access an existing unnamed branch in another module instance,
+// the hierarchical_unnamed_branch_reference syntax is used", whose Syntax 5-3
+// form `hierarchical_inst_identifier.branch ( < port_identifier > )` names the
+// port branch of another instance's port; §5.5.5's own example strobes
+// `I(top.drv.branch(<p>))`, "the current flowing through the unnamed port
+// branch for the port p in top.drv". §3.12.1: a port branch is "used to access
+// the flow into a port of a module (see 5.4.3)", and §6.7.1: "Potential and flow
+// access for named and unnamed branches (including port branches) can be done
+// hierarchically." Nothing separates an instance that drives its port through
+// a potential source from one that uses a flow source.
+//
+// (Not `I(<u1.a>)`: §5.4 says a port probe's "port reference many not use
+// hierarchical specifications, i.e., it must be a declared port of the module
+// in which the port access function is used", although Syntax 5-3's
+// analog_port_reference lists hierarchical_port_identifier.)
+//
+// THE CIRCUIT. The top has no ports. Its internal net m carries u1, a
+// potential source `V(a) <+ 0.5`, and u2, a 1 kohm load `I(a) <+ V(a) / r`.
+//
+// BY HAND. V(m) = 0.5, so u2 conducts 0.5 / 1000 = 5e-4 A from m to ground
+// through its port: 5e-4. Kirchhoff at m: the flows into the two instances sum
+// to 0, so the flow into u1 through a is -5e-4 (u1 supplies the current).
+// Two checks.
+//
+//! lrm 5.5.5
+//! lrm 3.12.1
+//! lrm 6.7.1
+//! solve
+//! checks 2
+`include "check.vh"
+module pah_v(a);
+  inout a; electrical a;
+  analog V(a) <+ 0.5;
+endmodule
+module pah_g(a);
+  inout a; electrical a;
+  parameter real r = 1k;
+  analog I(a) <+ V(a) / r;
+endmodule
+module pah_top;
+  electrical m;
+  pah_v u1(m);
+  pah_g #(.r(1k)) u2(m);
+  analog begin
+    `CHECK("u1 supplies the load's current through its port", I(u1.branch(<a>)), -5e-4, 1e-12);
+    `CHECK("u2 conducts V(m) / 1k into its port", I(u2.branch(<a>)), 5e-4, 1e-12);
+  end
+endmodule

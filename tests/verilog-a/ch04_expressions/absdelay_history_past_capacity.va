@@ -2,16 +2,14 @@
 //
 //     Output(t) = Input(max(t - td, 0))
 //
-// and bounds no lookback. VerA keeps each absdelay site's accepted samples in
-// a fixed ring in `Instance` (1024 samples here: no maxdelay). It used to end
-// the run (E1012) when a lookback reached past the oldest sample. A full ring
-// whose oldest sample is still inside the window (td, with no maxdelay) is now
-// thinned instead (specification/Vague_Decisions.md §4.5.7 history rule, #29):
-// the older half keeps every other sample, the newer half stays whole, and a
-// lookback interpolates linearly over what is left. The run warns once
-// (W1051) at the first thinning.
+// and bounds no lookback, so a delay of 1026 steps is the formula like any
+// other. Whatever history a tool keeps, every lookback here must read the
+// input at t - td.
 //
-// THE RULE, BY HAND, on a 1ns grid with td = 1026ns. The ring fills at the
+// WHY 1026. VerA keeps each site's samples in a 1024-sample ring when there is
+// no maxdelay, and thins it (every other sample in the older half) when it
+// fills inside the window; a tool that dropped old samples instead would
+// refuse these lookbacks. On a 1ns grid with td = 1026ns, VerA's ring fills at the
 // commit of t = 1023ns (1024 samples, 0 .. 1023ns). Its second-oldest sample,
 // 1ns, is later than 1023ns - 1026ns, so the oldest is still in the window:
 // the ring keeps 0, 2, .., 510ns and 512 .. 1023ns, 768 samples. From then on

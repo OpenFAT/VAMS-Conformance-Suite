@@ -12,18 +12,19 @@
 // IEEE 1364-2005 §5.3: "Verilog HDL models typically specify three values for
 // delay expressions. The three values allow a design to be tested with
 // minimum, typical, or maximum delay values." Which one a run uses is the
-// tool's; VerA takes the typical, the middle (specification/Vague_Decisions.md VD-099),
-// so this file tests that choice, not the clause.
+// tool's, so each check holds for any of 2, 4 or 6.
 //
 // DERIVATION (`timescale 1ns/1ns):
-//   y = 0 at 0, then `#(2:4:6) y = 1;`             y rises at 4 (typ)
-//   a = 0 at 0, a = 1 at 10; `assign #(2:4:6) w = a;` w follows at 4, 14
+//   y = 0 at 0, then `#(2:4:6) y = 1;`             y rises at 2, 4 or 6
+//   a = 0 at 0, a = 1 at 10; `assign #(2:4:6) w = a;` w is 0 from 2, 4 or 6
+//                                                  and 1 from 12, 14 or 16
 // Checks, from a second initial block, as $strobe (end of the time step):
-//   t=3   y = 0                  (min 2 would give 1; w is still x here)
-//   t=5   {y, w} = 2'b10 = 2     (max 6 would give y = 0, w = x)
-//   t=13  {y, w} = 2'b10 = 2     (a rose at 10; min 12 would give 3)
-//   t=15  {y, w} = 2'b11 = 3     (max 16 would give 2)
-// Four verdicts.
+//   t=1   y = 0                  (no member has elapsed)
+//   t=7   {y, w} = 2'b10 = 2     (every member has)
+//   t=11  {y, w} = 2'b10 = 2     (a rose at 10; no member has elapsed)
+//   t=17  {y, w} = 2'b11 = 3     (every member has)
+// A tool that ignored the delay reads y = 1 at 1 and w = 1 at 11. Four
+// verdicts.
 //
 //! lrm A.8.3
 //! lrm A.2.2.3
@@ -50,10 +51,10 @@ module annex_a_mintypmax_delay(p);
     initial #10 a = 1'b1;
 
     initial begin
-        #3  `CHECKI("t=3: the typical delay (4) has not elapsed", y, 0);
-        #2  `CHECKI("t=5: both typical delays (4) have", ({y, w}), 2);
-        #8  `CHECKI("t=13: a rose at 10, w has not followed", ({y, w}), 2);
-        #2  `CHECKI("t=15: w followed at 14", ({y, w}), 3);
+        #1  `CHECKI("t=1: no member (2, 4, 6) has elapsed", y, 0);
+        #6  `CHECKI("t=7: every member has, for y and w", ({y, w}), 2);
+        #4  `CHECKI("t=11: a rose at 10, w has not followed", ({y, w}), 2);
+        #6  `CHECKI("t=17: w followed by 16", ({y, w}), 3);
     end
 
     analog I(p) <+ V(p);
