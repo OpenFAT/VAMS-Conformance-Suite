@@ -5,7 +5,9 @@
   "oracle": {
     "kind": "ngspice-44.2",
     "derivation": "ngspice 44.2 run of the deck, which now sets .options abstol=1e-18 reltol=1e-10 vntol=1e-12 (the tolerance-converged point the header describes; at default options no engine resolves this OP).",
-    "command": "ngspice -n -b -r reference.raw circuit.sp"
+    "command": "ngspice -n -b -r reference.raw circuit.sp",
+    "confirmed": null,
+    "confirmed_reason": "Every branch carries 1.4e-12 A of off-state leakage, so the AC gain is set by where GMIN is stamped; Xyce 7.10.0 at the deck's own abstol 1e-18 reltol 1e-10 gives a 17% lower gain (174x the tolerance). SPICE fixes no GMIN placement, so no second source defines this value."
   },
   "origin": "benchmark/fixtures/convergence/ota_cutoff_abstol/circuit.sp",
   "expect": {

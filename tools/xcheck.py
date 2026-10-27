@@ -52,7 +52,8 @@ DROPPED = {".print", ".plot", ".width", ".save", ".probe", ".end", ".title", ".o
 PASSED = {".model", ".param", ".subckt", ".ends", ".include", ".inc", ".lib", ".endl", ".ic", ".nodeset", ".func", ".global", ".csparam"}
 # Options that only steer the numerics; Xyce runs at its own tight ones.
 NUMERIC = {"reltol", "abstol", "vntol", "chgtol", "trtol", "method", "maxord", "xmu", "delmax", "lvlcod", "noacct", "acct",
-           "nopage", "itl1", "itl2", "itl4", "itl5", "gminsteps", "srcsteps", "pivtol", "pivrel", "interp", "post", "keepopinfo"}
+           "nopage", "itl1", "itl2", "itl4", "itl5", "gminsteps", "srcsteps", "pivtol", "pivrel", "interp", "post", "keepopinfo",
+           "list", "node", "nomod", "opts", "trans", "klu", "sparse"}  # listing and solver choices, no value changes
 ANALYSES = {".op", ".dc", ".tran", ".ac", ".noise"}
 PLOTS = {"operating point": ".op", "dc transfer characteristic": ".dc", "transient analysis": ".tran",
          "ac analysis": ".ac", "noise spectral density curves": ".noise"}
@@ -196,7 +197,9 @@ def options(opts, kind, loose=False):
     if "gmin" in opts:
         dev["gmin"] = opts["gmin"]
     out = [".options device " + " ".join(f"{k}={v}" for k, v in dev.items())]
-    out.append(".options nonlin reltol=1e-7 abstol=1e-15")
+    # the deck's own tolerances where they are tighter (a deck whose signal sits at the abstol floor)
+    tight = {k: min(d, float(number(opts.get(k, str(d))))) for k, d in (("reltol", 1e-7), ("abstol", 1e-15))}
+    out.append(f".options nonlin reltol={tight['reltol']:g} abstol={tight['abstol']:g}")
     if kind == ".tran":
         # loose: the retry after Xyce's step control gives up at reltol 1e-6 (timestep too small at a corner)
         out += [".options timeint reltol=1e-5 abstol=1e-12" if loose else ".options timeint reltol=1e-6 abstol=1e-15",

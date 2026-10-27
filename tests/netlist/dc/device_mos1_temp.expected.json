@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "22c07e159ec20257da09c19cabd134e70c705bdc28b0d0b05eab01fabefad8ae"
+    "source_sha256": "22c07e159ec20257da09c19cabd134e70c705bdc28b0d0b05eab01fabefad8ae",
+    "confirmed": null,
+    "confirmed_reason": "Partly confirmed: the 38 off-state rows match the SPICE3 junction scaling IS(T) = IS exp(-Eg(T)/Vt + Eg(Tnom)/Vtnom) + 3 V*GMIN to 2e-13 of the tolerance, and Xyce 7.10.0 agrees within tolerance away from threshold, but near threshold at -40 and 125 degC its temperature model of VTO and KP differs up to 40x the tolerance (Xyce reads the off rows 100x larger, too)."
   },
   "origin": "benchmark/fixtures/devices/mos1_temp/circuit.sp",
   "expect": {

@@ -6,7 +6,12 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "b02bb553d38023479755103f84fb6ce9bb4b145299dedb9cfead864ecdac6992"
+  "source_sha256": "b02bb553d38023479755103f84fb6ce9bb4b145299dedb9cfead864ecdac6992",
+  "confirmed": {
+   "tool": "analytic",
+   "derivation": "Gummel-Poon at 27 degC with area scaling IS, ISE, IKF by area and RB, RE, RC by 1/area (ngspice-45 manual 8.2), GMIN = 1e-12 across each junction (as op/option_gmin_ngspice), internal nodes solved by scipy fsolve: every current within 0.02x its tolerance (i(ve), the PNP reverse leakage, 6.5051e-13 against 6.5070e-13 A). Xyce 7.10.0 places GMIN inside the transport current (6.4e-13 A more base current, i(ve) 6.613e-13 A).",
+   "max_rel_err": 0.0003
+  }
  },
  "origin": "tests/fixtures/op/bjt_instance_area.sp",
  "expect": {

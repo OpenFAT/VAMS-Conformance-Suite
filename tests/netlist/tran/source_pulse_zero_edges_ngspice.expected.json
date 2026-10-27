@@ -5,7 +5,9 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice-44.2 run of this deck; values match the closed form in the deck header.",
-    "command": "ngspice-45 -b (meas tran find v(a) at the axis times); values are the closed form in the deck header"
+    "command": "ngspice-45 -b (meas tran find v(a) at the axis times); values are the closed form in the deck header",
+    "confirmed": null,
+    "confirmed_reason": "Explicit zero TR, TF, PW and PER: ngspice (as Berkeley SPICE3 vsrcload.c) reads each 0 as its default (TSTEP, TSTOP), giving 0.5, 1, 1; Xyce 7.10.0 reads them literally (a zero-width pulse, v = 0). The ngspice-45 manual 4.1.1 gives defaults only for omitted fields, so no documented rule decides between them."
   },
   "expect": {
     "status": "success",

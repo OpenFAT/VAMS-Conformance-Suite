@@ -6,7 +6,12 @@
     "kind": "ngspice-44.2",
     "derivation": "Run the self-contained deck in ngspice-44.2 with the explicit tolerances in the netlist. Read binary raw doubles by variable name. Transient samples retain up to 101 original accepted times; no interpolation was used to create these expected values.",
     "version": "ngspice-44.2 (SPARSE solver; 27 C)",
-    "command": "ngspice -n -b -r /tmp/diode_high_injection.raw reference/diode_high_injection.sp"
+    "command": "ngspice -n -b -r /tmp/diode_high_injection.raw reference/diode_high_injection.sp",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) eq. 7.3: IDeff = ID/(1 + sqrt(ID/IKeff)) + VD*GMIN; 5 V through 100 ohm, solved by brentq: v(out) = 0.79830141851, i(vin) = -0.0420169858149. Xyce 7.10.0 reads IKF as ID/sqrt(1 + ID/IKF).",
+      "max_rel_err": 2e-12
+    }
   },
   "expect": {
     "status": "success",

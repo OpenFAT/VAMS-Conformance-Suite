@@ -6,7 +6,12 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "e77ee3232cb841a549f8140eef082f41d64ffe9d474075e5dc58260c58b2270a"
+    "source_sha256": "e77ee3232cb841a549f8140eef082f41d64ffe9d474075e5dc58260c58b2270a",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 7.1 and eq. 7.3: ID = IS(exp(VD/NVt) - 1), IDeff = ID/(1 + sqrt(ID/IKeff)), plus VD*GMIN; with RS = 50 in series, each sweep point solved by brentq: within 0.007x the tolerance. Xyce 7.10.0 reads IKF as ID/sqrt(1 + ID/IKF) (103x off).",
+      "max_rel_err": 7e-06
+    }
   },
   "origin": "benchmark/fixtures/devices/diode_high_injection/circuit.sp",
   "expect": {

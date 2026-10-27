@@ -6,7 +6,9 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "c95d5d7b655acb20de2b3e04d0e1730b97821d97cf26fa2ca47173bba3444f56"
+  "source_sha256": "c95d5d7b655acb20de2b3e04d0e1730b97821d97cf26fa2ca47173bba3444f56",
+  "confirmed": null,
+  "confirmed_reason": "NLEV and GDSNOI select ngspice's own MOS noise variants (mos2noi.c); Xyce 7.10.0 has neither, so its noise is another quantity (5e5x off)."
  },
  "origin": "tests/fixtures/noise/ngspice_mos2_cs.sp",
  "expect": {

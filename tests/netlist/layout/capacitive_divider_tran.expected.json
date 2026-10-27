@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "736360f51c6bc181f8c3f027684152275f30055b03e3a386757e099ac211c4b5"
+    "source_sha256": "736360f51c6bc181f8c3f027684152275f30055b03e3a386757e099ac211c4b5",
+    "confirmed": null,
+    "confirmed_reason": "The island between C1 and C2 has no DC path, so its operating point is undefined in MNA without a shunt; the oracle's 0.4999975 V is ngspice's gmin-stepping result. Xyce 7.10.0 does not finish in 300 s."
   },
   "origin": "benchmark/fixtures/layout/capacitive_divider_tran/circuit.sp",
   "expect": {

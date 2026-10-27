@@ -6,7 +6,9 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "5aea49351d0b6b126d87971650de73984cc7525ce64aabf97b02cd1fd20d14a5"
+  "source_sha256": "5aea49351d0b6b126d87971650de73984cc7525ce64aabf97b02cd1fd20d14a5",
+  "confirmed": null,
+  "confirmed_reason": "Xyce 7.10.0's BSIM4 matches the capacitive (imaginary) part to 7e-7 but its gds at zero bias is 4.4e-4 off, 31x the 1e-5 tolerance (another BSIM4 release). VACASK's bsim4v8.osdi is compiled from ngspice's own BSIM4 C sources, so it is no independent check."
  },
  "origin": "tests/fixtures/ac/bsim4_zero_bias_junction_cap.sp",
  "expect": {

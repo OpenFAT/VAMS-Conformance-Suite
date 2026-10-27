@@ -12,7 +12,14 @@
     "source_sha256": "295778205a961ed53cc98d7d48e13fe0ccb8f529f76b795f5f842ac6bd293791",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/multi_analysis/bench_ngspice_lowpass_filter.expected.json",
+      "max_rel_err": 1.48e-14,
+      "max_tolerance_ratio": 1.46e-11
+    }
   },
   "origin": "benchmark/fixtures/ngspice/lowpass_filter/circuit.sp",
   "expect": {
