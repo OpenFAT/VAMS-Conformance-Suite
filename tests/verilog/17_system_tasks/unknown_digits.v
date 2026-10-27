@@ -25,6 +25,7 @@
 //   %h of 8'b0xz1_zzzz: [7:4] has z and x -> X, [3:0] all z -> z: "Xz".
 //   %o of 6'bzzz_z01: [5:3] all z -> z, [2:0] some z -> Z: "zZ".
 //   %b of 4'b01xz: bit by bit -> "01xz".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.4
 module b_17_1_1_4_unknown_digits;
   initial begin

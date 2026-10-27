@@ -52,6 +52,7 @@
 // 06_time_rounding.v; this file deliberately stays on unit boundaries so it
 // depends on nothing but integral delays, which the runner already executes.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.10
 //! inherited IEEE 1364-2005 17.7 ($time/$stime/$realtime scaling and width)
 //! expect stdout time_queries.expected.txt

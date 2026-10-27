@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.3 17.4.1
 // A $monitor change in the time step where $finish executes is printed:
 // §17.4.1 says only that $finish makes the simulator exit, and VerA, as

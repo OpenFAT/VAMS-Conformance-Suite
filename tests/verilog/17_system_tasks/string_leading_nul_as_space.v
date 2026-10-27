@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.7 17.2.3
 // §17.1.1.7: %s's argument is "a sequence of 8-bit hexadecimal ASCII codes",
 // and "leading zeros are never printed." Whether a leading zero byte leaves a

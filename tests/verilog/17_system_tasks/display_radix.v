@@ -62,6 +62,7 @@
 // second value: it is the only one of the two that exercises padding, because
 // its rendering is SHORTER than every field width above.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.4.1
 //! lrm 9.4.3
 //! inherited IEEE 1364-2005 17.1 (17.1.1.3 automatic sizing of displayed data)

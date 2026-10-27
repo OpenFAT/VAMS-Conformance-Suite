@@ -16,6 +16,7 @@
 //     characters; only the count is printed, since the clause does not say
 //     what the unfilled byte of s3 holds -> "2"
 //   $fgets(s3, fd) at EOF: no character is read -> 0 either way -> "0"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.4.2
 // native-required
 module b_17_2_4_2_fgets;

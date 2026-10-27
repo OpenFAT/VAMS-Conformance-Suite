@@ -6,6 +6,7 @@
 //
 // HAND DERIVATION. 0.5 is exact in binary, so %.100f of it is "0.5" and 99
 // more zeros: 102 characters between the brackets.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.2
 //! expect stdout real_precision_100.expected.txt
 module b_17_1_1_2_real_precision_100;

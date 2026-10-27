@@ -10,6 +10,7 @@
 //     decimal digit, a matching failure -> 0; q is left unread
 //   $fgetc(fd): the q left unread -> 113
 //   $fscanf(fd, "%d", a): the input ends before any conversion -> EOF, -1
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.4.3
 // native-required
 module b_17_2_4_3_fscanf;

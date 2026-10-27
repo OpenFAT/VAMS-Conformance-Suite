@@ -1,6 +1,7 @@
 // IEEE1364-2005 17.1.1/.2: write adds no newline, empty write no bytes;
 // arguments retain order, null produces one space, following format strings
 // consume following expressions. Radix write variants use declared widths.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1 17.1.1.2 17.1.1.3
 //! expect stdout display_write_runs.expected.txt
 module audit_display_write_runs;

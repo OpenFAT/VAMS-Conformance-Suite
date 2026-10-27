@@ -18,6 +18,7 @@
 //   again:  the same for $dist_normal(seed, 0, 5) from seed 7 -> equal
 //   random: seed = 3, {$random(seed)} % 60 twice from seed 3 -> equal, and
 //           in 0..59
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.9 17.9.1 17.9.2
 `timescale 1 ns / 1 ns
 module b_17_9_2_same_seed_same_value;

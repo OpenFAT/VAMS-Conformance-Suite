@@ -11,6 +11,7 @@
 // all-ignored AND row is the constant 1 and the OR row the constant 0.
 // No invalid form: every four-state bit has a 17.5.4 meaning.
 // pla_plane_ignore.v is the z/? neighbour.
+// gold: hand derivation, §17.5.4 (above)
 //! lrm 9.8
 //! inherited IEEE 1364-2005 17.5.4
 //! expect stdout pla_plane_x_worst_case.expected.txt

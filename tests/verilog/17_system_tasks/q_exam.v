@@ -17,6 +17,7 @@
 //   t=25  remove (FIFO: job 1 leaves)
 //         exam: code 1 -> 1; code 5 -> job 2, still queued, 25 - 10 = 15
 // Every call succeeds: status 0.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.6.5
 `timescale 1 ns / 1 ns
 module b_17_6_5_q_exam;

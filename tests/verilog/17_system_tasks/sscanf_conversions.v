@@ -29,6 +29,7 @@
 //   "q1" with "%d": q is no decimal digit, a matching failure before any
 //     item -> 0, and a keeps 5 -> "0 5"
 //   "   " with "%d": the input ends before any conversion -> EOF -> "-1"
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 17.2.4.3
 module b_17_2_4_3_sscanf_conversions;
   integer code, a, b;

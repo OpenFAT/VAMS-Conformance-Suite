@@ -23,6 +23,7 @@
 //   pln[1] = 1?0 takes a[1], ~a[3] = 1, 0;  pln[2] = ?0? takes ~a[2] = 1
 //   and: 1&0=0, 1 -> 01        or: 1|0=1, 1 -> 11
 //   nand: 10                   nor: 00
+// gold: hand derivation, §17.5.2 and §17.5.4 (above)
 //! inherited IEEE 1364-2005 17.5.2
 `timescale 1 ns / 1 ns
 module b_17_5_2_logic_planes;

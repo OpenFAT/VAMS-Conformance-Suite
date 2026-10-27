@@ -20,6 +20,7 @@
 //     by repeated doubling, also `python3 -c 'print(2**1000)'`).
 //   With r[3] = x, r holds one x bit among known bits: §17.1.1.4 prints "X"
 //     right-justified in r's 20 columns.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.3
 //! expect stdout decimal_over_64_bits.expected.txt
 module b_17_1_1_3_decimal_over_64_bits;

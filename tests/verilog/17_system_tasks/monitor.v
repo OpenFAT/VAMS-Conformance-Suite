@@ -48,6 +48,7 @@
 // field padding; the padded default-decimal width is pinned separately by
 // 01_display_radix.v and is not what this file is about.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.4.1
 //! inherited IEEE 1364-2005 17.1 ($monitoron/$monitoroff, single active monitor)
 //! expect stdout monitor.expected.txt

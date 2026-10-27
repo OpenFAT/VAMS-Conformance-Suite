@@ -2,6 +2,7 @@
 // plane z/? ignores it. Rows 0z,?1,zz mean !input1,input2,constant1
 // for AND. input10 ->001; input0x ->1x1. Ignored unknown input must not
 // poison the constant row. No expectation for personality x is invented.
+// gold: hand derivation, §17.5.4 (above)
 //! lrm 9.8
 //! inherited IEEE 1364-2005 17.5.4
 //! expect stdout pla_plane_ignore.expected.txt

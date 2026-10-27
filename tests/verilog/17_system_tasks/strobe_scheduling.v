@@ -55,6 +55,7 @@
 // t=2 runs only $finish(0), which per docs/digital-source-execution.md is
 // silent, so it contributes no line.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.4.1
 //! inherited IEEE 1364-2005 17.1 ($strobe end-of-time-step sampling)
 //! expect stdout strobe_scheduling.expected.txt

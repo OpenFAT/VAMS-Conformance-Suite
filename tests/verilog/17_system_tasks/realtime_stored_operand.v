@@ -5,6 +5,7 @@
 // Multiplication by4 yields exactly1 and3, proving operand and storage behavior
 // while avoiding floating-point display-rounding ties. A display-only special
 // case, raw tick count, or late reevaluation of saved cannot satisfy all lines.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.10
 //! inherited IEEE 1364-2005 17.7.3
 //! expect stdout realtime_stored_operand.expected.txt

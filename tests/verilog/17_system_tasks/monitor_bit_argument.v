@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.3
 // $monitor prints only when an argument's value changes; bs[1] changes once
 // even though the vector bs changes four times (pr2785294).

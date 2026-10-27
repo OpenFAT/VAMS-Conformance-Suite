@@ -15,6 +15,7 @@
 //     $realtime 1.6 -> 16 ns    -> "16.000"        (the bug: "20.000")
 //     literal 1.55  -> 15.5 ns  -> "15.500"        (the bug: "20.000")
 //     $time 2       -> 20 ns    -> "20.000"        (an integral operand)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.3.2 17.7.2
 `timescale 10ns/1ns
 module b_17_3_2_timeformat_real_operand;

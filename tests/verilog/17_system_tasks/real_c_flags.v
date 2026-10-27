@@ -24,6 +24,7 @@
 //
 // Legal neighbour of c_flag_on_integer_rejected.v: the same
 // flags on a Table 17-2 conversion are refused (E0827).
+// gold: hand derivation, §17.1.1.2 and C11 7.21.6.1 (above)
 //! inherited IEEE 1364-2005 17.1.1.2
 //! expect stdout real_c_flags.expected.txt
 module b_17_1_1_2_real_c_flags;

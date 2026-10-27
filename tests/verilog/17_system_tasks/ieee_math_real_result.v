@@ -3,6 +3,7 @@
 // result from integer truncation. pow(-2.0,3.0)=-8; floor(-1.25)=-2;
 // ceil(-1.25)=-1. These inputs are in-domain and independently derived.
 // Integer comparison outputs avoid depending on real-number display precision.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.14
 //! inherited IEEE 1364-2005 17.11.2
 module audit_ieee_math_real_result;

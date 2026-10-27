@@ -3,6 +3,7 @@
 // Observe after a positive time separation, not a race in the update region.
 // This checks reevaluation by the later observation, not same-step timing or
 // exact scheduler-region order.
+// gold: hand derivation, §17.5.1 and §17.5.3: the async array follows its inputs and memory, the sync one only its calls
 //! lrm 9.8
 //! lrm 9.8:1000
 //! inherited IEEE 1364-2005 17.5.1,17.5.3

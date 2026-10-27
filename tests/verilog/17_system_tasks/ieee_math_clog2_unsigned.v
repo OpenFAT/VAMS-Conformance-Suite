@@ -5,6 +5,7 @@
 // Runtime variables keep these checks distinct from literal constant folding.
 // IEEE4.8 permits integer width>=32, so native integer -1 has result>=32,
 // not necessarily exactly32. The explicit packed operand fixes its width.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.14
 //! lrm 9.14:1
 //! inherited IEEE 1364-2005 17.11.1

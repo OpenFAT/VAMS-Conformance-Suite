@@ -25,6 +25,7 @@
 //   $fseek(fd, 10, 0) with no write after it, then $fseek(fd, 0, 2): the
 //     size is still 5 -> "size=5"
 //   $fseek(fd, -10, 0): no byte -10 exists -> "bad=-1"
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.5.5
 //! lrm 9.5.5:4
 //! lrm 9.5.5:3

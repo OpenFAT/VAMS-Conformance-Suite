@@ -3,6 +3,7 @@
 // At2ns with settings(-9,1,"ns",0), literal2 ->2.0ns.
 // Changing variable precision alone cannot change the installed setting;
 // reinvoking with precision2 then gives2.00ns.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.6
 //! lrm 9.6:1000
 //! inherited IEEE 1364-2005 17.3.2

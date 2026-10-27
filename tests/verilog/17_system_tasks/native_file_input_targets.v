@@ -14,6 +14,7 @@
 // next successful open clears both. The error's number/text are not fixed.
 // Existing b_17_2_*_rejected cases pin invalid calls; this legal runtime
 // fixture pins output lvalues, wide stores and their event notifications.
+// gold: hand derivation, §17.2.4.2 and §17.2.7 (above)
 //! inherited IEEE 1364-2005 17.2.4.2
 //! inherited IEEE 1364-2005 17.2.7
 // native-required

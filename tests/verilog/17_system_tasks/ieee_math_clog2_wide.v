@@ -2,6 +2,7 @@
 // 65-bit1 shifted64 is2^64: ceiling log2=64. Adding1 crosses the exact
 // power boundary so result65. A129-bit operand with only bit128 set gives128.
 // All values are known, and explicitly wide operands avoid unsized-shift traps.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.14
 //! lrm 9.14:1
 //! inherited IEEE 1364-2005 17.11.1

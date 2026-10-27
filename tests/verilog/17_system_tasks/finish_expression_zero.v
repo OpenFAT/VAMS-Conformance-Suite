@@ -2,6 +2,7 @@
 // This runtime integer expression is0: finish prints nothing and terminates
 // execution; the later statement must not execute. This is not a host exit
 // status argument. No diagnostics/statistics wording is constrained here.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.7.1
 //! inherited IEEE 1364-2005 17.4.1
 //! expect stdout finish_expression_zero.expected.txt

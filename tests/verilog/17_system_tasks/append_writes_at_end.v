@@ -10,6 +10,7 @@
 //   write of "C" disregards that position and lands at the end, leaving the
 //   pointer after it at 3 -> "seek=0 tell=3".
 //   Reopened "r": A B C then EOF -> "65 66 67 -1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.5
 module b_17_2_5_append_writes_at_end;
   integer fd, r, c;

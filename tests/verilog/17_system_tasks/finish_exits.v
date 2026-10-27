@@ -12,6 +12,7 @@
 //   second block's t=5 never comes.
 // Nothing else acts at t=1 or t=2, so no §11 ordering choice reaches the
 // transcript.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.4 17.4.1
 `timescale 1 ns / 1 ns
 module b_17_4_1_finish_exits;

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.3.1
 // §17.3.1's format is "Time scale of (module_name)", and the clause does not
 // say whether the name is as written or the full hierarchical one. VerA

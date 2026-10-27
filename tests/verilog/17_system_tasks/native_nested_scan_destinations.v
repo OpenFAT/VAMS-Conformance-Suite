@@ -7,6 +7,7 @@
 // Both outer scans read "10 20". The nested scan of "77" determines
 // the first destination's index as 1-1=0. Thus both outer results are two
 // assignments, values[0]=10 and last=20, with one pick call per outer scan.
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 17.2.4.3 5.2.2 10.4.4
 // native-required
 module native_nested_scan_destinations;

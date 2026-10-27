@@ -8,6 +8,7 @@
 // At time 5:
 //   default format: %0t -> "5", %t -> 19 spaces then "5"
 //   $timeformat(-9, 2, " ns", 10): %0t -> "5.00 ns", %t -> "   5.00 ns"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.3 17.3.2
 `timescale 1ns/1ns
 module b_17_1_1_3_zero_width_time;

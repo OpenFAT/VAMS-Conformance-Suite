@@ -4,6 +4,7 @@
 // AND=(0,1), OR=(1,1); NAND/NOR complement these two result bits.
 // With inputx0: AND=(0,x), OR=(x,x); complements give (1,x),(x,x).
 // This is input uncertainty, NOT an x-valued array personality encoding.
+// gold: hand derivation, §17.5 to §17.5.4 (above)
 //! lrm 9.8
 //! inherited IEEE 1364-2005 17.5
 //! expect stdout pla_sync_array_logic.expected.txt

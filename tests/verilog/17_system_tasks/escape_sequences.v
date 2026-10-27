@@ -16,6 +16,7 @@
 //   %% -> %; \101 = 65 = 'A'; \60 (two digits, followed by \, not an octal
 //   digit) = 48 = '0'; \061 (three digits) = 49 = '1', and the 2 after it is
 //   an ordinary character -> "%|A012|" TAB "|".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.1
 module b_17_1_1_1_escape_sequences;
   initial begin

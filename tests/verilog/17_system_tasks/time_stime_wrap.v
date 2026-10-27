@@ -10,6 +10,7 @@
 // 2^32+3: time retains bit32 and lowbits3, stime is3.
 // $time>>32=1 after the wrap distinguishes a32bit-return implementation;
 // storing a small result in a64bit destination alone cannot prove this.
+// gold: Verilator 5.052 agrees
 //! lrm 9.10
 //! inherited IEEE 1364-2005 17.7.1,17.7.2
 //! expect stdout time_stime_wrap.expected.txt

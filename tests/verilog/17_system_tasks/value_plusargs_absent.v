@@ -4,6 +4,7 @@
 // survive, distinguishing no-match from a fabricated zero writeback.
 // Literal format strings are legal. Packed nonreal query forms, present matches,
 // first-match ordering and conversions require explicit invocation arguments.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.12
 //! inherited IEEE 1364-2005 17.10.2
 module audit_value_plusargs_absent;

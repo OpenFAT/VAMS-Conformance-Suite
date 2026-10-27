@@ -24,6 +24,7 @@
 //                     1.2345672|5 -> "1.23457e+06" (the case %g exists for)
 //
 // No value is a rounding tie, so no line depends on the tie-breaking rule.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.4.3 (Table 9-23)
 //! inherited IEEE 1364-2005 17.1.1.2 (%e %f %g in the digital context)
 //! expect stdout real_conversions.expected.txt

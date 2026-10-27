@@ -27,6 +27,7 @@
 // A time variable carries the same stream: its first two draws from 0 are
 // the integer's. Its written-back value is not printed: the listing's seed
 // is a 32-bit long, and how its 64 bits are filled is not stated.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.13.1
 //! lrm 9.13.1:1
 //! lrm 9.13.1:4

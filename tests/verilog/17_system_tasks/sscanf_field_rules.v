@@ -30,6 +30,7 @@
 //          ("successfully matched and assigned input items") -> "2 7 9"
 //   "2.5e1" %f into a real: 25.0 -> "1 25.000000"
 //   "-1.5"  %e into a real -> "1 -1.500000"
+// gold: hand derivation, §17.2.4.3 and §3.5.1 (above)
 //! inherited IEEE 1364-2005 17.2.4.3
 module b_17_2_4_3_sscanf_field_rules;
   integer code, a, b;

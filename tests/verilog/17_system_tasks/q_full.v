@@ -10,6 +10,7 @@
 //   after a remove: $q_full -> 0, status 0
 //   queue 8 was never created: status 2. What $q_full returns then is not
 //   stated, so only the status is printed.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.6.4
 `timescale 1 ns / 1 ns
 module b_17_6_4_q_full;

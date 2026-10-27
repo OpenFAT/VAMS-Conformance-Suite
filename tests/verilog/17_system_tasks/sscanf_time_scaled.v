@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.4.3 17.3.2
 // $sscanf %t reads a time scaled by $timeformat into the module's units;
 // "8.125" with -3 units and 2 decimals is 8.13ms = 8,130,000ns (scanf2).

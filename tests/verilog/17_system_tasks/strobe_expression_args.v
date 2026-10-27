@@ -1,3 +1,4 @@
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 17.1.3
 // $strobe takes expression arguments and shows their end-of-step values:
 // value is 2 and value+1 is 3 when the line prints (br916a).

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.2
 // $fmonitor writes its line whenever a monitored value changes, including
 // once when the task executes (fmonitor1).

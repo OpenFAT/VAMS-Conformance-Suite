@@ -6,6 +6,7 @@
 // settled value 0. Comparing only the rendered line with the preceding time
 // step would incorrectly suppress that line. Markers at t1 and t3 distinguish
 // it from the setup display, without depending on concurrent print ordering.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5.1
 //! lrm 9.4
 //! inherited IEEE 1364-2005 17.1.3

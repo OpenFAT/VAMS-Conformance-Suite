@@ -41,6 +41,7 @@
 // the `1` or the `z` and is visible; %b prints one character per declared bit
 // so the placement is exact.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.5 (Table 9-2)
 //! inherited IEEE 1364-2005 17.2.9 ($readmemb range form, descending load, x/z data)
 //! data 09_readmemb_range.bin

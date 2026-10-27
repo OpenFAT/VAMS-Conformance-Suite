@@ -48,6 +48,7 @@
 // queries themselves. It is kept separate from 05_time_queries.v for that
 // reason: 05 can go green the day $time lands, this one needs both.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.10
 //! inherited IEEE 1364-2005 17.7 ($time rounding to the local time unit)
 //! expect stdout time_rounding.expected.txt

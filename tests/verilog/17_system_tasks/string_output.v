@@ -32,6 +32,7 @@
 //                                   -> 0000000000352564
 //   $swrite(f, "abcdef")            6 characters into 4: the leftmost two
 //                                   are truncated -> [cdef] (no zero byte)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.3
 module b_17_2_3_string_output;
   reg [8*8:1] s;

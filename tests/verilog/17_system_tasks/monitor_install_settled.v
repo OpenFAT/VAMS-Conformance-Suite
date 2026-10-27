@@ -5,6 +5,7 @@
 // print followed by a second line. At t1 a marker separates the next step;
 // at t2 a=0 gives one further line. No time-function or enable-state behavior
 // participates in this oracle.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5.1
 //! lrm 9.4
 //! inherited IEEE 1364-2005 17.1.3

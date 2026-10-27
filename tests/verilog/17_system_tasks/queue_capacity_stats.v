@@ -3,6 +3,7 @@
 // on empty removal. Maximum-length query gives2 in this run; configured
 // capacity and achieved maximum coincide, so this does not distinguish them.
 // Do not assert job/info outputs on failed removal.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.9
 //! lrm 9.9:1000
 //! inherited IEEE 1364-2005 17.6

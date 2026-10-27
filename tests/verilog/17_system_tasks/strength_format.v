@@ -23,6 +23,7 @@
 // driven only by `pulldown (pd)`, which §7.8 (p. 86: "The signals that these
 // sources place on nets shall have pull strength") makes Pu0, and it reads
 // pd at time 0, racing the gate's first evaluation.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.5
 // native-required
 `timescale 1ns/1ns

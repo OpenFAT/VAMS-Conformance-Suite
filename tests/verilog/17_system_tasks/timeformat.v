@@ -49,6 +49,7 @@
 // "10". A runner that special-cases $time, or that treats %t as "the current
 // time" and ignores its argument, prints "30" there and fails.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.6
 //! lrm 9.6:1000
 //! inherited IEEE 1364-2005 17.3 ($timeformat and the %t conversion)

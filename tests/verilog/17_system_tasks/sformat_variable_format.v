@@ -7,6 +7,7 @@
 // holds zero-padded on the left: %h of s prints 000000783d633321. (%s of
 // s is not used: §17.1.1.7's "leading zeros are never printed" does not say
 // whether each leaves a blank.)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.3
 // native-required
 module b_17_2_3_sformat_variable_format;

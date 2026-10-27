@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.5
 // %v displays the strength of a scalar net: the strong continuous driver of
 // w makes the text St0 (multi_bit_strength; the clause defines no %v text

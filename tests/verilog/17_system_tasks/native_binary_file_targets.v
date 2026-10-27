@@ -12,6 +12,7 @@
 // rewind, a singleton memory at maxInt64 takes byte 41 once; advancing past
 // its last address must not overflow the host. Invalid memory dimensions
 // are separately refused by fread_multidim_rejected.v.
+// gold: hand derivation, §17.2.4.4 (above)
 //! inherited IEEE 1364-2005 17.2.4.4
 // native-required
 // native-state: 4

@@ -15,6 +15,7 @@
 //   At #1 in a 1 ns module with $timeformat(-9, 120, " ns", 20), %t is 1
 //     with 120 fractional zeros and the suffix: 2 + 120 + 3 = 125 columns,
 //     wider than the 20-column minimum, so no padding.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.3 17.1.1.7 17.3.2
 //! expect stdout wide_operand_prints_every_digit.expected.txt
 `timescale 1ns/1ns

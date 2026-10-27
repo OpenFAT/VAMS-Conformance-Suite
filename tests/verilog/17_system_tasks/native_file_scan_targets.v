@@ -11,6 +11,7 @@
 // reads 12, a second %d reads 34, and ! is still available as ASCII 33.
 // A subsequent conversion returns EOF without changing 34. An unknown
 // descriptor also returns EOF and leaves the destination alone.
+// gold: hand derivation, §17.2.4.3 (above); Icarus Verilog 13.0 agrees on every value but adds its own error line for the x descriptor
 //! inherited IEEE 1364-2005 17.2.4.3
 // native-required
 // native-state: 4

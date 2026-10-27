@@ -9,6 +9,7 @@
 // each run once, so each is the scope gK[0] (§12.4.1), and, within the
 // initial, 70 nested named blocks b0..b69. %m prints the module, each
 // generate scope and each named block, outermost first, joined by periods.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.6
 //! expect stdout scope_name_past_64_levels.expected.txt
 module b_17_1_1_6_scope_name_past_64_levels;

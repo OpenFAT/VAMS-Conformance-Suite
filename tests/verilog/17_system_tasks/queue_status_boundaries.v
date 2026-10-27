@@ -2,6 +2,7 @@
 // compile rejection. Isolate each invalid precondition: type3->4, length0/-1
 // ->5, duplicateID->6, undefinedID->2. Never inspect unspecified result/payload
 // values after failed queries. Memory exhaustion status7 needs a host seam.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.9
 //! lrm 9.9:1000
 //! inherited IEEE 1364-2005 17.6.6

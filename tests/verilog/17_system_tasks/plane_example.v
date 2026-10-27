@@ -15,6 +15,7 @@
 //   a = 101: b1 = 1&1 = 1, b2 = 1, b3 = 0&0 = 0, b4 = 1  -> 1101
 // which is the clause's printed output. Each display follows its stimulus
 // by 10 units, so the asynchronous array has settled.
+// gold: hand derivation, §17.5.4 Example 2, whose printed output this is
 //! inherited IEEE 1364-2005 17.5.4
 `timescale 1 ns / 1 ns
 module b_17_5_4_plane_example;

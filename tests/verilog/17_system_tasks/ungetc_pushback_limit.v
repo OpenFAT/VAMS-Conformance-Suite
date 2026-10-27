@@ -13,6 +13,7 @@
 // push that returns 0 must be followed by 90; one that returns EOF leaves
 // the file's next character, "u" (117), "v", "w" in turn. Either way the
 // line prints ok=1 for each.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.4.1
 module b_17_2_4_1_ungetc_pushback_limit;
   integer fd, c, k, code, next, expect;

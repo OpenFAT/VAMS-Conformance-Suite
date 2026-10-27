@@ -10,6 +10,7 @@
 // and with %0d / %0h, "two columns and one column, respectively":
 //   "Printing with minimum size - :10: :a:"
 // The same override on 16-bit c = 1 in binary and octal: %0b -> 1, %0o -> 1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.3
 module b_17_1_1_3_zero_width_format;
   reg [11:0] r1;

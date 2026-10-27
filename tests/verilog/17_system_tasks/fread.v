@@ -20,6 +20,7 @@
 //   $fread(mem, fd): no start, so from the lowest address 10, filled with
 //     what is left -> 9a bc de f0, 4 bytes -> "4 9a bc de f0"
 //   $fread(r16, fd) at end of file: no character read -> "0"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.4.4
 // native-required
 module b_17_2_4_4_fread;

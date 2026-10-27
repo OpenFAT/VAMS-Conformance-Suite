@@ -5,7 +5,13 @@
 // Exponential distribution must have a positive mean\n"); i=0; }` — it
 // returns 0 and never calls `uniform`, so the seed is not written.
 // The mean is a variable, so this is a run-time warning and not a refusal.
+// The listing's print_error names no stream, so the warning is any line of
+// the tool's own (`//! diagnostic`) and the result is looked for, not the
+// whole transcript.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.9.2
+//! stdout r=0 seed=1
+//! diagnostic
 module audit_dist_nonpositive_warning;
   integer seed, mean, r;
   initial begin

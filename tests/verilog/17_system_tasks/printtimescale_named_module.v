@@ -14,6 +14,7 @@
 // `timescale is 1 ns / 1 ns, so its unit is 1ns and its precision 1ns; the
 // caller's own 1 ms / 1 us and b_dat's 10 fs / 1 fs are not what is asked:
 //   Time scale of (b_17_3_1_printtimescale_named_module.b.c1) is 1ns / 1ns
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.3.1
 `timescale 1 ms / 1 us
 module b_17_3_1_printtimescale_named_module;

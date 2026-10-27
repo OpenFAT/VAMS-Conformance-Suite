@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.2
 // $fstrobe writes its line once, at the end of the current time step, with
 // the values the arguments hold then: s 3 (fmonitor1/fmonitor2/pr2842621).

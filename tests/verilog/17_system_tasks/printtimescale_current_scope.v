@@ -11,6 +11,7 @@
 //   Time scale of (b_17_3_1_printtimescale_current_scope) is 1ms / 1us
 // The LRM's own example writes the unit with no space ("is 1ns / 1ns") for a
 // directive written `1 ns / 1 ns`, which is the spelling expected here.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.3.1
 `timescale 1 ms / 1 us
 module b_17_3_1_printtimescale_current_scope;

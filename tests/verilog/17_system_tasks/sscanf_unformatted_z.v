@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.2
 // %z reads and writes unformatted four-value data; a 32-bit value with x and
 // z bits survives $sformat then $sscanf unchanged (sscanf_z).

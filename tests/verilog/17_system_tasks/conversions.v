@@ -26,6 +26,7 @@
 //   the ports without a range (`output net_r;` then `wire [64:1] net_r`);
 //   §12.3.3 (p. 174) says "the range specification between the two
 //   declarations of a port shall be identical", so here both carry [64:1].
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 17.8
 `timescale 1 ns / 1 ns
 module b_17_8_conversions;

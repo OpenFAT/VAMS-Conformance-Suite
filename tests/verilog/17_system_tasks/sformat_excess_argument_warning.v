@@ -9,8 +9,13 @@
 // time error message." So the format is a variable, fmt = "%0d", assigned at
 // run time: one specifier, and two arguments follow it, too many. The run
 // must warn and continue, so the $display after it prints "continued". What
-// s holds afterwards is not fixed by the clause, so it is not printed.
+// s holds afterwards is not fixed by the clause, so it is not printed. The
+// warning's words and stream are not fixed either: `//! diagnostic` asks for
+// a line of the tool's own.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.3
+//! stdout continued
+//! diagnostic
 // native-required
 module b_17_2_3_sformat_excess_argument_warning;
   reg [8*8:1] s;

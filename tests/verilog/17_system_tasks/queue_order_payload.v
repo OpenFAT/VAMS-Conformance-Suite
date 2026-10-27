@@ -2,6 +2,7 @@
 // Enqueue (job,info)=(13,130),(27,270) in each independent queue.
 // FIFO returns13 then27; LIFO returns27 then13. Payload must stay with job.
 // Every successful task overwrites status with0; no default-zero assumption.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.9
 //! lrm 9.9:1000
 //! inherited IEEE 1364-2005 17.6.1,17.6.2,17.6.3

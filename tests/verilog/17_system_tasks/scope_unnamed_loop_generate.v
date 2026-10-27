@@ -10,6 +10,7 @@
 // genblk1; two iterations i = 0, 1, each printing at time i:
 //   b_17_1_1_6_scope_unnamed_loop_generate.genblk1[0]
 //   b_17_1_1_6_scope_unnamed_loop_generate.genblk1[1]
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.6 12.4.3
 `timescale 1ns/1ns
 module b_17_1_1_6_scope_unnamed_loop_generate;

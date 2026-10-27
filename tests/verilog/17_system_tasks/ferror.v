@@ -15,6 +15,7 @@
 //     that descriptor reports the error with a nonzero code. The value is
 //     not fixed by the clause (CLAUSE-AUDIT §5.5), so only its being nonzero
 //     is printed -> "1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.7
 // native-required
 module b_17_2_7_ferror;

@@ -7,6 +7,7 @@
 // variable changes again and at t4 simulation finishes, neither adding output.
 // Comparing rendered lines instead of monitored non-time arguments incorrectly
 // makes the changing time field trigger extra lines.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.4
 //! inherited IEEE 1364-2005 17.1.3
 `timescale 1ns/1ns

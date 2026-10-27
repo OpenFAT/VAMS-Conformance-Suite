@@ -33,6 +33,7 @@
 //    two steps (seed 475628535).
 // These are the digits the listing produces; the rounding of each real draw
 // is rtl_dist_*'s `(long)(r+0.5)`, mirrored for a negative r.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.9.2,17.9.3
 //! expect stdout dist_reference.expected.txt
 module audit_dist_reference;

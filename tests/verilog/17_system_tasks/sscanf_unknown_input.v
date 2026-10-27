@@ -1,6 +1,7 @@
 // IEEE1364-2005 §17.2.4.3 printed293: unknown bits in either format or
 // sscanf input require EOF(-1), not a partial conversion or successful zero.
 // Explicit packed reg assignment isolates four-state input from host files.
+// gold: hand derivation, §17.2.4.3: x or z bits in the format or str make $sscanf return EOF
 //! inherited IEEE 1364-2005 17.2.4.3
 module audit_sscanf_unknown_input;
   reg [15:0] text;

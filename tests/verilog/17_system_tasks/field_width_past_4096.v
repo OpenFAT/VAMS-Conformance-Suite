@@ -10,6 +10,7 @@
 //   %10000h of 8'hab: "ab" right-justified in 10000 columns, 9998 spaces.
 //   %.4097f of 0.5 (exact in binary): "0.5" and 4096 zeros.
 //   %5000.3f of 0.25: "0.250", 5 characters, behind 4995 spaces.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.2 17.1.1.3
 //! expect stdout field_width_past_4096.expected.txt
 module b_17_1_1_2_field_width_past_4096;

@@ -13,6 +13,7 @@
 // printed" does not say whether each leaves a blank. A format with too few
 // or too many arguments is not used either: §17.2.3 lets a tool refuse that
 // at compile time when it can tell, and leaves the text it writes open.)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.3
 // native-required
 module native_sformat_dynamic;

@@ -6,6 +6,7 @@
 // flag and unchanged value. Markers at t1/t3/t5 delimit the three observations
 // without imposing order among events in a single time slot. No time function
 // is monitored, so this case is independent of the time-trigger exception.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.1
 //! lrm 9.1:1000
 //! inherited IEEE 1364-2005 17.1.3

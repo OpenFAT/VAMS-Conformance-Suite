@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.2
 // %x is not in 1364-2005 Table 17-3; IEEE 1800-2017 §21.2.1.2 Table 21-1
 // adds "%x or %X" as an alias of %h, and iverilog (-g2005, the reference

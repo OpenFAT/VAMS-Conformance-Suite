@@ -12,6 +12,7 @@
 // and value_plusargs_absent.v leave out (they pass literals):
 //   name = "HELLO": $test$plusargs(name) -> 0
 //   fmt = "N=%d":   $value$plusargs(fmt, v) -> 0, and v keeps 42
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.10 17.10.1 17.10.2
 `timescale 1 ns / 1 ns
 module b_17_10_1_plusargs_variable_query;

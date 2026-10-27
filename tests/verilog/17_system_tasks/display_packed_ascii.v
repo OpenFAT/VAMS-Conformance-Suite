@@ -3,6 +3,7 @@
 // string": 24'h414243 -> "ABC". (No leading zero byte: whether one leaves a
 // blank column, the clause does not say.)
 // Numeric literal isolates %s from unsupported string-valued expressions.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.2 17.1.1.7
 //! expect stdout display_packed_ascii.expected.txt
 module audit_display_packed_ascii;

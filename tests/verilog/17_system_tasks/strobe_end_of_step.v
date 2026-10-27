@@ -19,6 +19,7 @@
 //   t=3  $strobeo queued, a still 8'h0f = 00 001 111 -> "017" (8 bits, three
 //        octal digits, leading zeros kept, §17.1.1.3).
 //   t=4  $strobe with no argument -> an empty line.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.2
 `timescale 1ns/1ns
 module b_17_1_2_strobe_end_of_step;

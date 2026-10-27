@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.3.1
 // IEEE 1364-2005 §17.3.1: "When an argument is specified, $printtimescale
 // displays the time unit and precision of the module passed to it." The

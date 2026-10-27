@@ -20,6 +20,7 @@
 //   $fdisplay(mcd | 1, "both %0d", 7) writes "both 7\n" to the file AND to
 //   stdout, so the transcript shows it once here.
 //   Reading both files back with $fgetc prints their bytes between [ ].
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.1 ($fopen w, a, mcd; channel reuse)
 //! inherited IEEE 1364-2005 17.2.2 ($fdisplay, $fwrite, mcd OR-ing)
 module audit_fopen_write_append_mcd;

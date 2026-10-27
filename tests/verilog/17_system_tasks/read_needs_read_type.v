@@ -9,6 +9,7 @@
 //        is a read of a file not opened for reading: an error -> -1.
 //   "r+" the same file reopened for update: the first byte is Q -> 81.
 //   "r"  reopened for reading: again 81.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.2.4 17.2.4.1
 module b_17_2_4_read_needs_read_type;
   integer fd, c;

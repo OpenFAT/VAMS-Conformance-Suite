@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 17.1.1.2
 // %u reads unformatted two-value data; a 32-bit word written with %u reads
 // back unchanged (fscanf_u).

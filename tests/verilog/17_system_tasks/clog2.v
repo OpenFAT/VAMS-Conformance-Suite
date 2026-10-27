@@ -36,6 +36,7 @@
 // bits — so a result delivered as a real, or as a value that does not take the
 // assignment's width context, does not produce this line.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.14 (Table 9-11)
 //! inherited IEEE 1364-2005 17.11 ($clog2 in a digital expression)
 //! expect stdout clog2.expected.txt
