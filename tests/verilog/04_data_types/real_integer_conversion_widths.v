@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.8.2
 // A real/integer conversion rounds to the nearest integer for any width; 2**63
 // fits a 64-bit reg and 2**64 a 65-bit reg (pr2913404).

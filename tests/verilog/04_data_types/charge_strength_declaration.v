@@ -14,6 +14,7 @@
 // The size itself (large) is observable only against another trireg through
 // a switch (§4.6.3.1) or with %v; this fixture pins only that the declaration
 // is accepted and yields a trireg.
+// gold: hand derivation, §4.4 and §4.6.3 (above)
 //! inherited IEEE 1364-2005 4.4
 module b_4_4_charge_strength_declaration;
   reg d, en;

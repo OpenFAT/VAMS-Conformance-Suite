@@ -1,5 +1,6 @@
 // IEEE1364-2005 §4.6.5 legal neighbor: exactly one continuous driver;
 // observe both driven polarities so syntax acceptance alone is insufficient.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.6.5
 `timescale 1ns/1ns
 module audit_type_uwire_single_driver;

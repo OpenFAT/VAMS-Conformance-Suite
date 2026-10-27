@@ -1,6 +1,7 @@
 // IEEE1364-2005 §4.9: every unpacked dimension has an explicit index;
 // bounds may be negative/ascending/descending. Each element remains4bits,
 // irrespective of dimension lengths. Variable index selects independent words.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.9 4.9.2
 module audit_type_multidimensional_array;
   reg [3:0] memory [-1:0][2:1];

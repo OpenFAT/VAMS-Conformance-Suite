@@ -20,6 +20,7 @@
 //   u.U, untyped 1, overridden by 8'h0F: takes 8 bits, 00001111.
 // Output: "7 0000001111110 00000000000000000000000000000001 100"
 //   then "R=1111 15 U=00001111".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10.1
 module b_4_10_1_leaf;
   parameter [3:0] R = 1;

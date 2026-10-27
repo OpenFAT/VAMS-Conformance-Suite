@@ -16,6 +16,7 @@
 // t = 3 is not sampled: §4.2.1's "Nets with drivers shall assume the output
 // value of their drivers" leaves a delayed assignment's value until its first
 // update to a reading this fixture need not take.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10.3 6.1.3
 //! expect stdout specparam_module_body_delay.expected.txt
 module specparam_module_body_delay;

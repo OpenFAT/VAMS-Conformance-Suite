@@ -12,6 +12,7 @@
 //     scalared net must allow selects: bus64[5] -> 1, bus64[63:62] -> 11
 //   tri vectored [31:0] data: legal to declare; read whole (no select, which
 //     vectored may forbid): undriven tri -> zzzzzzzz (%h)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.3.2
 module b_4_3_2_scalared_vectored;
   tri1 scalared [63:0] bus64;

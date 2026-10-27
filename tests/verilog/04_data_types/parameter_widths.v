@@ -7,6 +7,7 @@
 // low four bits, 0101. S, a specparam with range [3:0], = 6'b110011: 0011
 // (§4.10.3's specparam_declaration takes [ range ]).
 // Output: "P=10100101 Q=0101 S=0011".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10
 module b_4_10_parameter_widths;
   parameter P = 8'hA5;

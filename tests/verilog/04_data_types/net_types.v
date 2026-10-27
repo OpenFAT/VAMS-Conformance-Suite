@@ -14,6 +14,7 @@
 //   wire z, tri z, wand z, triand z, wor z, trior z, uwire z (the default);
 //   tri0 0, tri1 1; supply0 0, supply1 1; trireg x.
 // Output: "zzzzzzz 0101 x".
+// gold: hand derivation, §4.2.1, §4.6.4 and §4.6.6 (above)
 //! inherited IEEE 1364-2005 4.6
 `timescale 1ns/1ns
 module b_4_6_net_types;

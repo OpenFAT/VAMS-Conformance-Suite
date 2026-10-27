@@ -17,6 +17,7 @@
 //   t - 6 > 0 -> 1 (a signed result would be -1 > 0 -> 0)
 // real re, realtime rt, never assigned -> 0.000000 each; rt = 1.25 and
 //   re = rt interchangeably -> 1.250000
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.8
 module b_4_8_integer_time_real;
   integer i;

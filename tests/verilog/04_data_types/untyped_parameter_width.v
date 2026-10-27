@@ -1,3 +1,4 @@
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 4.10.1
 // An untyped parameter takes the size of its final value, so the addition in
 // sum2 is 3 bits and in sum4 2 bits; a range makes sum1 and sum3 4 bits

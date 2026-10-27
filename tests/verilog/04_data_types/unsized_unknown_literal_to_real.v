@@ -6,6 +6,7 @@
 //
 //   r = 'bx: every bit is x, so 0                      -> "0"
 //   r = 'b1z: bit 1 is 1 and bit 0 is z (read as 0): 2  -> "2"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.8.2
 module b_4_8_2_unsized_unknown_literal_to_real;
   real r;

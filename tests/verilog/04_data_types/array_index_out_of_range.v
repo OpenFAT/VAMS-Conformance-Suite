@@ -1,3 +1,4 @@
+// gold: hand derivation, §5.2.2: indices -1 and 2**120+7 are outside [1:8], so both reads are xxxx and PASSED prints
 //! inherited IEEE 1364-2005 5.2.2
 // An index outside the declared range reads x: both a negative index and a
 // 128-bit index whose low bits are in range are out of range (signed_a).

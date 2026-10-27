@@ -18,6 +18,7 @@
 //   4'b1000 reads -8 (the clause's "a 4-bit vector in range -8 to 7").
 // Bounds from constant integer expressions: parameter W = 3, reg [W:0] p
 //   is 4 bits: {1'b1, p} with p = 4'hF -> 11111.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.3.1
 module b_4_3_1_vector_ranges;
   parameter W = 3;

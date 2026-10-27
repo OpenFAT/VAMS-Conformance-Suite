@@ -11,6 +11,7 @@
 //   1.4 -> 1;  1.6 -> 2;  -1.6 -> -2;  2.5 -> 3;  -2.5 -> -3;  0.5 -> 1
 // Into real r (printed %f), from reg [3:0] v = 4'b1101 -> 13.000000
 // (x and z bits: unknown_bits_to_real.v)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.8.2
 module b_4_8_2_real_integer_conversion;
   integer i;

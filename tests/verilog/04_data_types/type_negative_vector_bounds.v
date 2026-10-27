@@ -1,6 +1,7 @@
 // IEEE1364-2005 §4.3.1: bounds may be negative, ascending or equal.
 // [-2:1] and[1:-2] both contain4bits, leftboundMSB;17 truncates to1.
 // [-3:-3] is1bit. No packed-select support is needed to observe widths.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.3.1
 module audit_type_negative_vector_bounds;
   reg [-2:1] ascending;

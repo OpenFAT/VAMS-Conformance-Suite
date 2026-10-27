@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.6.5
 // A uwire forbids more than one driver on any bit, not more than one driver on
 // the whole net: these two part-select drivers are legal (uwire2).

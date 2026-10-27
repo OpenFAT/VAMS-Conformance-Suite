@@ -14,6 +14,7 @@
 //   ~d in an expression, d = z: -> x (§5.1.10 Table 5-16)
 //   nmos n1(m, d, c), d = z, c = 1: the switch conducts and passes z -> z
 //     (§7.5 Table 7-6, data z, control 1)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.1
 module b_4_1_value_set;
   reg [3:0] v;

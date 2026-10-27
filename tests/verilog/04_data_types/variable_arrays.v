@@ -9,6 +9,7 @@
 //   xa[1] = 2.5       -> 2.50     (real element)
 //   rta[3] = 1.25     -> 1.25     (realtime element, declared [2:3])
 // Output: "a -5 7 2.50 1.25".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.9.2
 // native-required
 module b_4_9_2_variable_arrays;

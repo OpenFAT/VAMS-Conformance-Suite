@@ -14,6 +14,7 @@
 //   time 0 (§6.2.1), so d is not read then -> 4
 // Stores from one assignment to the next: r = 4'd9 at time 0, read at
 // time 2 with no assignment between -> 1001.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.2.2
 module b_4_2_2_variable_initial_values;
   reg [3:0] r;

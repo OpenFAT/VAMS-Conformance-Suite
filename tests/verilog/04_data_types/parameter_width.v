@@ -1,3 +1,4 @@
+// gold: hand derivation, §4.10.1 and §5.4.1: sum2 and sum4 are a + b and c + d at their final values' own widths, 3 and 2 bits (001, 01); sum1 and sum3 are 4-bit ranged
 //! inherited IEEE 1364-2005 4.10.1 5.4.1
 // An untyped parameter takes the size of its final value: a 3-bit sum, a
 // 4-bit ranged sum, and a 2-bit sum after the defparams (param-width).

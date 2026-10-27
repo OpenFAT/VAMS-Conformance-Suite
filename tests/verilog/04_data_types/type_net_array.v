@@ -20,6 +20,7 @@
 //   r <- 0011: w[1] = 0100, q[1] = 1011, m[1][0] = 1 & 1 = 1
 //   t=2 prints "0100 1011 1"
 //
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.9.1
 `timescale 1ns/1ns
 module inv(input [3:0] a, output [3:0] y);

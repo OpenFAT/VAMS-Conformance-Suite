@@ -8,6 +8,7 @@
 // both operands signed, so the compare is signed). ls, a localparam of the same
 // declaration (§4.10.2: "identical to parameters"), likewise.
 // Output: "-1 -1 -1 1 1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10.1
 module b_4_10_1_signed_ranged_parameter;
   parameter signed [3:0] sneg = 4'b1111;

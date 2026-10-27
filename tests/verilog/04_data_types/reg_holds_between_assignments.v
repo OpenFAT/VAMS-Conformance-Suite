@@ -14,6 +14,7 @@
 //   t=5: clk = 0, en = 0         t=6: d = 0: l keeps 1, c = ~0 = 1
 //   t=7: q holds 1 between assignments -> 1 1
 //   t=8: posedge clk, q <= 0     t=9: -> 0 1 1
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.7
 module b_4_7_reg_holds_between_assignments;
   reg clk, d, en;

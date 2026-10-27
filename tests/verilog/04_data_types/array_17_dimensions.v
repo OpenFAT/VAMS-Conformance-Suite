@@ -18,6 +18,7 @@
 //       m[0]..[1] was never written: x (§3.2 a reg starts at x),
 //       m[i]..[3] with j = 3 is outside [2:0]: §5.2.1 reads x.
 //   %d of a 4-bit operand pads to 2 columns (15 has 2 digits).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.9
 //! expect stdout array_17_dimensions.expected.txt
 module b_4_9_array_17_dimensions;

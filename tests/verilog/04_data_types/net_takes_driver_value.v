@@ -9,6 +9,7 @@
 //   wire [3:0] floating (no driver)            -> zzzz
 //   wire [3:0] follows = r (continuous assign) -> r's value, 1010, then 0101
 //   wire g_out driven by not(g_out, r[0])      -> ~0 = 1, then ~1 = 0
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.2.1
 module b_4_2_1_net_takes_driver_value;
   reg [3:0] r;

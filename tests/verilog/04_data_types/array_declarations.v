@@ -15,6 +15,7 @@
 //   arrayb[1][0] = 0, arrayb[1][1] = 1 -> 01; inta[4] = 33559;
 //   chng_hist[7] = $time = 3.
 // Output: "00 a5 xx 01 33559 3".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.9.3 4.9.3.1.1 4.9.3.1.2
 `timescale 1ns/1ns
 module b_4_9_3_1_1_array_declarations;

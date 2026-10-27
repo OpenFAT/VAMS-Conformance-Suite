@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10.1 4.8
 // A time-typed parameter or localparam is unsigned 64-bit: -1 is
 // 18446744073709551615 and equals a time variable holding -1

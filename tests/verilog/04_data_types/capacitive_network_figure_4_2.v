@@ -19,6 +19,7 @@
 //        [stores] the value of the larger", so sm = 0; me1 (medium 0) joins
 //        me2 (medium 1), same size, "both ... change value to x"
 //                                                           -> 0 0 x x
+// gold: hand derivation, §4.6.3.1 (Figure 4-2's table, read one unit after each row)
 //! inherited IEEE 1364-2005 4.6.3 4.6.3.1
 // native-required
 module b_4_6_3_1_capacitive_network_figure_4_2;

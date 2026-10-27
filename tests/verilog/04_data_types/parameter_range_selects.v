@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10.1 5.2.1
 // A part-select of a parameter indexes its declared range: b is [9:1], so
 // b[1] is the LSB and b[9] is the 9th bit (pr1913918b).

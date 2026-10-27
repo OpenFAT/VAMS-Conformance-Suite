@@ -1,6 +1,7 @@
 // IEEE1364-2005 §§4.6.1/2 Tables4-2/3/4: all sixteen ordered pairs
 // of equal-strength0/1/x/z, MSB first. wire=tri, wand=triand, wor=trior.
 // Expected each group is read independently from its source truth table.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.6.1 4.6.2
 `timescale 1ns/1ns
 module audit_type_net_resolution_tables;

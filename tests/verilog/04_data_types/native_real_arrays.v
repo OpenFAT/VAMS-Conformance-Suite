@@ -13,6 +13,7 @@
 // hold x, so neither is read here.
 // A valid element's explicit NaN payload is preserved by §17.8 conversions.
 // Legal whole-element reads here neighbor native_real_select_rejected.v.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.8 4.8.2 4.9.2 9.2.2
 // native-required
 `timescale 1ns/1ns

@@ -15,6 +15,7 @@
 //   o: undeclared, output terminal of and g(o, q, 1'b1) -> 1 & 1 = 1
 //   k: undeclared, LHS of assign k = 2'b10: a scalar net, so it keeps the
 //      LSB (§5.6) -> 0
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.5
 module b_4_5_implicit_nets;
   reg r;

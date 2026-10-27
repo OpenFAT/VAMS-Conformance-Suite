@@ -10,6 +10,7 @@
 //   reg [3:0] v = 4'b0101     -> 10101
 //   wire [15:0] busa = 16'h1  -> 1 0000000000000001
 // A scalar keeps one bit of a wider value: a = 2'b10 -> a = 0 (§5.6).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.3
 module b_4_3_scalar_and_vector;
   reg a;

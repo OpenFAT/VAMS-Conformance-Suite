@@ -14,6 +14,7 @@
 // (1 << addr_width takes the width of its left operand 1, 32 bits): bit 11
 // is 1, bit 12 is 0, and the part-select [3:0] is 1111.
 // Output: "12 16 4096 1 0 1111".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.10.2
 module b_4_10_2_my_mem;
   parameter addr_width = 16;

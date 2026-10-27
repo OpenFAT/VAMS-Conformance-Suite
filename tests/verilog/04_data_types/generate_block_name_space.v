@@ -11,6 +11,7 @@
 // in g's space and reads 3 at t=2 (§12.7, p. 196: "If it is declared
 // locally, then the local item shall be used").
 // Output: "1" then "g 3".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.11
 `timescale 1ns/1ns
 module b_4_11_generate_block_name_space;

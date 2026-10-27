@@ -11,6 +11,7 @@
 // `u` has no driver at all and reads the default z at both times.
 //
 // Neighbour: net_takes_driver_value.v, an undelayed driver.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.2.1 6.1.3
 `timescale 1ns/1ns
 module b_4_2_1_net_x_before_delayed_driver;

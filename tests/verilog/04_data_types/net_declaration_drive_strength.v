@@ -12,6 +12,7 @@
 //     -> 1 (an implementation that drops the declared strength sees two
 //     strong drivers and resolves x)
 //   a = 1 drives pull1, b = 0 drives strong0 -> 0
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.4.2 4.4
 module b_4_4_2_net_declaration_drive_strength;
   reg a, b;

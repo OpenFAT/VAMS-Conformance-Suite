@@ -6,6 +6,7 @@
 //   v = 4'b1x01: the x bit counts as 0 -> 1001 = 9.000000
 //   v = 4'bz1z1: each z counts as 0 -> 0101 = 5.000000
 // and from a net, wire [3:0] n = {2'bz1, 2'b1x}: -> 0110 = 6.000000
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.8.2
 module b_4_8_2_unknown_bits_to_real;
   real r;

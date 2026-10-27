@@ -22,6 +22,7 @@
 // between initial and always constructs", so leaf's always must reach @(a)
 // first.
 // Output (t=2, then t=3): "1 2 1 5 6" then "u.x=4".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.11
 `timescale 1ns/1ns
 module b_4_11_leaf (a, y);
