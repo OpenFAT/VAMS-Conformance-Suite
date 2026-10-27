@@ -5,7 +5,14 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice-44.2 run of this deck; values match the closed form in the deck header.",
-    "command": "ngspice-45 -b (meas tran find v(1), v(2) at=50n, 300n, 800n)"
+    "command": "ngspice-45 -b (meas tran find v(1), v(2) at=50n, 300n, 800n)",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/regression/sensed_vsource_tran.expected.json",
+      "max_rel_err": 0.0,
+      "max_tolerance_ratio": 0.0
+    }
   },
   "expect": {
     "status": "success",

@@ -6,7 +6,14 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "a99a8178988fc6fd197f9a553fc37b3fd0328c49be466d6836f2b00c20eedf3c"
+  "source_sha256": "a99a8178988fc6fd197f9a553fc37b3fd0328c49be466d6836f2b00c20eedf3c",
+  "confirmed": {
+   "tool": "xyce",
+   "version": "Xyce Release 7.10.0-opensource",
+   "command": "python3 tools/xcheck.py tests/netlist/regression/jfet_inverse_mode.expected.json",
+   "max_rel_err": 2.95e-12,
+   "max_tolerance_ratio": 2.11e-06
+  }
  },
  "origin": "tests/fixtures/regression/jfet_inverse_mode.sp",
  "expect": {

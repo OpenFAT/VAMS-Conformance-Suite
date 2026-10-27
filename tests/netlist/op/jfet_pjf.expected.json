@@ -5,7 +5,14 @@
  "oracle": {
   "kind": "ngspice-45",
   "derivation": "ngspice-45 on this deck: vd#branch = 2.020000015100e-04.",
-  "command": "ngspice -b (print all, numdgt=12)"
+  "command": "ngspice -b (print all, numdgt=12)",
+  "confirmed": {
+   "tool": "xyce",
+   "version": "Xyce Release 7.10.0-opensource",
+   "command": "python3 tools/xcheck.py tests/netlist/op/jfet_pjf.expected.json",
+   "max_rel_err": 0.0,
+   "max_tolerance_ratio": 0.0
+  }
  },
  "origin": "tests/fixtures/op/jfet_pjf.sp",
  "expect": {

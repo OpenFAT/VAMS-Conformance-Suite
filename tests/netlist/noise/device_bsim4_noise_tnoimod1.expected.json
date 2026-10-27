@@ -6,7 +6,17 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "414c1b0e687a1d063261c45687929b050962b29ccd27ab6d89309378a0625a65"
+  "source_sha256": "414c1b0e687a1d063261c45687929b050962b29ccd27ab6d89309378a0625a65",
+  "confirmed": {
+   "tool": "xyce",
+   "version": "Xyce Release 7.10.0-opensource",
+   "command": "python3 tools/xcheck.py tests/netlist/noise/device_bsim4_noise_tnoimod1.expected.json",
+   "max_rel_err": 2.36e-05,
+   "max_tolerance_ratio": 0.236,
+   "unconfirmed": [
+    "Integrated Noise: plot Integrated Noise"
+   ]
+  }
  },
  "origin": "tests/fixtures/noise/device_bsim4_noise_tnoimod1.sp",
  "expect": {

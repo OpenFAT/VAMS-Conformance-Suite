@@ -4,7 +4,14 @@
   "purpose": ".global nets connect through subcircuits.",
   "oracle": {
     "kind": "ngspice-45",
-    "derivation": "ngspice -b of the same deck."
+    "derivation": "ngspice -b of the same deck.",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/syntax/global_net.expected.json",
+      "max_rel_err": 0.0,
+      "max_tolerance_ratio": 0.0
+    }
   },
   "expect": {
     "status": "success",

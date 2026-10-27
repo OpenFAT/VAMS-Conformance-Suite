@@ -6,7 +6,14 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "7a41401c0d287640b9f8eb7e5a4659c6774117db43d0dcb223a9958be39c6a72"
+    "source_sha256": "7a41401c0d287640b9f8eb7e5a4659c6774117db43d0dcb223a9958be39c6a72",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/layout/metal_island_tran.expected.json",
+      "max_rel_err": 2e-12,
+      "max_tolerance_ratio": 6.67e-10
+    }
   },
   "origin": "benchmark/fixtures/layout/metal_island_tran/circuit.sp",
   "expect": {

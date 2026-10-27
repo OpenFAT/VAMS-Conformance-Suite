@@ -6,7 +6,14 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "d50a5d8d68bd118d51a5ba2990d4b7764e804ca24cf3a2c53743fb62db1d0713"
+    "source_sha256": "d50a5d8d68bd118d51a5ba2990d4b7764e804ca24cf3a2c53743fb62db1d0713",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/op/bench_adversarial_tiny_resistor.expected.json",
+      "max_rel_err": 6.79e-08,
+      "max_tolerance_ratio": 6.79e-05
+    }
   },
   "origin": "benchmark/fixtures/adversarial/tiny_resistor/circuit.sp",
   "expect": {

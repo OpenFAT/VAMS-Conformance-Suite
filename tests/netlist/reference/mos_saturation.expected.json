@@ -6,7 +6,14 @@
     "kind": "ngspice-44.2",
     "derivation": "Run the self-contained deck in ngspice-44.2 with the explicit tolerances in the netlist. Read binary raw doubles by variable name. Transient samples retain up to 101 original accepted times; no interpolation was used to create these expected values.",
     "version": "ngspice-44.2 (SPARSE solver; 27 C)",
-    "command": "ngspice -n -b -r /tmp/mos_saturation.raw reference/mos_saturation.sp"
+    "command": "ngspice -n -b -r /tmp/mos_saturation.raw reference/mos_saturation.sp",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/reference/mos_saturation.expected.json",
+      "max_rel_err": 0.382,
+      "max_tolerance_ratio": 0.00115
+    }
   },
   "expect": {
     "status": "success",

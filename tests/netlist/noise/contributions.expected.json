@@ -5,7 +5,24 @@
   "oracle": {
     "kind": "ngspice-44.2",
     "command": "ngspice -b -r reference.raw contributions.sp",
-    "derivation": "ngspice's own per-generator vectors; the zero _1overf generators ESPice's models do not declare are left out."
+    "derivation": "ngspice's own per-generator vectors; the zero _1overf generators ESPice's models do not declare are left out.",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/noise/contributions.expected.json",
+      "max_rel_err": 1.32e-08,
+      "max_tolerance_ratio": 0.0132,
+      "unconfirmed": [
+        "Noise Spectral Density Curves:onoise_d1_rs",
+        "Noise Spectral Density Curves:onoise_d1_id",
+        "Noise Spectral Density Curves:onoise_d1",
+        "Noise Spectral Density Curves:onoise_r1_thermal",
+        "Noise Spectral Density Curves:onoise_r1",
+        "Noise Spectral Density Curves:onoise_r2_thermal",
+        "Noise Spectral Density Curves:onoise_r2",
+        "Integrated Noise: plot Integrated Noise"
+      ]
+    }
   },
   "expect": {
     "status": "success",

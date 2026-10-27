@@ -332,6 +332,8 @@ def check(path):
             raise Unsupported("status error: a refusal, not a value")
         text = open(decks[0], errors="replace").read()
         body, opts, analyses, meas = translate(text)
+        if oracle.get("tokenizer") == "hspice":  # HSPICE runs at TNOM = 25 degC unless told otherwise
+            opts = {"temp": "25", "tnom": "25", **opts}
         title = "* " + text.splitlines()[0]
         cols, unmapped, values = {}, [], {}
         for want in oracle["expect"].get("plots", []):

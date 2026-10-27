@@ -6,7 +6,14 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "bacb19dd41c635c8e0760f01c061e1f765911a6abf4feb39a2803fa3085921c1"
+    "source_sha256": "bacb19dd41c635c8e0760f01c061e1f765911a6abf4feb39a2803fa3085921c1",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/op/bench_mosfet_nand2.expected.json",
+      "max_rel_err": 0.384,
+      "max_tolerance_ratio": 0.384
+    }
   },
   "origin": "benchmark/fixtures/mosfet/nand2/circuit.sp",
   "expect": {

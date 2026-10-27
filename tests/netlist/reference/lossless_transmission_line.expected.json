@@ -6,7 +6,14 @@
     "kind": "ngspice-44.2",
     "derivation": "Run the self-contained deck in ngspice-44.2 with the explicit tolerances in the netlist. Read binary raw doubles by variable name. Transient samples retain up to 101 original accepted times; no interpolation was used to create these expected values.",
     "version": "ngspice-44.2 (SPARSE solver; 27 C)",
-    "command": "ngspice -n -b -r /tmp/lossless_transmission_line.raw reference/lossless_transmission_line.sp"
+    "command": "ngspice -n -b -r /tmp/lossless_transmission_line.raw reference/lossless_transmission_line.sp",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/reference/lossless_transmission_line.expected.json",
+      "max_rel_err": 1.16e-12,
+      "max_tolerance_ratio": 3.82e-10
+    }
   },
   "expect": {
     "status": "success",

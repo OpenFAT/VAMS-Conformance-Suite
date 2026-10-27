@@ -6,7 +6,14 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "5c56b6dd412e737835401ef2cbaba339786e7047cb810c4c31a93fca70583c49"
+    "source_sha256": "5c56b6dd412e737835401ef2cbaba339786e7047cb810c4c31a93fca70583c49",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/dc/device_diode_temp.expected.json",
+      "max_rel_err": 0.000778,
+      "max_tolerance_ratio": 0.746
+    }
   },
   "origin": "benchmark/fixtures/devices/diode_temp/circuit.sp",
   "expect": {

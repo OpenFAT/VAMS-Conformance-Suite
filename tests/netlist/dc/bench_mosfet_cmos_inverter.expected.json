@@ -5,7 +5,14 @@
   "oracle": {
     "kind": "ngspice-44.2",
     "derivation": "ngspice 44.2 run of the deck (LAMBDA=0.01 on both models) with .options reltol=1e-9 abstol=1e-18 vntol=1e-13 added, i.e. the converged transfer curve rather than one stopping point inside the default tolerances (ngspice at default options is within 0.92x of the column tolerances of it).",
-    "command": "ngspice -n -b -r reference.raw deck.sp  (deck + \".options reltol=1e-9 abstol=1e-18 vntol=1e-13\")"
+    "command": "ngspice -n -b -r reference.raw deck.sp  (deck + \".options reltol=1e-9 abstol=1e-18 vntol=1e-13\")",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/dc/bench_mosfet_cmos_inverter.expected.json",
+      "max_rel_err": 0.384,
+      "max_tolerance_ratio": 0.307
+    }
   },
   "origin": "benchmark/fixtures/mosfet/cmos_inverter/circuit.sp",
   "expect": {

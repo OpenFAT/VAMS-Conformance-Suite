@@ -5,7 +5,14 @@
  "oracle": {
   "kind": "ngspice-45",
   "derivation": "Open secondary: v(b)/v(a) = k = 0.3; ngspice-45 prints v(b) = 3.000000e-01,-1.71531e-12. The tolerance is far below the f32 rounding of k (1e-8).",
-  "command": "ngspice -b (print v(b) in .control)"
+  "command": "ngspice -b (print v(b) in .control)",
+  "confirmed": {
+   "tool": "xyce",
+   "version": "Xyce Release 7.10.0-opensource",
+   "command": "python3 tools/xcheck.py tests/netlist/ac/kinduc_k_exact.expected.json",
+   "max_rel_err": 1.85e-16,
+   "max_tolerance_ratio": 1.85e-06
+  }
  },
  "origin": "tests/fixtures/ac/kinduc_k_exact.sp",
  "expect": {

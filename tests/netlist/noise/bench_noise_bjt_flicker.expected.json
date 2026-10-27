@@ -6,7 +6,17 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "a37d815f9f46501db8f4b37bf2c7f0dafa9e05c1c92eb34bb4ec91026ddf6d7f"
+    "source_sha256": "a37d815f9f46501db8f4b37bf2c7f0dafa9e05c1c92eb34bb4ec91026ddf6d7f",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/noise/bench_noise_bjt_flicker.expected.json",
+      "max_rel_err": 4.74e-06,
+      "max_tolerance_ratio": 0.00474,
+      "unconfirmed": [
+        "Integrated Noise: plot Integrated Noise"
+      ]
+    }
   },
   "origin": "benchmark/fixtures/noise/bjt_flicker/circuit.sp",
   "expect": {

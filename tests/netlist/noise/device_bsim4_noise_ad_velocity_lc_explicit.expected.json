@@ -13,7 +13,17 @@
       "b4temp.c": "e2e5201da0ea1f10b3fb5a6feeecc845dc89bb90068c8c35b9215de9ab494918"
     },
     "raw_sha256": "1a5b591b16de029c389783a0f7535f5bfe6b09ad80f41f65b5e20e1bc8ef5d14",
-    "command": "ngspice -n -b -r reference.raw circuit.sp"
+    "command": "ngspice -n -b -r reference.raw circuit.sp",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/noise/device_bsim4_noise_ad_velocity_lc_explicit.expected.json",
+      "max_rel_err": 4.15e-07,
+      "max_tolerance_ratio": 0.00415,
+      "unconfirmed": [
+        "Integrated Noise: plot Integrated Noise"
+      ]
+    }
   },
   "origin": "tests/fixtures/noise/device_bsim4_noise_ad_velocity_lc_explicit.sp",
   "netlist_sha256": "9bea5e01722abfc0425307f0fcbd65e6780a5ad82cbeafa0f56819826cc60a54",

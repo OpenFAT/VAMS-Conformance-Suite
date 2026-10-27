@@ -5,7 +5,19 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice 45 (nixpkgs) on this deck and its assets. v(out) samples are reference accepted times read from the binary raw; vpre, vfinal and tsettle are ngspice's .meas results from a second run without -r.",
-    "command": "ngspice -n -b -r reference.raw ota_buffer_large_step.sp; ngspice -n -b ota_buffer_large_step.sp"
+    "command": "ngspice -n -b -r reference.raw ota_buffer_large_step.sp; ngspice -n -b ota_buffer_large_step.sp",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/regression/ota_buffer_large_step.expected.json",
+      "max_rel_err": 0.00033,
+      "max_tolerance_ratio": 0.12,
+      "unconfirmed": [
+        "check measure:vpre",
+        "check measure:vfinal",
+        "check measure:tsettle"
+      ]
+    }
   },
   "origin": "AnalogIOC analog/ota/test/tb_ota.py buffer()",
   "expect": {

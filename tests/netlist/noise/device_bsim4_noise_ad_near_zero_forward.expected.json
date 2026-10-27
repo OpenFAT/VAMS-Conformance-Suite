@@ -11,7 +11,17 @@
       "b4noi.c": "10af1dc88b4088e95a16ee8311c4a5deef2313a2ee5ed0ec887a3de253482151"
     },
     "raw_sha256": "af6eb9f4bd63c456a8623d1a95293be677a98f75942c84a1952f0392639ce45a",
-    "command": "ngspice -n -b -r reference.raw circuit.sp"
+    "command": "ngspice -n -b -r reference.raw circuit.sp",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/noise/device_bsim4_noise_ad_near_zero_forward.expected.json",
+      "max_rel_err": 1.42e-05,
+      "max_tolerance_ratio": 0.142,
+      "unconfirmed": [
+        "Integrated Noise: plot Integrated Noise"
+      ]
+    }
   },
   "origin": "tests/fixtures/noise/device_bsim4_noise_ad_near_zero_forward.sp",
   "netlist_sha256": "166852554891859a0828afedf9194970b8a369ba8de071af7c2074e04552cd23",
