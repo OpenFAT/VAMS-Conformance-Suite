@@ -10,7 +10,7 @@ trap 'rm -rf "$T"' EXIT
 mkdir -p "$T/s/include" "$T/s/verilog-a" "$T/s/verilog" "$T/s/spice"
 
 cat > "$T/tool.conf" <<'EOF'
-run.verilog-a = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; s=$(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0); [ "$s" = segv ] && kill -SEGV $$; [ "$s" = hang ] && sleep 30; exit $s
+run.verilog-a = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; s=$(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0); [ "$s" = segv ] && kill -SEGV $$; [ "$s" = hang ] && sleep 30; [ "$s" = hog ] && exec awk 'BEGIN { s = "x"; while (1) s = s s }'; [ "$s" = sip ] && exec awk 'BEGIN { s = "x"; for (i = 0; i < 20; i++) s = s s; exit 1 }'; exit $s
 run.verilog = [ -z "$CONFORM_COMPILE_ONLY" ] || exit 0; cp "$CONFORM_DIR/$CONFORM_STEM.file" out.txt 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.err" >&2 2>/dev/null; ${CONFORM_STD:+echo std=$CONFORM_STD}; ${CONFORM_PROTECT_KEYS:+echo keys=${CONFORM_PROTECT_KEYS##*/}}; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
 run.vpi = echo "$CONFORM_LANG $(basename "$CONFORM_SRC")"
 EOF
@@ -37,6 +37,10 @@ case_ verilog-a timeout '//! bias V(p) = 1' '' hang
 case_ verilog-a xfail '//! bias V(p) = 1' 'ok=0\n' 0
 case_ verilog-a xpass '//! bias V(p) = 1' 'ok=1\n' 0
 case_ verilog-a tool_cannot '//! bias V(p) = 1' '' 77
+# -M 128 below: a tool that grows past the limit fails a reject test it
+# "rejects"; one that stays small rejects cleanly.
+case_ verilog-a reject_out_of_memory '//! reject E0001' '' hog
+case_ verilog-a reject_small_heap '//! reject E0001' '' sip
 case_ spice no_command '//! bias V(p) = 1' '' 0
 printf 'module g; endmodule\n' > "$T/s/verilog/golden.v"
 printf 'hi\n' > "$T/s/verilog/golden.expected.txt"
@@ -97,7 +101,7 @@ verilog	reject-run	t/k.v	-	STDERR=error: other
 EOF2
 printf 'verilog-a/xfail.va  # a known bug\nverilog-a/xpass.va\n' > "$T/xfail"
 
-"$CONFORM" -t "$T/tool.conf" -x "$T/xfail" -T 2 -j 4 -o "$T/got.tsv" "$T/s" > /dev/null && exit_status=0 || exit_status=$?
+"$CONFORM" -t "$T/tool.conf" -x "$T/xfail" -T 2 -M 128 -j 4 -o "$T/got.tsv" "$T/s" > /dev/null && exit_status=0 || exit_status=$?
 "$CONFORM" -t "$T/compile-only.conf" -o "$T/compile.tsv" "$T/s/verilog-a/pass.va" "$T/s/verilog-a/reject_ok.va" > /dev/null || true
 
 cut -f1,2 "$T/got.tsv" "$T/compile.tsv" | cat | sort > "$T/got"
@@ -117,6 +121,8 @@ FAIL	verilog-a/timeout.va
 XFAIL	verilog-a/xfail.va
 XPASS	verilog-a/xpass.va
 SKIP	verilog-a/tool_cannot.va
+FAIL	verilog-a/reject_out_of_memory.va
+PASS	verilog-a/reject_small_heap.va
 SKIP	spice/no_command.va
 PASS	verilog/golden.v
 PASS	verilog/app.v
@@ -142,5 +148,6 @@ FAIL	verilog-a/reject_ok.va
 EOF
 diff "$T/want" "$T/got"
 [ "$exit_status" = 1 ] || { echo "conform exited $exit_status, want 1"; exit 1; }
+grep -q 'reject_out_of_memory.va	[0-9]*	run exceeded 128 MiB' "$T/got.tsv" || { echo "out of memory not reported"; exit 1; }
 grep -q 'compile-only' "$T/compile.tsv" || { echo "compile-only pass not labelled"; exit 1; }
 echo "selftest: ok"

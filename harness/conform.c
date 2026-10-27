@@ -8,6 +8,8 @@
  * POSIX C99, no dependencies: cc -O2 -o conform conform.c
  */
 #define _XOPEN_SOURCE 700
+#define _DEFAULT_SOURCE /* wait4: a stage's peak resident set */
+#include <assert.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <dirent.h>
@@ -34,6 +36,7 @@ static int nconf;
 static char conf_dir[PATH_MAX];
 static char work_root[PATH_MAX];
 static int timeout_s = 120;
+static int mem_mib = 4096; /* RLIMIT_DATA of each process a stage starts */
 static int jobs = 1;
 static int verbose;
 static int keep_work;
@@ -447,8 +450,10 @@ static void link_inputs(const char *src, const char *dir, const char *work) {
     free(text);
 }
 
+enum { CRASHED = -1, TIMED_OUT = -2, OUT_OF_MEMORY = -3 }; /* Stage.status below 0 */
 typedef struct {
-    int status; /* exit code, or -1 signal, -2 timeout */
+    int status; /* exit code, or CRASHED, TIMED_OUT, OUT_OF_MEMORY */
+    long peak_mib; /* the largest resident set of the stage's processes */
     char *out, *err;
 } Stage;
 
@@ -466,6 +471,11 @@ static Stage run_stage(const char *cmd, const char *work, const char *name) {
          * down with it; past this it gets SIGXFSZ and the stage fails. */
         struct rlimit fsize = {256 << 20, 256 << 20};
         setrlimit(RLIMIT_FSIZE, &fsize);
+        /* A runaway tool (ivlpp expanding two macros that name each other)
+         * takes every byte the machine has. RLIMIT_DATA, not RLIMIT_AS: Zig
+         * and LLVM reserve address space they never touch. */
+        struct rlimit data = {(rlim_t)mem_mib << 20, (rlim_t)mem_mib << 20};
+        setrlimit(RLIMIT_DATA, &data);
         int o = open(out, O_WRONLY | O_CREAT | O_TRUNC, 0644);
         int e = open(err, O_WRONLY | O_CREAT | O_TRUNC, 0644);
         int nul = open("/dev/null", O_RDONLY);
@@ -476,21 +486,34 @@ static Stage run_stage(const char *cmd, const char *work, const char *name) {
     }
     setpgid(pid, pid);
     int st;
+    struct rusage ru = {0};
     struct timespec tick = {0, 5000000};
     time_t deadline = time(NULL) + timeout_s;
     for (;;) {
-        pid_t r = waitpid(pid, &st, WNOHANG);
+        pid_t r = wait4(pid, &st, WNOHANG, &ru);
         if (r == pid) break;
         if (r < 0 && errno != EINTR) die("waitpid: %s", strerror(errno));
         if (time(NULL) >= deadline) {
             kill(-pid, SIGKILL);
             waitpid(pid, &st, 0);
-            s.status = -2;
+            s.status = TIMED_OUT;
             goto done;
         }
         nanosleep(&tick, NULL);
     }
-    s.status = WIFEXITED(st) ? WEXITSTATUS(st) : -1;
+    s.status = WIFEXITED(st) ? WEXITSTATUS(st) : CRASHED;
+    s.peak_mib = ru.ru_maxrss >> 10; /* KiB, of the child and every descendant it waited for */
+    /* A refused allocation leaves no trace but the tool's own message, so a
+     * stage that failed after its resident set passed an eighth of the limit
+     * ran out of memory. The limit counts what a process holds, the resident
+     * set only what it touched: ivlpp, expanding two macros that name each
+     * other, fails at a quarter of the limit (1063 MiB of 4096), and a tool
+     * runs this suite's tests in under 200 MiB. ponytail: one allocation of
+     * most of the limit, made from a small heap, still reads as the tool's
+     * own failure; a cgroup's memory.events would see it. */
+    if (s.status != 0 && s.peak_mib >= mem_mib / 8) s.status = OUT_OF_MEMORY;
+    assert(s.status >= OUT_OF_MEMORY);
+    assert(s.status <= 255);
     kill(-pid, SIGKILL); /* stray background children */
 done:
     s.out = slurp(out, NULL);
@@ -501,8 +524,9 @@ done:
 }
 
 static const char *describe(const Stage *s, const char *name, char *buf) {
-    if (s->status == -2) snprintf(buf, MSG, "%s timed out after %ds", name, timeout_s);
-    else if (s->status == -1) snprintf(buf, MSG, "%s crashed (signal)", name);
+    if (s->status == TIMED_OUT) snprintf(buf, MSG, "%s timed out after %ds", name, timeout_s);
+    else if (s->status == OUT_OF_MEMORY) snprintf(buf, MSG, "%s exceeded %d MiB (failed at %ld MiB resident)", name, mem_mib, s->peak_mib);
+    else if (s->status == CRASHED) snprintf(buf, MSG, "%s crashed (signal)", name);
     else if (s->status >= 126) snprintf(buf, MSG, "%s could not run the command (exit %d)", name, s->status);
     else snprintf(buf, MSG, "%s exited %d", name, s->status);
     return buf;
@@ -703,7 +727,7 @@ static int run_test(const Test *t, size_t index, char *why) {
 
     char d[MSG];
     int verdict = PASS;
-    Stage c = {0, NULL, NULL}, r = {0, NULL, NULL};
+    Stage c = {0}, r = {0};
     if (cc) {
         c = run_stage(cc, work, "compile");
         if (c.status != 0) {
@@ -771,12 +795,13 @@ static int expected_fail(const char *name) {
 }
 
 static void usage(void) {
-    fputs("usage: conform -t TOOL.conf [-j N] [-x XFAIL] [-T SECONDS] [-o RESULTS.tsv] [-k] [-v] PATH...\n"
+    fputs("usage: conform -t TOOL.conf [-j N] [-x XFAIL] [-T SECONDS] [-M MIB] [-o RESULTS.tsv] [-k] [-v] PATH...\n"
           "  PATH      test files, directories under a suite root (tests/), or .manifest files\n"
           "  -t        the tool config: `stage.language = shell command` lines\n"
           "  -j        tests run in parallel (default 1)\n"
           "  -x        expected failures: one test name (as printed) per line\n"
           "  -T        per-stage timeout (default 120)\n"
+          "  -M        memory limit of each process a stage starts, in MiB (default 4096)\n"
           "  -o        write every verdict as `STATUS<TAB>name<TAB>milliseconds<TAB>detail`\n"
           "  -k        keep every work directory (failures always keep theirs)\n"
           "  -v        print passing tests too\n",
@@ -787,12 +812,13 @@ static void usage(void) {
 int main(int argc, char **argv) {
     const char *tool = NULL, *results = NULL;
     int opt;
-    while ((opt = getopt(argc, argv, "t:j:x:T:o:kv")) != -1) {
+    while ((opt = getopt(argc, argv, "t:j:x:T:M:o:kv")) != -1) {
         switch (opt) {
         case 't': tool = optarg; break;
         case 'j': jobs = atoi(optarg) > 0 ? atoi(optarg) : 1; break;
         case 'x': load_xfails(optarg); break;
         case 'T': timeout_s = atoi(optarg) > 0 ? atoi(optarg) : 1; break;
+        case 'M': mem_mib = atoi(optarg) > 0 ? atoi(optarg) : 1; break;
         case 'o': results = optarg; break;
         case 'k': keep_work = 1; break;
         case 'v': verbose = 1; break;
