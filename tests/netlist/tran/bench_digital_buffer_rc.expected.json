@@ -7,14 +7,15 @@
     "tool": "xyce",
     "version": "7.10.0-opensource",
     "command": "python3 tools/xcheck.py tests/netlist/tran/bench_digital_buffer_rc.expected.json  (.tran tmax 1.2e-12)",
-    "derivation": "A digital buffer into an RC. Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 1.63x its tolerance off it.",
+    "derivation": "A digital buffer into an RC. Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 1.63x its tolerance off it. Samples: of 233 rows, 0 dropped on fast edges (within one TSTEP, 1e-10 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 233 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger.",
     "confirmed": {
       "tool": "ngspice",
       "version": "44.2",
       "command": "ngspice -b deck + .options reltol=1e-7 abstol=1e-15 vntol=1e-12 chgtol=1e-20, .tran tmax 1.2e-12",
       "max_rel_err": 0.0167,
       "max_tolerance_ratio": 0.215
-    }
+    },
+    "tolerance_basis": "Samples: of 233 rows, 0 dropped on fast edges (within one TSTEP, 1e-10 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 233 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger."
   },
   "origin": "benchmark/fixtures/digital/buffer_rc/circuit.sp",
   "expect": {
@@ -502,7 +503,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0009
           },
           "i(vin)": {
             "values": [
@@ -742,7 +743,7 @@
             ],
             "unit": "A",
             "rtol": 0.003,
-            "atol": 1e-11
+            "atol": 3e-07
           }
         },
         "axis": {

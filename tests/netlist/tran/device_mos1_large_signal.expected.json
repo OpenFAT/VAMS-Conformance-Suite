@@ -7,14 +7,15 @@
     "tool": "xyce",
     "version": "7.10.0-opensource",
     "command": "python3 tools/xcheck.py tests/netlist/tran/device_mos1_large_signal.expected.json  (.tran tmax 2e-12)",
-    "derivation": "A level-1 CMOS inverter with overlap and junction caps driving 1p. Dropped column(s) i(vin), i(vdd): the two converged references disagree on more than 10% of the rows (pA-level offsets while the circuit is quiet: where each simulator stamps GMIN, and its charge residue). Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 31.9x its tolerance off it on the rows kept.",
+    "derivation": "A level-1 CMOS inverter with overlap and junction caps driving 1p. Dropped column(s) i(vin), i(vdd): the two converged references disagree on more than 10% of the rows (pA-level offsets while the circuit is quiet: where each simulator stamps GMIN, and its charge residue). Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 31.9x its tolerance off it on the rows kept. Samples: of 239 rows, 0 dropped on fast edges (within one TSTEP, 5e-11 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 239 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger.",
     "confirmed": {
       "tool": "ngspice",
       "version": "44.2",
       "command": "ngspice -b deck + .options reltol=1e-7 abstol=1e-15 vntol=1e-12 chgtol=1e-20, .tran tmax 2e-12",
       "max_rel_err": 0.000336,
       "max_tolerance_ratio": 0.0627
-    }
+    },
+    "tolerance_basis": "Samples: of 239 rows, 0 dropped on fast edges (within one TSTEP, 5e-11 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 239 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger."
   },
   "origin": "benchmark/fixtures/devices/mos1_large_signal/circuit.sp",
   "expect": {
@@ -760,7 +761,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.03
           }
         },
         "axis": {

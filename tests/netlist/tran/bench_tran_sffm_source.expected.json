@@ -4,7 +4,8 @@
   "purpose": "SFFM stimulus into an RC: single-frequency FM, the last independent-source",
   "oracle": {
     "kind": "analytic",
-    "derivation": "ngspice-45 manual 4.1.5 eq. 4.3: SFFM(VO VA FM MDI FC) with MDI limited to FC/FM, so v(in) = sin(2 pi 10k t + 0.1 sin(2 pi 100k t)); v(out) integrates C dv/dt = (v(in) - v)/R (R = 1k, C = 1n) by scipy DOP853 at rtol 1e-12, i(v1) = -(v(in) - v(out))/R. The previous oracle, ngspice-44.2 at default options, was 1.4x (v(out)) and 9.6x (i(v1)) its tolerance off. Xyce 7.10.0 reads SFFM in the Berkeley SPICE3 order (VO VA FC MDI FS) and so runs another waveform."
+    "derivation": "ngspice-45 manual 4.1.5 eq. 4.3: SFFM(VO VA FM MDI FC) with MDI limited to FC/FM, so v(in) = sin(2 pi 10k t + 0.1 sin(2 pi 100k t)); v(out) integrates C dv/dt = (v(in) - v)/R (R = 1k, C = 1n) by scipy DOP853 at rtol 1e-12, i(v1) = -(v(in) - v(out))/R. The previous oracle, ngspice-44.2 at default options, was 1.4x (v(out)) and 9.6x (i(v1)) its tolerance off. Xyce 7.10.0 reads SFFM in the Berkeley SPICE3 order (VO VA FC MDI FS) and so runs another waveform. Samples: of 253 rows, 0 dropped on fast edges (within one TSTEP, 1e-07 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 253 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger.",
+    "tolerance_basis": "Samples: of 253 rows, 0 dropped on fast edges (within one TSTEP, 1e-07 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 253 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger."
   },
   "origin": "benchmark/fixtures/tran/sffm_source/circuit.sp",
   "expect": {
@@ -532,7 +533,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 2e-05
           },
           "i(v1)": {
             "values": [
@@ -792,7 +793,7 @@
             ],
             "unit": "A",
             "rtol": 0.003,
-            "atol": 1e-11
+            "atol": 6e-10
           }
         },
         "axis": {

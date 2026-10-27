@@ -7,14 +7,15 @@
     "tool": "xyce",
     "version": "7.10.0-opensource",
     "command": "python3 tools/xcheck.py tests/netlist/tran/bench_bypass_idle_ladder.expected.json  (.tran tmax 4e-08)",
-    "derivation": "The idle ladder of the bypass benchmark. Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 7.34x its tolerance off it.",
+    "derivation": "The idle ladder of the bypass benchmark. Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 7.34x its tolerance off it. Samples: of 230 rows, 0 dropped on fast edges (within one TSTEP, 5e-07 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 230 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger.",
     "confirmed": {
       "tool": "ngspice",
       "version": "44.2",
       "command": "ngspice -b deck + .options reltol=1e-7 abstol=1e-15 vntol=1e-12 chgtol=1e-20, .tran tmax 4e-08",
       "max_rel_err": 0.000536,
       "max_tolerance_ratio": 0.179
-    }
+    },
+    "tolerance_basis": "Samples: of 230 rows, 0 dropped on fast edges (within one TSTEP, 5e-07 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 230 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger."
   },
   "origin": "benchmark/fixtures/bypass/idle_ladder/circuit.sp",
   "expect": {
@@ -496,7 +497,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.002
           },
           "v(m4)": {
             "values": [
@@ -733,7 +734,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0006
           },
           "v(m5)": {
             "values": [
@@ -970,7 +971,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0003
           },
           "v(m7)": {
             "values": [
@@ -1207,7 +1208,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0002
           },
           "v(m9)": {
             "values": [
@@ -1444,7 +1445,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 6e-05
           },
           "v(m11)": {
             "values": [
@@ -1681,7 +1682,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 2e-05
           },
           "v(m12)": {
             "values": [
@@ -1918,7 +1919,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 2e-05
           },
           "v(m14)": {
             "values": [
@@ -2155,7 +2156,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 6e-06
           },
           "v(m16)": {
             "values": [
@@ -2392,7 +2393,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 3e-06
           },
           "v(m18)": {
             "values": [
@@ -5710,7 +5711,7 @@
             ],
             "unit": "A",
             "rtol": 0.003,
-            "atol": 1e-11
+            "atol": 7e-06
           }
         },
         "axis": {

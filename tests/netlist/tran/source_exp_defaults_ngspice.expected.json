@@ -4,13 +4,14 @@
   "purpose": "EXP's omitted delays and time constants come from TSTEP",
   "oracle": {
     "kind": "analytic",
-    "derivation": "ngspice-45 manual 4.1.3, EXP(V1 V2 TD1 TAU1 TD2 TAU2) with TD1 = 0.0, TAU1 = TSTEP, TD2 = TD1 + TSTEP, TAU2 = TSTEP by its default table (TSTEP = 1n), eq. 4.2: v = 1 - exp(-t/1n) until 1 ns, minus 1 - exp(-(t - 1n)/1n) after. Xyce 7.10.0 gives the same four values. The previous oracle, ngspice-44.2/45, delays the rise to TD1 = TSTEP (v(0.5 ns) = 0), which its own manual's default table does not say.",
+    "derivation": "ngspice-45 manual 4.1.3, EXP(V1 V2 TD1 TAU1 TD2 TAU2) with TD1 = 0.0, TAU1 = TSTEP, TD2 = TD1 + TSTEP, TAU2 = TSTEP by its default table (TSTEP = 1n), eq. 4.2: v = 1 - exp(-t/1n) until 1 ns, minus 1 - exp(-(t - 1n)/1n) after. Xyce 7.10.0 gives the same four values. The previous oracle, ngspice-44.2/45, delays the rise to TD1 = TSTEP (v(0.5 ns) = 0), which its own manual's default table does not say. Samples: of 4 rows, 0 dropped on fast edges (within one TSTEP, 1e-09 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 4 kept. Each atol is 2x the largest deviation beyond rtol*|value| of Xyce 7.10.0 at its defaults from this reference on the rows kept, or the previous atol where larger.",
     "confirmed": {
       "tool": "xyce",
       "version": "7.10.0-opensource",
       "command": "python3 tools/xcheck.py tests/netlist/tran/source_exp_defaults_ngspice.expected.json",
       "max_rel_err": 1e-05
-    }
+    },
+    "tolerance_basis": "Samples: of 4 rows, 0 dropped on fast edges (within one TSTEP, 1e-09 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 4 kept. Each atol is 2x the largest deviation beyond rtol*|value| of Xyce 7.10.0 at its defaults from this reference on the rows kept, or the previous atol where larger."
   },
   "expect": {
     "status": "success",

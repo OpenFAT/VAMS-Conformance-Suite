@@ -7,14 +7,15 @@
     "tool": "xyce",
     "version": "7.10.0-opensource",
     "command": "python3 tools/xcheck.py tests/netlist/tran/bench_medium_rc_ladder_50.expected.json  (.tran tmax 60n)",
-    "derivation": "A 50-section RC ladder driven by a 1 ns-edge PULSE. Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 6.65x its tolerance off it.",
+    "derivation": "A 50-section RC ladder driven by a 1 ns-edge PULSE. Converged reference: Xyce at timeint reltol 1e-6, nonlinear reltol 1e-7 abstol 1e-15; the previous oracle (ngspice at the deck's options) was 6.65x its tolerance off it. Samples: of 211 rows, 0 dropped on fast edges (within one TSTEP, 1e-06 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 211 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger.",
     "confirmed": {
       "tool": "ngspice",
       "version": "44.2",
       "command": "ngspice -b deck + .options reltol=1e-7 abstol=1e-15 vntol=1e-12 chgtol=1e-20, .tran tmax 60n",
       "max_rel_err": 0.00117,
       "max_tolerance_ratio": 0.0382
-    }
+    },
+    "tolerance_basis": "Samples: of 211 rows, 0 dropped on fast edges (within one TSTEP, 1e-06 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 211 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger."
   },
   "origin": "benchmark/fixtures/medium/rc_ladder_50/circuit.sp",
   "expect": {
@@ -458,7 +459,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.002
           },
           "v(n5)": {
             "values": [
@@ -676,7 +677,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.001
           },
           "v(n8)": {
             "values": [
@@ -894,7 +895,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0002
           },
           "v(n11)": {
             "values": [
@@ -1112,7 +1113,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0004
           },
           "v(n13)": {
             "values": [
@@ -1330,7 +1331,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0005
           },
           "v(n16)": {
             "values": [
@@ -1548,7 +1549,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0003
           },
           "v(n19)": {
             "values": [
@@ -1766,7 +1767,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0004
           },
           "v(n21)": {
             "values": [
@@ -1984,7 +1985,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0003
           },
           "v(n24)": {
             "values": [
@@ -2202,7 +2203,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0002
           },
           "v(n27)": {
             "values": [
@@ -2420,7 +2421,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0003
           },
           "v(n29)": {
             "values": [
@@ -2638,7 +2639,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0003
           },
           "v(n32)": {
             "values": [
@@ -2856,7 +2857,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0003
           },
           "v(n34)": {
             "values": [
@@ -3074,7 +3075,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0002
           },
           "v(n37)": {
             "values": [
@@ -3292,7 +3293,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0002
           },
           "v(n40)": {
             "values": [
@@ -3510,7 +3511,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 0.0001
           },
           "v(n42)": {
             "values": [
@@ -3728,7 +3729,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 9e-05
           },
           "v(n45)": {
             "values": [
@@ -3946,7 +3947,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 7e-05
           },
           "v(n48)": {
             "values": [
@@ -4164,7 +4165,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 5e-05
           },
           "v(n50)": {
             "values": [
@@ -4382,7 +4383,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 4e-05
           },
           "v(n53)": {
             "values": [
@@ -4600,7 +4601,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 3e-05
           },
           "v(n56)": {
             "values": [
@@ -4818,7 +4819,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 2e-05
           },
           "v(n58)": {
             "values": [
@@ -5036,7 +5037,7 @@
             ],
             "unit": "V",
             "rtol": 0.003,
-            "atol": 2e-06
+            "atol": 2e-05
           },
           "i(vin)": {
             "values": [
@@ -5254,7 +5255,7 @@
             ],
             "unit": "A",
             "rtol": 0.003,
-            "atol": 1e-11
+            "atol": 2e-05
           }
         },
         "axis": {

@@ -4,7 +4,8 @@
   "purpose": "Underdamped RLC ringing and inductor-current continuity",
   "oracle": {
     "kind": "analytic",
-    "derivation": "Series RLC (R = 1, L = 1m, C = 1u) driven by PULSE(0 1 1u 10n 10n 1m 2m): state [i(l1), v(out)] with di/dt = (vin - R i - v)/L, dv/dt = i/C; exact over each linear piece of the input by the matrix exponential of the input-augmented system [[A, B, 0], [0, 0, 1], [0, 0, 0]] (scipy.linalg.expm), at the oracle's sample times. The previous oracle, ngspice-44.2 at the deck's options (gear, reltol 1e-6), had i(l1) 10x its tolerance off near its zero crossings; Xyce 7.10.0 at reltol 1e-6 is 6.8x off the same way and v(out) of both is within 0.5x."
+    "derivation": "Series RLC (R = 1, L = 1m, C = 1u) driven by PULSE(0 1 1u 10n 10n 1m 2m): state [i(l1), v(out)] with di/dt = (vin - R i - v)/L, dv/dt = i/C; exact over each linear piece of the input by the matrix exponential of the input-augmented system [[A, B, 0], [0, 0, 1], [0, 0, 0]] (scipy.linalg.expm), at the oracle's sample times. The previous oracle, ngspice-44.2 at the deck's options (gear, reltol 1e-6), had i(l1) 10x its tolerance off near its zero crossings; Xyce 7.10.0 at reltol 1e-6 is 6.8x off the same way and v(out) of both is within 0.5x. Samples: of 101 rows, 0 dropped on fast edges (within one TSTEP, 1e-07 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 101 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger.",
+    "tolerance_basis": "Samples: of 101 rows, 0 dropped on fast edges (within one TSTEP, 1e-07 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 101 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger."
   },
   "expect": {
     "status": "success",
@@ -124,7 +125,7 @@
           "i(l1)": {
             "unit": "A",
             "rtol": 0.003,
-            "atol": 1e-09,
+            "atol": 2e-05,
             "values": [
               0.0,
               0.0022121872145359164,

@@ -6,6 +6,8 @@ itself.
     python3 tools/xcheck.py [-j 4] [-o results.jsonl] [ORACLE.expected.json ...]
     python3 tools/xcheck.py --write results.jsonl  # record "confirmed" fields
 
+XCHECK_DEFAULT=1 runs Xyce at its default options and timepoints instead.
+
 With no oracles named, it takes every tests/netlist/ oracle whose kind names
 ngspice. Each oracle plot (operating point, DC, transient, AC, noise
 spectrum) becomes one Xyce run of the deck, translated to Xyce's dialect,
@@ -29,6 +31,9 @@ import rawcheck  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NETLIST = os.path.join(ROOT, "tests", "netlist")
 XYCE = os.environ.get("XYCE", "Xyce")
+# XCHECK_DEFAULT=1: Xyce at its own default tolerances and timepoints, read by linear
+# interpolation as rawcheck reads a tool, for the spread a default-options run shows.
+DEFAULT = os.environ.get("XCHECK_DEFAULT") == "1"
 
 
 class Unsupported(Exception):
@@ -197,6 +202,8 @@ def options(opts, kind, loose=False):
     if "gmin" in opts:
         dev["gmin"] = opts["gmin"]
     out = [".options device " + " ".join(f"{k}={v}" for k, v in dev.items())]
+    if DEFAULT:
+        return out
     # the deck's own tolerances where they are tighter (a deck whose signal sits at the abstol floor)
     tight = {k: min(d, float(number(opts.get(k, str(d))))) for k, d in (("reltol", 1e-7), ("abstol", 1e-15))}
     out.append(f".options nonlin reltol={tight['reltol']:g} abstol={tight['abstol']:g}")
@@ -285,7 +292,7 @@ def check_plot(want, body, opts, analyses, srcdir, title):
     out = "o.csv" if noise else "o.raw"
     # Xyce reports at the oracle's own times rather than between its steps,
     # where linear interpolation across a corner reads a value that is not there.
-    times = [f".options output outputtimepoints={','.join(repr(t) for t in axis['values'])}"] if kind == ".tran" and axis else []
+    times = [f".options output outputtimepoints={','.join(repr(t) for t in axis['values'])}"] if kind == ".tran" and axis and not DEFAULT else []
     tail = times + [analyses[kind], f".print {ptype} format={'csv' if noise else 'raw'} file={out} " + " ".join(exprs.values()), ".end", ""]
     with tempfile.TemporaryDirectory(dir=os.environ.get("XCHECK_TMP")) as work:
         outp = os.path.join(work, out)

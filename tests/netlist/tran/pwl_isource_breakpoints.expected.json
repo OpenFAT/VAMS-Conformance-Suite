@@ -4,14 +4,15 @@
  "purpose": "PWL current-source breakpoints match ngspice's ISRCaccept grid",
  "oracle": {
   "kind": "analytic",
-  "derivation": "I1 = PWL(0 0 0.33u 1m 0.71u -1m 1.3u 0.5m) into R = 1k || C = 1n: C dv/dt = I(t) - v/R from v = 0, exact over each linear piece of I by the matrix exponential of the input-augmented system (scipy.linalg.expm), sampled at the previous oracle's times, which hold every corner. The previous oracle was ngspice-44.2's own accepted grid matched row for row at rtol 1e-6, which no other simulator's grid can meet and which its own startup error broke (v(a) 50% off at 0.4 ns); the match is now samples at the transient tolerance the other tran decks use (rtol 3e-3, atol 2e-6).",
+  "derivation": "I1 = PWL(0 0 0.33u 1m 0.71u -1m 1.3u 0.5m) into R = 1k || C = 1n: C dv/dt = I(t) - v/R from v = 0, exact over each linear piece of I by the matrix exponential of the input-augmented system (scipy.linalg.expm), sampled at the previous oracle's times, which hold every corner. The previous oracle was ngspice-44.2's own accepted grid matched row for row at rtol 1e-6, which no other simulator's grid can meet and which its own startup error broke (v(a) 50% off at 0.4 ns); the match is now samples at the transient tolerance the other tran decks use (rtol 3e-3, atol 2e-6). Samples: of 67 rows, 0 dropped on fast edges (within one TSTEP, 1e-07 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 67 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger.",
   "confirmed": {
    "tool": "xyce",
    "version": "Xyce Release 7.10.0-opensource",
    "command": "python3 tools/xcheck.py tests/netlist/tran/pwl_isource_breakpoints.expected.json",
    "max_rel_err": 4.31e-07,
    "max_tolerance_ratio": 0.000134
-  }
+  },
+  "tolerance_basis": "Samples: of 67 rows, 0 dropped on fast edges (within one TSTEP, 1e-07 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 0 where a default-options run is off by more than 1% of the column's swing (not settled for it); 67 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults, ngspice-44.2 at reltol 1e-7 from this reference on the rows kept, or the previous atol where larger."
  },
  "expect": {
   "status": "success",
@@ -91,7 +92,7 @@
        0.23501679529750755
       ],
       "rtol": 0.003,
-      "atol": 2e-06
+      "atol": 0.0002
      }
     },
     "axis": {
