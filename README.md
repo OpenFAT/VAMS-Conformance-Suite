@@ -108,7 +108,7 @@ Two kinds of directive:
 | `//! stdout TEXT` | harness | stdout contains TEXT |
 | `//! diagnostic` | harness | stdout or stderr has a line that is not blank and holds no `//! stdout` TEXT: a message the tool printed, for a clause that requires one in no set words or stream (IEEE 1364 17.2.9's "an error message is issued") |
 | `//! expect stdout GOLD` | harness | stdout equals GOLD (beside the test) instead of `<stem>.expected.txt`; a GOLD that is not there fails the test |
-| `//! expect vcd OUT == GOLD` | harness | the VCD the run writes equals GOLD, `$date`/`$version` bodies aside |
+| `//! expect vcd OUT == GOLD` | harness | the VCD the run writes equals GOLD up to what IEEE 1364 18.2 leaves the writer: identifier codes (compared as the names they stand for), the order of `$scope`/`$var` lines and of the changes within one time or section, `1 ns` vs `1ns`, the case of `x`/`z`/`b`/`r`, an event's value, an integer's or time's range, and `$date`, `$version` and `$comment` text; a repeated `$scope`, an empty section or a time with no change counts for nothing. Values, times, sections, the scope tree, var types, sizes and declared ranges must match |
 | `//! neighbour FILE` | nobody | the legal twin of a `_rejected` test |
 | `//@ files A.v B.v` | tool | more sources (exported absolute as `CONFORM_FILES`) |
 | `//@ libmap X.map`, `//@ liblist LIB`, `//@ std 1364-2001` | tool | IEEE 1364 clause 13 configuration and the `begin_keywords` set |

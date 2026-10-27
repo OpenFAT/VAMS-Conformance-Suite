@@ -75,6 +75,32 @@ printf '//@ negative-timing\nmodule nt; endmodule\n' > "$T/s/verilog/negative_ti
 printf 'negative-timing=1\n' > "$T/s/verilog/negative_timing.expected.txt"
 printf '//@ negative-timing on\nmodule nt; endmodule\n' > "$T/s/verilog/negative_timing_argument.v"
 printf 'negative-timing=1\n' > "$T/s/verilog/negative_timing_argument.expected.txt"
+# `//! expect vcd`: a dump that differs from the gold only where IEEE 1364
+# 18.2 leaves the writer a choice (codes, $var and change order, `1 ns`, value
+# case, an aliased code, a writer's $comment, empty sections and times)
+# passes; one value or one time changed fails.
+cat > "$T/s/verilog/vcd.gold.vcd" <<'EOF2'
+$date today $end $version A 1.0 $end $timescale 1 ns $end
+$scope module top $end $var wire 1 ! a $end $var wire 1 ! b $end
+$var reg 4 " v [3:0] $end $var integer 32 # i $end $upscope $end
+$enddefinitions $end
+#0 $dumpvars 0! b1x " b101 # $end
+#5 1! bz "
+EOF2
+cat > "$T/s/verilog/vcd_canonical.file" <<'EOF2'
+$version B 2.0 $end $timescale 1ns $end
+$scope module top $end $var integer 32 % i [31:0] $end $var reg 4 & v [3:0] $end
+$var wire 1 ' b $end $var wire 1 ( a $end $upscope $end $scope module top $end $upscope $end
+$enddefinitions $end $comment from the writer $end $dumpall $end
+#0 $dumpvars B1X & b101 % 0( 0' $end
+#5 1' BZ & 1(
+#9
+EOF2
+sed 's/#5 1!/#5 0!/' "$T/s/verilog/vcd.gold.vcd" > "$T/s/verilog/vcd_value.file"
+sed 's/#5/#6/' "$T/s/verilog/vcd.gold.vcd" > "$T/s/verilog/vcd_time.file"
+for c in vcd_canonical vcd_value vcd_time; do
+    printf '//! expect vcd out.txt == vcd.gold.vcd\nmodule %s; endmodule\n' $c > "$T/s/verilog/$c.v"
+done
 # A SPICE deck is `netlist` wherever it is filed (no command here: SKIP).
 printf '* deck\n.end\n' > "$T/s/verilog-a/deck.sp"
 printf '{}\n' > "$T/s/verilog-a/deck.expected.json"
@@ -161,6 +187,9 @@ PASS	verilog/keys.v
 PASS	verilog/negative_timing.v
 FAIL	verilog/negative_timing_argument.v
 FAIL	verilog/named_gold_missing.v
+PASS	verilog/vcd_canonical.v
+FAIL	verilog/vcd_value.v
+FAIL	verilog/vcd_time.v
 SKIP	verilog-a/deck.sp
 PASS	verilog-a/pass.va
 FAIL	verilog-a/reject_ok.va

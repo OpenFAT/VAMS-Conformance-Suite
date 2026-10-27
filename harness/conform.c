@@ -10,6 +10,7 @@
 #define _XOPEN_SOURCE 700
 #define _DEFAULT_SOURCE /* wait4: a stage's peak resident set */
 #include <assert.h>
+#include <ctype.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <dirent.h>
@@ -555,19 +556,161 @@ static int count(const char *hay, const char *needle) {
     return n;
 }
 
-/* VCD tokens with the `$date` and `$version` bodies dropped (IEEE 1364
- * §18.2.3.2, §18.2.3.8: tool-specific text). */
-static char *vcd_norm(char *text) {
-    char *out = malloc(strlen(text) + 1), *o = out;
-    if (!out) die("out of memory");
-    int skip = 0;
-    for (char *t = strtok(text, " \t\r\n"); t; t = strtok(NULL, " \t\r\n")) {
-        if (skip && strcmp(t, "$end")) continue;
-        skip = !strcmp(t, "$date") || !strcmp(t, "$version");
-        o += sprintf(o, "%s ", t);
+typedef struct {
+    char **at;
+    size_t n, cap;
+} Lines;
+
+static void push(Lines *l, const char *fmt, ...) {
+    if (l->n == l->cap) {
+        l->cap = l->cap ? 2 * l->cap : 64;
+        l->at = realloc(l->at, l->cap * sizeof *l->at);
+        if (!l->at) die("out of memory");
     }
-    *o = 0;
-    return out;
+    va_list ap;
+    va_start(ap, fmt);
+    int n = vsnprintf(NULL, 0, fmt, ap);
+    va_end(ap);
+    assert(n >= 0);
+    char *s = malloc((size_t)n + 1);
+    if (!s) die("out of memory");
+    va_start(ap, fmt);
+    vsnprintf(s, (size_t)n + 1, fmt, ap);
+    va_end(ap);
+    l->at[l->n++] = s;
+}
+
+static int by_text(const void *a, const void *b) { return strcmp(*(char *const *)a, *(char *const *)b); }
+
+/* Moves `g`'s lines to `out`, sorted. */
+static void flush_sorted(Lines *g, Lines *out) {
+    qsort(g->at, g->n, sizeof *g->at, by_text);
+    for (size_t i = 0; i < g->n; i++) push(out, "%s", g->at[i]), free(g->at[i]);
+    g->n = 0;
+}
+
+/* The index past the `$end` that closes the section at `i`. */
+static size_t past_end(char **tok, size_t i, size_t n) {
+    while (i < n && strcmp(tok[i], "$end")) i++;
+    return i + (i < n);
+}
+
+/* A VCD as lines with every choice IEEE 1364 §18.2 leaves to the writer
+ * made one way, so two dumps of one run compare equal. Dropped: `$date`,
+ * `$version` and `$comment` bodies (§18.2.3.1, .2, .8: the writer's text), an
+ * integer's or time's `[31:0]`-like range (no declaration gives one), a
+ * repeated `$scope`, a section with no change and a time that heads none.
+ * Canonical: the `$timescale` body without its inner space (`1 ns`), and each
+ * identifier code, which becomes the hierarchical name of every variable that
+ * shares it (§18.2.3.7 b). Sorted: the header's lines, and the changes
+ * between two times or within a `$dumpvars`-like section. Value letters lose
+ * their case (`X`, `B`), and an event's value is 1 (§18.2.2: irrelevant).
+ * Kept: every value, time, section, scope path and type, var type, size and
+ * declared range. A file without `$enddefinitions` (a manifest's DIFF= of
+ * plain text) is only its tokens. NULL when the header is malformed. */
+static char *vcd_norm(char *text) {
+    size_t cap = strlen(text) / 2 + 2, n = 0;
+    char **tok = malloc(cap * sizeof *tok);
+    if (!tok) die("out of memory");
+    for (char *t = strtok(text, " \t\r\n"); t; t = strtok(NULL, " \t\r\n")) tok[n++] = t;
+    assert(n < cap);
+    int vcd = 0;
+    for (size_t i = 0; i < n && !vcd; i++) vcd = !strcmp(tok[i], "$enddefinitions");
+    /* ponytail: each change scans every var, O(changes * vars); a hash when a dump grows past test size */
+    char **code = malloc(cap * sizeof *code), **name = malloc(cap * sizeof *name);
+    char *event = malloc(cap);
+    if (!code || !name || !event) die("out of memory");
+    size_t nvar = 0, up[256], depth = 0;
+    char path[4096] = "", unit[256];
+    Lines g = {0}, out = {0};
+    int header = vcd, bad = 0;
+    for (size_t i = 0; i < n && !bad;) {
+        char *t = tok[i];
+        if (!strcmp(t, "$date") || !strcmp(t, "$version") || !strcmp(t, "$comment")) {
+            i = past_end(tok, i, n);
+        } else if (!vcd) {
+            push(&out, "%s", t), i++;
+        } else if (header && !strcmp(t, "$timescale")) {
+            size_t e = past_end(tok, i, n);
+            unit[0] = 0;
+            for (size_t k = i + 1; k + 1 < e; k++) strncat(unit, tok[k], sizeof unit - strlen(unit) - 1);
+            push(&g, "$timescale %s", unit), i = e;
+        } else if (header && !strcmp(t, "$scope")) {
+            size_t len = strlen(path);
+            bad = i + 2 >= n || depth == sizeof up / sizeof *up || len + strlen(tok[i + 2]) + 2 > sizeof path;
+            if (bad) break;
+            up[depth++] = len;
+            snprintf(path + len, sizeof path - len, "%s%s", len ? "." : "", tok[i + 2]);
+            push(&g, "$scope %s %s", path, tok[i + 1]), i = past_end(tok, i, n);
+        } else if (header && !strcmp(t, "$upscope")) {
+            bad = depth == 0;
+            if (bad) break;
+            path[up[--depth]] = 0, i = past_end(tok, i, n);
+        } else if (header && !strcmp(t, "$var")) {
+            size_t e = past_end(tok, i, n);
+            bad = e < i + 6;
+            if (bad) break;
+            char ref[1024] = "";
+            for (size_t k = i + 4; k + 1 < e; k++) strncat(ref, tok[k], sizeof ref - strlen(ref) - 1);
+            char *range = strchr(ref, '['); /* an integer's or time's: never declared, so the writer's */
+            if (range && strchr(range, ':') && (!strcmp(tok[i + 1], "integer") || !strcmp(tok[i + 1], "time"))) *range = 0;
+            code[nvar] = tok[i + 3], event[nvar] = !strcmp(tok[i + 1], "event");
+            Lines nm = {0};
+            push(&nm, "%s%s%s", path, *path ? "." : "", ref);
+            name[nvar] = nm.at[0], free(nm.at);
+            push(&g, "$var %s %s %s", tok[i + 1], tok[i + 2], name[nvar++]), i = e;
+        } else if (header && !strcmp(t, "$enddefinitions")) {
+            flush_sorted(&g, &out);
+            size_t kept = 0;
+            for (size_t k = 0; k < out.n; k++)
+                if (kept && !strcmp(out.at[kept - 1], out.at[k])) free(out.at[k]);
+                else out.at[kept++] = out.at[k];
+            out.n = kept;
+            header = 0, i = past_end(tok, i, n);
+        } else if (header) {
+            push(&g, "%s", t), i++;
+        } else if (*t == '#' || *t == '$') {
+            flush_sorted(&g, &out);
+            push(&out, "%s", t), i++;
+        } else {
+            int vector = strchr("bBrR", *t) != NULL;
+            bad = vector && i + 1 == n;
+            if (bad) break;
+            char *id = vector ? tok[i + 1] : t + 1, value[1024];
+            snprintf(value, sizeof value, "%s", vector ? t : (char[]){*t, 0});
+            for (char *v = value; *v; v++) *v = (char)tolower((unsigned char)*v);
+            size_t hits = 0;
+            for (size_t k = 0; k < nvar; k++)
+                if (!strcmp(code[k], id)) push(&g, "%s %s", name[k], event[k] ? "1" : value), hits++;
+            if (!hits) push(&g, "?%s %s", id, value);
+            i += 1 + vector;
+        }
+    }
+    flush_sorted(&g, &out);
+    char *res = NULL;
+    if (!bad) {
+        size_t len = 1;
+        for (size_t i = 0; i < out.n; i++) len += strlen(out.at[i]) + 1;
+        char *o = res = malloc(len);
+        if (!res) die("out of memory");
+        /* A section that holds no change, and a time that heads none,
+         * record nothing (Icarus writes `$dumpall $end` before `#0`, and the
+         * time `$finish` ran at). */
+        size_t kept = 0;
+        for (size_t i = 0; i < out.n; i++)
+            if (vcd && *out.at[i] == '$' && strcmp(out.at[i], "$end") && i + 1 < out.n && !strcmp(out.at[i + 1], "$end"))
+                free(out.at[i]), free(out.at[++i]);
+            else out.at[kept++] = out.at[i];
+        out.n = kept;
+        for (size_t i = 0; i < out.n; i++)
+            if (!vcd || *out.at[i] != '#' || (i + 1 < out.n && *out.at[i + 1] != '#')) o += sprintf(o, "%s\n", out.at[i]);
+        *o = 0;
+    }
+    for (size_t i = 0; i < out.n; i++) free(out.at[i]);
+    for (size_t i = 0; i < g.n; i++) free(g.at[i]);
+    for (size_t i = 0; i < nvar; i++) free(name[i]);
+    free(out.at), free(g.at), free(tok), free(code), free(name), free(event);
+    return res;
 }
 
 /* Judges the output of the stage that produced the program's transcript. */
@@ -669,7 +812,7 @@ static int judge_output(const char *dir, const char *work, const Spec *sp, const
         int same = 0;
         if (x && y) {
             char *nx = vcd_norm(x), *ny = vcd_norm(y);
-            same = !strcmp(nx, ny);
+            same = nx && ny && !strcmp(nx, ny);
             free(nx), free(ny);
         }
         free(x), free(y);
