@@ -5,7 +5,12 @@
   "oracle": {
     "kind": "ngspice-44.2",
     "command": "ngspice -b -r reference.raw twin.sp",
-    "derivation": "ngspice on the same circuit with `.pz in 0 out 0 vol pz`."
+    "derivation": "ngspice on the same circuit with `.pz in 0 out 0 vol pz`.",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Linear MNA of the deck (numpy), sources zeroed: poles are the finite generalized eigenvalues of (G, -C); zeros those of the transfer system bordered by the input excitation and the output probe (scipy.linalg.eig). Poles -1893149.824 and -440183.509 rad/s, zeros -750000 +- 2106537.443j rad/s. Xyce has no .pz.",
+      "max_rel_err": 1e-10
+    }
   },
   "tokenizer": "hspice",
   "expect": {

@@ -12,7 +12,12 @@
     "source_sha256": "7c906a37d5715825e5f690a3669719b969c276d144becfe8fa083a8342ba3423",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Bridged-T: poles -2618.034 and -381.966 rad/s (s^2 + 3000 s + 1e6), a double zero at -1000 rad/s; the operating point is v(1) = v(3) = 12, v(2) = 0, no current (capacitors open). Linear MNA of the deck (numpy), sources zeroed: poles are the finite generalized eigenvalues of (G, -C); zeros those of the transfer system bordered by the input excitation and the output probe (scipy.linalg.eig). Xyce has no .pz.",
+      "max_rel_err": 1.5e-08
+    }
   },
   "origin": "benchmark/fixtures/pz/filt_bridge_t/circuit.sp",
   "expect": {

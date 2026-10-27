@@ -6,7 +6,12 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the deck, restricted to the principal sensitivities (the five resistances and the supply). The previous oracle sampled ngspice parameter-table columns that are identically 0 here.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "f1e44d83b1229eac4950d48fa9fd3014f709b8ccdfebda8286a82414f74652f2"
+    "source_sha256": "f1e44d83b1229eac4950d48fa9fd3014f709b8ccdfebda8286a82414f74652f2",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Nodal solve of the loaded bridge for v(a), and dv(a)/dp for each R and Vin by central differences (relative step 1e-6): every sensitivity within 1e-6 relative of the oracle. The Xyce .sens output is another format.",
+      "max_rel_err": 1e-06
+    }
   },
   "origin": "benchmark/fixtures/sens/bridge/circuit.sp",
   "expect": {

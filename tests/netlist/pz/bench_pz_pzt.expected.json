@@ -9,7 +9,12 @@
     "source_sha256": "40d48bc5c512b00923617df42a4bc15c310e09bfc76e10a23ee9041e8ba8d210",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Three parallel RL sections, R = 1, L = 0.05 H, coupled by unit gm stages: a triple pole at -R/L = -20 rad/s (pol: poles only). Xyce has no .pz.",
+      "max_rel_err": 2e-13
+    }
   },
   "origin": "benchmark/fixtures/pz/pzt/circuit.sp",
   "expect": {

@@ -6,7 +6,12 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "8b7c4f4b7ac7ee5c8b9709e506151c4c0a26001b80cb8b44a9d3ac7bd12ece80"
+    "source_sha256": "8b7c4f4b7ac7ee5c8b9709e506151c4c0a26001b80cb8b44a9d3ac7bd12ece80",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Resistive ladder by series-parallel reduction: gain 8/43 = 0.186047, input resistance 1k + 2k || (1k + 2k || 3k) = 2047.619 ohm, output resistance 2k || (1k + 2k || (1k + 2k || 1k)) = 976.744 ohm. Xyce has no .tf.",
+      "max_rel_err": 1e-13
+    }
   },
   "origin": "benchmark/fixtures/tf/r_ladder/circuit.sp",
   "expect": {

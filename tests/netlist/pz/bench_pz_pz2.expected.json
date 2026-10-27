@@ -9,7 +9,12 @@
     "source_sha256": "905825567a0318950307bef7e1a39ae6e49821232d3703115ac17528036af6ed",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Four parallel RL sections (L = 1 H) coupled by unit gm stages, driven by a current: each section Z = sLR/(R + sL) has its pole at -R/L, so the poles are -1.019524e9, -8.296965e8, -8.652054e7, -1.060594e7 rad/s exactly (pol: poles only). Xyce has no .pz.",
+      "max_rel_err": 0.0
+    }
   },
   "origin": "benchmark/fixtures/pz/pz2/circuit.sp",
   "expect": {

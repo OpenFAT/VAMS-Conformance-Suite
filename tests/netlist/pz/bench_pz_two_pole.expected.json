@@ -6,7 +6,12 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "f333d103dc38f4f59f20c9b5006591e2ba6ce2dbe50bf71f6fc740a27f4a6a07"
+    "source_sha256": "f333d103dc38f4f59f20c9b5006591e2ba6ce2dbe50bf71f6fc740a27f4a6a07",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Two-section RC ladder: poles are the roots of R1C1R2C2 s^2 + (R1C1 + R2C2 + R1C2) s + 1, -13701.562 and -7298.438 rad/s. Linear MNA of the deck (numpy), sources zeroed: poles are the finite generalized eigenvalues of (G, -C); zeros those of the transfer system bordered by the input excitation and the output probe (scipy.linalg.eig). Xyce has no .pz.",
+      "max_rel_err": 1e-12
+    }
   },
   "origin": "benchmark/fixtures/pz/two_pole/circuit.sp",
   "expect": {

@@ -6,7 +6,12 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "41276aa696a003aff4dc097f2c0d1383aad39961f1391f4f304acd4984d741b4"
+    "source_sha256": "41276aa696a003aff4dc097f2c0d1383aad39961f1391f4f304acd4984d741b4",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Two-port ABCD of shunt C 31.8p, series L 159n, shunt C 31.8p; S11 = (A + B/Z0 - C Z0 - D)/den, S21 = 2/den, S12 = 2(AD - BC)/den, S22 = (-A + B/Z0 - C Z0 + D)/den, den = A + B/Z0 + C Z0 + D, Z0 = 50: within 1e-9x the tolerance at every frequency. Xyce has no .sp of this form.",
+      "max_rel_err": 1e-12
+    }
   },
   "origin": "benchmark/fixtures/sp/lc_lowpass/circuit.sp",
   "expect": {

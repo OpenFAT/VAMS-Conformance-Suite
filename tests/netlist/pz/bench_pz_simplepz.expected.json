@@ -9,7 +9,12 @@
     "source_sha256": "23870ac940ee69a7cc220e2107ab3ccc903ce9f9c54e1089f06e2e4ab92a8531",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Current into node 1 (r1 to ground), C1 from 1 to 2, r2 to ground: V2/I = s C R1 R2/(1 + s C (R1 + R2)), pole -1/(C (R1 + R2)) = -5e8 rad/s, zero at 0. Xyce has no .pz.",
+      "max_rel_err": 0.0
+    }
   },
   "origin": "benchmark/fixtures/pz/simplepz/circuit.sp",
   "expect": {

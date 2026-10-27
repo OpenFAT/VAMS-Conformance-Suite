@@ -9,7 +9,12 @@
     "source_sha256": "ae0c6547bf1f2b47b1e2b33cfde09c595166083cc275dd50a0b1f4e4f1b27da8",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Three isolated RC sections behind ideal gain-10 buffers: poles -1/(RkCk) = -1e8, -8e8, -5e10 rad/s, no finite zeros. Linear MNA of the deck (numpy), sources zeroed: poles are the finite generalized eigenvalues of (G, -C); zeros those of the transfer system bordered by the input excitation and the output probe (scipy.linalg.eig). Xyce has no .pz.",
+      "max_rel_err": 1e-12
+    }
   },
   "origin": "benchmark/fixtures/pz/filt_multistage/circuit.sp",
   "expect": {
