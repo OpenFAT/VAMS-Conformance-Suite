@@ -4,7 +4,12 @@
  "purpose": "#51: MATEX stays finite on a stiff RC ladder and agrees with the transient.",
  "oracle": {
   "kind": "ngspice-45",
-  "derivation": "ngspice 45 .tran 5e-06 0.001 0 5e-08 of the same circuit, linearly interpolated at the sample times."
+  "derivation": "ngspice 45 .tran 5e-06 0.001 0 5e-08 of the same circuit, linearly interpolated at the sample times.",
+  "confirmed": {
+   "tool": "analytic",
+   "derivation": "Three-node RC ladder (R1 100, C1 1n, R2 100k, C2 1p, R3 10, C3 100n) driven by the deck's PULSE: exact over each linear piece of the input by the matrix exponential of the input-augmented state equation (scipy.linalg.expm): within 9.3e-5x the tolerance (3.8e-8 relative). Xyce has no .matex.",
+   "max_rel_err": 3.8e-08
+  }
  },
  "origin": "tests/fixtures/matex/rc_ladder_stiff.sp",
  "expect": {

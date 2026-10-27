@@ -4,7 +4,9 @@
   "purpose": "A MONTE sweep draws the AGAUSS mismatch calls inside sky130's binned model cards per trial (#100).",
   "oracle": {
     "kind": "ngspice-45",
-    "derivation": "ngspice 45 (nixpkgs), same circuit and models with mc_mm_switch=1, 1000 runs of reset + op: Id mean 1.0545 uA, stddev 0.2805 uA. i(vd) is -Id."
+    "derivation": "ngspice 45 (nixpkgs), same circuit and models with mc_mm_switch=1, 1000 runs of reset + op: Id mean 1.0545 uA, stddev 0.2805 uA. i(vd) is -Id.",
+    "confirmed": null,
+    "confirmed_reason": "Monte Carlo moments of ngspice's own random draws: no second source draws the same samples."
   },
   "expect": {
     "status": "success",
@@ -15,10 +17,10 @@
         "plot": "Monte Carlo",
         "column": "i(vd)",
         "row_count": 1000,
-        "mean_min": -1.13e-6,
-        "mean_max": -0.98e-6,
-        "stddev_min": 0.227e-6,
-        "stddev_max": 0.334e-6
+        "mean_min": -1.13e-06,
+        "mean_max": -9.8e-07,
+        "stddev_min": 2.27e-07,
+        "stddev_max": 3.34e-07
       },
       {
         "kind": "repeatability",

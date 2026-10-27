@@ -5,7 +5,9 @@
   "origin": "benchmark/fixtures/pss/diode_rect_driven/circuit.sp",
   "oracle": {
     "kind": "ngspice-44.2-settled-transient",
-    "derivation": "Independent transient for 100 periods, maxstep=T/2048, gear, reltol=1e-7. Interpolate final period; last two periods differ by at most 1.00091490651e-09 V."
+    "derivation": "Independent transient for 100 periods, maxstep=T/2048, gear, reltol=1e-7. Interpolate final period; last two periods differ by at most 1.00091490651e-09 V.",
+    "confirmed": null,
+    "confirmed_reason": "Xyce's .pss/.hb is not ngspice's shooting PSS, and no closed form covers this nonlinear circuit."
   },
   "expect": {
     "status": "success",

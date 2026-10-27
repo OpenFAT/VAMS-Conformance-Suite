@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "0f41f7998cb246142e1980a90d6db9758434b56f03dc203b9264c6bb908c6e91"
+    "source_sha256": "0f41f7998cb246142e1980a90d6db9758434b56f03dc203b9264c6bb908c6e91",
+    "confirmed": null,
+    "confirmed_reason": "Ngspice's MESFET/HFET (Z) devices: Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/hfet1_output/circuit.sp",
   "expect": {

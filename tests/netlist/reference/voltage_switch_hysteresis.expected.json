@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Run the self-contained deck in ngspice-44.2 with the explicit tolerances in the netlist. Read binary raw doubles by variable name. Transient samples retain up to 101 original accepted times; no interpolation was used to create these expected values.",
     "version": "ngspice-44.2 (SPARSE solver; 27 C)",
-    "command": "ngspice -n -b -r /tmp/voltage_switch_hysteresis.raw reference/voltage_switch_hysteresis.sp"
+    "command": "ngspice -n -b -r /tmp/voltage_switch_hysteresis.raw reference/voltage_switch_hysteresis.sp",
+    "confirmed": null,
+    "confirmed_reason": "Ngspice's voltage switch with hysteresis (Xyce's switch is a smooth transition): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "expect": {
     "status": "success",

@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "7ce7206fbfb6de38a7e981042677b453a090f39166e03b853b50187c9c80ecfa"
+    "source_sha256": "7ce7206fbfb6de38a7e981042677b453a090f39166e03b853b50187c9c80ecfa",
+    "confirmed": null,
+    "confirmed_reason": "The MOS9 model (ngspice level 9): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/mos9/circuit.sp",
   "expect": {

@@ -10,7 +10,9 @@
     "warnings": [
       ".print line ignored since rawfile was produced.",
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "The MOS6 model (ngspice level 6): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/mos6_inverter/circuit.sp",
   "expect": {

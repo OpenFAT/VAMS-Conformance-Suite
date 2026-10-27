@@ -5,7 +5,9 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice 45 on the same deck: `.disto` with f2overf1 prints the f1+f2, f1-f2 and 2f1-f2 vectors (distoan.c:560-620), F2 held at f2overf1 times the first frequency.",
-    "command": "ngspice -b -r reference.raw two_tone_diode.sp"
+    "command": "ngspice -b -r reference.raw two_tone_diode.sp",
+    "confirmed": null,
+    "confirmed_reason": "Xyce has no .disto, and no closed form covers this nonlinear circuit."
   },
   "expect": {
     "status": "success",

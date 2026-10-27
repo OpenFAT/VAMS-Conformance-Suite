@@ -6,7 +6,9 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "68ab42058104b5fefe3332440907e0f5e639e70912f0ae1abbca9ec2b121c152"
+  "source_sha256": "68ab42058104b5fefe3332440907e0f5e639e70912f0ae1abbca9ec2b121c152",
+  "confirmed": null,
+  "confirmed_reason": "The Parker-Skellern JFET (ngspice level 2): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
  },
  "origin": "tests/fixtures/dc/device_jfet2_temp.sp",
  "expect": {

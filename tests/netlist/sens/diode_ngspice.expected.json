@@ -6,7 +6,9 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "bd89e3f35107cb585f9361b2f9dcb173584e7fe17809532cc8c46da9584c3e1a"
+  "source_sha256": "bd89e3f35107cb585f9361b2f9dcb173584e7fe17809532cc8c46da9584c3e1a",
+  "confirmed": null,
+  "confirmed_reason": "Xyce's .sens reports another quantity than ngspice's DC sensitivity table, and no closed form covers this nonlinear circuit."
  },
  "origin": "tests/fixtures/sens/diode_ngspice.sp",
  "expect": {

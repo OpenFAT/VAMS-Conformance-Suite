@@ -5,7 +5,9 @@
  "oracle": {
   "kind": "ngspice-44.2",
   "derivation": "ngspice-44.2 batch run of this deck (wrdata v(8)): the rising 0.34 V crossings of v(8) in [1 ns, 6 ns], linearly interpolated, are 6 crossings with mean spacing 8.912230e-10 s; swing max-min 0.4463106 V. The converged period (device_mesa_oscillator's options, reltol=1e-7 tmax 20 ps) is 8.81537e-10 s: default options run 1.1% slow in both simulators. espice at the time of writing: 8.912195e-10 s, swing 0.4463610 V.",
-  "command": "ngspice -b (deck + .control run; wrdata v(8))"
+  "command": "ngspice -b (deck + .control run; wrdata v(8))",
+  "confirmed": null,
+  "confirmed_reason": "Ngspice's MESA (Z) device: Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
  },
  "origin": "benchmark/fixtures/devices/mesa_oscillator/circuit.sp",
  "expect": {

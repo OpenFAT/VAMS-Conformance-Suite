@@ -9,7 +9,9 @@
     "source_sha256": "4871208db2e0a960127cad26dc26bf19e49c079e48fbb0a17e74cc532942e53d",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "The coupled multiconductor line (CPL, P): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/tline/cpl3_4_line/circuit.sp",
   "expect": {

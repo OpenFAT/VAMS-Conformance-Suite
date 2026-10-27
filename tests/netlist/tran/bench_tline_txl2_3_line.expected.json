@@ -9,7 +9,9 @@
     "source_sha256": "a17884a3c8c351b6615cdeea0eb329b2ac495c65cd32627daf24b8be47b31058",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "The TXL line (Y): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/tline/txl2_3_line/circuit.sp",
   "expect": {

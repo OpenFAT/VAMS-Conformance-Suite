@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "95697b544eb29ffe7c6a54de1662d88288d780db5711c5104c827164cdcc0d15"
+    "source_sha256": "95697b544eb29ffe7c6a54de1662d88288d780db5711c5104c827164cdcc0d15",
+    "confirmed": null,
+    "confirmed_reason": "Ngspice's voltage switch with hysteresis (Xyce's switch is a smooth transition): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/switch/circuit.sp",
   "expect": {

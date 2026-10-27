@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "aca5c655c402d63c099c65190325c3ccb481ef2833b04f0a1f88e60d7602ab03"
+    "source_sha256": "aca5c655c402d63c099c65190325c3ccb481ef2833b04f0a1f88e60d7602ab03",
+    "confirmed": null,
+    "confirmed_reason": "The coupled multiconductor line (CPL, P): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/coupled_tlines/circuit.sp",
   "expect": {

@@ -5,7 +5,12 @@
  "oracle": {
   "kind": "ngspice-45",
   "derivation": "ngspice-45 has no .step: the deck run once per point with .param isat=<value>, print all at numdgt=12: v1#branch = -1.00999976740e-12 and -1.01999953480e-12.",
-  "command": "ngspice -b (per point)"
+  "command": "ngspice -b (per point)",
+  "confirmed": {
+   "tool": "analytic",
+   "derivation": "D1 reverse-biased at 1 V: i(v1) = -(IS (1 - exp(-1/Vt)) + GMIN) = -1.01e-12 and -1.02e-12 A for IS = 1e-14 and 2e-14: within 0.25x the tolerance. Xyce writes .step results in another form.",
+   "max_rel_err": 2.3e-07
+  }
  },
  "origin": "tests/fixtures/variants/step_param_model_value.sp",
  "expect": {

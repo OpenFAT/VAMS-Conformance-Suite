@@ -4,7 +4,9 @@
   "purpose": "Autonomous shooting PSS finds a ring oscillator's period",
   "oracle": {
     "kind": "ngspice-45-settled-transient",
-    "derivation": "The period is the last row's time. ngspice-45 transient of the same ring from .ic v(c1)=0.1 (uic), 400 us at a 1 ns step: mean spacing of rising v(c1)=0 crossings 50..100 is 3.52176 us; a 0.25 ns step gives the same digits."
+    "derivation": "The period is the last row's time. ngspice-45 transient of the same ring from .ic v(c1)=0.1 (uic), 400 us at a 1 ns step: mean spacing of rising v(c1)=0 crossings 50..100 is 3.52176 us; a 0.25 ns step gives the same digits.",
+    "confirmed": null,
+    "confirmed_reason": "Xyce has no .snosc, and no closed form covers this nonlinear circuit."
   },
   "expect": {
     "status": "success",

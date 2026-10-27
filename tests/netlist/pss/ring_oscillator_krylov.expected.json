@@ -4,7 +4,9 @@
  "purpose": "Autonomous shooting PSS on the Krylov path (51 unknowns) finds a 17-stage ring's period",
  "oracle": {
   "kind": "ngspice-44.2-settled-transient",
-  "derivation": "The period is the last row's time. ngspice-44.2 transient of the same ring from .ic v(c1)=0.1 (uic), 1 ms at a 1 ns step: mean spacing of the rising v(c1)=0 crossings in the second half is 2.642949e-05 s (spacings agree to 1e-8 relative). espice converges on it at h^2: 2.64574e-5 at 256 points, 2.64364e-5 (2.7e-4) at 512, 2.64312e-5 at 1024."
+  "derivation": "The period is the last row's time. ngspice-44.2 transient of the same ring from .ic v(c1)=0.1 (uic), 1 ms at a 1 ns step: mean spacing of the rising v(c1)=0 crossings in the second half is 2.642949e-05 s (spacings agree to 1e-8 relative). espice converges on it at h^2: 2.64574e-5 at 256 points, 2.64364e-5 (2.7e-4) at 512, 2.64312e-5 at 1024.",
+  "confirmed": null,
+  "confirmed_reason": "Xyce's .pss/.hb is not ngspice's shooting PSS, and no closed form covers this nonlinear circuit."
  },
  "expect": {
   "status": "success",

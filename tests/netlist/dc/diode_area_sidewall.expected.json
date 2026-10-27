@@ -6,7 +6,9 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "7843744164e3c92ebf3b91fa38349ff5f726b63026a27bafbf7d581d5bec365f"
+  "source_sha256": "7843744164e3c92ebf3b91fa38349ff5f726b63026a27bafbf7d581d5bec365f",
+  "confirmed": null,
+  "confirmed_reason": "The geometric diode (ngspice level 3): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
  },
  "origin": "tests/fixtures/dc/diode_area_sidewall.sp",
  "expect": {

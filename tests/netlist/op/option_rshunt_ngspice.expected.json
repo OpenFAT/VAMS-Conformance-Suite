@@ -5,7 +5,9 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice 45 prints v(n) = 0.4, v(n2) = 0.2: 1 mA into 1k || 1k shunt || (1k + 1k shunt).",
-    "command": "ngspice -b option_rshunt_ngspice.sp"
+    "command": "ngspice -b option_rshunt_ngspice.sp",
+    "confirmed": null,
+    "confirmed_reason": "RSHUNT is ngspice's own option (a resistor from every node to ground); Xyce has none, and the value follows from that ngspice rule alone."
   },
   "expect": {
     "status": "success",

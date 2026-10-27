@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "697188daf6ae297b58a6313076b13807f47dd6346359d28d4a09001681a7f1bd"
+    "source_sha256": "697188daf6ae297b58a6313076b13807f47dd6346359d28d4a09001681a7f1bd",
+    "confirmed": null,
+    "confirmed_reason": "The uniform RC line (U): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/urc/circuit.sp",
   "expect": {

@@ -5,7 +5,9 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice 45 on the same deck: `.disto` prints the complex 2nd and 3rd harmonic at every node and branch. The device DISTO sections stamp the charge Taylor coefficients times jw of each product frequency.",
-    "command": "ngspice -b -r reference.raw diode_cap.sp"
+    "command": "ngspice -b -r reference.raw diode_cap.sp",
+    "confirmed": null,
+    "confirmed_reason": "Xyce has no .disto, and no closed form covers this nonlinear circuit."
   },
   "expect": {
     "status": "success",

@@ -4,7 +4,9 @@
   "purpose": "Nonlinear HB spectrum from an independent settled time-domain solution",
   "oracle": {
     "kind": "ngspice-44.2-settled-transient-dft",
-    "derivation": "Use the final period of the ngspice transient described in pss/diode_clipper.expected.json. Interpolate 8192 uniform phases and compute direct DFT: signed DC=mean, kth peak magnitude=2*abs(mean(v*exp(-j*2*pi*k*i/N)))."
+    "derivation": "Use the final period of the ngspice transient described in pss/diode_clipper.expected.json. Interpolate 8192 uniform phases and compute direct DFT: signed DC=mean, kth peak magnitude=2*abs(mean(v*exp(-j*2*pi*k*i/N))).",
+    "confirmed": null,
+    "confirmed_reason": "Xyce's .hb has another output and convergence form than ngspice's, and no closed form covers this nonlinear circuit."
   },
   "expect": {
     "status": "success",

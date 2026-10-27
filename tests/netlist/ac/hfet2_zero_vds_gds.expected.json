@@ -6,7 +6,9 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "868be481c3b0c0c0252432627b47d994ddf1eb8eaf8e6b9f5f5dc680e5efbada"
+  "source_sha256": "868be481c3b0c0c0252432627b47d994ddf1eb8eaf8e6b9f5f5dc680e5efbada",
+  "confirmed": null,
+  "confirmed_reason": "Ngspice's MESFET/HFET (Z) devices: Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
  },
  "origin": "tests/fixtures/ac/hfet2_zero_vds_gds.sp",
  "expect": {

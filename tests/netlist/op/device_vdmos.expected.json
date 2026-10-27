@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "963fe8eaa10e33426a1afd551dfc415c8e75679441a0314af27b0380463baf6a"
+    "source_sha256": "963fe8eaa10e33426a1afd551dfc415c8e75679441a0314af27b0380463baf6a",
+    "confirmed": null,
+    "confirmed_reason": "Ngspice's VDMOS: Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/vdmos/circuit.sp",
   "expect": {

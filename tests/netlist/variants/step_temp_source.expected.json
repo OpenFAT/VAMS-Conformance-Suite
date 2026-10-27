@@ -3,8 +3,8 @@
   "analysis": "op",
   "purpose": "Nested .step over a source and the temperature, last card fastest.",
   "oracle": {
-    "kind": "ngspice-45",
-    "derivation": "ngspice -b once per point, with the source value and .options temp=T written into the deck."
+    "kind": "analytic",
+    "derivation": "ngspice-45 manual diode temperature scaling IS(T) = IS (T/Tnom)^(XTI/N) exp(EG q (T - Tnom)/(N k T Tnom)) (XTI = 3, EG = 1.11, Tnom = 27 degC), then 1k from v1 into RS = 5 and the junction, KCL solved by bisection, at each (v1, temp) point of the .step lists. The previous oracle, ngspice run once per point at default options, was 15x its tolerance off at v1 = 2, temp = -40 (v(b) 1.5e-5 relative, inside ngspice's operating-point convergence test but outside the oracle's rtol 1e-6); ngspice-44.2 at reltol 1e-9 vntol 1e-14 gives v(b) = 0.8320418481, this value. Xyce writes .step results in another form."
   },
   "expect": {
     "status": "success",
@@ -18,7 +18,7 @@
             "rtol": 1e-06,
             "atol": 1e-09,
             "values": [
-              0.789396276052339
+              0.7893962760129838
             ]
           },
           "i(v1)": {
@@ -26,7 +26,7 @@
             "rtol": 1e-05,
             "atol": 1e-12,
             "values": [
-              -0.000210603723947661
+              -0.00021060372398701621
             ]
           }
         },
@@ -41,7 +41,7 @@
             "rtol": 1e-06,
             "atol": 1e-09,
             "values": [
-              0.5999307329528409
+              0.5999302743337537
             ]
           },
           "i(v1)": {
@@ -49,7 +49,7 @@
             "rtol": 1e-05,
             "atol": 1e-12,
             "values": [
-              -0.000400069267047159
+              -0.0004000697256662463
             ]
           }
         },
@@ -64,7 +64,7 @@
             "rtol": 1e-06,
             "atol": 1e-09,
             "values": [
-              0.8320544944968317
+              0.8320418480705145
             ]
           },
           "i(v1)": {
@@ -72,7 +72,7 @@
             "rtol": 1e-05,
             "atol": 1e-12,
             "values": [
-              -0.00116794550550317
+              -0.0011679581519294855
             ]
           }
         },
@@ -87,7 +87,7 @@
             "rtol": 1e-06,
             "atol": 1e-09,
             "values": [
-              0.646087647336802
+              0.6460875445169959
             ]
           },
           "i(v1)": {
@@ -95,7 +95,7 @@
             "rtol": 1e-05,
             "atol": 1e-12,
             "values": [
-              -0.0013539123526632
+              -0.001353912455483004
             ]
           }
         },

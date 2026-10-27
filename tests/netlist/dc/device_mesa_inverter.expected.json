@@ -9,7 +9,9 @@
     "source_sha256": "13a9dd2e20185e09fdf7370592edbb62a8c35731b9f2fe4be5a8cd53f07d3f26",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "Ngspice's MESA (Z) device: Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/mesa_inverter/circuit.sp",
   "expect": {

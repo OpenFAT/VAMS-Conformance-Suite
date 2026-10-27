@@ -4,7 +4,13 @@
   "purpose": "Two equal V sources in parallel leave their branch currents undetermined; the deck is refused as a nonunique operating point.",
   "oracle": {
     "kind": "ngspice-45",
-    "derivation": "ngspice 45 reports a singular matrix and does not simulate the operating point. The loop current of V1 and V2 appears in no equation, so any split of the 1 mA load satisfies KCL and KVL."
+    "derivation": "ngspice 45 reports a singular matrix and does not simulate the operating point. The loop current of V1 and V2 appears in no equation, so any split of the 1 mA load satisfies KCL and KVL.",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "7.10.0-opensource",
+      "command": "Xyce topology_parallel_voltage_sources.sp",
+      "result": "exit 1: Numerically singular matrix found by Amesos"
+    }
   },
   "expect": {
     "status": "error",

@@ -6,7 +6,9 @@
   "kind": "ngspice-45",
   "derivation": "Independent ngspice-45 run of this deck. Stored binary raw doubles, selected by column name.",
   "command": "ngspice -n -b -r reference.raw circuit.sp",
-  "source_sha256": "8c26fcf786b4b0c901fb9f5e8afc10d4aaef3a9eedd9e88f9541024299513405"
+  "source_sha256": "8c26fcf786b4b0c901fb9f5e8afc10d4aaef3a9eedd9e88f9541024299513405",
+  "confirmed": null,
+  "confirmed_reason": "The MOS9 model (ngspice level 9): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
  },
  "origin": "tests/fixtures/noise/ngspice_mos3_mos9_channel.sp",
  "expect": {

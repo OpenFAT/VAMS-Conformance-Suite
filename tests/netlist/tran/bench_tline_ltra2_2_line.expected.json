@@ -9,7 +9,9 @@
     "source_sha256": "da0193073a349b1d35d047eab8fb59e95bb485feafcd5529c0ad58351b5a7585",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "ngspice's LTRA lossy line (O): Xyce 7.10.0's LTRA does not run these decks and is 1e5x off the closed-form telegrapher answer of ac/ltra_ac_lossy_telegrapher, so it is no check; the lossy-line transient has no closed form."
   },
   "origin": "benchmark/fixtures/tline/ltra2_2_line/circuit.sp",
   "expect": {

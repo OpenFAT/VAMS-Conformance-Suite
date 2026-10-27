@@ -4,7 +4,12 @@
   "purpose": ".four analyses the last period of the deck's .tran",
   "oracle": {
     "kind": "ngspice",
-    "derivation": "ngspice 44.2 (nix develop .#benchmarking), ngspice -b on this deck: Fourier analysis for v(in), THD 11.5787 %, magnitudes as listed (Gridsize 200, interpolation degree 1). Phases (sine reference): 4.54829, -77.923, -83.176 deg for harmonics 1-3."
+    "derivation": "ngspice 44.2 (nix develop .#benchmarking), ngspice -b on this deck: Fourier analysis for v(in), THD 11.5787 %, magnitudes as listed (Gridsize 200, interpolation degree 1). Phases (sine reference): 4.54829, -77.923, -83.176 deg for harmonics 1-3.",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "ngspice .four: the last period of v(in) = exp(-1000 t) sin(2 pi 1k t) on its 200-point grid, DFT per harmonic: magnitudes within 0.001x the tolerance, phases 4.5484, -77.9232, -83.1761 deg (sine reference), THD 11.5787 %. Xyce has no .four on this plot.",
+      "max_rel_err": 4e-07
+    }
   },
   "expect": {
     "status": "success",

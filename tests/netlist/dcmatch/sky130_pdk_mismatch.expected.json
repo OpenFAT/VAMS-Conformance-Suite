@@ -4,7 +4,9 @@
   "purpose": ".dcmatch with no .variation block reads sky130's AGAUSS mismatch from its binned model cards (#100).",
   "oracle": {
     "kind": "ngspice-45",
-    "derivation": "ngspice 45 (nixpkgs), same circuit and models with mc_mm_switch=1, 4000 runs of reset + op: stddev v(g) = 2.38187 mV, so total_3sigma = 7.1456 mV."
+    "derivation": "ngspice 45 (nixpkgs), same circuit and models with mc_mm_switch=1, 4000 runs of reset + op: stddev v(g) = 2.38187 mV, so total_3sigma = 7.1456 mV.",
+    "confirmed": null,
+    "confirmed_reason": "Xyce has no .dcmatch, and no closed form covers this nonlinear circuit."
   },
   "expect": {
     "status": "success",

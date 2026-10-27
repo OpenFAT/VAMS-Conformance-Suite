@@ -5,7 +5,12 @@
   "origin": "benchmark/fixtures/pss/rlc_driven/circuit.sp",
   "oracle": {
     "kind": "ngspice-44.2-settled-transient",
-    "derivation": "Independent transient for 100 periods, maxstep=T/2048, gear, reltol=1e-7. Interpolate final period; last two periods differ by at most 2.83558178937e-07 V."
+    "derivation": "Independent transient for 100 periods, maxstep=T/2048, gear, reltol=1e-7. Interpolate final period; last two periods differ by at most 2.83558178937e-07 V.",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "Series R = 50, L = 1m, C = 100n driven by SIN(0 1 10k): the periodic steady state is v(out) = Im(H e^{jwt}) with H = 1/(1 + jwRC - w^2 LC): within 0.0064x the tolerance at every sample (2.4e-4 relative). Xyce has no .pss.",
+      "max_rel_err": 0.00024
+    }
   },
   "expect": {
     "status": "success",

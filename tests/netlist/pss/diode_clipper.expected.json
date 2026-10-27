@@ -4,7 +4,9 @@
   "purpose": "Nonlinear periodic orbit validated by settled transient",
   "oracle": {
     "kind": "ngspice-44.2-settled-transient",
-    "derivation": "Independent ngspice-44.2 transient: dt_max=.1us, tstop=30ms, gear, reltol=1e-7. Interpolate final period onto 65 phase points. Maximum difference between last two periods: 2.37233966e-09 V."
+    "derivation": "Independent ngspice-44.2 transient: dt_max=.1us, tstop=30ms, gear, reltol=1e-7. Interpolate final period onto 65 phase points. Maximum difference between last two periods: 2.37233966e-09 V.",
+    "confirmed": null,
+    "confirmed_reason": "Xyce's .pss/.hb is not ngspice's shooting PSS, and no closed form covers this nonlinear circuit."
   },
   "expect": {
     "status": "success",

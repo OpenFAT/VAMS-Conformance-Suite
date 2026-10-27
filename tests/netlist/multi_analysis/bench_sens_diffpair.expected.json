@@ -12,7 +12,9 @@
     "source_sha256": "b45820b852fb1576236556d99478f4e37ec54fc77d6066dac8094e8405929728",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "Xyce has no .tf, and no closed form covers this nonlinear circuit."
   },
   "origin": "benchmark/fixtures/sens/diffpair/circuit.sp",
   "expect": {

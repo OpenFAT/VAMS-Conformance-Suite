@@ -4,7 +4,12 @@
   "purpose": "A .temp list runs the analysis once per temperature.",
   "oracle": {
     "kind": "ngspice-45",
-    "derivation": "ngspice -b with .options tnom=25 and .temp t, once per list entry."
+    "derivation": "ngspice -b with .options tnom=25 and .temp t, once per list entry.",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "1 mA into the diode (N 1.2, RS 5, EG 1.11, XTI 3) at TNOM = 25 degC (HSPICE): IS(T) = IS (T/Tnom)^(XTI/N) exp(EG q (T - Tnom)/(N k T Tnom)), v(a) = N Vt ln(I/IS(T) + 1) + I RS solved with GMIN by brentq at -55, 25 and 125 degC: within 9.5e-7 relative (rtol 1e-5).",
+      "max_rel_err": 9.5e-07
+    }
   },
   "tokenizer": "hspice",
   "expect": {

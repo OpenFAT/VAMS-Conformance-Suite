@@ -5,7 +5,9 @@
  "oracle": {
   "kind": "ngspice-45",
   "derivation": "ngspice 45 -b with `run` and `print all` in a .control block; six significant digits as printed. The four infinite-default columns are exactly 0 there.",
-  "command": "ngspice -b bjt_infinite_defaults.cir"
+  "command": "ngspice -b bjt_infinite_defaults.cir",
+  "confirmed": null,
+  "confirmed_reason": "Xyce's .sens reports another quantity than ngspice's DC sensitivity table, and no closed form covers this nonlinear circuit."
  },
  "netlist_sha256": "f28ebef683ae685f6b7541dc2ebe2a21bcd60550ad56bb676dc95af894a27bef",
  "expect": {

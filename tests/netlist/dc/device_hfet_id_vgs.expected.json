@@ -9,7 +9,9 @@
     "source_sha256": "2cce395d923c90cd58b158545b5efdbf46238e69e9492f9885cde1b9a9be03d3",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "Ngspice's MESFET/HFET (Z) devices: Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/hfet_id_vgs/circuit.sp",
   "expect": {

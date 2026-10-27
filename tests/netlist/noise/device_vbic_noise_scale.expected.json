@@ -9,7 +9,9 @@
   "source_sha256": "2877ccad8bcb440258e65a8a817edfd8536029ae192b3049cb62f248a8a81286",
   "warnings": [
    ".print line ignored since rawfile was produced."
-  ]
+  ],
+  "confirmed": null,
+  "confirmed_reason": "Ngspice's VBIC (level 4, its C port of VBIC 1.2): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
  },
  "origin": "benchmark/fixtures/devices/vbic_noise_scale/circuit.sp",
  "expect": {

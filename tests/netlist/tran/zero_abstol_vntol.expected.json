@@ -4,7 +4,12 @@
   "purpose": "abstol and vntol of 0 run, as ngspice runs them",
   "oracle": {
     "kind": "ngspice",
-    "derivation": "ngspice 44.2 (nix develop .#benchmarking), ngspice -b on this deck: vend = 2.234018e-01. (abstol=0 with chgtol=0 together never finishes in ngspice.)"
+    "derivation": "ngspice 44.2 (nix develop .#benchmarking), ngspice -b on this deck: vend = 2.234018e-01. (abstol=0 with chgtol=0 together never finishes in ngspice.)",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "C dv/dt = (vin - v)/1k - IS(exp(v/Vt) - 1) - GMIN v (IS = 1e-14, Vt at 27 degC, C = 1n, vin the deck's PULSE) integrated by scipy Radau at rtol 1e-12: v(out) at 2 us = 0.2234193 V, 7.8e-5 relative from the oracle (rtol 2e-3). The zeroed tolerances only steer the numerics.",
+      "max_rel_err": 7.8e-05
+    }
   },
   "expect": {
     "status": "success",

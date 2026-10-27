@@ -4,7 +4,9 @@
   "purpose": "Per-lane stimulus: a .data sweep of input selection x polarity through live .param pulse levels, every row on the same edge times.",
   "oracle": {
     "kind": "ngspice",
-    "derivation": "ngspice 44.2, ngspice -b on each row run alone (the .data block removed, sel and pol set on the .param line): v(y) at the listed times from .meas find, and the first row's tpd, tpd2 and slew."
+    "derivation": "ngspice 44.2, ngspice -b on each row run alone (the .data block removed, sel and pol set on the .param line): v(y) at the listed times from .meas find, and the first row's tpd, tpd2 and slew.",
+    "confirmed": null,
+    "confirmed_reason": "Xyce has no .data in this form, and no closed form covers this nonlinear circuit."
   },
   "tokenizer": "hspice",
   "expect": {

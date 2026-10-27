@@ -4,7 +4,13 @@
   "purpose": "A node only an expression reads has no equation; the deck is refused before any analysis runs.",
   "oracle": {
     "kind": "ngspice-45",
-    "derivation": "ngspice 45 stops with 'singular matrix: check node a'. Nothing stamps node a's KCL row, so v(a) is free and every analysis is singular."
+    "derivation": "ngspice 45 stops with 'singular matrix: check node a'. Nothing stamps node a's KCL row, so v(a) is free and every analysis is singular.",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "7.10.0-opensource",
+      "command": "Xyce floating_sense_node_hb.sp",
+      "result": "exit 1: Netlist error: Device B1 refers to unknown solution node A (with .hb 1k)"
+    }
   },
   "expect": {
     "status": "error",

@@ -9,7 +9,9 @@
     "source_sha256": "4461332333db77899770fbd290cf1906491ac75c3ca68d7cb5f32d6c53254fc5",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "The MOS6 model (ngspice level 6): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/mos6_simpleinv/circuit.sp",
   "expect": {

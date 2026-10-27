@@ -5,7 +5,9 @@
   "oracle": {
     "kind": "ngspice-44.2",
     "derivation": "ngspice -n -b -r txl.raw txl.cir with the W card as Y1 a 0 b 0 ymod, .model ymod txl R=5 L=300n G=0 C=120p length=0.2; samples at ngspice's accepted times. Both are approximations of the same line (TXL: its own convolution; W: rational fit), so the tolerance covers edge timing: 1.5e-2 V.",
-    "command": "ngspice -n -b -r txl.raw txl.cir"
+    "command": "ngspice -n -b -r txl.raw txl.cir",
+    "confirmed": null,
+    "confirmed_reason": "The current-controlled switch / W element: Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "tokenizer": "hspice",
   "expect": {

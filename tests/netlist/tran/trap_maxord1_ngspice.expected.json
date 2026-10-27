@@ -5,7 +5,9 @@
  "oracle": {
   "kind": "ngspice-45",
   "derivation": "ngspice 45 prints vmax = 7.584708e-02 at 1.592080e-06. Trap would hold the tank near 1 V; BE damps it.",
-  "command": "ngspice -b trap_maxord1_ngspice.sp"
+  "command": "ngspice -b trap_maxord1_ngspice.sp",
+  "confirmed": null,
+  "confirmed_reason": "The .meas value is a numerical artefact of ngspice's integrator settings (order, step sequence), not a circuit quantity a second simulator or a closed form defines."
  },
  "expect": {
   "status": "success",

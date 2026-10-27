@@ -5,7 +5,9 @@
   "oracle": {
     "kind": "ngspice-44.2",
     "derivation": "ngspice -n -b -r s_lumped.raw on the lumped network (rs in p1 50; series 10 ohm + 5 nH p1-p2; 100 ohm p1-0; 25 ohm + 2 pF p2-0; 50 ohm load), same pulse and .tran 1p 3n; samples at ngspice's accepted times. The S element runs the passive rational fit of the Touchstone data; the tolerance (1e-2 V) covers edge timing between the two step sequences.",
-    "command": "ngspice -n -b -r s_lumped.raw s_lumped.cir"
+    "command": "ngspice -n -b -r s_lumped.raw s_lumped.cir",
+    "confirmed": null,
+    "confirmed_reason": "The HSPICE S element: Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "tokenizer": "hspice",
   "expect": {

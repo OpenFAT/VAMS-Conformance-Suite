@@ -5,7 +5,9 @@
  "oracle": {
   "kind": "ngspice-45",
   "derivation": "ngspice 45 prints vmax = 3.406919e-01 at maxord 2, 3 and 6 alike (dctran.c:900 raises the order only from 1 to 2). The tank rings over 4 steps a period, so vmax is the step sequence: under uic ngspice sets a breakpoint at tstep (dctran.c:582-584) and drops to order 1 there; espice without it read 0.3589 (#166).",
-  "command": "ngspice -b gear_maxord6_ngspice.sp"
+  "command": "ngspice -b gear_maxord6_ngspice.sp",
+  "confirmed": null,
+  "confirmed_reason": "The .meas value is a numerical artefact of ngspice's integrator settings (order, step sequence), not a circuit quantity a second simulator or a closed form defines."
  },
  "expect": {
   "status": "success",

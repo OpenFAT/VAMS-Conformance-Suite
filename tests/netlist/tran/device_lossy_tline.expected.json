@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "48a1a495c58884dcc8cd30afe618227fcfb3b05e3df34edd8398cbd341bb29ce"
+    "source_sha256": "48a1a495c58884dcc8cd30afe618227fcfb3b05e3df34edd8398cbd341bb29ce",
+    "confirmed": null,
+    "confirmed_reason": "ngspice's LTRA lossy line (O): Xyce 7.10.0's LTRA does not run these decks and is 1e5x off the closed-form telegrapher answer of ac/ltra_ac_lossy_telegrapher, so it is no check; the lossy-line transient has no closed form."
   },
   "origin": "benchmark/fixtures/devices/lossy_tline/circuit.sp",
   "expect": {

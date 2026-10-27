@@ -9,7 +9,9 @@
     "source_sha256": "29e3542a80483c288a63298015fc5905ea29a5f1356491233e776ff65bd20017",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": null,
+    "confirmed_reason": "BSIM2 (ngspice MOS level 5): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/bsim2_ngspice/circuit.sp",
   "expect": {

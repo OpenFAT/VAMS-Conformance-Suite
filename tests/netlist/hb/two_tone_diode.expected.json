@@ -4,7 +4,9 @@
   "purpose": "Two-tone diode intermodulation against a settled transient",
   "oracle": {
     "kind": "ngspice-45-settled-transient",
-    "derivation": "The same circuit in ngspice 45: tran 2u 40m 25m 2u at reltol=1e-7 abstol=1e-15 vntol=1e-10, then `fourier 100 v(2)` with nfreqs=100 over the last 10 ms, the tones' common period. Every kept line is a multiple of 100 Hz. The oracle has magnitudes only, so the complex column is compared by |X|."
+    "derivation": "The same circuit in ngspice 45: tran 2u 40m 25m 2u at reltol=1e-7 abstol=1e-15 vntol=1e-10, then `fourier 100 v(2)` with nfreqs=100 over the last 10 ms, the tones' common period. Every kept line is a multiple of 100 Hz. The oracle has magnitudes only, so the complex column is compared by |X|.",
+    "confirmed": null,
+    "confirmed_reason": "Xyce's .hb has another output and convergence form than ngspice's, and no closed form covers this nonlinear circuit."
   },
   "expect": {
     "status": "success",

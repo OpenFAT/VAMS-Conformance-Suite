@@ -5,7 +5,9 @@
   "oracle": {
     "kind": "ngspice-44.2",
     "derivation": "ngspice -n -b -r cpl.raw on tran/device_coupled_tlines.sp (P card, CPL model with the same R, L, C); samples at ngspice's accepted times. CPL and the W fit both approximate the line; the tolerance (2.5e-2 V) covers edge timing.",
-    "command": "ngspice -n -b -r cpl.raw device_coupled_tlines.sp"
+    "command": "ngspice -n -b -r cpl.raw device_coupled_tlines.sp",
+    "confirmed": null,
+    "confirmed_reason": "The current-controlled switch / W element: Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "tokenizer": "hspice",
   "expect": {

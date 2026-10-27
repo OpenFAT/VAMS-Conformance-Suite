@@ -6,7 +6,9 @@
     "kind": "ngspice-44.2",
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
-    "source_sha256": "519097926aedc51fe9debaba8ca8f395b5be373095c8df18c8be830b7c97b384"
+    "source_sha256": "519097926aedc51fe9debaba8ca8f395b5be373095c8df18c8be830b7c97b384",
+    "confirmed": null,
+    "confirmed_reason": "Xyce has no .disto, and no closed form covers this nonlinear circuit."
   },
   "origin": "benchmark/fixtures/disto/mos_cs/circuit.sp",
   "expect": {
