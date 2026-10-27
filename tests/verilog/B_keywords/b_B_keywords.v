@@ -17,6 +17,7 @@
 // \module = 1, \begin = 2, \unsigned = 3, \wire = \module + \begin = 3,
 // \signed = 4; branch + ground + discipline + analog = 1 + 2 + 3 + 4 = 10.
 // Output: "3 4 3 10".
+// gold: Icarus Verilog 13.0 agrees
 //@ std 1364-2005
 //! inherited IEEE 1364-2005 B
 `timescale 1ns/1ns
