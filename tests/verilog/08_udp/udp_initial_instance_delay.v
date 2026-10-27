@@ -1,6 +1,7 @@
 // IEEE1364-2005 8.5: a UDP instance delay does not postpone its initial value.
 // The declared state1 must be visible at t1, before the instance delay5.
 // Inputs remain untouched x; no input transition requests a table update.
+// gold: Verilator 5.052 agrees
 //! lrm A.5.3
 //! lrm A.5.4
 //! lrm A.5.3:1000

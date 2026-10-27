@@ -14,6 +14,7 @@
 //        declaration form, = 1'b0) shows 0 -> "10"
 //   t=1  g = 0: `0 ? : ? : -` keeps each state            t=2: "10"
 //   t=2  d = 1, g = 1: both load 1                         t=3: "11"
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 8.1.2 8.1.3
 `timescale 1ns/1ns
 primitive hdr(output reg q = 1'b1, input g, d);

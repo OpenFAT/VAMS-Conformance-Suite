@@ -8,6 +8,7 @@
 //
 // Two inverters drive the two bits of q; q = ~{a1, a0}.
 //   a1 = 0, a0 = 1 -> q = 10;  a1 = 1 -> q = 00
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 8.6
 `timescale 1ns/1ns
 primitive inv(q, a);

@@ -5,6 +5,7 @@
 // in that entry's current state (0) and has no `0 1` entry.
 // By hand, a latch with entries 1 1 : ? : 1, 0 1 : ? : 0 and the hold:
 //   d=1 en=1 -> 1; en=0 then d=0 -> holds 1; d=0 en=1 -> 0; en=0, d=1 -> 0.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.5.3
 //! inherited IEEE 1364-2005 8.1.4 8.1.6
 `timescale 1ns/1ns

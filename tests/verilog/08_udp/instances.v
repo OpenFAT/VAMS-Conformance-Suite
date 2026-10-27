@@ -9,6 +9,7 @@
 //   x = 1, z = 0: y1 = 1 & ~0 = 1; y2 = 0 & ~1 = 0     -> "1 0"
 //   x = 0, z = 1: y1 = 0;         y2 = 1 & ~0 = 1      -> "0 1"
 //   x = 1, z = 1: y1 = 0;         y2 = 0               -> "0 0"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 8.6
 `timescale 1ns/1ns
 primitive gt(y, a, b);

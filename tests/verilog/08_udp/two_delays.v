@@ -16,6 +16,7 @@
 //   t=30 a = x: g1 0 -> x after min(2, 3) = 2 (at t=32); w -> x now
 //        t=31 "0 x"   t=33 "x x"
 // Every display falls strictly between a change and its delayed update.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 8.6
 `timescale 1ns/1ns
 primitive inv(q, a);

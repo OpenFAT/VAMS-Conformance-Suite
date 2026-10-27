@@ -8,6 +8,7 @@
 // A checker that refuses any overlap, rather than an overlap with two
 // outputs, refuses this. conflicting_entries_rejected.v changes the
 // second entry's output to 0 and is refused.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.5.3
 //! inherited IEEE 1364-2005 8.1.4 8.1.6
 `timescale 1ns/1ns

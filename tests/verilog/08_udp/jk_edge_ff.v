@@ -38,6 +38,7 @@
 // change with different outputs) is exercised by
 // udp_potential_edges_dominance.v; no input sequence reaches the
 // §8.8's (p. 115) Table 8-3 case, whose state 0 with pc 01 the preset row forbids.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 8.7
 `timescale 1ns/1ns
 primitive jk_edge_ff (q, clock, j, k, preset, clear);

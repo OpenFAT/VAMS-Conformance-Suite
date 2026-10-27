@@ -8,6 +8,7 @@
 // g[3:0] is four inverters with 1-bit terminals; the 4-bit terminals q and
 // a are split one bit per instance, g[0] taking bit 0, so q = ~a bitwise.
 //   a = 4'b0011 -> q = 1100;  a = 4'b1010 -> q = 0101
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 8.6
 `timescale 1ns/1ns
 primitive inv(q, a);

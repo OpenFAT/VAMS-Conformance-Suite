@@ -19,6 +19,7 @@
 //   t=5  d = 0 with g = 1 -> row 1 -> 0             t=6: "0"
 //   t=6  g = 0 -> row 3 holds 0
 //   t=7  d = 1 with g = 0 -> row 3 holds 0          t=8: "0"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 8.1.2
 `timescale 1ns/1ns
 primitive and10(y, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10);

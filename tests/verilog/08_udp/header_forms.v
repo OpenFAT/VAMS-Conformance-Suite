@@ -31,6 +31,7 @@
 //   t=3  d=1 with g=1 -> 1.                  t=4: "0 0 1 1"
 //   t=4  g=0 -> hold 1; then d=0 with g=0 -> hold 1.
 //                                            t=5: "0 0 1 1"
+// gold: hand derivation, §8.1.1, §8.1.2 and §8.5 (above)
 //! inherited IEEE 1364-2005 8 8.1.1 8.1.2
 `timescale 1ns/1ns
 primitive and_a(y, a, b);

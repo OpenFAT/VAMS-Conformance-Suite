@@ -10,6 +10,7 @@
 //   t=1 a = 1 -> both outputs 0; displayed at t=2: "0 0"
 // The UDP outputs have no delay, so one time unit after each change both
 // have settled.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 8.1
 `timescale 1ns/1ns
 primitive inv_before(q, a);

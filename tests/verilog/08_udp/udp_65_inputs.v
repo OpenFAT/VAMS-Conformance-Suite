@@ -10,6 +10,7 @@
 //   all 65 inputs 1: the row matches, q = 1.
 //   i64 = 0: no row matches, q = x.
 //   i64 = 1 again: q = 1.
+// gold: hand derivation, §8.1.6 (above)
 //! inherited IEEE 1364-2005 8.1.2
 //! expect stdout udp_65_inputs.expected.txt
 //! neighbour input_minimums.v

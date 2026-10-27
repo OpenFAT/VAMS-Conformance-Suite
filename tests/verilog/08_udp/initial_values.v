@@ -17,6 +17,7 @@
 //        i.e. the initial value                   t=2: "01xx01xx10"
 //   t=2  d: x -> 1 with g = 0, again `-`           t=3: "01xx01xx10"
 //   t=3  g = 1 with d = 1 -> every latch loads 1   t=4: "1111111111"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 8.1.3 8.5
 `timescale 1ns/1ns
 primitive i0(q, g, d);

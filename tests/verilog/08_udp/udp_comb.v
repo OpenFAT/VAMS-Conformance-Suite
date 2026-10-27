@@ -64,6 +64,7 @@
 //   z   1 1 | x 1 1   (z->x)| 1
 //   z   0 1 | none    (z->x)| x
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.5.1
 //! lrm A.5.2
 //! lrm A.5.3

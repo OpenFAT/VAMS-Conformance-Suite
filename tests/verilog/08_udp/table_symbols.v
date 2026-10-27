@@ -14,7 +14,8 @@
 //   star: * with current state 0 -> 1, * with current state 1 -> 0: toggles
 //         on every change.
 //   vw:   (bx) = (0x),(1x) -> 1; (xb) = (x0),(x1) -> 0; (01), (10) -> -.
-// c steps x -> 0 -> 1 -> x -> 0 -> x -> 1 -> 0:
+// c steps x -> 0 -> 1 -> x -> 0 -> x -> 1 -> 0, from t=1, so every UDP's
+// initial q = 0 has run (§8.5: at time zero) before c first changes:
 //   change  pn        rf        star      vw
 //   (x0)    n  -> 0   -  -> 0   * -> 1    (xb) -> 0
 //   (01)    p  -> 1   r  -> 1   * -> 0    -    -> 0
@@ -29,6 +30,7 @@
 //   matches `?` -> 1; with s = x and a = 0 no row matches -> x.
 //   a=0 (s=x): bl 1, ql x;  s=1: 1 1;  a=1: 1 1;  a=x: bl x, ql 1;
 //   s=0: bl x, ql 0.
+// gold: hand derivation, §8.1.6 Table 8-1 and §8.4 (above)
 //! inherited IEEE 1364-2005 8.1.6
 `timescale 1ns/1ns
 primitive pn(q, c);
@@ -109,7 +111,7 @@ module b_8_1_6_table_symbols;
   bl u5(y1, a);
   ql u6(y2, a, s);
   initial begin
-    c = 0;
+    #1 c = 0;
     #1 $display("x0 %b %b %b %b", q1, q2, q3, q4);
     c = 1;
     #1 $display("01 %b %b %b %b", q1, q2, q3, q4);

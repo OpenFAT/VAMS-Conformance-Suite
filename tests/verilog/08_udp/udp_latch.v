@@ -62,6 +62,7 @@
 // from the initial statement and s6 holds a 0 that came from the table, so an
 // implementation that only seeds the state lazily still fails s1.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.5.1
 //! lrm A.5.2
 //! lrm A.5.3

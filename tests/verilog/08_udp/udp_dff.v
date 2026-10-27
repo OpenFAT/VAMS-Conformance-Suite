@@ -62,6 +62,7 @@
 // The transcript is therefore 0 0 0 1 1 1 0 0 0 1 — a value that changes only
 // at s4, s7 and s10, the three rising clock edges, and never at a d event.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.5.1
 //! lrm A.5.2
 //! lrm A.5.3

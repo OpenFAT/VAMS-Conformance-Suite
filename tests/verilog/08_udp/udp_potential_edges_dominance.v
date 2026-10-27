@@ -2,6 +2,7 @@
 // Input z is x (8.1.5). Edge rows set1/0, but level gate0 forces0 even
 // during p (8.7/8.8 level dominance). gatex explicitly yieldsx.
 // One input changes per stimulus; no simultaneous-edge scheduling is assumed.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.5.3
 //! lrm A.5.3:1000
 //! inherited IEEE 1364-2005 8.1.5,8.1.6,8.4,8.7,8.8

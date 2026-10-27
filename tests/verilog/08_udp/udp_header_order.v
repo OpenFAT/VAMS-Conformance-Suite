@@ -1,6 +1,7 @@
 // IEEE1364-2005 8.1.4: table inputs follow header order, NOT declaration order.
 // Header first,second; declarations reversed. Table01->1 and10->0 therefore
 // distinguishes the orders. Missing00/unknown combinations default to x.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.5.1
 //! lrm A.5.3
 //! lrm A.5.1:1000

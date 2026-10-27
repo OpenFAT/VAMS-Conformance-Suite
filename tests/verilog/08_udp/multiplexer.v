@@ -20,6 +20,7 @@
 //   control x: only 00 -> 0 and 11 -> 1 are listed -> 0xxx1xxxx
 // The abbreviated table gives the same 27 outputs: a ? row covers exactly
 // the three rows it replaces.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 8.2
 `timescale 1ns/1ns
 primitive multiplexer (mux, control, dataA, dataB);
