@@ -1,0 +1,10 @@
+late t=140 n=0
+late t=240 n=0
+late t=340 n=1
+late t=440 n=1
+late t=540 n=1
+early t=1140 n=0
+early t=1240 n=0
+early t=1340 n=1
+early t=1440 n=1
+early t=1540 n=1
