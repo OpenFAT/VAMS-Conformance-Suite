@@ -17,6 +17,7 @@
 //                  -> matches -> "stat2"
 // casez (4'b1z0z) against 4'b1101: the z bits 2 and 0 of the case expression
 //   are not considered; bit 3 1=1, bit 1 0=0 -> "expr-z"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.5.1
 module b_9_5_1_dont_care_examples;
   reg [7:0] ir, r, mask;

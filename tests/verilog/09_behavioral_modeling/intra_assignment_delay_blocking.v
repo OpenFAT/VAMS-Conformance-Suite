@@ -27,6 +27,7 @@
 // A form that sampled the RHS on resumption gives "intra 1111 1111" too.
 // A form that did not suspend gives "intra 0001 0001" (c read at t=0).
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.2
 //! lrm A.6.5
 //! lrm 8.5.3.3

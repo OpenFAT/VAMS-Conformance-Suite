@@ -14,6 +14,7 @@
 // The delayed rows remain pending across tick boundaries, also exercising
 // snapshot restoration. The legal unqualified event has the isolated
 // forbidden-edge neighbor native_real_edge_rejected.v (§4.8.1).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.8 9.2.2 9.7.2
 // native-required
 `timescale 1ns/1ns

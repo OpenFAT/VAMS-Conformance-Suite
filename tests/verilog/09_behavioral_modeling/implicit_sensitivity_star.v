@@ -32,6 +32,7 @@
 // Sensitive to only `b`:  "a_set 0000" (wrong).
 // `@*` read as "run once, never again": "a_set 0000" (wrong).
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.5
 //! lrm 1.1
 //! lrm 1.2

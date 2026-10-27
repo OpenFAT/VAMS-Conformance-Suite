@@ -1,6 +1,7 @@
 // IEEE1364-2005 §9.7.6 Syntax 9-11: `wait ( expression ) statement`. The legal
 // twin of sched_wait_empty_rejected.v: with an expression that is already
 // true, the wait continues at once and the statement prints `ready`.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.5
 //! lrm A.6.5:1000
 //! inherited IEEE 1364-2005 9.7.6

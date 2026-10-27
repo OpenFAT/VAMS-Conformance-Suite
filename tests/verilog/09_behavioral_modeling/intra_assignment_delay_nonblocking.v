@@ -28,6 +28,7 @@
 // printed at t=5 with a = 0001. Capturing the RHS at update time gives
 // "t6 1111 1111".
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.2
 //! lrm 8.5.3.4
 //! lrm 8.5.1

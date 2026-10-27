@@ -10,6 +10,7 @@
 //   encode = 3'b011 -> encode[2] = 0, [1] = 1 -> "Select Line 1"
 //   encode = 3'b001 -> only [0]             -> "Select Line 0"
 //   encode = 3'b000 -> no item matches      -> the default
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.5.2
 module b_9_5_2_constant_case_expression;
   reg [2:0] encode;

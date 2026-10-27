@@ -22,6 +22,7 @@
 //   t=31 d = 3; w <= repeat(2) @(posedge clk) d: d is read now (3); d = 8
 //        right after; posedges 33 and 35, w = 3 from t=35; printed at t=36
 //        -> "36 3"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.7
 `timescale 1ns/1ns
 module b_9_7_7_repeat_event_control;

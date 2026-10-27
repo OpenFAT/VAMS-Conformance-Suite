@@ -24,6 +24,7 @@
 // once after the writer (the value v[0] had settled at, 0 -> 0) would see no
 // event at all: pb=0 nb=0 ab=0 pp=0, and only pw=1. Lines print only for
 // step > 0: the time-0 x -> 0100 initialisation races the first waits.
+// gold: hand derivation, §9.7.2, §11.2 and §11.6.3 (above)
 //! inherited IEEE 1364-2005 9.7.2
 `timescale 1ns/1ns
 module b_9_7_2_select_edge_glitch;

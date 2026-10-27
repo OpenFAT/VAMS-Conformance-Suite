@@ -2,6 +2,7 @@
 // After copying source1, an independent procedural writer pokes destination0.
 // That poke must not awaken @*: destination stays0 until source changes.
 // Delayed stimulus avoids time-zero waiter-registration races.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5
 //! inherited IEEE 1364-2005 9.7.5
 `timescale 1ns/1ns

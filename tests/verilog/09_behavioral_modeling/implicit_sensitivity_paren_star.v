@@ -16,6 +16,7 @@
 //   t=4   "b_set 0111 0111",   a<-0000, b<-0000       c = d = 0000
 //   t=5   "cleared 0000 0000"
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.5
 //! lrm A.6.5:1000
 //! timescale 1ns/1ps

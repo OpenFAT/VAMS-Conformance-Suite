@@ -25,6 +25,7 @@
 // A cascade that needs a second timestep per stage prints "moved 1100 0011".
 // A cascade that never propagates past the first stage prints "moved 1100 xxxx".
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.5
 //! lrm 1.2
 //! lrm A.6.5:1000

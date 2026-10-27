@@ -1,5 +1,6 @@
 // IEEE1364-2005 §9.3.1: procedural assign continuously overrides procedural
 // writes; deassign retains the last assigned value until the next write.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.3.1
 module audit_assignment_assign_deassign;
   reg source, value;

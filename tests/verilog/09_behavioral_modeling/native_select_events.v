@@ -12,6 +12,7 @@
 // after each update, avoiding active-region races with the observers.
 // There is no invalid event value here; select syntax rejections live in
 // ch05's native_select_*_rejected and b_5_2_2_partial_address_rejected.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.2 6.1 9.7.2 9.7.5
 // native-required
 // native-state: 2

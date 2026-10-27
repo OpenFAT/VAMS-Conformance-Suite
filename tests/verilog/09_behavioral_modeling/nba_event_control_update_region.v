@@ -1,3 +1,4 @@
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 9.2.2 11.4
 // An event-controlled nonblocking update lands in the NBA region: the thread
 // that triggers the event continues first and still reads the old value

@@ -7,6 +7,7 @@
 // where the second initial prints "300" and ends the run.
 // Reading the 8 bits 1111_1111 as an unsigned 255 instead would print
 // "255 late" first.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.1
 `timescale 1ns/1ns
 module b_9_7_1_negative_signed_delay;

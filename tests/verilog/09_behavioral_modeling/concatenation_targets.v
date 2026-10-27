@@ -13,6 +13,7 @@
 //   s = 0: reevaluated                -> n1 0, n0 1
 // Each concatenation is all variables or all nets: Syntax 9-3's
 // variable_lvalue and net_lvalue concatenate only their own kind.
+// gold: hand derivation, §9.3 and §9.3.2 (above)
 //! inherited IEEE 1364-2005 9.3 9.3.1 9.3.2
 // native-required
 `timescale 1ns/1ns

@@ -1,3 +1,4 @@
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 A.2.1.3 9.7.3
 // An event_identifier may carry dimensions, so event arrays are legal
 // (event_array).

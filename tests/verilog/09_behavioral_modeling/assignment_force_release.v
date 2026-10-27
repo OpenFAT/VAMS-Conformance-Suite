@@ -1,6 +1,7 @@
 // IEEE1364-2005 §9.3.2: release of an ordinary variable retains the forced
 // value until another procedural write; release of a net restores its drivers.
 // Force RHS is reevaluated while active. No exact-time race is sampled.
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 9.3.2
 module audit_assignment_force_release;
   reg source, variable;

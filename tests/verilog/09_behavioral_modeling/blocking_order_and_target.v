@@ -15,6 +15,7 @@
 //        the index is evaluated when the delay expires (t=15) -> m[1] = 9,
 //        m[0] keeps 0
 //   prints "1 1" (t=0), "0 2" (t=1), "1 2" (t=5), "0 9" (t=15)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.2.1
 `timescale 1ns/1ns
 module b_9_2_1_blocking_order_and_target;

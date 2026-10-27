@@ -7,6 +7,7 @@
 // At t=5 the other process prints "end 0011" and terminates the run.
 // The exact transcript therefore contains those two lines and no "resumed".
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 5.10
 //! lrm 5.10.4
 //! lrm A.6.5

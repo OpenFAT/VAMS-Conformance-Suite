@@ -10,6 +10,7 @@
 // never a particular implementation's order. The RHS still runs once.
 // A legal effectful RHS needs no fabricated rejection; indexed-width
 // rejection neighbours are native_select_*_rejected.v in ch05.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.2.2 9.2.1 9.2.2 9.7.7
 // native-required
 `timescale 1ns/1ns

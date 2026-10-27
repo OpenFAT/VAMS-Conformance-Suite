@@ -27,6 +27,7 @@
 //   step 12 v[2] = x, 0->x is a posedge        -> "posedge v[2] 12"
 // One line per step, so no two processes race to print. Lines print only for
 // step > 0: the time-0 x -> 0 initialisation races the first waits.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.2
 `timescale 1ns/1ns
 module b_9_7_2_select_edge;

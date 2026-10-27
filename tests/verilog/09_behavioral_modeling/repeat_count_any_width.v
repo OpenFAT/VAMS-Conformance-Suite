@@ -8,6 +8,7 @@
 //   b = repeat (sw = -2) @(e): no wait -> "0 b 1"
 //   a = repeat (uw = 2) @(e): events at t=1 and 2 -> "2 a 1"
 //   uw = 2^64: past 64 bits the count saturates; the first pass $finishes
+// gold: hand derivation, §9.6 and §9.7.7 (above); a negative loop count is no "fixed number of times" to run, so it runs none
 //! inherited IEEE 1364-2005 9.6 9.7.7
 // native-required
 `timescale 1ns/1ns

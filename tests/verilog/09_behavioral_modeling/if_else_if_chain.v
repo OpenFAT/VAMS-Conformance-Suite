@@ -14,6 +14,7 @@
 //            -> evals = 123
 //   chain 3: no trailing else; t(1,0) false, t(2,x) is x, which §9.4 counts as
 //            false -> nothing executes -> evals = 12
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.4.1
 module b_9_4_1_if_else_if_chain;
   integer evals;

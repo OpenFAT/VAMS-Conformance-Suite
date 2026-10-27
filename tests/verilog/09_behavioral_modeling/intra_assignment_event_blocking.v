@@ -30,6 +30,7 @@
 // The prefix form `@(posedge clk) q = d;` would give "intra_event 1110 1110".
 // Not suspending at all gives "intra_event 0101 0101".
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.2
 //! lrm A.6.5
 //! lrm 8.5.3.3

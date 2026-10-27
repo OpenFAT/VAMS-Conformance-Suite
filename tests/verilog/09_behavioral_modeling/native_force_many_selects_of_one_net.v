@@ -13,6 +13,7 @@
 //   release w[4], w[0] and u[3:2] with d = 1: the drivers give the same 1s
 //          to w, and u[3:2] becomes 11: 11011111 1111
 //   d = 0: w = 0 10 0 111 0 = 01001110; u = 00 0 1 = 0001
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.3.2
 // native-required
 `timescale 1ns/1ns

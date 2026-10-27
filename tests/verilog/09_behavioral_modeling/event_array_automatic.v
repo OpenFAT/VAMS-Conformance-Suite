@@ -13,6 +13,7 @@
 // The trailing delays keep these activations alive through both observations.
 // Scalar events are the legal neighbor; invalid array references are covered
 // by b_9_7_3_event_array_*_rejected.v.
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 9.7.3
 //! inherited IEEE 1364-2005 10.2.1
 //! inherited IEEE 1364-2005 10.2.3

@@ -33,6 +33,7 @@
 // The line ORDER is part of the assertion: "at2" at t=2 must precede "fork" at
 // t=3.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.3
 //! lrm A.6.4
 //! lrm 1.2

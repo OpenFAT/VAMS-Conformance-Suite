@@ -23,6 +23,7 @@
 //        for t=16; the update scheduled first is applied first, so f = 0 after
 //        t=16 -> printed at t=17 (Example 6)
 //   prints "0" (t0), "1" (t1), "1 0" (t2), "1" (t5), "9 0" (t8), "0" (t17)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.2.2
 `timescale 1ns/1ns
 module b_9_2_2_nonblocking_scheduling;

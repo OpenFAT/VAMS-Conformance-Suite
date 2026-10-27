@@ -10,6 +10,7 @@
 //   fork : par declares reg [3:0] v (starts x), sets it to 9 and is left.
 //   Entered again, it adds 1 to the kept value 9 -> 10; after the repeat the
 //   block is read by name from outside, par.v -> "10" (the only line printed).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.8.2 9.8.3
 module b_9_8_3_named_fork_declarations;
   initial begin

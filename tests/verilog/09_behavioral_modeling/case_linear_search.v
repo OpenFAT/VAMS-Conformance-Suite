@@ -31,6 +31,7 @@
 //   6: 3'sb111 against 4'b0111 (unsigned): everything is unsigned, 3'sb111
 //      zero-extends to 0111 -> "unsigned" (the 4'b1111 item written first
 //      does not match)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.5
 module b_9_5_case_linear_search;
   integer evals;

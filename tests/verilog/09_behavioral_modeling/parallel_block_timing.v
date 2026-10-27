@@ -23,6 +23,7 @@
 //   Joining events: at t=300 fork @Aevent; @Bevent; join; areg = breg. Bevent
 //   fires at 305, Aevent at 310: the fork finishes at 310 -> "joined 310 4"
 //   (breg = 4). A begin-end block would still wait for a later Bevent.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.8.2 9.8.4
 `timescale 1ns/1ns
 module b_9_8_4_parallel_block_timing;

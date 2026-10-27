@@ -15,6 +15,7 @@
 //   t=2  -> e: n <- 2
 //   t=3  prints "n=2"
 //
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.3
 `timescale 1ns/1ns
 module audit_named_event_silent_always;

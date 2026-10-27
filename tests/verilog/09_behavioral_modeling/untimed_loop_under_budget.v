@@ -6,6 +6,7 @@
 //
 // DERIVATION: the loop ends with n = 900 at time 0 and the run goes on to
 // time 5.
+// gold: Icarus Verilog 13.0 agrees
 //! event-budget 1000
 //! inherited IEEE 1364-2005 9.6
 module b_9_6_untimed_loop_under_budget;

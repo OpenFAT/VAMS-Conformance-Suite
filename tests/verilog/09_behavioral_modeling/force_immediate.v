@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.3.2
 // force on a net takes effect when it executes: the next statement in the same
 // thread reads the forced value (force1).

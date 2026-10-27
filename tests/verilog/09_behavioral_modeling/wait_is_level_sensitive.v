@@ -28,6 +28,7 @@
 //
 // `stamp` is deliberately never written at t=0, so its x is meaningful.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.6.4
 //! lrm A.6.5
 //! lrm 1.2

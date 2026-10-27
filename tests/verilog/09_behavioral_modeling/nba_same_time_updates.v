@@ -11,6 +11,7 @@
 // established by distinct execution times, not by source order of initials.
 // At t6, r=0 and crossed=1. Waiters are armed before delivery, and flags are
 // initialized before arming, avoiding time-zero registration races.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5.3.4
 //! lrm 8.5.3.4:1000
 //! inherited IEEE 1364-2005 9.2.2 11.4.1

@@ -7,6 +7,7 @@
 //   left, the enclosing code reads it through the block's name: acc.count
 //   -> "15". A second process reads the same location as
 //   b_9_8_3_block_name_reference.acc.count at t=1 -> "15".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.8.3
 `timescale 1ns/1ns
 module b_9_8_3_block_name_reference;

@@ -2,6 +2,7 @@
 // data_bit is in the OUTER implicit list. After one completed copy, independent
 // destination0 poke and two gate changes must not start a second copy.
 // A later data change arms the inner event and its next gate change copies0.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5
 //! inherited IEEE 1364-2005 9.7.5
 `timescale 1ns/1ns

@@ -22,6 +22,7 @@
 // print only for step > 0: the time-0 initialisation (x -> 0 and so on) races
 // the always blocks' first wait, and step is then x or 0, never > 0. (The
 // operand-without-result rule is expression_event.v.)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.2
 `timescale 1ns/1ns
 module b_9_7_2_edge_detection;

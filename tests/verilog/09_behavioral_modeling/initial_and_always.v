@@ -19,6 +19,7 @@
 //   t=25 01 00; t=75 10 00; t=125 01 11; t=175 10 11; t=225 01 00
 // runs: the initial that adds 1 executes once -> 1 at every sample.
 // ticks: always #50 ticks = ticks + 1 repeats -> 0, 1, 2, 3, 4 at the samples.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.1 9.9 9.9.1 9.9.2
 `timescale 1ns/1ns
 module b_9_9_initial_and_always;

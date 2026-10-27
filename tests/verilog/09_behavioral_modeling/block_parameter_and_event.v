@@ -10,6 +10,7 @@
 //   and event go; a fork inside waits on @go in one branch and triggers
 //   #1 -> go in the other, so the waiting branch runs at t=1:
 //   total = step + twice = 15 -> "15 1"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.8.3
 `timescale 1ns/1ns
 module b_9_8_3_block_parameter_and_event;

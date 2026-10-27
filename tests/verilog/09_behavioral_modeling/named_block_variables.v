@@ -17,6 +17,7 @@
 //   a block's parameters and events: block_parameter_and_event.v.)
 //   The named block skip is disabled by name before its second statement:
 //   k stays 1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.8.3
 module b_9_8_3_named_block_variables;
   integer k;

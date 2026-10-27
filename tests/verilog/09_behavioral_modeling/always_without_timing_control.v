@@ -1,3 +1,4 @@
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 9.9.2
 // An always with no timing control is a zero-delay loop, a run-time deadlock,
 // not a compile error: VerA compiles it, and the loop's first iteration ends

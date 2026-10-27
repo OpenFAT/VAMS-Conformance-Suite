@@ -7,6 +7,7 @@
 // At t8 bits must be 0101, retaining the first independent bit update.
 // All observations are separated from NBA delivery times, so there is no
 // dependency on active-region process ordering or monitor formatting.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5.3.4
 //! lrm 8.5.3.4:1000
 //! inherited IEEE 1364-2005 9.2.2 11.6.4

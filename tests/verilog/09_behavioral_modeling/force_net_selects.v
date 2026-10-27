@@ -11,6 +11,7 @@
 //   release w[2]                            -> bit 2 returns to its driver 0,
 //                                              bits 1..0 stay forced -> 0011
 //   release w[1:0]                          -> 0000
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.3.2
 // native-required
 `timescale 1ns/1ns

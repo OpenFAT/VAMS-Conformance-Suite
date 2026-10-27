@@ -14,6 +14,7 @@
 //   force {n2, n1} = {s, s} with s 2 bits, n2 and n1 1-bit nets driven 0:
 //     s = 2'b10 -> {n2, n1} = 2'b10 (the low 2 bits of 4'b1010): n2 1, n1 0
 //     s = 2'b01 -> n2 0, n1 1
+// gold: hand derivation, §9.3, §9.3.2 and §5.5.1 (above)
 //! inherited IEEE 1364-2005 9.3 9.3.1 9.3.2
 // native-required
 `timescale 1ns/1ns

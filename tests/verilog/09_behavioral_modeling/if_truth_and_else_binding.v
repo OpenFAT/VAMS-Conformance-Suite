@@ -17,6 +17,7 @@
 //     if (index > 0) begin if (rega > regb) result = rega; end
 //     else result = regb;
 //       the else binds to the outer if -> result = regb = 2
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.4
 module b_9_4_if_truth_and_else_binding;
   integer index, rega, regb, result;

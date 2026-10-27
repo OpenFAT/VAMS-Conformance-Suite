@@ -15,6 +15,7 @@
 //   #regr, regr = 2, then regr = regr + 1    -> 9, regr = 3
 //   #(-1) in a second initial: -1 as a 64-bit unsigned is 2^64 - 1, so its
 //   statement cannot run before the $finish at 20 and prints nothing
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.1
 `timescale 1ns/1ns
 module b_9_7_1_delay_values;

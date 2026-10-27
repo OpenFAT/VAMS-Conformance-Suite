@@ -12,6 +12,7 @@
 //   t=1  the posedge: q takes the parked 4, not d's 9 -> at t=2 "2 4 9"
 //   t=2  d = 6; p <= @(posedge clk) d parks 6; d = 1; the posedge at t=3
 //        writes 6 -> at t=4 "4 6"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.7 9.2.2
 `timescale 1ns/1ns
 module b_9_7_7_nonblocking_event_control;

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.1 19.8
 // A real-valued parameter delay is scaled into the time unit: Delay = 0.1 in
 // 1ns/1ps is 100ps, not zero (br_gh732).

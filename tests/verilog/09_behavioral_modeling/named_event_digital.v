@@ -30,6 +30,7 @@
 // no-op prints "resumed 1010 0000"; one treated as a never-true guard prints
 // nothing at all and the run ends without the line.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 5.10.4
 //! lrm A.2.1.3
 //! lrm A.6.5

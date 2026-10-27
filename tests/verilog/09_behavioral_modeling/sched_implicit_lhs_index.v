@@ -1,6 +1,7 @@
 // IEEE1364-2005 9.7.5 includes the index expression on an assignment LHS,
 // while excluding its write-only base. Change only index after first copy:
 // both distinct memory words must eventually contain7.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5
 //! inherited IEEE 1364-2005 9.7.5
 `timescale 1ns/1ns

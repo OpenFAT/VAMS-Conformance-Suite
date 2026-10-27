@@ -17,6 +17,7 @@
 //   its first wait). Control leaves the block after its last statement, at
 //   250; the next statement is #1, so "out 251" (the 1 keeps it from racing
 //   the end_wave watcher at 250).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.8 9.8.1
 `timescale 1ns/1ns
 module b_9_8_1_sequential_block;

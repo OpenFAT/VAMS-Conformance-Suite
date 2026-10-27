@@ -15,6 +15,7 @@
 //   fork : par declares reg [1:0] w: the first entry sets it to 3, the
 //   second, seeing the kept 3, to 0 -> printed "3" then "0".
 // (Reading these by the block's name: named_fork_declarations.v.)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.8.3
 module b_9_8_3_named_block_reg;
   initial begin

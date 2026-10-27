@@ -6,6 +6,7 @@
 // timing-check simulation of §14.3.2 on is CLAUSE-AUDIT §5.7's), then used
 // as a procedural delay: a goes 0 -> 1 at t = 7. The module-body form is
 // 04_data_types/specparam_module_body_delay.v.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.1 4.10.3
 `timescale 1ns/1ns
 module b_9_7_1_specify_block_specparam;

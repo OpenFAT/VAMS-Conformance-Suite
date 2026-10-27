@@ -25,6 +25,7 @@
 //       the assignment lands;
 //   (b) only the blocking form suspends the process.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.6.2
 //! lrm 8.5.3.3
 //! lrm 8.5.3.4

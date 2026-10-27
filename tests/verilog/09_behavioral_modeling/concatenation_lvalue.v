@@ -11,6 +11,7 @@
 //   {r[1:0], m[1]} = 6'b01_1010: a part-select and a memory word, the first
 //     two bits to r[1:0] = 01, the last four to m[1] = a; r[7:2] untouched
 //     (r = 8'hff before -> r = 11111101)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.2 9.2.1
 module b_9_2_concatenation_lvalue;
   reg [7:0] rega, regb, acc, r;

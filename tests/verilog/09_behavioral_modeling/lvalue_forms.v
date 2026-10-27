@@ -19,6 +19,7 @@
 //   x = 2.5                         -> real 2.5
 //   u = s4, s4 = 4'sb1010 (signed)  -> sign-extended to 11111010
 //   u = 4'b1010 (unsigned)          -> zero-padded to 00001010
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.2
 module b_9_2_lvalue_forms;
   reg [7:0] r, u;

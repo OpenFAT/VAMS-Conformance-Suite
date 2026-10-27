@@ -22,6 +22,7 @@
 //   for (i = 7; 1'bx; i = i + 1): step b) is x, taken as zero; step a) still
 //     ran -> i = 7 and no iteration
 //   forever: body runs until disable; k counts to 5
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.6
 module b_9_6_loop_rules;
   integer n, i, trace, k;

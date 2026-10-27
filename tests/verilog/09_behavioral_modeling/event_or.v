@@ -13,6 +13,7 @@
 //   @(posedge clk, negedge rstn): clk 0->1 (4), rstn 1->0 (5) fire; clk 1->0
 //     (6) and rstn 0->1 (7) are the other edges -> "edge 4", "edge 5"
 //   @(trig or enable): -> trig (8), enable changes (9) -> "te 8", "te 9"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.4
 `timescale 1ns/1ns
 module b_9_7_4_event_or;

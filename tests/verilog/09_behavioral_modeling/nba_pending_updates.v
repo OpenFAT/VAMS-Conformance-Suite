@@ -8,6 +8,7 @@
 // or process-blocking implementation changes the transcript/timing sequence.
 // This tests ordinary digital NBAs, not the disputed AMS glitch example's
 // driver look-ahead or transition filtering.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5.3.4
 //! lrm 8.5.3.4:1000
 //! inherited IEEE 1364-2005 9.2.2

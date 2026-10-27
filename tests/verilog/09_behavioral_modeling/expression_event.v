@@ -10,6 +10,7 @@
 //   t=4 a = 0: operand changes, a & b stays 0        -> no event
 // Lines print only for step > 0: the time-0 x -> 0 initialisation races the
 // always block's first wait, and step is then x or 0.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.2
 `timescale 1ns/1ns
 module b_9_7_2_expression_event;

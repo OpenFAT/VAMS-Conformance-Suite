@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.3.2
 // force's left side may be a net-array element: force/release of array1[1] is
 // legal, and a forced expression follows its operands (array_lval_select4a).

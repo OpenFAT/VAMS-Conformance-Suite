@@ -11,6 +11,7 @@
 // Wrong implementations: a refusal of the empty list (the defect this pins)
 // compiles nothing; running the body once, as a settle node would, prints
 // a=1. No invalid form: 9.7.5 gives `@*` no restriction to violate.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5
 //! inherited IEEE 1364-2005 9.7.5
 `timescale 1ns/1ns

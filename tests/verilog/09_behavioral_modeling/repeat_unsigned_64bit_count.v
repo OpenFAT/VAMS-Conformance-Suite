@@ -11,6 +11,7 @@
 //   t=1  e occurs once: 2^64 - 2 still to come, a keeps 0
 //   t=2  "2 0", then $finish
 // A count read as the signed 64-bit -1 would assign at once: "2 1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.7.7
 `timescale 1ns/1ns
 module b_9_7_7_repeat_unsigned_64bit_count;

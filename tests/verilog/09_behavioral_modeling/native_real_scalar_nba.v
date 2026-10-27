@@ -4,6 +4,7 @@
 // and back to zero by the delayed NBA at t=4 produce two events. A second
 // delayed -0.0 at t=7 adds none. This scalar neighbor isolates the queue
 // semantics from the array storage tested by native_real_events.v.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.8 9.2.2 9.7.2
 // native-required
 `timescale 1ns/1ns

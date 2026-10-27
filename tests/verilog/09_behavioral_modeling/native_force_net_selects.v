@@ -13,6 +13,7 @@
 //   d = 1: the unforced bits follow the driver  -> 111 11111 11
 //   d = 0                                        -> 000 11111 00
 //   release w[66:62]: the driver's again         -> 000 00000 00
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 9.3.2
 // native-required
 `timescale 1ns/1ns

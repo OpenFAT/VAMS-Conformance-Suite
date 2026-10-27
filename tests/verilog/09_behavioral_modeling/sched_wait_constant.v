@@ -1,6 +1,7 @@
 // IEEE1364-2005 9.7.6: already-true condition continues immediately;
 // false condition blocks until true. Constant1 never needs a wake list;
 // constant0 never becomes true. A separate process ends the simulation.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 8.5
 //! inherited IEEE 1364-2005 9.7.6
 `timescale 1ns/1ns

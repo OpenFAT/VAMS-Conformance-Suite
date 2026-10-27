@@ -11,6 +11,7 @@
 // #0 samples after active waiters; the long trailing delays keep both
 // activations alive. Recursive timed tasks remain a separate native gap.
 // Invalid neighbors: b_9_7_3_event_array_*_rejected.v.
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 9.7.3
 //! inherited IEEE 1364-2005 10.2.1
 //! inherited IEEE 1364-2005 10.2.3
