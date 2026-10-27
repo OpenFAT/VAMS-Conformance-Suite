@@ -4,7 +4,7 @@
   "purpose": "Ideal delay line into a high impedance: pure transport delay observation.",
   "oracle": {
     "kind": "analytic",
-    "derivation": "Lossless line Z0 = 75, TD = 2n, source matched (RS = Z0, no re-reflection), far end RL = 1meg: Gamma = (1meg - 75)/(1meg + 75). v(a) = vin(t)/2 + Gamma vin(t - 2 TD)/2, v(b) = (1 + Gamma) vin(t - TD)/2, i(vin) = -(vin - v(a))/RS, vin the PULSE(0 2 0 50p 50p 2n 8n) of the deck. The previous oracle, ngspice-44.2 at default options, was 111x its tolerance off at the reflected edges; Xyce 7.10.0 at reltol 1e-6 and tmax 0.24 ps agrees within 2e-8x. ngspice-44.2 at reltol 1e-7 and the same tmax leaves 0.9 mV on v(a) at 12 ns, where the line is quiet. Samples: of 234 rows, 0 dropped on fast edges (within one TSTEP, 2e-11 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 1 where a default-options run is off by more than 1% of the column's swing (not settled for it); 233 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults from this reference on the rows kept, or the previous atol where larger.",
+    "derivation": "Lossless line Z0 = 75, TD = 2n, source matched (RS = Z0, no re-reflection), far end RL = 1meg: Gamma = (1meg - 75)/(1meg + 75). v(a) = vin(t)/2 + Gamma vin(t - 2 TD)/2, v(b) = (1 + Gamma) vin(t - TD)/2, i(vin) = -(vin - v(a))/RS, vin the PULSE(0 2 0 50p 50p 2n 8n) of the deck. The previous oracle, ngspice-44.2 at default options, was 111x its tolerance off at the reflected edges; Xyce 7.10.0 at reltol 1e-6 and tmax 0.24 ps agrees within 2e-8x. ngspice-44.2 at reltol 1e-7 and the same tmax leaves 0.9 mV on v(a) at 12 ns, where the line is quiet. Samples: of 234 rows, 0 dropped on fast edges (within one TSTEP, 2e-11 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 1 where a default-options run is off by more than 1% of the column's swing (not settled for it); 233 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults from this reference on the rows kept, or the previous atol where larger. Delay check (.meas tdel): v(a) = vin/2 crosses 0.5 V at 25 ps, halfway up vin's 50 ps ramp; v(b) = (1 + Gamma) vin(t - TD)/2 crosses 1 V when vin(t - TD) = 2/(1 + Gamma), 25.001875 ps after TD, so tdel = 2.000001875 ns. ngspice-44.2 at the deck's options and at reltol 1e-7, and Xyce 7.10.0 at its defaults, all print 2.000002e-09: both edges are linear ramps, which a simulator's linear interpolation of its crossings resolves exactly, so atol 0.1 ps is the spread (under the 1 fs print step) with 100x margin.",
     "confirmed": {
       "tool": "xyce",
       "version": "Xyce Release 7.10.0-opensource",
@@ -12,7 +12,7 @@
       "max_rel_err": Infinity,
       "max_tolerance_ratio": 4.41e-05
     },
-    "tolerance_basis": "Samples: of 234 rows, 0 dropped on fast edges (within one TSTEP, 2e-11 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 1 where a default-options run is off by more than 1% of the column's swing (not settled for it); 233 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults from this reference on the rows kept, or the previous atol where larger."
+    "tolerance_basis": "Samples: of 234 rows, 0 dropped on fast edges (within one TSTEP, 2e-11 s, either way the waveform moves more than a tenth of its swing, a default-options run misses by more than the tolerance, and a time shift within that TSTEP meets this value) and 1 where a default-options run is off by more than 1% of the column's swing (not settled for it); 233 kept. Each atol is 2x the largest deviation beyond rtol*|value| of ngspice-44.2 at the deck's options, Xyce 7.10.0 at its defaults from this reference on the rows kept, or the previous atol where larger. tdel: atol 1e-13 s, see the derivation."
   },
   "origin": "benchmark/fixtures/tline/delay_line/circuit.sp",
   "expect": {
@@ -1226,7 +1226,16 @@
       }
     ],
     "finite_values_required": true,
-    "all_requested_analyses_must_complete": true
+    "all_requested_analyses_must_complete": true,
+    "checks": [
+      {
+        "kind": "measure",
+        "name": "tdel",
+        "value": 2.000001875e-09,
+        "rtol": 0,
+        "atol": 1e-13
+      }
+    ]
   },
-  "netlist_sha256": "808686e4ddae58454c772bc6baafd78825cf883e48a80712c9ababe7b8b6453c"
+  "netlist_sha256": "0667bf02610b4f68550cbbc78d53fa0fb626698c3103ff86d92b66fe7ee18442"
 }

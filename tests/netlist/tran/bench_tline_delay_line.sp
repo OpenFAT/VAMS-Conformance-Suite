@@ -6,4 +6,6 @@ RS in a 75
 T1 a 0 b 0 Z0=75 TD=2n
 RL b 0 1meg
 .tran 20p 12n
+* The delay is the point: from the 0.5 V crossing of v(a) to the 1 V crossing of v(b).
+.meas tran tdel trig v(a) val=0.5 rise=1 targ v(b) val=1 rise=1
 .end
