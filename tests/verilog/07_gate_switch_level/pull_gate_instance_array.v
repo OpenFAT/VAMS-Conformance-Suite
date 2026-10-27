@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.8 A.3.1
 // A.3.1's name_of_gate_instance takes a range, so a pull gate array is legal
 // (pullupdown2/3).

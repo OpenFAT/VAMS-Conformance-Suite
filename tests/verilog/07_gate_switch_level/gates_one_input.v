@@ -21,6 +21,7 @@
 // an inverter. The illegal neighbour, a gate with no input at all, is
 // gates_no_input_rejected.v.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.3.1
 //! lrm 1.1
 //! lrm A.3.1:1000

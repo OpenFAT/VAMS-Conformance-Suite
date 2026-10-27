@@ -2,6 +2,7 @@
 // Combining it with definite pull1 always gives1, at a strength in5..6.
 // Symmetrically strong L plus pull0 gives0. Flattening H/L to ordinary
 // strong X before resolution incorrectly loses those known values.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.10.2 7.10.3
 `timescale 1ns/1ns
 module audit_primitive_ambiguous_same_polarity;

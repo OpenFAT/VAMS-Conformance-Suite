@@ -18,6 +18,7 @@
 //   j: gate output: buf (pull1, pull0) driving 1 vs (weak1, weak0) 0 -> 1;
 //      k: the same buf driving 1 vs (strong1, strong0) 0 -> 0
 // Line: "1111 xxxx 0 10".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.9
 `timescale 1ns/1ns
 module b_7_9_strength_levels;

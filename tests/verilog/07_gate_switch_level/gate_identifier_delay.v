@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.14 A.2.2.3
 // delay3's delay_value may be an identifier, so buf #d (g, in) is a gate with
 // delay d, not a call (delay_var).

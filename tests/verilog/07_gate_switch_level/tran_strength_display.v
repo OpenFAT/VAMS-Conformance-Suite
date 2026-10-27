@@ -14,6 +14,7 @@
 // undriven net is tran_from_supply_undriven.v.)
 // Printed at #1, after every continuous assignment and switch has settled.
 // Line: "Pu1 Pu1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.11
 //! inherited IEEE 1364-2005 17.1.1.5
 `timescale 1ns/1ns

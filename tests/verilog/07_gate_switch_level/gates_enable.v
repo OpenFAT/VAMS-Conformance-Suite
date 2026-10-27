@@ -32,6 +32,7 @@
 // The two fully-known enable columns are what discriminate the four gate types
 // from each other: at d=1,c=0 the four outputs are 1, z, 0, z — no two alike.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.3.1
 //! lrm A.3.4
 //! lrm 1.1

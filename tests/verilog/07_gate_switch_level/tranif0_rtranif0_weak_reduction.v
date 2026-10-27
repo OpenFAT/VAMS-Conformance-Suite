@@ -26,6 +26,7 @@
 //       meets w6's We0 -> 0; and w6's We0 -> Me0 reaches the source net ws2,
 //       whose own We1 beats it, so ws2                       -> 1
 // Line: "1 0 x 0 0 0 1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.6 7.11 7.12
 // native-required
 `timescale 1ns/1ns

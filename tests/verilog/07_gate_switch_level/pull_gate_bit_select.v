@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.8 7.1.5
 // A pull gate may drive a bit-select of a vector net: pullup(bus[0]) and
 // pullup(bus[1]) combine with the driver's (strong0,pull1) bufs to 10

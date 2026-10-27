@@ -35,6 +35,7 @@
 // cell equals its pmos cell. The strength half is pinned separately in
 // strength_reduction.v, where the reduction becomes visible as a value.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.3.1
 //! lrm A.3.4
 //! lrm 1.1

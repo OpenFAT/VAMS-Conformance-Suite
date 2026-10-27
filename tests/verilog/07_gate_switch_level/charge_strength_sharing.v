@@ -21,6 +21,7 @@
 //      (the default is smaller than large)
 // Before joining, each trireg holds its own charge: "01 10 10 10".
 // Lines: "01 10 10 10", "00 11 xx 11".
+// gold: hand derivation, §7.13.2 and §4.6.3.1 (above)
 //! inherited IEEE 1364-2005 7.13.2
 // native-required
 `timescale 1ns/1ns

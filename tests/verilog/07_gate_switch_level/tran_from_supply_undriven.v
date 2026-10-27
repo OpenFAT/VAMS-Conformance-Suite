@@ -9,6 +9,7 @@
 // t1 is an uncontrolled tran, so it conducts from time 0, and c has no
 // driver of its own: c carries vdd's Su1 reduced to strong, St1, value 1.
 // Printed at #1. Line: "St1 1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.11
 //! inherited IEEE 1364-2005 17.1.1.5
 `timescale 1ns/1ns

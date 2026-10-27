@@ -28,6 +28,7 @@
 //                                                 -> 0z00z0
 //   tran 0, rtran 0, tranif0 0, tranif1 z, rtranif0 0, rtranif1 z
 //                                                 -> 000z0z
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.1.1
 // native-required
 `timescale 1ns/1ns

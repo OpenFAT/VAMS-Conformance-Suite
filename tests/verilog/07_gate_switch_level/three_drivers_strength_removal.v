@@ -9,6 +9,7 @@
 // that a level 6 driver overrides, and that comes back the instant the level 6
 // driver goes to z.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.6.1
 //! lrm annex A.2.2.2
 //! lrm 1.1

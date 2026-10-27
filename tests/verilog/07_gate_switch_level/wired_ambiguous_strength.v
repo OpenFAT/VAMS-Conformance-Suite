@@ -12,6 +12,7 @@
 // A resolver that collapses H/L to x before the table prints x|0 = x, x|1 = 1
 // and x&0 = 0 for the three x-enable columns; every one of those is wrong.
 //
+// gold: hand derivation, §7.10.1, §7.10.2 and §7.10.4 (above)
 //! lrm annex A.3.1
 //! lrm annex A.2.2.1
 //! lrm 1.1

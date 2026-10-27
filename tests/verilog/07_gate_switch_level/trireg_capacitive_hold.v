@@ -31,6 +31,7 @@
 // The three trireg columns therefore pin only that the strengths are LEGAL and
 // change no stored value. See tests/fixtures/ieee1364/07_gate_switch_level/d03_SPEC.md at 8b1514d4, "Deliberately NOT covered".
 //
+// gold: hand derivation, §4.6.3 (above)
 //! lrm annex A.2.1.3
 //! lrm annex A.2.2.2
 //! lrm 1.1

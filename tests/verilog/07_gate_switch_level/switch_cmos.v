@@ -37,6 +37,7 @@
 // rcmos differs only in output strength, never in value, so every rcmos column
 // equals its cmos column here.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.3.1
 //! lrm A.3.4
 //! lrm 1.1

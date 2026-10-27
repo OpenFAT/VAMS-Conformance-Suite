@@ -14,6 +14,7 @@
 //   w4: a Pu1 through nmos vs We0 -> 1 (Pu1 still beats weak);
 //   w5: the same Pu1 through nmos vs Pu0 -> x (not raised to strong).
 // Line: "xxx 1x xx".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.11
 // native-required
 `timescale 1ns/1ns

@@ -20,6 +20,7 @@
 // specification/CLAUSE-AUDIT.md row 17.1-07) and there are no switch primitives to
 // propagate it into (D08).
 //
+// gold: hand derivation, §7.10.1 and §7.10.4 (above)
 //! lrm annex A.2.2.1
 //! lrm annex A.2.2.2
 //! lrm 1.1

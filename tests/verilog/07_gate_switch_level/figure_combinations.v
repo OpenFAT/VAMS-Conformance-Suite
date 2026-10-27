@@ -26,6 +26,7 @@
 //        rule b removes every level of PuH (all <= 6); rule c adds nothing
 //        above St0 -> St0 -> 0.
 // Lines: "xxx 0", "1", "0".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.10
 `timescale 1ns/1ns
 module b_7_10_figure_combinations;

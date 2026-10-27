@@ -15,6 +15,7 @@
 // supply net ignores its drivers unconditionally. That is right for line 1 and
 // line 2's first two columns and wrong for the supply-versus-supply tie.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.2.2.1
 //! lrm annex A.2.2.2
 //! lrm 1.1

@@ -31,6 +31,7 @@
 // Three buf outputs therefore read 000 / 111 / xxx / xxx and two not outputs
 // read 11 / 00 / xx / xx.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.3.1
 //! lrm A.3.4
 //! lrm 1.1

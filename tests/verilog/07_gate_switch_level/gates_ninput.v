@@ -31,6 +31,7 @@
 // Every line carries its own `want` literals so the assertion lives in the
 // fixture, not only in the golden transcript.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.3.1
 //! lrm A.3.4
 //! lrm 1.1

@@ -2,6 +2,7 @@
 // scalar control broadcasts to every instance, vector terminals partition.
 // Both ascending and descending instance ranges must implement the same
 // vector buffer when input/output vector orders match.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.1.5 7.1.6
 `timescale 1ns/1ns
 module audit_primitive_array_broadcast;

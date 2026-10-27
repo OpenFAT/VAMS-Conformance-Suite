@@ -7,6 +7,7 @@
 //   a=1 b=1: u0 = n0 = 1; arr: {a,b} ^ {b,a} = 11 ^ 11 = 00; or: 1, 1.
 //   a=1 b=0: u0 = n0 = 0; arr: 10 ^ 01 = 11; or: 1, 1.
 // Lines: "11 00 11", "00 11 11".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.1.4
 `timescale 1ns/1ns
 module b_7_1_4_optional_instance_name;

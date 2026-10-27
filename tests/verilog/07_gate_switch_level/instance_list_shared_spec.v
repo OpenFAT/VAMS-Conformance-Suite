@@ -16,6 +16,7 @@
 //       win and o2 would read 1; the x shows n2 took the list's pull1.
 //   At t=3 each net is St0 plus a weaker 0 -> 0.
 // Lines: "3 00", "11 00", "13 1x".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.1
 `timescale 1ns/1ns
 module b_7_1_instance_list_shared_spec;

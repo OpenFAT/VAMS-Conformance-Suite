@@ -1,6 +1,7 @@
 // IEEE1364-2005 §7.6: tran unconditionally conducts in BOTH directions,
 // unlike a directed buffer. One driver is z in each observation, so no
 // strength resolution ambiguity is involved.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.6
 // native-required
 `timescale 1ns/1ns

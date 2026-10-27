@@ -23,13 +23,16 @@
 //      tranif1 g off only after the turn-off delay, 3. Until t=3 its
 //      conduction is unknown, so what a's 1 asserts on b is 1-or-z (§7.10.2's
 //      H), which reads x at t=1. After t=3 g is off and b is undriven, z.
-//      en rises at t=10; the turn-on delay is 2, so b is still z at 11 and is
-//      a's 1 at 12. en falls at t=20; the turn-off delay is 3, so b still
-//      reads 1 at 22 and is z again at 23.
+//      en rises at t=10; the turn-on delay is 2, so b is still z at 11.5 and
+//      is a's 1 at 12.5. en falls at t=20; the turn-off delay is 3, so b still
+//      reads 1 at 22.5 and is z again at 23.5. The samples sit half a unit off
+//      the switch's own instants, 12 and 23: a $display in the same time step
+//      as the switch's update may run before or after it (§11.4.2).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.6 (bit-select terminals, pass switch delays)
 //! inherited IEEE 1364-2005 7.11 7.12 (strength across tran and rtran)
 // native-required
-`timescale 1ns/1ns
+`timescale 1ns/100ps
 module audit_switch_bits_strength_delay;
   reg d, en;
   wire s, n, m, a, b;
@@ -46,10 +49,10 @@ module audit_switch_bits_strength_delay;
     d = 1; en = 0;
     #1 $display("n=%b m=%b bus=%b b=%b", n, m, bus, b);
     #9 en = 1;
-    #1 $display("%0d b=%b", $time, b);
-    #1 $display("%0d b=%b", $time, b);
-    #8 en = 0;
-    #2 $display("%0d b=%b", $time, b);
-    #1 $display("%0d b=%b", $time, b);
+    #1.5 $display("%0.1f b=%b", $realtime, b);
+    #1 $display("%0.1f b=%b", $realtime, b);
+    #7.5 en = 0;
+    #2.5 $display("%0.1f b=%b", $realtime, b);
+    #1 $display("%0.1f b=%b", $realtime, b);
   end
 endmodule

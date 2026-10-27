@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.1.5 7.1.6
 // An array of nmos instances takes vector terminals, one bit per instance:
 // nmos buffer[7:0](value2, value1, 1'b1) passes value1 bit by bit (br_gh99j).

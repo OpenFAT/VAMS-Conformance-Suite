@@ -16,6 +16,7 @@
 // instant. Current execution results are recorded in the primitive audit;
 // the source-derived expectation does not depend on an implementation snapshot.
 //
+// gold: hand derivation, §4.6.3 and §7.14.2 (above)
 //! lrm annex A.2.1.3
 //! lrm annex A.2.2.2
 //! lrm annex A.2.2.3

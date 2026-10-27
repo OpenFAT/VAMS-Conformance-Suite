@@ -21,6 +21,7 @@
 // Samples (o0 o1 o2 o3), each one unit away from any scheduled edge:
 //   51 -> 1000; 59 -> 1000; 61 -> 1111; 101 -> 0111; 109 -> 0111;
 //   111 -> 0011; 113 -> 0000; 163 -> 0000; 165 -> 000z.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.1.3 7.14
 `timescale 1ns/1ns
 module b_7_1_3_gate_delays;

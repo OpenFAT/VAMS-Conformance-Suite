@@ -21,6 +21,7 @@
 // The rows below medium (medium -> small, small -> small, large -> medium)
 // need a trireg charge on both sides and are not exercised here.
 // Line: "x1x0 xxxx 0".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.12
 // native-required
 `timescale 1ns/1ns

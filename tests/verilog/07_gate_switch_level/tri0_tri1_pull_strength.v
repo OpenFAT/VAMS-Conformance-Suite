@@ -11,6 +11,7 @@
 // permanent competitor at level 5: a weak driver can never move a tri0, and a
 // pull-strength driver ties with it.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.2.2.1
 //! lrm 1.1
 //! timescale 1ns/1ns

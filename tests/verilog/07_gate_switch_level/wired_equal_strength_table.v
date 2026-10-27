@@ -14,6 +14,7 @@
 // An x driver is ambiguous (7.10.2): at pull strength it spans Pu0..Pu1, and
 // 7.10.4 has "all combinations of each of the strength levels" taken.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.2.2.1
 //! lrm annex A.2.2.2
 //! lrm 1.1

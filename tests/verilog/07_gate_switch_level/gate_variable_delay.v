@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 6.1.3 7.14 A.2.2.3
 // delay3's parentheses hold mintypmax_expressions, not constants, so a gate
 // instance may take a variable delay: buf #(d) schedules with d's value when

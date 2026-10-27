@@ -1,6 +1,7 @@
 // IEEE1364-2005 §7.8 ignores strength0 on pullup. The first pullup drives
 // strong1 against pull0=>1; the second drives weak1 against pull0=>0.
 // Opposite-polarity annotations must not affect either result.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.3.2
 //! lrm A.3.2:1000
 //! inherited IEEE 1364-2005 7.8 7.10.1

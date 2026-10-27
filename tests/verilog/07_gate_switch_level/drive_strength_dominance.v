@@ -32,6 +32,7 @@
 // whether or not one of them would have won; under the strength model a
 // disagreement is only x when the two sides are EQUAL.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.6.1
 //! lrm annex A.2.2.2
 //! lrm 1.1

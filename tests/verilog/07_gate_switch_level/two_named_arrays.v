@@ -17,6 +17,7 @@
 //     ~(1 & 1) = 0
 // Sampled at t=3, after the #2.
 // Line: "0111 1100 01111100 0".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.1.5
 `timescale 1ns/1ns
 module b_7_1_5_two_named_arrays;

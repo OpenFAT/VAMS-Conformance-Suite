@@ -60,6 +60,7 @@
 //          not the switch conducts, and nd can never contribute anything but
 //          z back through it.                                   -> nc=1 nd=x
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.3.1
 //! lrm A.3.3
 //! lrm A.3.4

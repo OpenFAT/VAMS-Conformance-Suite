@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.10 7.11
 // When a switch's data input changes strength only (St1 to Pu1), its output
 // follows: the pmos output Pu1 against bufif0's St0 resolves 0, not x

@@ -12,6 +12,7 @@
 // so its 0 is INVISIBLE on the net: it neither wins, nor conflicts, nor even
 // keeps the net off z.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.6.1
 //! lrm annex A.2.2.2
 //! lrm 1.1

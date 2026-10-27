@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.11
 // A MOS or tran switch whose data terminal is a supply0 net passes a strong 0
 // (nmos(o, vss, 1) and tranif1(o, vss, 1) read 0, not z) (br_gh1122).

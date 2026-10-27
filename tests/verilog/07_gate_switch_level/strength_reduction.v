@@ -66,6 +66,7 @@
 //   that the winner is chosen by the lattice and not by "a gate beats a pull".
 //                                                           -> ww=1
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm A.3.1
 //! lrm A.2.2.2
 //! lrm 1.1

@@ -1,5 +1,6 @@
 // IEEE1364-2005 §§7.4/7.14 Table7-9: bufif1 #(5,7,2) uses fall7,
 // rise5, turnoff2 and min(5,7,2)=2 for x. Samples avoid update-time races.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.4 7.14
 `timescale 1ns/1ns
 module audit_primitive_three_delay_unknown;

@@ -11,6 +11,7 @@
 // (St0), the pmos ones are off. a = 0: the pmos instances conduct vdd's 1
 // (St1); `w`'s lone nmos is off, so w is z. The #2 pair has settled by the
 // #10 reads.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.7.4 7.12
 module b_7_12_mos_data_undriven_supply;
   supply0 gnd;
