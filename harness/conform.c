@@ -259,6 +259,7 @@ static int locate(const char *abs, char *root, char *lang, const char **rel) {
 enum { EXIT_FAILED = -1, EXIT_ANY = -2 };
 typedef struct {
     int reject, reject_run, exit_want, checks_want, needs_run, self_checks, passed;
+    int diagnostic; /* `//! diagnostic`: the tool must say something of its own */
     char *stdout_want[16];
     int nstdout;
     char *stderr_want[16]; /* a row's STDERR= */
@@ -339,6 +340,7 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
             sp->exit_want = (int)n, exit_set = 1;
         }
         else if (kw_is(d, kn, "checks")) sp->checks_want = atoi(arg);
+        else if (kw_is(d, kn, "diagnostic")) sp->diagnostic = 1;
         else if (kw_is(d, kn, "stdout") && sp->nstdout < 16) sp->stdout_want[sp->nstdout++] = xstrdup(trim((char *)arg));
         else if (kw_is(d, kn, "expect")) {
             char out[256], gold[256];
@@ -605,6 +607,23 @@ static int passed_line(const char *out) {
     return 0;
 }
 
+/* A line of `text` that is not blank and holds no `//! stdout` text: one
+ * the tool printed, not the test. A clause that requires a message in no set
+ * words (IEEE 1364-2005 17.2.9's "an error message is issued") is judged by
+ * one on either stream, since no clause names the stream. */
+static int foreign_line(const char *text, const Spec *sp) {
+    char line[1024];
+    for (const char *l = text; *l;) {
+        size_t n = strcspn(l, "\n");
+        snprintf(line, sizeof line, "%.*s", (int)n, l);
+        int own = strspn(line, " \t\r") == strlen(line);
+        for (int i = 0; i < sp->nstdout && !own; i++) own = strstr(line, sp->stdout_want[i]) != NULL;
+        if (!own) return 1;
+        l += n + (l[n] == '\n');
+    }
+    return 0;
+}
+
 static int judge_output(const char *dir, const char *work, const Spec *sp, const Stage *s, char *why) {
     char *want;
     if (*sp->gold) {
@@ -629,6 +648,8 @@ static int judge_output(const char *dir, const char *work, const Spec *sp, const
         if (!has) return snprintf(why, MSG, "stderr lacks %s", strrchr(sp->errgold, '/') + 1), 0;
     }
     if (sp->passed && !passed_line(s->out)) return snprintf(why, MSG, "no PASSED line"), 0;
+    if (sp->diagnostic && !foreign_line(s->out, sp) && !foreign_line(s->err, sp))
+        return snprintf(why, MSG, "no diagnostic: the run printed only the test's own lines"), 0;
     for (int i = 0; i < sp->nstdout; i++)
         if (!strstr(s->out, sp->stdout_want[i])) return snprintf(why, MSG, "stdout lacks \"%s\"", sp->stdout_want[i]), 0;
     for (int i = 0; i < sp->nstderr; i++)

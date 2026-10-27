@@ -105,6 +105,7 @@ Two kinds of directive:
 | `//! exit any` | harness | the run may exit with any status 0–125, for a clause that leaves it open (a crash, timeout or exit ≥ 126 still fails); the output checks below still apply |
 | `//! checks N` | harness | exactly N `ok=` lines |
 | `//! stdout TEXT` | harness | stdout contains TEXT |
+| `//! diagnostic` | harness | stdout or stderr has a line that is not blank and holds no `//! stdout` TEXT: a message the tool printed, for a clause that requires one in no set words or stream (IEEE 1364 17.2.9's "an error message is issued") |
 | `//! expect stdout GOLD` | harness | stdout equals GOLD (beside the test) instead of `<stem>.expected.txt`; a GOLD that is not there fails the test |
 | `//! expect vcd OUT == GOLD` | harness | the VCD the run writes equals GOLD, `$date`/`$version` bodies aside |
 | `//! neighbour FILE` | nobody | the legal twin of a `_rejected` test |
