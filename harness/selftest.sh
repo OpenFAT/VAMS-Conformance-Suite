@@ -11,7 +11,7 @@ mkdir -p "$T/s/include" "$T/s/verilog-a" "$T/s/verilog" "$T/s/spice"
 
 cat > "$T/tool.conf" <<'EOF'
 run.verilog-a = cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; s=$(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0); [ "$s" = segv ] && kill -SEGV $$; [ "$s" = hang ] && sleep 30; [ "$s" = hog ] && exec awk 'BEGIN { s = "x"; while (1) s = s s }'; [ "$s" = sip ] && exec awk 'BEGIN { s = "x"; for (i = 0; i < 20; i++) s = s s; exit 1 }'; exit $s
-run.verilog = [ -z "$CONFORM_COMPILE_ONLY" ] || exit 0; cp "$CONFORM_DIR/$CONFORM_STEM.file" out.txt 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.err" >&2 2>/dev/null; ${CONFORM_STD:+echo std=$CONFORM_STD}; ${CONFORM_PROTECT_KEYS:+echo keys=${CONFORM_PROTECT_KEYS##*/}}; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
+run.verilog = [ -z "$CONFORM_COMPILE_ONLY" ] || exit 0; cp "$CONFORM_DIR/$CONFORM_STEM.file" out.txt 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.out" 2>/dev/null; cat "$CONFORM_DIR/$CONFORM_STEM.err" >&2 2>/dev/null; ${CONFORM_STD:+echo std=$CONFORM_STD}; ${CONFORM_PROTECT_KEYS:+echo keys=${CONFORM_PROTECT_KEYS##*/}}; ${CONFORM_NEGATIVE_TIMING:+echo negative-timing=$CONFORM_NEGATIVE_TIMING}; exit $(cat "$CONFORM_DIR/$CONFORM_STEM.exit" 2>/dev/null || echo 0)
 run.vpi = echo "$CONFORM_LANG $(basename "$CONFORM_SRC")"
 EOF
 printf 'compile.verilog-a = exit 0\n' > "$T/compile-only.conf"
@@ -67,6 +67,11 @@ printf 'hi\n' > "$T/s/verilog/named_gold_missing.out"
 printf '//@ protect-keys k.json\nmodule k; endmodule\n' > "$T/s/verilog/keys.v"
 printf '{}\n' > "$T/s/verilog/k.json"
 printf 'keys=k.json\n' > "$T/s/verilog/keys.expected.txt"
+# `//@ negative-timing` reaches the tool as CONFORM_NEGATIVE_TIMING=1; it takes no argument.
+printf '//@ negative-timing\nmodule nt; endmodule\n' > "$T/s/verilog/negative_timing.v"
+printf 'negative-timing=1\n' > "$T/s/verilog/negative_timing.expected.txt"
+printf '//@ negative-timing on\nmodule nt; endmodule\n' > "$T/s/verilog/negative_timing_argument.v"
+printf 'negative-timing=1\n' > "$T/s/verilog/negative_timing_argument.expected.txt"
 # A SPICE deck is `netlist` wherever it is filed (no command here: SKIP).
 printf '* deck\n.end\n' > "$T/s/verilog-a/deck.sp"
 printf '{}\n' > "$T/s/verilog-a/deck.expected.json"
@@ -148,6 +153,8 @@ PASS	up/t/j.v
 FAIL	up/t/k.v
 PASS	verilog/named_gold.v
 PASS	verilog/keys.v
+PASS	verilog/negative_timing.v
+FAIL	verilog/negative_timing_argument.v
 FAIL	verilog/named_gold_missing.v
 SKIP	verilog-a/deck.sp
 PASS	verilog-a/pass.va

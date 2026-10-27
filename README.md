@@ -111,6 +111,7 @@ Two kinds of directive:
 | `//@ files A.v B.v` | tool | more sources (exported absolute as `CONFORM_FILES`) |
 | `//@ libmap X.map`, `//@ liblist LIB`, `//@ std 1364-2001` | tool | IEEE 1364 clause 13 configuration and the `begin_keywords` set |
 | `//@ protect-keys K.json` | tool | the key file that decrypts an IEEE 1364 clause 28 envelope |
+| `//@ negative-timing` | tool | IEEE 1364 15.5.4's invocation option that enables negative `$setuphold` and `$recrem` limits (exported as `CONFORM_NEGATIVE_TIMING=1`); a tool without one leaves it unmapped and runs the test without it |
 
 ### The verdict
 
@@ -160,7 +161,7 @@ run.verilog     = vvp -n "$CONFORM_WORK/sim.vvp"
 | `CONFORM_WORK` | the scratch directory, also the working directory |
 | `CONFORM_INCLUDE` | `tests/include` (for a manifest test, the suite's root) |
 | `CONFORM_TOOLDIR` | the config's directory, for adapters beside it |
-| `CONFORM_FILES`, `CONFORM_LIBMAP`, `CONFORM_LIBLIST`, `CONFORM_STD`, `CONFORM_PROTECT_KEYS` | from `//@` lines |
+| `CONFORM_FILES`, `CONFORM_LIBMAP`, `CONFORM_LIBLIST`, `CONFORM_STD`, `CONFORM_PROTECT_KEYS`, `CONFORM_NEGATIVE_TIMING` | from `//@` lines |
 | `CONFORM_COMPILE_ONLY` | `1` when only compiling is judged (see Stages) |
 | `CONFORM_<KEY>` | from a manifest row's `KEY=VALUE` columns (a row sets these, not `//@` lines: `STD`, `INCDIR`, `DIRS` the directories its runner makes in the cwd, `DEFINES`, `SHIM` an include directory under `external/`). The harness reads `FILTER`, `RTOL`, `ATOL` and `DIFF=OUT:GOLD` (the file the run writes must equal GOLD, compared as `//! expect vcd`) |
 

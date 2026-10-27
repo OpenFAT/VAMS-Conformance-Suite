@@ -265,6 +265,7 @@ typedef struct {
     int nstderr;
     char *vcd_out, *vcd_gold;
     char *files, *libmap, *liblist, *std, *protect_keys;
+    int negative_timing; /* `//@ negative-timing`: IEEE 1364-2005 15.5.4's invocation option */
     char gold[PATH_MAX], errgold[PATH_MAX]; /* empty: none */
     char *filter;                           /* applied to stdout and gold alike */
     double rtol, atol;                      /* gold numbers within tolerance */
@@ -320,6 +321,7 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
             else if (!strcmp(kw, "liblist")) append(&sp->liblist, rest);
             else if (!strcmp(kw, "std")) append(&sp->std, rest);
             else if (!strcmp(kw, "protect-keys")) append_paths(&sp->protect_keys, rest, dir);
+            else if (!strcmp(kw, "negative-timing") && !*rest) sp->negative_timing = 1;
             else return snprintf(why, MSG, "unknown directive //@ %s", kw), free(text), -1;
             continue;
         }
@@ -729,6 +731,7 @@ static int run_test(const Test *t, size_t index, char *why) {
         setenv_opt("CONFORM_LIBLIST", sp.liblist);
         setenv_opt("CONFORM_STD", sp.std);
         setenv_opt("CONFORM_PROTECT_KEYS", sp.protect_keys);
+        setenv_opt("CONFORM_NEGATIVE_TIMING", sp.negative_timing ? "1" : NULL);
     }
     free(stem);
     if (t->row) link_root(root, work);
