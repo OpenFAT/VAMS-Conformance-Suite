@@ -8,7 +8,12 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice-44.2 run of this deck; values match the closed form in the deck header.",
-    "command": "ngspice-45 -b deck.sp (print v(a), ac.v(a))"
+    "command": "ngspice-45 -b deck.sp (print v(a), ac.v(a))",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 3.2.1, Table 3.1: an I source takes the multiplier m; 3 x 1 mA into 1k is 3 V, and 3 x AC 1 A is 3000 V. Xyce rejects m= on an I source.",
+      "max_rel_err": 0.0
+    }
   },
   "expect": {
     "status": "success",

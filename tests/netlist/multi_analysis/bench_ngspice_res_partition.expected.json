@@ -12,7 +12,12 @@
     "source_sha256": "4341fba574909ad98f5569d50a4a896af3172843a0b6aa56846ad78b00776cab",
     "warnings": [
       ".print line ignored since rawfile was produced."
-    ]
+    ],
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 3.3.1: the ac= resistance is used in AC only. OP: 5k over 5k, v(2) = 0.5, i(vin) = -0.1 mA; AC: 15k/(5k + 15k) = 0.75, i(vin) = -1/20k = -50 uA. Xyce rejects ac=.",
+      "max_rel_err": 0.0
+    }
   },
   "origin": "benchmark/fixtures/ngspice/res_partition/circuit.sp",
   "expect": {

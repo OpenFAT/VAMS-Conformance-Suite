@@ -4,7 +4,14 @@
   "purpose": "The HSPICE dialect runs at TNOM = 25 degC by default.",
   "oracle": {
     "kind": "ngspice-45",
-    "derivation": "ngspice -b with .options tnom=25 temp=25."
+    "derivation": "ngspice -b with .options tnom=25 temp=25.",
+    "confirmed": {
+      "tool": "xyce",
+      "version": "Xyce Release 7.10.0-opensource",
+      "command": "python3 tools/xcheck.py tests/netlist/hspice/tnom_default.expected.json",
+      "max_rel_err": 9.49e-07,
+      "max_tolerance_ratio": 0.0949
+    }
   },
   "tokenizer": "hspice",
   "expect": {

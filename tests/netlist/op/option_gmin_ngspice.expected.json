@@ -5,7 +5,12 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice 45 prints i(v1) = -1.00000e-03 and i(v2) = -2.00000e-03: gmin = 1e-3 S across each junction reverse-biased at 1 V; Is is negligible.",
-    "command": "ngspice -b option_gmin_ngspice.sp"
+    "command": "ngspice -b option_gmin_ngspice.sp",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 11.1.2: GMIN is the minimum conductance; the diode current is IS(exp(VD/NVt)-1) + VD*GMIN (manual, diode DC equations) and the Gummel-Poon BJT adds GMIN across each of its two junctions (SPICE2, Nagel 1975). D1 at -1 V: i(v1) = -(1e-14 + 1e-3) A; Q1 with base at -1 V and collector, emitter at 0: i(v2) = -2e-3 A. Xyce 7.10.0 gives i(v2) = -1.01 mA (its own gmin placement).",
+      "max_rel_err": 1e-11
+    }
   },
   "expect": {
     "status": "success",

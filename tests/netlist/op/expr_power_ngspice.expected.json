@@ -5,7 +5,12 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice-44.2 run of this deck; values match the closed form in the deck header.",
-    "command": "ngspice-45 -b expr_power_ngspice.sp (print all)"
+    "command": "ngspice-45 -b expr_power_ngspice.sp (print all)",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 2.11.5: in .param expressions ** and ^ are \"power, like pwr\" and pwr(x,y) = pow(fabs(x), y): (-1.75)^2.5 = 1.75^2.5 = 4.0513066, (-1.75)^3 = pwr(-1.75,3) = 5.359375, (-8)**(1/3) = 2. Xyce 7.10.0 gives 1, 1, -5.359375 and 1 (its own dialect).",
+      "max_rel_err": 1e-07
+    }
   },
   "expect": {
     "status": "success",

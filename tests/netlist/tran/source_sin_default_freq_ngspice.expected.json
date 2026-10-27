@@ -5,7 +5,12 @@
   "oracle": {
     "kind": "ngspice-45",
     "derivation": "ngspice-44.2 run of this deck; values match the closed form in the deck header.",
-    "command": "ngspice-45 -b (meas tran find v(a) at the axis times); values are the closed form in the deck header"
+    "command": "ngspice-45 -b (meas tran find v(a) at the axis times); values are the closed form in the deck header",
+    "confirmed": {
+      "tool": "analytic",
+      "derivation": "ngspice-45 manual (ngspice.sourceforge.io/docs/ngspice-45-manual.pdf) 4.1.2: FREQ defaults to 1/TSTOP = 1 MHz, so v(a) = sin(2 pi t/1u). Xyce rejects SIN with two fields.",
+      "max_rel_err": 1e-15
+    }
   },
   "expect": {
     "status": "success",

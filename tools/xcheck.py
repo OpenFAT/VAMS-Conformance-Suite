@@ -163,6 +163,9 @@ def translate(text):
         if head[0] == "b":
             card = re.sub(r"\b([vi])\s*=\s*(.+)$", lambda m: f"{m.group(1)}={braced(m.group(2))}", card, flags=re.I)
         body.append(card)
+    noise = analyses.get(".noise", "").split()
+    if 3 <= len(noise) <= 4 and ".ac" in analyses:  # HSPICE: .noise out src [n] runs on the .ac sweep
+        analyses[".noise"] = " ".join(noise[:3] + analyses[".ac"].split()[1:])
     if not analyses:
         raise Unsupported("no analysis card")
     return body, opts, analyses, meas
@@ -188,14 +191,16 @@ def number(v):
     return m.group(1)
 
 
-def options(opts, kind):
+def options(opts, kind, loose=False):
     dev = {"temp": kelvin(number(opts.get("temp", "27"))), "tnom": kelvin(number(opts.get("tnom", "27")))}
     if "gmin" in opts:
         dev["gmin"] = opts["gmin"]
     out = [".options device " + " ".join(f"{k}={v}" for k, v in dev.items())]
     out.append(".options nonlin reltol=1e-7 abstol=1e-15")
     if kind == ".tran":
-        out += [".options timeint reltol=1e-6 abstol=1e-15", ".options nonlin-tran reltol=1e-7 abstol=1e-15"]
+        # loose: the retry after Xyce's step control gives up at reltol 1e-6 (timestep too small at a corner)
+        out += [".options timeint reltol=1e-5 abstol=1e-12" if loose else ".options timeint reltol=1e-6 abstol=1e-15",
+                ".options nonlin-tran reltol=1e-7 abstol=1e-15"]
     return out
 
 
@@ -278,13 +283,15 @@ def check_plot(want, body, opts, analyses, srcdir, title):
     # Xyce reports at the oracle's own times rather than between its steps,
     # where linear interpolation across a corner reads a value that is not there.
     times = [f".options output outputtimepoints={','.join(repr(t) for t in axis['values'])}"] if kind == ".tran" and axis else []
-    deck = [title] + body + options(opts, kind) + times + [analyses[kind],
-            f".print {ptype} format={'csv' if noise else 'raw'} file={out} " + " ".join(exprs.values()), ".end", ""]
+    tail = times + [analyses[kind], f".print {ptype} format={'csv' if noise else 'raw'} file={out} " + " ".join(exprs.values()), ".end", ""]
     with tempfile.TemporaryDirectory(dir=os.environ.get("XCHECK_TMP")) as work:
-        rc, log = run_xyce("\n".join(deck), srcdir, work)
         outp = os.path.join(work, out)
-        if rc != 0 or not os.path.exists(outp):
-            err = [l for l in log.splitlines() if "error" in l.lower()] or log.strip().splitlines()[-3:]
+        for loose in (False, True) if kind == ".tran" else (False,):
+            rc, log = run_xyce("\n".join([title] + body + options(opts, kind, loose) + tail), srcdir, work)
+            if rc == 0 and os.path.exists(outp):
+                break
+        else:
+            err = [l for l in log.splitlines() if "error" in l.lower() or "abort" in l.lower() or "fail" in l.lower()] or log.strip().splitlines()[-3:]
             raise RuntimeError(f"xyce exit {rc}: {' | '.join(err[:3])[:300]}")
         if noise:
             hdr, rows = read_csv(outp)
