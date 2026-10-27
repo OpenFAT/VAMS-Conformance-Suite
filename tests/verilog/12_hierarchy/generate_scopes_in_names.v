@@ -21,6 +21,7 @@
 //   construct 4, unnamed: genblk4 (number 4 although construct 3 was named)
 //     -> top.genblk4.nb4
 // with top = b_12_4_3_generate_scopes_in_names; each prints at its own time.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4.3 12.4.2 12.5
 `timescale 1ns/1ns
 module leaf;

@@ -1,6 +1,7 @@
 // IEEE1364-2005 12.3.2 and 12.3.6: explicit external name can associate
 // a concatenation of internal ports. Input1001 splits a=10,b=01;
 // output {b,a}=0110. The named connection uses joined, not a or b.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.2
 //! inherited IEEE 1364-2005 12.3.6
 `timescale 1ns/1ps

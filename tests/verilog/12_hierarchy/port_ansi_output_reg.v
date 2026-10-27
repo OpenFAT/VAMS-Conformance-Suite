@@ -17,6 +17,7 @@
 // t = 2^40 = 1099511627776. h keeps its initializer, 1. At t=1 the display
 // prints "3 -3 1 3000 1099511627776".
 //
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.4
 `timescale 1ns/1ns
 module ports(input [7:0] a,

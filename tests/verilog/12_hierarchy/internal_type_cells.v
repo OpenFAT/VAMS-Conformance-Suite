@@ -17,6 +17,7 @@
 // on a wire, Table 4-2). The ext cells' neighbour is
 // external_type_cells.v. No invalid form exists: every pair of
 // net types has a cell.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.10.1 12.3.10.2
 `timescale 1ns/1ns
 module b_12_3_10_2_tri0_in(a, y);

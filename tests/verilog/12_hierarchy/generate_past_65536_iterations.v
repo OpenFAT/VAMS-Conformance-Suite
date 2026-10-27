@@ -7,6 +7,7 @@
 // HAND DERIVATION. i runs 0 to 65536, 65537 iterations, one past the old
 // bound. Only the last iteration's conditional block (i == 65536) drives w,
 // to 1; the other 65536 iterations are empty blocks. So w is 1 at #1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4.1
 //! expect stdout generate_past_65536_iterations.expected.txt
 `timescale 1ns/1ns

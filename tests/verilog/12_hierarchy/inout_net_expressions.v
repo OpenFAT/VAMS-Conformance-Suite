@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.6 12.3.9
 // An inout port connects to any net expression: bit-select, part-select or
 // concatenation (br965/inout2/inout3/tri2).

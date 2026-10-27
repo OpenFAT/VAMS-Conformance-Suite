@@ -14,6 +14,7 @@
 // driving its INPUT to z, which is only observable if the port really is a
 // connection: a value copy would latch the child's last output.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm annex A.4.1
 //! lrm annex A.2.2.2
 //! lrm 1.1

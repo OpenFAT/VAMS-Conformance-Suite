@@ -14,6 +14,7 @@
 //   f: output [7:0] + reg signed [7:0]   -> signed; f = -1 reads -1
 // (g, the output reg that inherits signed from its port, is
 // output_reg_inherits_port_sign.v.)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.3
 `timescale 1ns/1ns
 module test(a,b,c,d,e,f,g,h);

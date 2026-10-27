@@ -14,6 +14,7 @@
 //   u2: a from the constant 2'b01; y into the vector net lo -> 01.
 //   u3: a from the part-select r[1:0] = 01; y into the vector net w2 -> 01.
 // -> "10 01 0 01"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.8 12.3.9 12.3.9.1 12.3.9.2
 `timescale 1ns/1ns
 module m(input [1:0] a, output [1:0] y, inout io);

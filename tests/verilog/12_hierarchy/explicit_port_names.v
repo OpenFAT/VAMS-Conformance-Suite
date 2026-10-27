@@ -10,6 +10,7 @@
 // ports are named a, e and en; inside, i, f and en. f = ~i & en.
 //   u by name, in another order: .en(1), .e(nf), .a(1) -> nf = ~1 & 1 = 0
 //   v by order (a, e, en): (0, nv, 1)                  -> nv = ~0 & 1 = 1
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.2 12.3.6
 `timescale 1ns/1ns
 module m(.a(i), .e(f), en);

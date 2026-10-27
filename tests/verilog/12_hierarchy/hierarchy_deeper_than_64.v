@@ -5,6 +5,7 @@
 // HAND DERIVATION. m0 instantiates m1 and so on to m66: 66 levels below the
 // top, past the old 64. Only m66 has a process, and it prints its own
 // hierarchical name (§17.1.1.6 %m): m0 then 66 instance names u.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.1.1
 //! expect stdout hierarchy_deeper_than_64.expected.txt
 module m0; m1 u(); endmodule

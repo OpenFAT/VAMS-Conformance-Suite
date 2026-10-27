@@ -5,6 +5,7 @@
 //
 // g = -1 stores 8'hFF; g is signed, so %0d prints -1 (unsigned would be 255).
 // g < 0 is then 1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.3
 `timescale 1ns/1ns
 module test(g);

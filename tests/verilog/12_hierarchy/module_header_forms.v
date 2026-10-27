@@ -17,6 +17,7 @@
 //   b_12_1_noports: the empty list_of_port_declarations ( ).
 // With a = 3 (4'b0011): y0 = 3 + 1 = 4, y1 = 3 + 2 = 5,
 //   y2 = ~4'b0011 = 4'b1100 = 12. At t = 2 b_12_1_noports prints "noports".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.1 12.3.1
 `timescale 1ns/1ns
 macromodule b_12_1_adder #(parameter P = 1) (input [3:0] a, output [3:0] y);

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //@ std 1364-2005
 //! inherited IEEE 1364-2005 12.3.8
 // A port and its connected expression may differ in width: an input port

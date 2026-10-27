@@ -1,6 +1,7 @@
 // IEEE1364-2005 12.3.11: signedness is local to each side of a port.
 // Both parents provide ff bits. Signed child sees -1 (<0); unsigned child
 // sees 255 (not <0), irrespective of the opposite parent declaration.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.11
 `timescale 1ns/1ps
 module audit_hierarchy_port_signedness;

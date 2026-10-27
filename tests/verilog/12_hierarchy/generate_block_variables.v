@@ -11,6 +11,7 @@
 //   g[0].k = g[1].k = 9 (the declaration assignment)
 //   c.v written from outside as 8'ha5 reads back a5
 //   g[1].r written from outside as 42 reads back 42; g[0].r stays 5
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4.1 12.4.2 12.5
 `timescale 1ns/1ns
 module b_12_4_1_generate_block_variables;

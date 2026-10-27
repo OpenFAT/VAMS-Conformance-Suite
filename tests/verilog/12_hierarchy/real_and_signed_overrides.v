@@ -19,6 +19,7 @@
 //   SR (signed [7:0]) overridden with 9'h1FF: converted to the 8-bit signed
 //     range: 8'hFF = -1.
 //   -> "S=-1 SR=-1"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.2
 `timescale 1ns/1ns
 module foo(a,b);

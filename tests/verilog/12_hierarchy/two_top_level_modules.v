@@ -11,6 +11,7 @@
 // parameters at t = delay so the two reports cannot race:
 //   m1: size = 5, delay = 10 -> "top.m1 size=5 delay=10" at t = 10
 //   m2: size = 10, delay = 20 -> "top.m2 size=10 delay=20" at t = 20
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.1.1 12.2.1 12.5
 `timescale 1ns/1ns
 module top;

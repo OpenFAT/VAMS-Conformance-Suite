@@ -19,6 +19,7 @@
 //   no branch, nothing.
 // Recursion: r #(N) instantiates r #(N-1) while N > 0, so r #(2) makes r #(2),
 // r #(1), r #(0), each printing "r N" at t = 10 + N: r 0, r 1, r 2.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4.2
 `timescale 1ns/1ns
 module test;

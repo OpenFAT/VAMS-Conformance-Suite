@@ -8,6 +8,7 @@
 // so a warning is owed whether or not the nets are merged. The value is chosen
 // not to depend on merging: y has one driver, a, so wand or wor, merged or
 // not, w = a = 1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.10
 `timescale 1ns/1ns
 module m(a, y);

@@ -5,6 +5,7 @@
 // HAND DERIVATION: nothing is ever scheduled, so the run ends at time 0 and
 // prints nothing. The native executable holds a dispatch over no process.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.1
 `timescale 1ns/1ns
 module b_12_1_module_without_process(a, y);

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.5
 // A hierarchical task call into an uninstantiated top-level module suspends;
 // the always block therefore has a timing control (pr2076425).

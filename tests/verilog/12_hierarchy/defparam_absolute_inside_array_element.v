@@ -9,6 +9,7 @@
 // Each g[i] holds defparam top.g[i].l.p = i + 20 (absolute, its own block).
 // Expected at t=1: g[0] p=20, g[1] p=21, u[1] p=5 q=7, in the order the
 // scopes appear in the source (iverilog's; VerA's `processOrder`).
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 6.3.1
 //! inherited IEEE 1364-2005 12.2.1
 //! neighbour defparam_absolute_out_of_array_element_rejected.v

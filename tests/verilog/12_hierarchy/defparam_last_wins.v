@@ -11,6 +11,7 @@
 // (%m names the instances under this module, not the clause's top):
 //   m1: size 5 then 6 -> the last one, 6; delay 10 -> "<top>.m1 size=6 delay=10"
 //   m2: size 10, delay 20                        -> "<top>.m2 size=10 delay=20"
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.2.1
 `timescale 1ns/1ns
 module b_12_2_1_defparam_last_wins;

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.5
 // An undeclared identifier in a module instance's terminal list is an implicit
 // scalar net: r in .r(!r) is one, undriven and so x under ! (pr1705027).

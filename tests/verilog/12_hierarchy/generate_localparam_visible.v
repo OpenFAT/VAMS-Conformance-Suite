@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4.1
 // A localparam declared in a generate-loop block is visible in that block,
 // including a nested generate if (pr3534422).

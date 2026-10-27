@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 7.1.6 12.1.2
 // §7.1.6's own example (ISP RAS test_07_01_06_3): an array of instances whose
 // output port is connected to a concatenation `{bushigh, buslow}` as wide as

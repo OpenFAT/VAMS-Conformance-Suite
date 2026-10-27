@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.5
 // The upwards search for a name stops at a module boundary: inside `test`, q
 // is an implicit scalar net even though the containing module `main` has a

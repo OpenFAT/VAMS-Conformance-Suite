@@ -25,6 +25,7 @@
 //   f3 #(.B(4'sb1000)): B takes 4 bits, signed: ~B = 4'b0111, B < 0 is 1.
 //   f4 with defparam f4.A = 3.1415: 3.1415 -> 3 (rounded, §4.8.2), low 3 bits
 //      3'b011 = 3.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.2
 `timescale 1ns/1ns
 module foo;

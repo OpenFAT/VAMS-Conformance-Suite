@@ -12,6 +12,7 @@
 // hierarchical reads also pin the right-hand instance's low pair.
 // Rejection neighbour: instance_array_width_product_rejected.v uses
 // an actual width that matches neither one port nor the complete array.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.1.2 7.1.6
 `timescale 1ns/1ns
 module pair_swap(input [1:0] p, output [1:0] q);

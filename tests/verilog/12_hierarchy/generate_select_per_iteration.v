@@ -9,6 +9,7 @@
 // Each leaf prints at its own delay #(i+1), so the order is not a race.
 // Folding the bounds once for the one ExprId both iterations share gives
 // g[1] the first iteration's bits: 0101 twice.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4.1 5.2.1
 module leaf(input [3:0] x);
   parameter ID = 1;

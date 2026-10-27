@@ -6,6 +6,7 @@
 // here the external net is one bit of a wor vector, w[0]. The two nets the
 // port joins are still a wand and a wor, so the warning is owed, merged or
 // not. y has one driver, a, so w[0] = a = 1 either way.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.10
 `timescale 1ns/1ns
 module b_12_3_10_sel_m(a, y);

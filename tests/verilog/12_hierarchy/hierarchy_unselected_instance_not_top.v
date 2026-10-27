@@ -2,6 +2,7 @@
 // even if its instantiation is in an unselected generate block. Thus the
 // leaf's initial must never run; only top prints. A delayed top finish
 // cannot race away an erroneously instantiated leaf's time0 message.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 6.2.1
 //! lrm 6.2.1:1000
 //! inherited IEEE 1364-2005 12.1.1

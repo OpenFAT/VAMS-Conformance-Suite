@@ -31,6 +31,7 @@
 // 1364-2005 §12.3.9.2 with §5.6 permits the mismatch and requires no warning.
 // Demanding a refusal would pin a rule neither document states.
 //
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 6.5.7.1
 //! lrm 6.5.7.1:1
 //! lrm annex A.4.1

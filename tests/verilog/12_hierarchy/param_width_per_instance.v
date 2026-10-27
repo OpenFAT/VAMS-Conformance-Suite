@@ -14,6 +14,7 @@
 // Each instance prints at its own delay #ID, so the order is not a race.
 // Typing an expression once for every instance of the definition gives the
 // first instance's widths to all three: b would print r=15 sel=1111 rep=1111.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.2 5.5.1 5.2.1 5.1.14
 module leaf;
   parameter W = 4;

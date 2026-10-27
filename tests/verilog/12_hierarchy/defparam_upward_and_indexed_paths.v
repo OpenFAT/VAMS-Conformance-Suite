@@ -18,6 +18,7 @@
 //     it stays inside that hierarchy: p = 20 + i, 20 and 21
 // Each leaf prints %m and p at t = p, so the lines come out in that order:
 // "<top>.u.l p=7", "<top>.g[0].l p=20", "<top>.g[1].l p=21".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.2.1 12.6
 `timescale 1ns/1ns
 module leaf;

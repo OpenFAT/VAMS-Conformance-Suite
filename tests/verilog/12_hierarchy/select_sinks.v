@@ -7,6 +7,7 @@
 // w is wire [3:0]. u1's 2-bit output drives the part-select w[3:2] with 2'b10;
 // u2's 1-bit output drives the constant bit-select w[1] with 1; u3 drives
 // w[0] with 0. -> w = 4'b1010.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.9.2 12.3.8
 `timescale 1ns/1ns
 module two(output [1:0] y);

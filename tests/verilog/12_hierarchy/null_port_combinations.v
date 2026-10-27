@@ -10,6 +10,7 @@
 // sample is one tick after the inputs change, with no scheduling race.
 // Rejection neighbour: null_port_extra_connection_rejected.v isolates
 // an extra positional connection beyond the null ports' header positions.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 6.5.1
 //! lrm 6.5.1:1
 //! inherited IEEE 1364-2005 A.1.3 12.1.2

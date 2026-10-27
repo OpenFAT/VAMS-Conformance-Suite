@@ -12,6 +12,7 @@
 // variable q = 4'b1001 drives the concatenation {w[0], v[2:0]}: §6.5.7.1 joins
 // operands highest-order first, so w[0] = q[3] = 1 and v[2:0] = 3'b001; w[1]
 // and v[3] are undriven, z. At t=2: "121110 z1 z001".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.9.2 12.3.3
 `timescale 1ns/1ns
 module r8(input clk, input [7:0] d, output reg [7:0] q);

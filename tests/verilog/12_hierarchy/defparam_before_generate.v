@@ -14,6 +14,7 @@
 // else block -> "other 7" at t = 2. l2.p is resolved early, and no generate
 // block in this module is named l2, so the complete hierarchy resolves it to
 // the same parameter: not the §12.8.2 error.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 6.9.4
 //! lrm 6.9.4:1
 //! inherited IEEE 1364-2005 12.8.1 12.8.2

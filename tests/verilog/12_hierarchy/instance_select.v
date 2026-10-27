@@ -8,6 +8,7 @@
 // leaf's x = ID; arr[1:0] passes ID 5 to both, g[i].l gets ID = i * 10 via
 // the implicit localparam i. The parent reads through instance selects:
 //   g[0].l.x = 0, g[1].l.x = 10, g[2].l.x = 20, arr[0].x = 5, arr[1].x = 5
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.5 12.4.1
 `timescale 1ns/1ns
 module leaf;

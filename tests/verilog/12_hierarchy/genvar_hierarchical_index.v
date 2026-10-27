@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4.1 A.9.3
 // Inside its loop generate block a genvar is constant, so target[i].val is a
 // constant hierarchical index (pr1691599b).

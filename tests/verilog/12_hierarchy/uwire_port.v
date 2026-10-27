@@ -7,6 +7,7 @@
 // m's input a is a uwire; the external net w is a wire driven 1 by its
 // declaration assignment, the only driver on either side. Whether or not the
 // two nets are merged, a reads 1 and y = a = 1.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.9.3
 `timescale 1ns/1ns
 module m(input uwire a, output y);

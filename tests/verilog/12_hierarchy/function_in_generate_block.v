@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4 A.1.4
 // A function declaration is a module_or_generate_item_declaration and is
 // legal inside a generate block (generate_case2).

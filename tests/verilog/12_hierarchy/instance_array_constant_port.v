@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.1.2
 // A constant and a net may be connected across an instance array: each of the
 // four instances gets in_0 = 1'b1 and drives test_val (pr1878909).

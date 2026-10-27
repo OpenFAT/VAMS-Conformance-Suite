@@ -12,6 +12,7 @@
 // variable is declared as a vector, the range specification between the two
 // declarations of a port shall be identical." Both port declarations carry
 // [64:1] here.
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 12.3.7
 `timescale 1ns/1ns
 module driver (net_r);

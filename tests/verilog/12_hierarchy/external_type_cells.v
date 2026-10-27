@@ -10,6 +10,7 @@
 //       and the input port drives that 0 into the wire. y1 = 0.
 //   u2: inside wire, outside tri1, likewise: y2 = 1.
 //   u3: inside wire, outside supply0: y3 = 0.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.3.10.1 12.3.10.2
 `timescale 1ns/1ns
 module b_12_3_10_2_in(a, y);

@@ -19,6 +19,7 @@
 //   t=10  b: b_c1.i <- 2 (downward)
 //   t=20  a prints a.i, a_b1.i, a_b1.b_c1.i, a_b1.b_c2.i = "11 1 2 1"
 //
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.6
 `timescale 1ns/1ns
 module a;

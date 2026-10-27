@@ -16,6 +16,7 @@
 //       = 0.
 //   t=5 same_input(1, 1): a = 1.
 //   t=6 mixed_direction .p({pa, pe}) with pa = 0: e = ~a = 1 drives pe -> 1.
+// gold: hand derivation, §12.3.2 and §12.3.3 (above; mixed_direction is §12.3.3's own legal example)
 //! inherited IEEE 1364-2005 12.3.2 12.3.3
 // native-required
 `timescale 1ns/1ns

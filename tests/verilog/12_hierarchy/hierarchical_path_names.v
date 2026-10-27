@@ -20,6 +20,7 @@
 //        (downward from this module) = x, bmod never saw a posedge; the port
 //        net <top>.a.stim1 = 1.  -> "1 x 1"
 //   t=100 the fork innerwave in named block wave1: %m -> <top>.wave1.innerwave
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.5
 `timescale 1ns/1ns
 module mod (in);

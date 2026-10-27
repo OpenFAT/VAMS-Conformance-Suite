@@ -21,6 +21,7 @@
 //   tb2: a2 #(.size(10),.delay(15)) -> 10 15; b2 -> 5 1;
 //        c2 #(.delay(12)) -> 5 12; d2 #(.delay( ),.size(10)) -> 10 1
 //   my_mem #(12, 16): addr_width 12, mem_size 1 << 12 = 4096, data_width 16.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.2.2 12.2.2.1 12.2.2.2
 module vdff;
   parameter size=5, delay=1;

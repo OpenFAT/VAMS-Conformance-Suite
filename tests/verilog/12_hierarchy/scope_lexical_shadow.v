@@ -2,6 +2,7 @@
 // unqualified variable lookup searches enclosing lexical scopes only up to
 // the module boundary. The inner assignment must not change the outer value.
 // Independent oracle: outer 11; inner initialized 23, then 24; outer still 11.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 6.8
 //! lrm 6.8:4
 //! inherited IEEE 1364-2005 12.7

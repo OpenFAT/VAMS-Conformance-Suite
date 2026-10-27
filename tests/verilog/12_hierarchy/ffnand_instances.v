@@ -18,6 +18,7 @@
 //   t=43 in2=1:        qbar = ~(0 & 1) = 1 holds, q = 0.       -> 0 1 0 1
 // Each line prints at +1 after its change, so the gates have settled.
 // Columns: ff.q ff.qbar ff1.q(out1) ff2.qbar(out2).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.1.2 12.3.5 12.3.6
 `timescale 1ns/1ns
 module ffnand (q, qbar, preset, clear);

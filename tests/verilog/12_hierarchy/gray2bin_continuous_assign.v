@@ -11,6 +11,7 @@
 //   bin[7] = 1, [6] = 1^1 = 0, [5] = 0^0 = 0, [4] = 0^0 = 0,
 //   [3] = 0^1 = 1, [2] = 1^0 = 1, [1] = 1^1 = 0, [0] = 0^0 = 0
 //   -> 10001100 at t = 2.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4.1 6.1.1
 `timescale 1ns/1ns
 module gray2bin1 (bin, gray);

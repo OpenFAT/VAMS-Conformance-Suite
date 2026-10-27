@@ -15,6 +15,7 @@
 // g[0].u, g[1].u and g[2].u, and each receives i * 10: 0, 10, 20. They print
 // at t=1 in elaboration order. SEL = 2 selects the `2:` arm, so only module b
 // exists and prints at t=2; modules a (arms `0, 1` and `default`) never run.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 12.4.1 (loop generate, implicit localparam, block array)
 //! inherited IEEE 1364-2005 12.4.2 (case generate)
 `timescale 1ns/1ns
