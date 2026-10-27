@@ -48,6 +48,7 @@ scripted fake tool and checks every verdict (`nix flake check` runs it).
 | `tests/netlist/` | SPICE decks by analysis (`op`, `dc`, `tran`, `ac`, `noise`, `pss`, `hb`, ...), each with a `.expected.json` oracle. |
 | `tests/include/` | `check.vh`, the `CHECK` assertion macros, and `erfc.vh`. |
 | `external/` | Upstream suites as submodules, one `<suite>.manifest` each, and `manifests.py`, which writes them. |
+| `spec/` | The rules tests are counted against: `vams.tsv`, the Verilog-AMS LRM's normative sentences, and `ieee1364.tsv`, IEEE 1364-2005's headings. |
 | `harness/` | `conform.c` and its selftest. |
 | `tools/` | One `<tool>.conf` per tool, adapters, and `<tool>.xfail` baselines. |
 
@@ -231,6 +232,31 @@ no manifest has stops `manifests.py`.
 
 `external/Xyce_Regression` is pinned but has no manifest yet: its oracle is
 `xyce_verify.pl`'s per-column tolerances over `.prn` files.
+
+## Coverage
+
+`tools/coverage.py` counts the rules in `spec/` that the tests cite. A test
+cites an LRM sentence as `//! lrm 4.5.7:2` (clause 4.5.7, its second
+sentence with a modal verb) or a whole clause as `//! lrm 4.5.7`, and IEEE
+1364-2005 as `//! inherited IEEE 1364-2005 9.7.4`. A rule is testable when a
+test can observe it: an LRM sentence whose `pol` is not `0`, or a 1364 leaf
+heading that is not non-normative, unspecified or a tool option.
+
+```
+python3 tools/coverage.py                      # rules cited, per language
+python3 tools/coverage.py --uncovered vams     # the sentences no test cites exactly
+python3 tools/coverage.py --uncovered ieee1364
+```
+
+With a results directory (`conform -o results/<tool>.tsv` per tool) it judges
+each rule a language's tests cover, per tool: supported when every test that
+cites it passes, partial when some do, unsupported when none do. A test the
+tool skipped counts as not passing. `--list` prints each rule's pass count
+per tool.
+
+```
+python3 tools/coverage.py --results results verilog-a
+```
 
 ## Results
 
