@@ -14,6 +14,7 @@
 //   a = 0:               y = 0;               z = ~(0 | 0) = 1
 // Each display is one time step after the change, so both implicit
 // continuous assignments and the gate have updated.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 11.6.6
 `timescale 1ns/1ns
 module b_11_6_6_child(input i, output o);

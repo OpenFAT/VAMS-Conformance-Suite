@@ -27,6 +27,7 @@
 //   Nothing active or inactive remains: the NBA update sets a = 2. Then the
 //             monitor event prints a's value now: "monitor: a=2".
 //   #1:       "next time: a=2".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 11.3 11.4
 `timescale 1ns/1ns
 module b_11_3_region_order;

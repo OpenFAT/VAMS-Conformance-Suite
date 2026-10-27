@@ -1,6 +1,7 @@
 // IEEE1364-2005 §§11.6.1/11.6.6: constant explicit and implicit port
 // assignments evaluate at time0. #0 observes after active propagation, still
 // at time0; no operand changes can rescue a missing initial evaluation.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 11.6.1 11.6.6
 `timescale 1ns/1ns
 module audit_sched_constant_ports;

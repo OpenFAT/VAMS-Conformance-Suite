@@ -2,6 +2,7 @@
 // Called at1 with3; caller input changes to9 at2 but copied input stays3.
 // Internal output is assigned before suspension, yet caller output remains0
 // at3. At5 task returns3+1=4 and blocking copy-out precedes following display.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 11.6.7
 `timescale 1ns/1ns
 module audit_sched_task_copy_timing;

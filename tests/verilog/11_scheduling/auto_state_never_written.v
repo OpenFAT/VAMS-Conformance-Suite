@@ -3,6 +3,7 @@
 // before either read, so no time step begins with the design free of a live
 // x and the default `--state=auto` stays 4-state throughout
 // (`// native-state: 4`). known: 9, then 9 + 1 = 10.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.2.2
 // native-state: 4
 module auto_state_never_written;

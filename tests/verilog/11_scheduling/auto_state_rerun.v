@@ -5,6 +5,7 @@
 // one into q, which a 2-state run cannot hold: it reruns the design 4-state
 // and prints only what follows (`// native-state: rerun`).
 // q = 12 / 4 = 3; 12 / 0 = x, printed and stored; 12 % 5 = 2.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 5.1.5
 // native-state: rerun
 module auto_state_rerun;

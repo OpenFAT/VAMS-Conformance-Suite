@@ -24,6 +24,7 @@
 // (p. 94) agree: StH with We1 keeps St1..We1, all strength1 -> 1; StL with
 // We1 keeps St0..La0 plus the opposite-value gap to We1 (rule c) -> x.
 // Each display is one time step after the change, so the net has settled.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 11.6.5
 // native-required
 `timescale 1ns/1ns

@@ -7,6 +7,7 @@
 // clk rises x->1 at time 0, a posedge, so no negedge fires before #1. Falls
 // at ticks 1, 3, 5, 7: pass k (count = k) sets mem[k] <= mem[k] + k, so mem
 // = {0, 1+1, 2+2, 3+3} = {0, 2, 4, 6}; count = 4, twice = 8, sum = 12.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.2.2 9.2.2
 // native-state: 2
 module auto_state_two;

@@ -15,6 +15,7 @@
 //          the @(v) waiter (armed at 4) stays suspended.
 //   t = 6: v = 6 changes v; the waiter resumes: "variable update at 6: v=6".
 // Each line prints at its own time, so the transcript order is fixed.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 11.2
 `timescale 1ns/1ns
 module b_11_2_update_events;

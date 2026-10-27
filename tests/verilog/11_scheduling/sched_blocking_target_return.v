@@ -2,6 +2,7 @@
 // before suspension but chooses indexed LHS at resumption. At1 RHS=1,
 // index0; at2 source=0,index2; at5 resumption writes captured1 to bit2.
 // This complements, not replaces, the existing NBA index-snapshot fixture.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 11.6.3
 `timescale 1ns/1ns
 module audit_sched_blocking_target_return;

@@ -1,6 +1,7 @@
 // IEEE1364-2005 §11.5 permits either old1 or new0 immediately after q=0;
 // never require a specific active-event order. Print membership in the
 // permitted set, then independently observe settled0 in the inactive region.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 11.4.2 11.5
 `timescale 1ns/1ns
 module audit_sched_allowed_active_race;

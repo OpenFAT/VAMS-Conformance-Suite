@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 11.3 11.4.1 11.6.4
 `timescale 1ns/1ps
 module scheduling;

@@ -17,6 +17,7 @@
 //     reestablish that assignment." The assign is still active, so
 //     q = 9 + 4 = 13
 //   deassign q, then s = 0: the assign no longer tracks s; q keeps 13.
+// gold: hand derivation, §11.6.2 and §9.3.2 (above)
 //! inherited IEEE 1364-2005 11.6.2
 `timescale 1ns/1ns
 module b_11_6_2_procedural_continuous_tracks_sources;
