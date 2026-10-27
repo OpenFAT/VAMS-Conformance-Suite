@@ -2,6 +2,7 @@
 // annotation, or taking 7, fails the first sample. The rise comes at 20, after y's own x-to-0 has settled
 // whichever delay timed it: §17.2.10 orders no time-0 annotation against a continuous assignment's first
 // evaluation, and Table 14-3 times that x-to-0 at 11 once annotated.
+// gold: hand derivation, §17.2.10 Table 17-8: MAXIMUM annotates 11, so a@20 reaches y at 31 (above)
 //! inherited IEEE 1364-2005 16.6 17.2.10
 `timescale 1ns/1ns
 module sdf_cell(input a,output y);

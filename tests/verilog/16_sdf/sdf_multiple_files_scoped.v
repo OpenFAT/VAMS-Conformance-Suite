@@ -1,4 +1,5 @@
 // Two files annotate the same instance in order: 5+2=7. The sibling retains its original delay 1.
+// gold: hand derivation, §16.4: ABSOLUTE 5 then INCREMENT 2 gives u 7 (y at 17), untouched keeps 1 (z at 11)
 //! inherited IEEE 1364-2005 16.4 17.2.10
 `timescale 1ns/1ns
 module sdf_cell(input a,output y);

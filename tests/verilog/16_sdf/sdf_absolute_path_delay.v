@@ -1,4 +1,5 @@
 // Annotation replaces the original delay 1 with 7. Samples bracket t=17; ignoring annotation fails the first sample.
+// gold: Icarus Verilog 13.0 agrees (iverilog -gspecify)
 //! inherited IEEE 1364-2005 16 16.1 16.2 16.2.1 17.2.10
 `timescale 1ns/1ns
 module sdf_cell(input a,output y);

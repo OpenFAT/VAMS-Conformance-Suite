@@ -1,4 +1,5 @@
 // Annotation replaces the original delay 1 with 7. Samples bracket t=17; ignoring annotation fails the first sample.
+// gold: hand derivation, §16.2.3: LABEL sets delay_value to 7 and the path delay is reevaluated, so a@10 reaches y at 17
 //! inherited IEEE 1364-2005 16.2.3
 `timescale 1ns/1ns
 module sdf_cell(input a,output y);

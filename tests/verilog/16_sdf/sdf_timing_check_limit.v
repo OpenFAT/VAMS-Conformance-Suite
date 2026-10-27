@@ -1,4 +1,5 @@
 // A 3 ns separation satisfies the original setup limit 1, but violates the annotated limit 5.
+// gold: hand derivation, §16.2.2 Table 16-2: SETUP annotates $setup with 5, and d@10 is in (8, 13) of clk@13
 //! inherited IEEE 1364-2005 16.2.2
 `timescale 1ns/1ns
 module sdf_timing_cell(input clk,input d);

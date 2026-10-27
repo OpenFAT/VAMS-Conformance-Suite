@@ -1,4 +1,5 @@
 // Only the annotated source-to-load connection acquires delay 7; its early sample must retain the old value.
+// gold: hand derivation, §16.2.4: the load sink.a sees a@10 at 17, so y is 0 at 13 and 1 at 18
 //! inherited IEEE 1364-2005 16.2.4
 `timescale 1ns/1ns
 module sdf_wire(input a,output y); assign y=a; endmodule

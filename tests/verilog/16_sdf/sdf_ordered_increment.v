@@ -1,4 +1,5 @@
 // Annotation replaces the original delay 1 with 9. Samples bracket t=19; ignoring annotation fails the first sample.
+// gold: hand derivation, §16.3: ABSOLUTE 7 then INCREMENT 2 gives 9, so a@10 reaches y at 19
 //! inherited IEEE 1364-2005 16.3
 `timescale 1ns/1ns
 module sdf_cell(input a,output y);
