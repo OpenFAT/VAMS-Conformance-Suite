@@ -4,7 +4,8 @@
   "purpose": ".nodeset selects the operating point of a bistable circuit.",
   "oracle": {
     "kind": "analytic",
-    "derivation": "Gummel-Poon at 27 degC (IS = 1e-16, BF = 100, BR = 1, no resistances, GMIN = 1e-12 across each junction): KCL at q, qb, b1, b2 solved by scipy.optimize.root (method lm) from the state .nodeset selects (q high, Q1 off, Q2 saturated), residual 7e-19 A. ngspice-44.2 at reltol 1e-7 abstol 1e-15 vntol 1e-12 gives v(qb) = 0.0735649384 (8e-8 off). The previous oracle, ngspice at default reltol, had v(qb) = 0.0735823, 24x its 1e-5 tolerance off. Xyce 7.10.0 settles on the symmetric metastable point (v(q) = v(qb) = 1.1862 V)."
+    "derivation": "Gummel-Poon at 27 degC (IS = 1e-16, BF = 100, BR = 1, no resistances, GMIN = 1e-12 across each junction): KCL at q, qb, b1, b2 solved by scipy.optimize.root (method lm) from the state .nodeset selects (q high, Q1 off, Q2 saturated), residual 7e-19 A. ngspice-44.2 at reltol 1e-7 abstol 1e-15 vntol 1e-12 gives v(qb) = 0.0735649384 (8e-8 off). The previous oracle, ngspice at default reltol, had v(qb) = 0.0735823, 24x its 1e-5 tolerance off. Xyce 7.10.0 settles on the symmetric metastable point (v(q) = v(qb) = 1.1862 V). v(qb) atol 4e-5 V: ngspice-44.2 at default options stops at 0.0735823 V, 1.74e-5 V off this solution and inside its own operating-point test (reltol*|v| + vntol = 7.5e-5 V); 4e-5 is 2x that deviation beyond rtol*|v|. Xyce 7.10.0 is no default-options reference here: it settles on the metastable point.",
+    "tolerance_basis": "v(qb) atol 4e-5 V: ngspice-44.2 at default options stops at 0.0735823 V, 1.74e-5 V off this solution and inside its own operating-point test (reltol*|v| + vntol = 7.5e-5 V); 4e-5 is 2x that deviation beyond rtol*|v|. Xyce 7.10.0 is no default-options reference here: it settles on the metastable point."
   },
   "expect": {
     "status": "success",
@@ -24,7 +25,7 @@
           "v(qb)": {
             "unit": "V",
             "rtol": 1e-05,
-            "atol": 1e-09,
+            "atol": 4e-05,
             "values": [
               0.07356493260586527
             ]
