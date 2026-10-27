@@ -6,9 +6,10 @@
     "kind": "input_contract",
     "derivation": "Verilog-AMS LRM 12.32 leaves a $name that no standard defines to a VPI application and fixes no value for one nobody registered, so a host with no such application has no value to give and refuses the call by name.",
     "confirmed": {
-      "tool": "ngspice and xyce",
-      "version": "44.2 / 7.10.0-opensource",
-      "result": "ngspice exit 1: Error on line 3 or its substitute: / Simulation interrupted due to error!; Xyce exit 1: Netlist error in file d.sp at or near line 4 / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+      "tool": "openvaf-r",
+      "version": "VACASK unstable-2026 bundle",
+      "command": "openvaf-r va_systf_value.va",
+      "result": "The Verilog-A compiler refuses the module: \"'$espice_sample' was not found in the current scope\"."
     }
   },
   "expect": {

@@ -6,9 +6,9 @@
     "kind": "input_contract",
     "derivation": "Transfer input must identify an existing independent source.",
     "confirmed": {
-      "tool": "ngspice and xyce",
-      "version": "44.2 / 7.10.0-opensource",
-      "result": "ngspice exit 1: run simulation(s) aborted; Xyce exit 1: Netlist error: No analysis specified. / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+      "tool": "ngspice",
+      "version": "44.2",
+      "result": "ngspice implements .tf and aborts the run: the input source Missing is not in the circuit (manual 11.3.9: insrc is the small-signal input source). Xyce has no .tf."
     }
   },
   "expect": {

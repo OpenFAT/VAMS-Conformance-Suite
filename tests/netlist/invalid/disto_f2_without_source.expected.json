@@ -6,9 +6,9 @@
     "kind": "input_contract",
     "derivation": "A two-tone .disto needs a DISTOF2 source, as ngspice E_NOF2SRC.",
     "confirmed": {
-      "tool": "ngspice and xyce",
-      "version": "44.2 / 7.10.0-opensource",
-      "result": "ngspice exit 1: run simulation(s) aborted; Xyce exit 1: Netlist error: No analysis specified. / Simulation aborted due to error.  There are 0 MSG_FATAL errors and 1 MSG_ERROR"
+      "tool": "ngspice",
+      "version": "44.2",
+      "result": "ngspice implements .disto and aborts the run (E_NOF2SRC: an f2overf1 given with no DISTOF2 source). Xyce has no .disto."
     }
   },
   "expect": {
