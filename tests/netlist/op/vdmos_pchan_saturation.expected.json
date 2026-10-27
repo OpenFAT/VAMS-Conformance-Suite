@@ -1,0 +1,57 @@
+{
+ "schema_version": 1,
+ "analysis": "op",
+ "purpose": "A P-channel VDMOS conducts with the mirrored square law, not refused and not run N-channel.",
+ "oracle": {
+  "kind": "analytic",
+  "derivation": "VDMOS drain current in saturation is the Shichman-Hodges square law without W/L (ngspice manual, VDMOS power MOSFET model): |Id| = KP/2 (Vgs - VTO)^2 (1 + LAMBDA |Vds|), LAMBDA = 0. P channel: Vgs = -5, VTO = -1, Vds = -5, |Vds| >= |Vgs - VTO| = 4, so |Id| = 0.5*16 = 8 A, flowing from source 0 into node d and through vd from d to 0: i(vd) = +8 A. The reverse-biased body diode and gmin add 5e-12 A, under atol. ngspice-44.2 gives 8.000000000005 A (the 5e-12 is gmin*5 V)."
+ },
+ "origin": "tests/fixtures/invalid/vdmos_pchan_refused.sp",
+ "expect": {
+  "status": "success",
+  "plots": [
+   {
+    "name": "Operating Point",
+    "match": "exact",
+    "row_count": 1,
+    "columns": {
+     "v(d)": {
+      "values": [
+       -5.0
+      ],
+      "unit": "V",
+      "rtol": 1e-06,
+      "atol": 1e-09
+     },
+     "v(g)": {
+      "values": [
+       -5.0
+      ],
+      "unit": "V",
+      "rtol": 1e-06,
+      "atol": 1e-09
+     },
+     "i(vg)": {
+      "values": [
+       0.0
+      ],
+      "unit": "A",
+      "rtol": 1e-06,
+      "atol": 1e-11
+     },
+     "i(vd)": {
+      "values": [
+       8.0
+      ],
+      "unit": "A",
+      "rtol": 1e-06,
+      "atol": 1e-09
+     }
+    }
+   }
+  ],
+  "finite_values_required": true,
+  "all_requested_analyses_must_complete": true
+ },
+ "netlist_sha256": "98b274629eb3d7d74bbcb9dc3b9dffd4c836a6539ecdb83f7345d0ff1f163684"
+}

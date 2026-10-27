@@ -1,10 +1,16 @@
 {
  "schema_version": 1,
  "analysis": "tran",
- "purpose": "#72: PWL FILE= is refused naming the card.",
+ "purpose": "A PWL source reading a file that does not exist is refused, not run as DC 0.",
  "oracle": {
   "kind": "diagnostic",
-  "derivation": "#72: PWL FILE= is refused naming the card."
+  "derivation": "nonexist.txt does not exist beside the deck, so no reading of `pwl file=nonexist.txt` can produce the waveform: the source has no value and the deck fails. Xyce 7.10.0 exits 1 (netlist error at line 2); ngspice-44.2 and 45 exit 1 (fatal error).",
+  "confirmed": {
+   "tool": "xyce",
+   "version": "7.10.0-opensource",
+   "command": "Xyce source_pwl_file_refused.sp",
+   "result": "exit 1"
+  }
  },
  "origin": "tests/fixtures/invalid/source_pwl_file_refused.sp",
  "expect": {

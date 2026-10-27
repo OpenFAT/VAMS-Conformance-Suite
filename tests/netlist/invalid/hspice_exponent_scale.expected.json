@@ -2,10 +2,12 @@
  "schema_version": 1,
  "analysis": "op",
  "tokenizer": "hspice",
- "purpose": "#203: a number with both an exponent and a scale factor (`1e3k`) in an HSPICE deck is refused by name, as HSPICE forbids it (T3).",
+ "purpose": "A number with both an exponent and a scale factor (`1e3k`) in an HSPICE deck is refused, as HSPICE forbids it.",
  "oracle": {
   "kind": "diagnostic",
-  "derivation": "#203: UG08 p. 49 forbids an exponent and a scale factor together; ESPice refuses the deck (UnsupportedCard)."
+  "derivation": "Star-Hspice Manual, Release 1998.2, ch. 3 (class.ece.uw.edu/cadta/hspice/chapter_3.pdf) p. 3-20: \"Numbers can use exponential format or engineering key letter format, but not both (1e-12 or 1p, but not 1e-6u).\" ngspice reads 1e3k as 1e6, its own dialect, not HSPICE's rule.",
+  "confirmed": null,
+  "confirmed_reason": "No second simulator reads the HSPICE dialect: Xyce -hspice-ext is Xyce's own extension, not HSPICE; the manuals are the oracle."
  },
  "origin": "tests/fixtures/invalid/hspice_exponent_scale.sp",
  "expect": {

@@ -1,10 +1,16 @@
 {
  "schema_version": 1,
  "analysis": "op",
- "purpose": "#75: a D card on an NPN model is refused (ngspice-45: incorrect model type).",
+ "purpose": "A D card on an NPN model is refused: a diode needs a diode model.",
  "oracle": {
   "kind": "diagnostic",
-  "derivation": "#75: a D card on an NPN model is refused (ngspice-45: incorrect model type)."
+  "derivation": "A D element names a D model (ngspice manual, Junction Diodes: DXXXX n+ n- mname, with .model mname D); qm is an NPN model. Xyce 7.10.0 exits 1 (netlist error at line 4); ngspice-44.2 and 45 exit 1 (\"model type mismatch\").",
+  "confirmed": {
+   "tool": "xyce",
+   "version": "7.10.0-opensource",
+   "command": "Xyce model_kind_mismatch_refused.sp",
+   "result": "exit 1"
+  }
  },
  "origin": "tests/fixtures/invalid/model_kind_mismatch_refused.sp",
  "expect": {

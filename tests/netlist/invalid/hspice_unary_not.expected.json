@@ -2,10 +2,12 @@
  "schema_version": 1,
  "analysis": "op",
  "tokenizer": "hspice",
- "purpose": "#203: a unary `!` in an HSPICE expression is refused by name, as HSPICE documents none.",
+ "purpose": "A unary `!` in an HSPICE expression is refused, as HSPICE documents none.",
  "oracle": {
   "kind": "diagnostic",
-  "derivation": "#203: the HSPICE manual's operator table (UG08 pp. 279-283) has `!=` but no unary `!`; ESPice refuses the card (UnsupportedCard)."
+  "derivation": "HSPICE Quick Reference Guide U-2003.03 (cse.chalmers.se/~perla/ugrad/EDA351/HSPICEQuickRef.pdf), Algebraic Expressions: the operators are + - * / and the listed functions; there is no logical not. Xyce 7.10.0 also refuses it (\"Unrecognized character: ! in expression\").",
+  "confirmed": null,
+  "confirmed_reason": "No second simulator reads the HSPICE dialect: Xyce -hspice-ext is Xyce's own extension, not HSPICE; the manuals are the oracle."
  },
  "origin": "tests/fixtures/invalid/hspice_unary_not.sp",
  "expect": {

@@ -1,10 +1,16 @@
 {
  "schema_version": 1,
  "analysis": "op",
- "purpose": "#75: a CCCS type word on an E card is refused (ngspice-45 fails the deck).",
+ "purpose": "A CCCS type word on an E card is no VCVS: CCCS and Vs read as control nodes with no DC path, so the deck fails.",
  "oracle": {
   "kind": "diagnostic",
-  "derivation": "#75: a CCCS type word on an E card is refused (ngspice-45 fails the deck)."
+  "derivation": "SPICE E card syntax (ngspice manual, Linear Voltage-Controlled Voltage Sources): E n+ n- nc+ nc- value. Here nc+ = CCCS and nc- = Vs, nodes that touch only the controlling port, which draws no current: they have no DC path to ground and the MNA matrix is singular. Xyce 7.10.0 exits 1 (nodes CCCS and VS \"connected to only 1 device terminal\"); ngspice-44.2 and 45 exit 1 (\"singular matrix: check node cccs\").",
+  "confirmed": {
+   "tool": "xyce",
+   "version": "7.10.0-opensource",
+   "command": "Xyce cccs_word_on_e_refused.sp",
+   "result": "exit 1"
+  }
  },
  "origin": "tests/fixtures/invalid/cccs_word_on_e_refused.sp",
  "expect": {

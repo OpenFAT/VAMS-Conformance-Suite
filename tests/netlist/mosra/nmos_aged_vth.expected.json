@@ -3,8 +3,18 @@
   "analysis": "op",
   "purpose": "MOSRA SimMode 2: the aged operating point of an NMOS held at a fixed drain current shifts its gate by the aged delvto.",
   "oracle": {
-    "kind": "analytic",
-    "derivation": "BTI only, titfd = tittd = 0: dVth = 1e-4*(1e8)^0.25 = 0.01 V. With Vds, Vbs and Ids pinned, Vgs - Vth is unchanged, so v(g) aged = v(g) fresh + 0.01 V. The fresh v(g) is ESPice's own solution (a regression anchor, not an independent value)."
+    "kind": "xyce-7.10.0",
+    "tool": "xyce",
+    "version": "7.10.0-opensource",
+    "command": "Xyce fresh.cir  (this deck without the mosra cards, level=49 -> level=9, .op, .print dc v(g))",
+    "derivation": "Fresh v(g): the deck's circuit without MOSRA, BSIM3 (HSPICE level 49 is BSIM3v3) in Xyce 7.10.0 (level 9): 0.390865613 V, i(vd) = -9.99960913e-06 A. Aged v(g): BTI only, titfd = tittd = 0, so dVth = tit0*t^tn = 1e-4*(1e8)^0.25 = 0.01 V; with Vds, Vbs and Ids pinned by the servo, Vgs - Vth is unchanged and v(g) aged = v(g) fresh + 0.01 V.",
+    "confirmed": {
+      "tool": "ngspice",
+      "version": "44.2",
+      "command": "ngspice -b fresh.sp  (level=8 version=3.3; aged: the same with delvto=0.01)",
+      "max_rel_err": 1.9e-07,
+      "note": "fresh 0.3908655379 V, aged (delvto=0.01) 0.4008654972 V: the aged gate moves 0.0099999594 V. ngspice cannot run MOSRA, so this deck does not test it."
+    }
   },
   "tokenizer": "hspice",
   "expect": {
@@ -45,7 +55,7 @@
         "columns": {
           "v(g)": {
             "values": [
-              0.39104049213901565
+              0.3908656
             ],
             "rtol": 0,
             "atol": 1e-06
@@ -59,7 +69,7 @@
         "columns": {
           "v(g)": {
             "values": [
-              0.40104049213901566
+              0.4008656
             ],
             "rtol": 0,
             "atol": 1e-05

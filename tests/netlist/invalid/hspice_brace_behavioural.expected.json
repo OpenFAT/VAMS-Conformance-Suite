@@ -2,10 +2,12 @@
  "schema_version": 1,
  "analysis": "op",
  "tokenizer": "hspice",
- "purpose": "#203: a braced expression in an HSPICE E VOL= form is refused by name; HSPICE quotes it.",
+ "purpose": "A braced expression in an HSPICE E VOL= form is refused; HSPICE delimits expressions with quotes.",
  "oracle": {
   "kind": "diagnostic",
-  "derivation": "#203: HSPICE reads braces as name bytes (T2) and writes the expression quoted; ESPice refuses the card (UnsupportedCard)."
+  "derivation": "Star-Hspice Manual, Release 1998.2, ch. 3 (class.ece.uw.edu/cadta/hspice/chapter_3.pdf) p. 3-19: \"Single or double quotes delimit expressions and filenames\"; p. 3-21: \"Expressions are delimited by single or double quotes\"; p. 3-30: braces are allowed in node names and changed to square brackets. HSPICE Quick Reference Guide U-2003.03 (cse.chalmers.se/~perla/ugrad/EDA351/HSPICEQuickRef.pdf), Algebraic Expressions as Input: the general form is 'algebraic expression'. So vol={v(a)*2} is no expression and the card fails.",
+  "confirmed": null,
+  "confirmed_reason": "No second simulator reads the HSPICE dialect: Xyce -hspice-ext is Xyce's own extension, not HSPICE; the manuals are the oracle."
  },
  "origin": "tests/fixtures/invalid/hspice_brace_behavioural.sp",
  "expect": {

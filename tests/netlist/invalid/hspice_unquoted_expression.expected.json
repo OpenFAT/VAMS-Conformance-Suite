@@ -2,10 +2,12 @@
  "schema_version": 1,
  "analysis": "op",
  "tokenizer": "hspice",
- "purpose": "#203: an unquoted `key=` expression that starts with a digit is refused by name in an HSPICE deck (CR10 p. 238).",
+ "purpose": "An unquoted `key=` expression that starts with a digit is refused in an HSPICE deck.",
  "oracle": {
   "kind": "diagnostic",
-  "derivation": "#203: CR10 p. 238 reads an unquoted expression only when it begins with a letter and holds no space; ESPice refuses r=2*rv (UnsupportedCard)."
+  "derivation": "Star-Hspice Manual, Release 1998.2, ch. 3 (class.ece.uw.edu/cadta/hspice/chapter_3.pdf) p. 3-21: \"Expressions are delimited by single or double quotes\"; HSPICE Quick Reference Guide U-2003.03 (cse.chalmers.se/~perla/ugrad/EDA351/HSPICEQuickRef.pdf), .PARAM: \"Quotes around the algebraic expression are mandatory\". 2*rv is unquoted and is not a name (names begin with an alphabetic character, p. 3-18), so the card fails. ngspice-44.2 and 45 fail it too (\"unknown parameter (*)\").",
+  "confirmed": null,
+  "confirmed_reason": "No second simulator reads the HSPICE dialect: Xyce -hspice-ext is Xyce's own extension, not HSPICE; the manuals are the oracle."
  },
  "origin": "tests/fixtures/invalid/hspice_unquoted_expression.sp",
  "expect": {
