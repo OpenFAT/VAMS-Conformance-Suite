@@ -8,7 +8,7 @@
     "command": "ngspice -n -b -r reference.raw circuit.sp",
     "source_sha256": "a078b23fcd4d10b1a9a4d23821946c4377f198b938ae5033abb2ee441bd65a4a",
     "confirmed": null,
-    "confirmed_reason": "BSIM2 (ngspice MOS level 5): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
+    "confirmed_reason": "B3SOIDD (ngspice level 56): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
   },
   "origin": "benchmark/fixtures/devices/b3soidd/circuit.sp",
   "expect": {
