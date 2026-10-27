@@ -22,6 +22,7 @@
 //   #4 1e16           X = 16  -> 1e+16
 //   #5 0.0            X = 0   -> 0
 //   #6 1.0/3.0        X = -1  -> 0.3333333333333333 (16 digits)
+// gold: Icarus Verilog 13.0 agrees once its own `VCD info:` line is dropped
 //! inherited IEEE 1364-2005 18.2.1
 `timescale 1ns/1ns
 module b_18_2_1_real_dut;

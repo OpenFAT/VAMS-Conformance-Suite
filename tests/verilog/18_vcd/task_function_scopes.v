@@ -24,6 +24,7 @@
 //   a `$scope function f $end` section holds a $var for fr      -> fr=1
 //   #1 calls t1, which sets accumulator = 5, dumped as the vector
 //   change `b101` followed by accumulator's code               -> acc5=1
+// gold: Icarus Verilog 13.0 agrees once its own `VCD info:` line is dropped
 //! inherited IEEE 1364-2005 18.2.3.4
 `timescale 1ns/1ns
 module b_18_2_3_4_dut;

@@ -22,12 +22,9 @@
 // §18.2.3, p. 332: "The general information in the VCD file is presented as a
 // series of sections surrounded by keywords."
 //
-// HAND DERIVATION (the d09_11 CONVENTION: codes from `!` in $var order, and
-// a scope's variables in declaration order, nets before variables; the
-// comparison joins the $timescale body, so `100 ps` and `100ps` agree).
-// Also pinned, as writer choices §18.2 leaves open: value changes in $var
-// order, x/z in lower case, a range as its own token (`up [0:3]`), no empty
-// time record:
+// HAND DERIVATION (the gold's codes run from `!` in $var order; the
+// comparison, `//! expect vcd`, sets aside the codes, the order of $var lines
+// and of changes, `100 ps` vs `100ps` and x/z case, all the writer's):
 //   $timescale: the `timescale is 100ps/100ps, so a time step is 100ps and
 //     `#1` records as #1: $timescale 100ps $end.
 //   $scope module b_18_2_3_7_var_sections: its nets in declaration order,
@@ -46,6 +43,7 @@
 //     a = 0; up = 4'b0101 -> b101 (0 extends 1, Table 18-1); i = 7 -> b111;
 //     t = 0 -> b0; q = 2'b10 -> b10.
 //   #1 up = 4'b1100 -> b1100; i = -1 -> 32 ones; q = 2'bx1 -> bx1.
+// gold: hand derivation, §18.2.3.7 and §4.2.1 (above)
 //! inherited IEEE 1364-2005 18.2.3.7 18.2.3 18.2.3.3 18.2.3.4 18.2.3.5 18.2.3.6
 //! expect vcd var_sections.vcd == var_sections.expected.vcd
 `timescale 100ps/100ps

@@ -7,12 +7,14 @@
 // reg's 40 (§5.2.3.2), which a file name does not carry. The dump must land in
 // that file: the golden is read from it.
 //
-// HAND DERIVATION (the d09_11 CONVENTION: codes from `!` in $var order):
+// HAND DERIVATION (the gold's codes run from `!` in $var order; the
+// comparison, `//! expect vcd`, sets them aside):
 //   header: $timescale 1ns, scope b_18_1_1_dumpfile_variable_name, one
 //   `$var reg 1 ! a`.
 //   #0 $dumpvars: $dumpvars runs before a = 0, but dumping starts at the end
 //   of the time unit (§18.1.3), so the section shows 0!.
 //   #1 a = 1 -> 1!.
+// gold: Icarus Verilog 13.0 agrees (through //! expect vcd's canonical compare)
 //! inherited IEEE 1364-2005 18.1.1
 //! expect vcd b_18_1_1_dumpfile_variable.vcd == dumpfile_variable_name.expected.vcd
 `timescale 1ns/1ns

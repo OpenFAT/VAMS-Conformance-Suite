@@ -50,6 +50,7 @@
 // Strength 5 (pull) is left out: §18.4.3.2 puts "Strength supply 7 to 5
 // (large)" in the strong range, while §18.4.3's list makes 5 pull and 4
 // large, so the range of a pull driver is not fixed by the text.
+// gold: hand derivation, §18.4.3 to §18.4.4 (above)
 //! inherited IEEE 1364-2005 18.4.3 18.4.3.1 18.4.3.2 18.4.4
 // native-required
 `timescale 1ns/1ns

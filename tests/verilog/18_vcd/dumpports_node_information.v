@@ -36,6 +36,7 @@
 // `$enddefinitions $end` are printed one per line: the example above, then
 // `$enddefinitions $end`. (Dumping starts at the end of time 0; the reader
 // runs at #1.)
+// gold: hand derivation, §18.4.2, whose own example this is
 //! inherited IEEE 1364-2005 18.3 18.3.1 18.3.5 18.4 18.4.1 18.4.2
 // native-required
 `timescale 1ns/1ns

@@ -49,15 +49,12 @@
 //   the variable's actual sequence is 0, 1, 1, 0, 0, 1, 1. Those two differ at
 //   three positions and each difference is produced by one of the three tasks.
 //
-// The same CONVENTION as 11_vcd_dumpvars.v applies: identifier codes assigned
-// from `!` in $var declaration order, and $date/$version/$comment deleted and
-// the $timescale body stripped of whitespace before comparison, by the
-// token-based normaliser in tests/fixtures/ch09_system_tasks/d09_SPEC.md at 8b1514d4 (a line-oriented `sed` range mis-deletes
-// when `$date … $end` lands on a single line).
+// The gold's identifier codes run from `!` in $var order; the comparison,
+// `//! expect vcd`, sets aside codes, order, `1 ns` and $comment text.
 //
+// gold: Icarus Verilog 13.0 agrees (through //! expect vcd's canonical compare)
 //! inherited IEEE 1364-2005 18.1 ($dumpoff, $dumpon, $dumpall)
 //! inherited IEEE 1364-2005 18.2 (checkpoint records)
-// The golden lives in ch09_system_tasks/; see vcd_dumpvars.v.
 //! expect vcd d09_vcd_off.vcd == vcd_dumpoff_on.expected.vcd
 `timescale 1ns/1ns
 module d09_vcd_off;

@@ -9,10 +9,9 @@
 // leading 1 or 0 with 0, a Z with Z and an X with X. Table 18-2's rows, for a
 // 4-bit reg: 0010 -> b10, XX10 -> bX10, ZZX0 -> bZX0, 0X10 -> b0X10.
 //
-// HAND DERIVATION (the d09_11 CONVENTION: codes from `!`; this writer prints
-// x and z in lower case, which Syntax 18-8's value ::= 0|1|x|X|z|Z admits;
-// changes in one time record in $var order, so #4 and #5 list s before r
-// although r is assigned first; a range as its own token, `r [3:0]`):
+// HAND DERIVATION (the gold's codes run from `!`, its x and z are lower case
+// and its changes in one time record in $var order; the comparison, `//!
+// expect vcd`, sets all three aside, as Syntax 18-8 leaves them to the writer):
 // s is the scalar, code !; r is reg [3:0], code ".
 //   #0 $dumpvars: s = 1, r = 4'b0010: 1! and b10 " (Table 18-2 row 1).
 //   #1 r = 4'bxx10 -> bx10 "   (row 2: the second x extends the first)
@@ -22,6 +21,7 @@
 //   #4 r = 4'b1000 -> b1000 "  (a leading 1 is never redundant); s = z -> z!
 //   #5 r = 4'b0000 -> b0 "; s = x -> x!
 //   #6 r = 4'bzzzz -> bz "
+// gold: Icarus Verilog 13.0 agrees (through //! expect vcd's canonical compare)
 //! inherited IEEE 1364-2005 18.2.2
 //! expect vcd table_18_2_shortening.vcd == table_18_2_shortening.expected.vcd
 `timescale 1ns/1ns

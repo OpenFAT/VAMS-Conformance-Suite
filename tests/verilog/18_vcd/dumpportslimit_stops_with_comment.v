@@ -19,6 +19,7 @@
 //   and the comment that says so is the last thing the dump wrote: no time
 //   record or value follows the last $comment section after
 //   $enddefinitions                                    -> comment_last=1
+// gold: hand derivation, §18.3.4 (above)
 //! inherited IEEE 1364-2005 18.3.4
 // native-required
 `timescale 1ns/1ns

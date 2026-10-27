@@ -23,6 +23,7 @@
 //   record or value follows the last $comment section after
 //   $enddefinitions                                    -> comment_last=1
 //   (comment_last also needs a $comment to exist at all: it starts at 0.)
+// gold: Icarus Verilog 13.0 agrees once its own `VCD info:` and dump-limit `WARNING:` lines are dropped
 //! inherited IEEE 1364-2005 18.1.5 18.2.3.1
 `timescale 1ns/1ns
 module b_18_1_5_dut;

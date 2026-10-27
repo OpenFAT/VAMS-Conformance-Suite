@@ -20,8 +20,9 @@
 // character at a time ($fgetc), split into white-space separated tokens
 // (§18.2: "The dump file is structured in a free format. White space is used
 // to separate commands"). What a writer chooses is not printed: the date
-// text, the version text and the identifier codes are either tested for a
-// property or (codes) follow the d09_11 CONVENTION, codes from `!`.
+// and version text are tested for a property, and a's identifier code, which
+// §18.2.1 leaves to the writer, is read from its $var section and printed as
+// the name a.
 //
 // HAND DERIVATION:
 //   $dumpfile("b_18_2_3_8_lit.vcd") is a literal, so the $version section's
@@ -32,13 +33,15 @@
 //   a $timescale section precedes $enddefinitions -> timescale=1
 //   $version precedes $enddefinitions -> (implied by version=1, which is only
 //   counted in the header)
-//   From $enddefinitions on, every token, one per line:
-//     $enddefinitions $end
-//     #0 $dumpvars 0! $end     (a = 0 at the end of time 0)
-//     #1 1!                    (a = 1)
+//   After $enddefinitions, each change of a with its time record (§18.1.3:
+//   the dump starts at the end of time 0, so $dumpvars holds a = 0):
+//     #0 a=0
+//     #1 a=1
 //   #2 is the reader's: it flushes at #2 before a changes again, and after
 //   the flush a = 0 at #3 is dumped as before (the reader has already read,
-//   so the transcript does not show it).
+//   so the transcript does not show it). Keywords and empty sections such
+//   as `$dumpall $end` are not printed.
+// gold: hand derivation, §18.1.3, §18.2.1 and §18.2.3.8 (above)
 //! inherited IEEE 1364-2005 18.2.3.8 18.2.3.2 18.2.1 18.1.6
 `timescale 1ns/1ns
 module b_18_2_3_8_dut;
@@ -58,6 +61,8 @@ module b_18_2_3_8_version_names_dumpfile_literal;
   integer header, date_words, date_ok, version_ok, timescale_ok;
   reg [8*64:1] tok;
   reg [8*31:1] win;
+  integer len, clen, alen, field, code_next;
+  reg [8*64:1] cand, code, mask, now, first;
 
   task token;
     begin
@@ -66,16 +71,34 @@ module b_18_2_3_8_version_names_dumpfile_literal;
         else if (section == 1) date_words = date_words + 1;
       end else if (tok == "$comment") section = 4;
       else if (header) begin
+        // `$var var_type size identifier_code reference $end`
         if (tok == "$date") section = 1;
         else if (tok == "$version") section = 2;
         else if (tok == "$timescale") begin
           section = 3;
           timescale_ok = 1;
-        end else if (tok == "$enddefinitions") begin
-          header = 0;
-          $display("%0s", tok);
-        end
-      end else $display("%0s", tok);
+        end else if (tok == "$var") field = 1;
+        else if (field == 3) begin cand = tok; clen = len; field = 4; end
+        else if (field == 4) begin
+          if (tok == "a") begin
+            code = cand;
+            alen = clen;
+            mask = {512{1'b1}} >> (512 - 8 * clen);
+          end
+          field = 0;
+        end else if (field != 0) field = field + 1;
+        else if (tok == "$enddefinitions") header = 0;
+      end else begin
+        // After the header: a vector or real value's code is its own token,
+        // so it is stepped over; `#` opens a time record; `$` a keyword; any
+        // other token is a scalar change, a value digit then a code.
+        first = tok >> 8 * (len - 1);
+        if (code_next) code_next = 0;
+        else if (first == "b" || first == "B" || first == "r" || first == "R") code_next = 1;
+        else if (first == "#") now = tok;
+        else if (first != "$" && alen != 0 && len == alen + 1 && (tok & mask) == code)
+          $display("%0s a=%0s", now, first);
+      end
       if (section == 0 && date_words != 0) date_ok = 1;
     end
   endtask
@@ -93,13 +116,17 @@ module b_18_2_3_8_version_names_dumpfile_literal;
     timescale_ok = 0;
     tok = 0;
     win = 0;
+    len = 0; clen = 0; alen = 0; field = 0; code_next = 0;
+    cand = 0; code = 0; mask = 0; now = "#?"; first = 0;
     c = $fgetc(fd);
     while (c != -1) begin
       if (c == " " || c == "\n" || c == "\t" || c == 8'd13) begin
-        if (tok != 0) token;
+        if (len != 0) token;
         tok = 0;
+        len = 0;
       end else begin
         tok = {tok, c[7:0]};
+        len = len + 1;
         if (section == 2) begin
           win = {win, c[7:0]};
           if (win == "$dumpfile(\"b_18_2_3_8_lit.vcd\")") version_ok = 1;
@@ -107,7 +134,7 @@ module b_18_2_3_8_version_names_dumpfile_literal;
       end
       c = $fgetc(fd);
     end
-    if (tok != 0) token;
+    if (len != 0) token;
     $fclose(fd);
     $display("date=%0d version=%0d timescale=%0d", date_ok, version_ok, timescale_ok);
   end

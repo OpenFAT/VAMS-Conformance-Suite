@@ -13,8 +13,8 @@
 // with the leading digits that left-extension would supply removed.
 //
 // HAND DERIVATION of vcd_dumpvars_levels.expected.vcd,
-// with the same convention as d09_11: codes from `!` in $var order, and a
-// module's variables listed ports, then nets, then variables.
+// with the gold's codes from `!` in $var order (the comparison, `//! expect
+// vcd`, sets codes and order aside, as §18.2 leaves them to the writer).
 //
 //   Selection. Level 1 on the root dumps the root's own o, s and n and
 //   nothing of u — except u.q, which is named individually. u's ports i and
@@ -26,8 +26,10 @@
 //   t=2  s = 11: o = ^11 = 0, s = b11; n = -1, 32 ones (a leading 1 is not
 //        redundant, so nothing is removed).
 //   t=3  q = 1, alone.
-//   t=4  $finish(0): nothing changed, so no #4.
+//   t=4  $finish(0): nothing changed (a writer may still print #4; the
+//        comparison drops a time with no change).
 //
+// gold: Icarus Verilog 13.0 agrees (through //! expect vcd's canonical compare)
 //! inherited IEEE 1364-2005 18.1.2 ($dumpvars levels and variables)
 //! inherited IEEE 1364-2005 18.2.2 (vector shortening)
 //! expect vcd d09_vcd_scope.vcd == vcd_dumpvars_levels.expected.vcd

@@ -20,13 +20,12 @@
 // in a module instance named t1 (task scopes are pinned by
 // task_function_scopes.v). So `$var trireg` reads `$var reg` and
 // `$scope task t1` reads `$scope module t1`; every value line is the
-// example's. Writer choices §18.2 leaves open that the golden pins: the range
-// is its own token, `accumulator [31:0]` (the example glues it,
-// `accumulator[31:0]`; both are free format), and no time record is written
-// for #1500, where values change while dumping is off (an empty `#1500` would
-// be legal Syntax 18-8 but fails the token comparison).
+// example's. The comparison (`//! expect vcd`) sets aside
+// the choices §18.2 leaves the writer: codes, `accumulator [31:0]` vs
+// `accumulator[31:0]`, and an empty `#1500` record, where values change while
+// dumping is off.
 //
-// HAND DERIVATION (codes from `!` in $var order, the d09_11 CONVENTION:
+// HAND DERIVATION (the gold's codes run from `!` in $var order:
 // net1 !, net2 ", net3 #, accumulator $, index %; the example's *@ *# *$ (k {2):
 //   #500 $dumpvars: nothing is assigned yet, every reg and the integer is x:
 //        x! x" x# bx $ bx %  (a vector of all x shortens to one x, Table 18-1)
@@ -41,6 +40,7 @@
 //   #1500 net1 z, net3 0, accumulator 0, index x: dumping is off, nothing.
 //   #2000 $dumpon: the values at that time: z! 1" 0# b0 $ bx %
 //   #2010 1#
+// gold: Icarus Verilog 13.0 agrees (through //! expect vcd's canonical compare)
 //! inherited IEEE 1364-2005 18.2.4 18.1.3 18.1.4 18.2.3.9 18.2.3.10 18.2.3.11 18.2.3.12
 //! expect vcd example_value_changes.vcd == example_value_changes.expected.vcd
 `timescale 1ns/1ns

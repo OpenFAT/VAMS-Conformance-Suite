@@ -20,6 +20,7 @@
 //     #1: a marker                                         -> at1=1
 //     #2: none (a changed, e did not)                      -> at2=0
 //     #3: a marker                                         -> at3=1
+// gold: Icarus Verilog 13.0 agrees once its own `VCD info:` line is dropped
 //! inherited IEEE 1364-2005 18.2.2 18.2.3.7
 `timescale 1ns/1ns
 module b_18_2_2_event_dut;
