@@ -99,6 +99,7 @@ Two kinds of directive:
 | Line | Read by | Meaning |
 |---|---|---|
 | `//! lrm 4.5.7`, `//! inherited IEEE 1364-2005 3.8` | nobody | the clause, or `clause:sentence`, the test checks |
+| `//! lrm-reject 12.32`, `//! inherited-reject IEEE 1364-2005 9.2` | nobody | as `lrm`/`inherited`, naming the clause whose prohibition a rejection test checks |
 | `//! reject <note>` | harness | the tool must refuse the source with a diagnostic (exit 1–125, not a crash or timeout). The note names the expected error, often as VerA's code; the harness does not match it. |
 | `//! reject-run <note>` | harness | compiles, and the run must fail |
 | `//! exit N` | harness | the run's exit status, 0–125 |
