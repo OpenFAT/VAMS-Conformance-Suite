@@ -17,6 +17,7 @@
 // paths' Table 14-2/14-3 delays (§14.3.3), at most 12, so at t=20 y = a = 1.
 // (A min:typ:max path_delay_expression is b_A_7_4_mintypmax_path_delay.v.)
 // Output: "y=1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.7.4
 `timescale 1ns/1ns
 module b_A_7_4_cell (a, b, c, d, e, f, y);

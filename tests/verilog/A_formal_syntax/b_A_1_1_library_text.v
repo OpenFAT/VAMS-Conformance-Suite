@@ -19,6 +19,7 @@
 // its D; this file matches no file_path_spec and is work's (§13.2.1):
 //   t=0 top work.top; t=1 top.u1 liba.a; t=2 top.u2 liba.b;
 //   t=3 top.u3 libc.c1.
+// gold: hand derivation, §13.2.1, §13.2.2 and A.1.1 (above)
 //@ libmap a11/lib.map
 //@ files a11/cells/a.v a11/cells/b.v a11/cells/c1.v
 //! lrm A.1.1

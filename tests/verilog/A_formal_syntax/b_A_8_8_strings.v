@@ -7,6 +7,7 @@
 //   $display("say \"hi\" \\ ok")    -> say "hi" \ ok
 //   the 24-bit reg w = "abc" printed with %s -> abc
 // Output: `say "hi" \ ok`, then "abc".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.8.8
 module b_A_8_8_strings;
   reg [23:0] w;

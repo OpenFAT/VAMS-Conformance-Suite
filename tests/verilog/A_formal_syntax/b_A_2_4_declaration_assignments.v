@@ -20,6 +20,7 @@
 // VerA reads the specify block and models nothing in it, so the PATHPULSE$
 // limits change nothing printed.
 // Output: "k=7 n=1 P=6 SP=9".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.4 14.6 14.6.1
 `timescale 1ns/1ns
 module b_A_2_4_child (a, y);

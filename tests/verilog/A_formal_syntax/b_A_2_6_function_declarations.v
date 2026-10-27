@@ -18,6 +18,7 @@
 //   cnt   (form 1 with a block_item_declaration integer k beside its input)
 //         cnt(3'b101) counts the ones = 2
 // Output: "add=0 neg=-3 fact=120 tm=14 cnt=2".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.6
 module b_A_2_6_function_declarations;
   function add;

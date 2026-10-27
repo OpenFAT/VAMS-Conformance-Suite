@@ -45,6 +45,7 @@
 // The specify block holds a specparam only, which elaborates as a constant,
 // so a digital run has nothing in it to warn about (a digital run applies
 // path delays and pulse controls; W0251 is the analog compile's).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.1.4
 `timescale 1ns/1ns
 module b_A_1_4_child;

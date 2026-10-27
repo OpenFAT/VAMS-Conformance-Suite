@@ -5,6 +5,7 @@
 //
 // The two real-valued parameter_types: LR = 2.5 (localparam real) and
 // PT = 1.25 (parameter realtime). Output: "LR=2.50 PT=1.25".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.1.1
 module b_A_2_1_1_real_parameters;
   localparam real LR = 2.5;

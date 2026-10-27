@@ -27,6 +27,7 @@
 //          -> c = 3. (nop is enabled as `nop;`: A.6.9's task_enable has no
 //          empty parentheses.)
 // Output: "o=8 io=6 t2=40 s=-6 c=3".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.7
 module b_A_2_7_task_declarations;
   reg [3:0] o, io;

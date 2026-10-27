@@ -20,6 +20,7 @@
 //   f (highz1, supply0) = 0                                             -> 0
 //   ts (small), tm (medium), tl (large) driven 1, 0, 1                  -> 1 0 1
 // Output: "a=0 b=1 c=z d=1 e=z f=0 ts=1 tm=0 tl=1".
+// gold: hand derivation, A.2.2.2 and §7.10.1 (above)
 //! inherited IEEE 1364-2005 A.2.2.2
 `timescale 1ns/1ns
 module b_A_2_2_2_strengths;

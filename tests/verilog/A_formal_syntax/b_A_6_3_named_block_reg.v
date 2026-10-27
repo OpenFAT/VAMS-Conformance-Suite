@@ -4,6 +4,7 @@
 //   { attribute_instance } reg [ signed ] [ range ] list_of_block_variable_identifiers ; | ...
 //
 // A named block declaring reg [3:0] r: r = 4'd12 -> "r=12".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.3
 module b_A_6_3_named_block_reg;
   initial begin : blk

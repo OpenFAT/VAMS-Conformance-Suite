@@ -10,6 +10,7 @@
 // 2 or 3: read at t = 0 (after #0, once the first initial block has
 // suspended) it is 0; at t = 10 every corner has elapsed and it is 1.
 // Output: "0: 0" then "10: 1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.5
 `timescale 1ns/1ns
 module b_A_6_5_mintypmax_delay_control;

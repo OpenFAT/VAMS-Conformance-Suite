@@ -9,6 +9,7 @@
 // and (y[2], a, a) and buf (y[1], ~a) with a = 1; tran (s[3], s0) with
 // s0 = 1: y[2] = 1, y[1] = 0, y[0] and y[3] undriven (z), s[3] = 1.
 // Output: "y=z10z s3=1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.3.3
 // native-required
 `timescale 1ns/1ns

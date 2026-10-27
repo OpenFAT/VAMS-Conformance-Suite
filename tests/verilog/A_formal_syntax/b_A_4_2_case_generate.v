@@ -9,6 +9,7 @@
 // generate_block is a named begin-end, an item 4 that is null (`;`), and a
 // default without its colon. N = 3 picks the named block: c = 3.
 // Output: "c=3".
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 A.4.2
 `timescale 1ns/1ns
 module b_A_4_2_case_generate;

@@ -12,6 +12,7 @@
 //   {c, s} = 5'b0_1110: c = 0, s = 4'b1110 (a concatenated variable_lvalue)
 //   {c, s[1:0]} = 3'b101: c = 1, s[1:0] = 2'b01 -> s = 4'b1101
 // Output: "co=1 sum=0001 n=z101 c=1 s=1101".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.8.5
 `timescale 1ns/1ns
 module b_A_8_5_concatenated_lvalues;

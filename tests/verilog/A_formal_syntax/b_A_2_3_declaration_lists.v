@@ -24,6 +24,7 @@
 //   output reg [3:0] o1 = 4'd7, o2 = 4'd8 (variable port identifiers with
 //   initializers)                                     -> o1 = 7, o2 = 8
 // Output: "s=5 p=1 q=0 N=5 x=0.50 S2=2 v1=6 o1=7 o2=8".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.3
 `timescale 1ns/1ns
 module b_A_2_3_child;

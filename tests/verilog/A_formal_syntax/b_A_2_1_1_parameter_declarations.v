@@ -18,6 +18,7 @@
 //   specparam [3:0] SR = 4'd5               5
 //   specparam SP = 6
 // Output: "LS=1110 LI=7 LJ=8 P=3 PR=240 PM=9 SR=5 SP=6".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.1.1
 module b_A_2_1_1_parameter_declarations;
   localparam signed [3:0] LS = 4'b1110;

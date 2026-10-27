@@ -31,6 +31,7 @@
 // paths' smallest delay (§14.3.3), at most 7, so by t=10 the cell shows its
 // assignments: a = 1, b = 0, clk = 1 -> y = a & b = 0, z = a | b = 1, q = a = 1.
 // Output: "y=0 z=1 q=1".
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 A.7.2
 `timescale 1ns/1ns
 module b_A_7_2_cell (a, b, clk, y, z, q);

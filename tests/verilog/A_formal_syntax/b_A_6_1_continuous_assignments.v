@@ -11,6 +11,7 @@
 //   3 + 4 + 9 = 16, truncated to 4 bits: s = 0.
 // (A concatenated net_lvalue is b_A_8_5_concatenated_lvalues.v.)
 // Read at t=5 after every delay: "w=7 p=1 q=0 s=0".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.1
 `timescale 1ns/1ns
 module b_A_6_1_continuous_assignments;

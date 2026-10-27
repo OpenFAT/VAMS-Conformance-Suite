@@ -16,6 +16,7 @@
 // (Concatenated lvalues, and net lvalues that are selects, are
 // b_A_8_5_concatenated_lvalues.v.)
 // Output: "v=10001010 m1=9 m0=1000 c=1 w=0".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.8.5
 `timescale 1ns/1ns
 module b_A_8_5_lvalues;

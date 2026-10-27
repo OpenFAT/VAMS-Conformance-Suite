@@ -11,6 +11,7 @@
 // hierarchical task name is b_A_6_9_hierarchical_task_enable.v).
 // tick: n = n + 1 -> 1; add: n = n + 2 + 3 -> 6.
 // Output: "a b" then "n=6".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.9
 module b_A_6_9_task_enables;
   integer n;

@@ -27,6 +27,7 @@
 // (An instance array, name_of_module_instance's [ range ], is
 // b_A_4_1_instance_array.v.)
 // Output: "s1=8 s2=9 s3=10".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.4.1
 `timescale 1ns/1ns
 module b_A_4_1_add (x, y, s);

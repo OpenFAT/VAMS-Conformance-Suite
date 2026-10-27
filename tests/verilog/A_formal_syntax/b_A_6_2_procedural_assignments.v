@@ -25,6 +25,7 @@
 //       effect.
 //   t6: a, b, c and cnt, c's nonblocking update long landed.
 // Output: "r=9 r=2 w=1 w=0 v=7" then "a=5 b=6 c=12 cnt=1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.2
 `timescale 1ns/1ns
 module b_A_6_2_procedural_assignments;

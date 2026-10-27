@@ -9,6 +9,7 @@
 // x = k * 1.5 = 3.0, t = 7; the fork sets m = 4, then k = k + m = 6.
 // (A reg declared in a named block is b_A_6_3_named_block_reg.v.)
 // Output: "k=6 x=3.0 t=7".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.3
 `timescale 1ns/1ns
 module b_A_6_3_named_block_declarations;

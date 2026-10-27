@@ -27,6 +27,7 @@
 // Run: a = 0, b = 1, s = 1 -> y = 1. t rises once -> q: 0 -> 1.
 // d = 1, en = 1 -> h = 1; then en = 0, d = 0 -> h holds 1.
 // Output: "y=1 q=1 h=1".
+// gold: hand derivation, A.5.1, A.5.2 and §8.4 (above)
 //! inherited IEEE 1364-2005 A.5.1,A.5.2
 `timescale 1ns/1ns
 primitive b_A_5_1_mux (y, a, b, s);

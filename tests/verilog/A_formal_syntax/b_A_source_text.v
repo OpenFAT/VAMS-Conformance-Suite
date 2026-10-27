@@ -9,6 +9,7 @@
 // opened with module (the top). The top drives r = 0 then r = 1 through the
 // leaf's inverter, so w is its complement:
 //   t=1: w = ~0 = 1 -> "w=1";   t=2: w = ~1 = 0 -> "w=0".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A
 `timescale 1ns/1ns
 primitive b_A_inv (y, a);

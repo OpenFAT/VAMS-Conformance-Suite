@@ -14,6 +14,7 @@
 //   cmos (y0, b, ~b, b): ncontrol ~b = 1, pcontrol b = 0, passes b -> y0 = 0
 //   tran (s3, s0), s0 driven 1                              -> s3 = 1
 // Output: "y=110 s3=1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.3.3
 // native-required
 `timescale 1ns/1ns

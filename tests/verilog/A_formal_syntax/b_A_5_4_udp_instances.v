@@ -12,6 +12,7 @@
 //     (weak0, weak1) y3 = 0, which the pull1 output overrides (§7.10.1)
 // (An instance array is b_A_5_4_udp_instance_array.v.)
 // Read at t=5, after every delay: "y1=1 y2=0 y3=1".
+// gold: hand derivation, A.5.4 and §7.10.1 (above)
 //! inherited IEEE 1364-2005 A.5.4
 `timescale 1ns/1ns
 primitive b_A_5_4_and2 (y, a, b);

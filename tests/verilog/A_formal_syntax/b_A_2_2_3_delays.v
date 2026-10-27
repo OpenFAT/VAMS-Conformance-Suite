@@ -19,6 +19,7 @@
 // t=15 and the #0 resumes in the inactive region after it, so n1..n4 = 1,
 // n5, n6 = 0, g1 = 0, g2 = 1. At t=20 all are 1.
 // Output: "15: 111100 g=01" then "20: 111111 g=11".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.2.3
 `timescale 1ns/1ns
 module b_A_2_2_3_delays;

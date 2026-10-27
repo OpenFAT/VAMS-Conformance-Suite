@@ -18,6 +18,7 @@
 //   tranif0 (dis) passes a: 1   tranif1 (en): 1   rtranif1 (en): 1   rtranif0 (dis): 1
 //   tran: 1               rtran: 1   (each joins its net to a)
 // Output, in that order: "10 1100 1100 011010 10 1111 11".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.3.4
 // native-required
 `timescale 1ns/1ns

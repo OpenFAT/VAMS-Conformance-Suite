@@ -29,6 +29,7 @@
 //   @(ev) in the active region before the inactive #0 resumed, so c = 1.
 //   i = -4, x = 0.5, rt = 1.5, t = 3, sr = 4'sb1111 printed %0d -> -1.
 // Output: "1 0 0110 1001 1 1 10 01 c=1 i=-4 x=0.50 rt=1.50 t=3 sr=-1".
+// gold: hand derivation, A.2.1.3 (above)
 //! inherited IEEE 1364-2005 A.2.1.3
 `timescale 1ns/1ns
 module b_A_2_1_3_type_declarations;

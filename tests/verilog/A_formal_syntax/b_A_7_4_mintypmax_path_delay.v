@@ -9,6 +9,7 @@
 //
 // `(a => y) = (1:2:3);`: the typical 2 times y's x -> 1 from a's transition
 // at time 0 (§14.3.3), so at t=10 y = 1. Output: "y=1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.7.4
 `timescale 1ns/1ns
 module b_A_7_4_mtm_cell (a, y);

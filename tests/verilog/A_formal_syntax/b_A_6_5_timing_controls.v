@@ -31,6 +31,7 @@
 //   from outside by `disable hang` at t5 (disable_statement, task form);
 //   `disable wblk` ends a named block (block form) before it sets z.
 // At t6: "p=1 o=1 w=2 fe=1 s=1 t=1 y=1 h=1 z=0".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.5
 `timescale 1ns/1ns
 module b_A_6_5_timing_controls;

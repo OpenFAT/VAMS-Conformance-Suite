@@ -7,6 +7,7 @@
 //
 // The top connects 2'b10 to it (hi = 1, lo = 0) and cold drives
 // q = {6'b0, hi, lo} = 8'd2 -> "q=2".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.1.3
 `timescale 1ns/1ns
 module b_A_1_3_cold ({hi, lo}, q);

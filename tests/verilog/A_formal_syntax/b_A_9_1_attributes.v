@@ -13,6 +13,7 @@
 // name in an expression." VerA names none of these attributes, so none
 // changes a value: a = 2, b = 1 + 2 = 3, c = a + b = 5 through the child.
 // Output: "c=5".
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 A.9.1
 (* top_mark *)
 module b_A_9_1_attributes;

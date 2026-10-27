@@ -9,6 +9,7 @@
 // and sit between the tokens of an expression. The comments below hide
 // assignments that must not run: only r = a + b = 3 + 4 = 7 does.
 // Output: "r=7".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.9.2
 module b_A_9_2_comments;
   integer a, b, r;

@@ -8,6 +8,7 @@
 // repeat (s + 1) r = r * 2, r = 1                  -> three doublings: r = 8
 // forever in a named block, disabled on its fifth pass: f = 5
 // Output: "s=2 r=8 f=5".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.8
 module b_A_6_8_looping_statements;
   integer i, s, r, f;

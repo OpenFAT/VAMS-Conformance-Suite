@@ -30,6 +30,7 @@
 //   t=1 d = 0; t=2 clk 0 -> 1 (r): q = d = 0; t=3 clk falls (f): q holds 0;
 //   t=4 d = 1 (*): q holds 0; t=5 clk rises: q = 1.
 // Output: "c=10x q=0 0 0 1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.5.3
 `timescale 1ns/1ns
 primitive b_A_5_3_xor (y, a, b);

@@ -16,6 +16,7 @@
 // condition, `if ({en, en} == 2'b11)` and `if ({2{en}} == 2'b11)`. Nothing
 // printed reads the path's destination y, so its delay does not show.
 // Output: "10011 1010 11110 0111 111".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.8.1
 `timescale 1ns/1ns
 module b_A_8_1_cell (en, a, y);

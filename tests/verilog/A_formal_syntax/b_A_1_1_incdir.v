@@ -15,6 +15,7 @@
 // a file, so only the library binding is observable: u1's a is liba's and
 // this file, matching no file_path_spec, is work's (§13.2.1):
 //   t=0 top work.top; t=1 top.u1 liba.a.
+// gold: hand derivation, §13.2.1 and A.1.1 (above)
 //@ libmap a11/incdir.map
 //@ files a11/cells/a.v
 //! lrm A.1.1

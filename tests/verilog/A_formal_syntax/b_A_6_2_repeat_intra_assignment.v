@@ -8,6 +8,7 @@
 // assigns it after two rising edges, at t3; b <= repeat (3) @(posedge clk) 9
 // assigns at t5. Read at t4: a = 7, b not yet (x); at t6: b = 9.
 // Output: "a=7 b=x" then "b=9".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.2
 `timescale 1ns/1ns
 module b_A_6_2_repeat_intra_assignment;

@@ -6,6 +6,7 @@
 // A loop generate declares a wire w in each of blk[0] and blk[1], set to
 // g + 5; the top reads them as blk[0].w and blk[1].w: 5 and 6.
 // Output: "w0=5 w1=6".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.9.3
 `timescale 1ns/1ns
 module b_A_9_3_indexed_hierarchical_name;

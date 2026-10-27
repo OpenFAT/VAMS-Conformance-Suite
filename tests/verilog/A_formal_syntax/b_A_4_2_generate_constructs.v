@@ -32,6 +32,7 @@
 //   if (-N > 0), a unary operator in the condition, is false (-3 > 0) and its
 //     else arm is `;`: nothing drives q, which stays z.
 // Output: "r0=1 r2=1 p=1 q=z".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.4.2
 `timescale 1ns/1ns
 module b_A_4_2_generate_constructs;

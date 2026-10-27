@@ -19,6 +19,7 @@
 //   $time, a system_function_call without parentheses: 0 at t0.
 //   $unsigned(v), one with parentheses, v = -2 (4-bit signed): 14.
 // Output: "W=4 S=4 add3=6 t=0 u=14".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.8.2
 module b_A_8_2_function_calls;
   function integer clog(input integer n);

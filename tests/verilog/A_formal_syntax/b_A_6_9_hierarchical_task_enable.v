@@ -5,6 +5,7 @@
 //
 // `c.inc(4)` enables the task inc declared in the instance c: c.m = 4.
 // Output: "m=4".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.9
 module b_A_6_9_child;
   integer m;

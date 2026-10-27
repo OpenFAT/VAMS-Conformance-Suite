@@ -19,6 +19,7 @@
 // The top connects by position. old drives q = 8'd2 when sel = 1'b1:
 // n8 = 2. ansi computes y = x + P + Q with P = 5 overridden to 7 by #(7) and
 // Q = 1: x = 3 -> y = 11. Output: "n8=2 y=11".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.1.3
 `timescale 1ns/1ns
 module b_A_1_3_old (.sel(s), q);

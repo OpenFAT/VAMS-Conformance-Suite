@@ -9,6 +9,7 @@
 // b_A_5_4_and3 is a combinational AND UDP; `#1 ua [1:0] (ya, {1'b1, 1'b0},
 // 2'b11)` makes ua[1] (ya[1], 1, 1) and ua[0] (ya[0], 0, 1): ya = 2'b10 at
 // t=5. Output: "ya=10".
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 A.5.4
 `timescale 1ns/1ns
 primitive b_A_5_4_and3 (y, a, b);

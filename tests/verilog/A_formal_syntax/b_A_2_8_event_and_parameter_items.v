@@ -7,6 +7,7 @@
 // A task's block items: event e, localparam L = 2, parameter P = 3. The task
 // computes L + P = 5 and triggers e (nothing waits on it).
 // Output: "s=5".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.8
 module b_A_2_8_event_and_parameter_items;
   task run ();

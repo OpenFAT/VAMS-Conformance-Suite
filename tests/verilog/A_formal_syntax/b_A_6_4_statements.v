@@ -31,6 +31,7 @@
 // The always block reached @(go) at t0 in the active region, and -> go runs
 // after `#0`, in the inactive region, so it is already waiting.
 // Output: "go n=36 m=1 k=1 q=5".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.6.4
 `timescale 1ns/1ns
 module b_A_6_4_statements;

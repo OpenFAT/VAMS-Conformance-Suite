@@ -10,6 +10,7 @@
 // b_A_4_1_inv inverts one bit; `b_A_4_1_inv ia [1:0] (y, a)` with the 2-bit a
 // = 2'b10 gives ia[1] a[1] -> y[1] = 0 and ia[0] a[0] -> y[0] = 1.
 // Output: "y=01".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.4.1
 `timescale 1ns/1ns
 module b_A_4_1_inv (o, i);

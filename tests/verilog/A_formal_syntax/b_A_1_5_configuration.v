@@ -29,6 +29,7 @@
 // With work the only library this is also the output with no config at all,
 // so what the fixture establishes is that every production above is
 // accepted, not the binding.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.1.5
 `timescale 1ns/1ns
 config b_A_1_5_cfg;

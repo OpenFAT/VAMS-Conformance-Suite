@@ -82,6 +82,7 @@
 //         moved at 0, beyond its limits of 1.
 // No violation, so the notifier keeps the 0 it took at 0, and q = d = 1.
 // Output: "q=1 ntfr=0".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.7.5.1,A.7.5.2,A.7.5.3
 `timescale 1ns/1ns
 module b_A_7_5_cell (clk, d, en, bus, q);

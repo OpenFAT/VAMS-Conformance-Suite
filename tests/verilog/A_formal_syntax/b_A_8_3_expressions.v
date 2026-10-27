@@ -45,6 +45,7 @@
 // (min:typ:max expressions are b_A_2_2_3_mintypmax_delay.v and
 // b_A_7_4_mintypmax_path_delay.v; attributes on operators, b_A_9_1_attributes.v.)
 // Output: "c=1011 n=1 Q=4 s1=101 s2=11 s3=1 K=00".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.8.3
 `timescale 1ns/1ns
 module b_A_8_3_cell (en, a, y);

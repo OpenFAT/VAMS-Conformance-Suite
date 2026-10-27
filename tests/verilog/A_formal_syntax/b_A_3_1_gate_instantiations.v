@@ -35,6 +35,7 @@
 //   tran (s1, s2), s2 = b                                          -> 0
 //   pulldown (strong0) (pd), pullup (strong1) (pu)                 -> 0, 1
 // Output: "1 1 1 0 1 1 1 10 1 0 0 1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.3.1
 // native-required
 `timescale 1ns/1ns

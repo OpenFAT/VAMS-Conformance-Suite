@@ -10,6 +10,7 @@
 //   reg [W-1:0] p, W = 3       3 bits: p = 3'b111 + 1 wraps to 0
 //   reg [1:0] m [0:1][2:1]     m[1][2] = 2'b10, read back as 2
 // Output: "d7=1 d0=1 u0=1 u3=0 p=0 m=2".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.5
 module b_A_2_5_ranges;
   parameter W = 3;

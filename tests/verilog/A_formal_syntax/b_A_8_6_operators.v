@@ -19,6 +19,7 @@
 // results sharing the fourth and the shifts the sixth.
 // Every module path operator appears in a specify block's path condition
 // (nothing printed reads its destination y, so the path delay does not show).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.8.6
 `timescale 1ns/1ns
 module b_A_8_6_cell (en, a, y);

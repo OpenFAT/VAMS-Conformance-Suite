@@ -44,6 +44,7 @@
 //   1.5, 2e3 (exp, no fraction: 2000), 2.5E-1 (0.25), 1_2.5e+1 (125)
 // Output: "1000 25 7 -8 63 15 255 26 -128" then
 // "x01z xxxx zzzz 1010zzxx 111zzz xxxx1010" then "1.5 2000 0.25 125".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.8.7
 module b_A_8_7_numbers;
   reg signed [3:0] s4;

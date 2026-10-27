@@ -11,6 +11,7 @@
 // n = 1. Sampling at t=19 would race the maximum corner's update in the
 // active region (§11.4.2); the later sample avoids asserting an event order.
 // Output: "10: 0" then "20: 1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.2.3
 `timescale 1ns/1ns
 module b_A_2_2_3_mintypmax_delay;

@@ -11,6 +11,7 @@
 // at most 5, so by t=10 the cell shows its assignments: a = 4'b1010 ->
 // y = ~a = 4'b0101; io is driven by the top: 1.
 // Output: "y=0101 io=1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.7.3
 `timescale 1ns/1ns
 module b_A_7_3_cell (a, y, io);

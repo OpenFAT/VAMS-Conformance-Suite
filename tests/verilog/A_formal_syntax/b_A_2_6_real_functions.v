@@ -8,6 +8,7 @@
 // half is a real function, rt a realtime one; each returns its internal real
 // variable: half(3) = 3 / 2.0 = 1.5, rt(2) = 2 + 0.25 = 2.25.
 // Output: "half=1.50 rt=2.25".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.6
 // native-required
 module b_A_2_6_real_functions;

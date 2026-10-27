@@ -18,6 +18,7 @@
 //   p5 pullup (supply1, weak0): supply1 vs (strong0, strong1) 0:      supply1 wins  -> 1
 //   p6 pullup (weak1): weak1            vs assign (pull0, pull1) 0:   pull0 wins    -> 0
 // Output: "100010".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.3.2
 `timescale 1ns/1ns
 module b_A_3_2_primitive_strengths;

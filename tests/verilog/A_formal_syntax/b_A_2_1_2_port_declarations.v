@@ -16,6 +16,7 @@
 //   q starts at 4'sd5 and is never assigned -> 5.
 //   oi = 32'd70000, ot = 64'd12 (assigned at t=0).
 // The top prints at t=1: "io=1 sum=1110 q=5 oi=70000 ot=12".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.1.2
 `timescale 1ns/1ns
 module b_A_2_1_2_dut (io, s, en, sum, q, oi, ot);

@@ -8,6 +8,7 @@
 // three delays, §7.14), so dw is 5 from t=3 and 9 from t=13:
 //   t=12: dw = 5 (the change to 9 is still in flight)
 //   t=14: dw = 9
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 A.2.1.3 A.2.2.3
 `timescale 1ns/1ns
 module b_A_2_1_3_range_then_delay;
