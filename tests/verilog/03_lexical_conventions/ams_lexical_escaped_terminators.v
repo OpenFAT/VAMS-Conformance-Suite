@@ -1,6 +1,7 @@
 // AMS2.8.1: every listed whitespace terminates, and is not part of the name.
 // Declaration terminators are respectively space, tab, newline, formfeed.
 // References use ordinary spelling: same object identity must be preserved.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 2.8.1
 //! expect stdout ams_lexical_escaped_terminators.expected.txt
 //! inherited IEEE 1364-2005 3.7.1 (space, tab, newline; the formfeed terminator is AMS 2.8.1's)

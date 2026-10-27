@@ -8,6 +8,7 @@
 // sum is 21. Case sensitive: v, V and v_V are three variables holding 7, 8
 // and 9; none overwrote another.
 // Printed: "21 7 8 9".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.7
 module b_3_7_identifier_examples;
   integer shiftreg_a, busa_index, error_condition, merge_ab, _bus3, n$657;

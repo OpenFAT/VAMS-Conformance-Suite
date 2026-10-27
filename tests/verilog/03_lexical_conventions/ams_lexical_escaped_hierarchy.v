@@ -1,6 +1,7 @@
 // AMS2.8.1/6.7: the dot inside an escaped instance name belongs to that
 // identifier; the dot after its whitespace terminator is the path separator.
 // Independent child state is observed at time1, after both initial writes.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 2.8.1
 //! lrm 6.7
 //! expect stdout ams_lexical_escaped_hierarchy.expected.txt

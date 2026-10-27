@@ -13,6 +13,7 @@
 //   triple-character: a === 4'b0011 -> 1; a !== 4'b0011 -> 0;
 //     4'sb1000 >>> 1 (signed, sign-filled, §5.1.12) -> 1100; a <<< 1 -> 0110
 // Printed: "1100 1101 0 1 0100 1001 1 0 1100 0110".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.4
 module b_3_4_operator_positions;
   reg [3:0] a;

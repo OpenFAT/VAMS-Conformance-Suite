@@ -14,6 +14,7 @@
 //     the a = a + 16 after it runs -> 31
 //   a commented-out statement on its own line does not run (a = 0 skipped)
 // Printed: "31".
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 3.3
 module b_3_3_comment_forms;
   reg [7:0] a;

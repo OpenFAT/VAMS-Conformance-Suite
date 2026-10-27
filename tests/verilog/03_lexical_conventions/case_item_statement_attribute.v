@@ -13,6 +13,7 @@
 //          don't-care bit 0 (§9.5.1)                       -> b = 20
 //   casex: 2'bx0 needs bit 0 = 0, which s has (§9.5.1)     -> c = 100
 // Printed: "a 2 b 20 c 100".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.8.2
 module b_3_8_2_case_item_statement_attribute;
   reg [1:0] s;

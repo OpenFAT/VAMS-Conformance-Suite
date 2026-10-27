@@ -18,6 +18,7 @@
 //   always @(r) prints "always 0" when r changes from x to 0; r is set at
 //   #1 so the always is already waiting (no time-0 race, §11.4)
 // Printed: "always 0" at time 1, then at time 2 "1 0 0 0 0 7 5 6".
+// gold: hand derivation, §3.8.2 (above)
 //! inherited IEEE 1364-2005 3.8.2
 (* keep *) primitive b_3_8_2_inv ((* p *) output o, input a);
   table 0 : 1; 1 : 0; endtable

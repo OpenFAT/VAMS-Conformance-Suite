@@ -1,5 +1,6 @@
 // AMS2.8: minimum supported identifier length is 1024 characters.
 // Two names differ only at character1024; same-prefix truncation must not alias.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 2.8
 //! lrm 2.8:6
 //! expect stdout ams_lexical_long_distinct.expected.txt

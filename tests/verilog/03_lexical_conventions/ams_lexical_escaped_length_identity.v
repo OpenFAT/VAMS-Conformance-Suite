@@ -3,6 +3,7 @@
 // beginning with ! (so it is necessarily escaped), differing only at1024.
 // Distinct assignments must print3 7; truncation or delimiter charging is wrong.
 // No rejection is requested for1025: the implementation's finite limit is unknown.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 2.8
 //! lrm 2.8.1
 //! expect stdout ams_lexical_escaped_length_identity.expected.txt

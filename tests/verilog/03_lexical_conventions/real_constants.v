@@ -18,6 +18,7 @@
 //   2**53 + 1 is not representable in binary64, so
 //     9007199254740992.0 + 1.0 == 9007199254740992.0 -> 1
 //     (an 80-bit extended format would hold the +1)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.5.2
 module b_3_5_2_real_constants;
   initial begin

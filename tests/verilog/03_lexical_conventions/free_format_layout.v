@@ -11,6 +11,7 @@
 // The exception: the escaped identifier \a+b ends at the space after it, so
 // `\a+b +1` is the identifier a+b plus 1: \a+b = 10 -> 11.
 // Printed: "7 12 6 11".
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 2.2
 //! lrm 2.2:3
 //! lrm 2.2:2

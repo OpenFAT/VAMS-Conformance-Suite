@@ -7,6 +7,7 @@
 // keywords because keywords are lowercase. Each is an ordinary reg:
 // \wire = 1, Wire = 0, MODULE = 1, and \begin (another keyword, escaped) = 0.
 // Printed: "1010".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.7.2
 module b_3_7_2_escaped_keyword;
   reg \wire , Wire, MODULE, \begin ;

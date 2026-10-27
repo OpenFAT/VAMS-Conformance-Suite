@@ -16,6 +16,7 @@
 //   27_195_000 -> 27195000; 16'b0011_0101_0001_1111 -> 351f;
 //   32 'h 12ab_f001 -> 12abf001
 //   real_number: 1.5e+2 = 150 -> 150.000000; 2.5E-1 -> 0.250000
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.5
 module b_3_5_number_forms;
   initial begin

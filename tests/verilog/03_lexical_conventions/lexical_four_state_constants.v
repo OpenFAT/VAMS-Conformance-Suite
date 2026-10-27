@@ -12,6 +12,7 @@
 //
 // AMS digital behavior. Annex C.3 excludes these four-state semantics from
 // the analog-only profile; a Verilog-A rejection is not AMS implementation.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 2.6.1
 //! lrm 2.6.1:11
 //! lrm 2.6.1:14

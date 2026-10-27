@@ -1,6 +1,7 @@
 // IEEE1364-2005 3.5.1/Syntax3-1: decimal permits a single x/z/? digit
 // followed by underscores. The state fills every specified bit; s changes
 // signed interpretation, not the bit pattern. Base/digit case is irrelevant.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 2.6.1
 //! lrm 2.6.1:21
 //! inherited IEEE 1364-2005 3.5.1

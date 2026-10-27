@@ -8,6 +8,7 @@
 // clear: `== 0` is 0 and `== 1` is 1 (§5.1.8, the 32-bit operand extended to
 // 16777217 bits). Bit 0 is 1, and shifted down by 16777216 the top bit is
 // 0. Every printed value is a 1-bit comparison, so the transcript is short.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.5.1
 //! expect stdout literal_size_over_2_24.expected.txt
 //! neighbour literal_size_65536.v

@@ -1,3 +1,4 @@
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 3.3
 // Block comments do not nest: each `/*` inside one is plain text and the
 // comment ends at the first `*/` (comment1).

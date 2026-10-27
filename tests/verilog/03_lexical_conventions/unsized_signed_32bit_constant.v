@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.5.1
 // 'shffffffff is a 32-bit signed unsized constant, negative one (pr3522653).
 module triage_unsized_signed_32bit_constant;

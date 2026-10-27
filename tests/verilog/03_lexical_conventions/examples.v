@@ -19,6 +19,7 @@
 //   state1 = 1 -> 1
 //   a = b + c = 1 + 2 -> 3; a = add(b, c) -> 3; a = b ? c : d -> 2
 //   the instance mod1 copies its input 1 to its output -> 1 (after #1)
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.8 3.8.1
 (* optimize_power *)
 module b_3_8_1_examples;

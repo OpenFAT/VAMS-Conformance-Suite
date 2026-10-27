@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.5.1
 // An unsized constant is at least 32 bits; 4294967312 is a legal delay and
 // must not truncate to 16 (pr1388974).

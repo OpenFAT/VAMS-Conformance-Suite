@@ -4,6 +4,7 @@
 //
 // HAND DERIVATION. 65536'h1 has bit 0 set and the other 65535 bits clear. r
 // holds it, so r[0] is 1 and r[65535] is 0.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 4.3.1
 //! expect stdout literal_size_65536.expected.txt
 module b_3_5_1_literal_size_65536;

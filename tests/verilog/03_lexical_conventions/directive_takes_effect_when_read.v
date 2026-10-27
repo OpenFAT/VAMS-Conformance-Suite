@@ -12,6 +12,7 @@
 // Printed: "8", "16", "5" (the leaf's initial runs in the same time step as
 // the parent's; the parent's two lines are one process, the leaf's line is
 // printed after #1).
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.7.4
 `define W 8
 `define K 5

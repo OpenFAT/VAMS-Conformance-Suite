@@ -9,6 +9,7 @@
 // literal context fill is not implemented". This is legal AMS source. Keep
 // the behavioral oracle; changing this into a rejection would hide the gap.
 // test-devices does not implement //! xfail; it must report this case as FAIL.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 2.6.1
 //! lrm 2.6.1:20
 //! inherited IEEE 1364-2005 3.5.1

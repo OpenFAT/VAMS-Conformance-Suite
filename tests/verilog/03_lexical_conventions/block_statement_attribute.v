@@ -14,6 +14,7 @@
 //   variable and reads only it, so the arms' order changes nothing (§9.8.2)
 //   after the join: displays "a 11 b 22"
 // Printed: "a 11 b 22".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.8.2
 module b_3_8_2_block_statement_attribute;
   integer a, b;

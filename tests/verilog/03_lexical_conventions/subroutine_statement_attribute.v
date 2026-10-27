@@ -12,6 +12,7 @@
 //   f(1) returns 1 + 1 -> 2, printed by the initial block as "f 2"
 //   t(3) displays 3 * 2 -> "t 6"
 // Printed, in that order: "f 2" then "t 6".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.8.2
 module b_3_8_2_subroutine_statement_attribute;
   function integer f(input integer x);

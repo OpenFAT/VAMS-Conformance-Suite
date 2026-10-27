@@ -9,6 +9,7 @@
 // each is a character: a=61, blank=20, blank=20, b=62, tab=09, c=63, so the
 // 48-bit s is 612020620963.
 // Printed: "5 6 612020620963".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.2
 module b_3_2_white_space;
   reg	[3:0]	x, y;

@@ -2,6 +2,7 @@
 // All names are distinct, even where deleting punctuation maps them to ab.
 // Prefix/suffix ! . ~, leading digit/$/backslash, and comment-looking sequences
 // remain name contents. Independent values catch consistently renamed aliases.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 2.8.1
 //! expect stdout ams_lexical_punctuation_identity.expected.txt
 //! inherited IEEE 1364-2005 3.7.1

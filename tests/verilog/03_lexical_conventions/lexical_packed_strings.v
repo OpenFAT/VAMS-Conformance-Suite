@@ -2,6 +2,7 @@
 // Right-justify and zero-pad AZ to32 bits; truncate ABC to low16 bits BC.
 // Escapes consume1–3 octal digits: \1Q,\12R,\1018 give01,51,0a,52,41,38.
 // Hex observations verify stored bytes, not formatter string round trips.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.6 3.6.1 3.6.2 3.6.3
 //! expect stdout lexical_packed_strings.expected.txt
 module audit_lexical_packed_strings;

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.5.1 9.7.1
 // A size and 'base are separate tokens: `#1 'h123` is delay 1 then the
 // unsized constant 'h123, not the sized constant 1'h123 (const4).

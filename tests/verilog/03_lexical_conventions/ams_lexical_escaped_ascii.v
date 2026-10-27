@@ -1,6 +1,7 @@
 // AMS2.8.1 permits every printable ASCII character33..126 inside an escaped
 // name. Below one name contains the complete range once, in increasing order.
 // The value is independently set/read; punctuation must remain inside the name.
+// gold: Verilator 5.052 agrees
 //! lrm 2.8.1
 //! expect stdout ams_lexical_escaped_ascii.expected.txt
 //! inherited IEEE 1364-2005 3.7.1

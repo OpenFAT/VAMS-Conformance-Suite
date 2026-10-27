@@ -19,6 +19,7 @@
 // its default argument 1 prints the simulation time and location (§17.4.1),
 // which depend on the run. $finish(0) ends the run silently.
 // Printed: "display a message", "0 -1", "a b".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.7.3
 module b_3_7_3_system_task_forms;
   initial begin

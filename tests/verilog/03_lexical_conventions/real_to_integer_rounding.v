@@ -13,6 +13,7 @@
 // be converted to integers by rounding the real number to the nearest
 // integer" (and §5.5.1, p. 65, "Reals converted to integers by type coercion
 // are signed"): q = 7.5 -> 8 = 1000.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 3.5.3
 module b_3_5_3_real_to_integer_rounding;
   integer i1, i2, i3, i4, i5, i6, i7, i8;
