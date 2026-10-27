@@ -24,5 +24,5 @@ apart from a failed cryptographic comparison (E0153).
 
 Encryption-service round trips, asymmetric public-key serialization,
 licensing callbacks and viewport access need further host profiles. Their
-remaining obligations are listed in `vera/ledger/GAPS.tsv`; neither
+remaining obligations stay open; neither
 these inputs nor syntax acceptance earns passing evidence for them.
