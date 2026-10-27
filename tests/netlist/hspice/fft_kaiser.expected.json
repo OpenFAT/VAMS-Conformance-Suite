@@ -4,10 +4,10 @@
  "purpose": ".fft weights its samples with the symmetric Kaiser window (WINDOW=KAISER ALFA=3), whose edge samples reach 1/I0(pi ALFA).",
  "oracle": {
   "kind": "analytic",
-  "derivation": "Exact DFT of the samples of 0.5 sin(2 pi 2k t) on [1 ms, 5 ms), NP = 256, weighted by the standard symmetric Kaiser window w[n] = I0(pi ALFA sqrt(1 - (2n/(NP-1) - 1)^2)) / I0(pi ALFA) with ALFA = 3 (Harris 1978), 2/sum(w) scaling, sine phase, normalized to the peak bin."
+  "derivation": "Exact DFT of the samples of 0.5 sin(2 pi 2k t) on [1 ms, 5 ms), NP = 256, weighted by the standard symmetric Kaiser window w[n] = I0(pi ALFA sqrt(1 - (2n/(NP-1) - 1)^2)) / I0(pi ALFA) with ALFA = 3 (Harris 1978), 2/sum(w) scaling, cosine-referenced phase, normalized to the peak bin. HSPICE's FFT phase is cosine-referenced: Star-Hspice Manual Release 1998.2 ch. 25 (web.engr.oregonstate.edu/~moon/ece323/hspice98/files/chapter_25.pdf), Example 1 (p. 25-12), lists the 1 kHz carrier sin(wc (Time - td)), whose window starts on a whole cycle, at fft_phase -90.0050 deg. So a sine of phase 0 at a window start lands at -90 deg: its complex bin is -j times the sine-referenced value. The DC bin is real in either reference."
  },
  "tokenizer": "hspice",
- "netlist_sha256": "7671827a906aff4f2ae5443de5bebb8c209e792dfc24795420ddfca2806e58e9",
+ "netlist_sha256": "de0ab75de4e6b451a54cd9ab65109488dcf50c80d41e1be82cf82542f6151243",
  "expect": {
   "status": "success",
   "plots": [
@@ -49,32 +49,32 @@
         0.0
        ],
        [
-        0.12401303176469097,
-        -0.0030389800067173833
+        -0.0030389800067173833,
+        -0.12401303176469097
        ],
        [
-        -0.6209972728586923,
-        0.007625939499375457
+        0.007625939499375457,
+        0.6209972728586923
        ],
        [
-        0.999999999990905,
-        4.264970442406945e-06
+        4.264970442406945e-06,
+        -0.999999999990905
        ],
        [
-        -0.6210021300570294,
-        -0.007617396751089085
+        -0.007617396751089085,
+        0.6210021300570294
        ],
        [
-        0.12400318651110963,
-        0.0030475599660757693
+        0.0030475599660757693,
+        -0.12400318651110963
        ],
        [
-        0.00019077395764248862,
-        1.2216469595422634e-05
+        1.2216469595422634e-05,
+        -0.00019077395764248862
        ],
        [
-        -2.7661209967159072e-05,
-        -2.5988974922917855e-06
+        -2.5988974922917855e-06,
+        2.7661209967159072e-05
        ]
       ]
      }

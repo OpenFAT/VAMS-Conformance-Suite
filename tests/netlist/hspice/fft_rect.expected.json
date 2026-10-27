@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "analysis": "fft",
-  "purpose": ".fft publishes every bin from DC to NP/2 as amplitude and sine phase.",
+  "purpose": ".fft publishes every bin from DC to NP/2 as amplitude and phase (cosine reference).",
   "oracle": {
     "kind": "analytic",
-    "derivation": "Ten whole periods of a 1 V, 1 kHz sine: bin 10 holds 1 at phase 0; DC and bin 30 hold 0."
+    "derivation": "Ten whole periods of a 1 V, 1 kHz sine: bin 10 holds 1 at phase -90 deg (the -j bin); DC and bin 30 hold 0. HSPICE's FFT phase is cosine-referenced: Star-Hspice Manual Release 1998.2 ch. 25 (web.engr.oregonstate.edu/~moon/ece323/hspice98/files/chapter_25.pdf), Example 1 (p. 25-12), lists the 1 kHz carrier sin(wc (Time - td)), whose window starts on a whole cycle, at fft_phase -90.0050 deg. So a sine of phase 0 at a window start lands at -90 deg: its complex bin is -j times the sine-referenced value. The DC bin is real in either reference."
   },
   "tokenizer": "hspice",
   "expect": {
@@ -38,8 +38,8 @@
                 0
               ],
               [
-                1,
-                0
+                0,
+                -1
               ],
               [
                 0,
@@ -53,5 +53,5 @@
     "finite_values_required": true,
     "all_requested_analyses_must_complete": true
   },
-  "netlist_sha256": "204f4bdccb7cd9a77b4c395e4dcf5ade74627685fec9d058be1ff32bc1071c1a"
+  "netlist_sha256": "4dec2d32416908747c29ac3515dcd11aac9f453c819db2418c853d33fb1cfc2b"
 }
