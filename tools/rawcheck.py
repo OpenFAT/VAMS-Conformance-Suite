@@ -74,6 +74,8 @@ def canonical(name):
         return "input_resistance"
     if n.startswith("v(output_impedance_at_"):
         return "output_resistance"
+    if re.fullmatch(r"[iv]\(@[^()]*\)", n):  # ngspice wraps device variables by unit: i(@m1[id])
+        n = n[2:-1]
     return n[:-7] if n.endswith("#branch") else n
 
 
