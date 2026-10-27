@@ -19,6 +19,7 @@
 // | config_declaration": this source_text mixes a config_declaration with
 // module_declarations (the refused neighbours are
 // library_declaration_rejected.v and include_statement_rejected.v).
+// gold: hand derivation, §13.1.1 and §13.4.4 (above)
 //! inherited IEEE 1364-2005 13.1.1 13.3.1.1 A.1.2
 config top;
   design work.top;

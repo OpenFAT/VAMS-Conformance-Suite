@@ -12,6 +12,7 @@
 // at a distinct time (parameter D), so no §11.4.2 order is assumed:
 //   t=1  top.u1 bound to work.rtl  -> "rtl top.u1 work.rtl"
 //   t=2  top.u2 bound to work.gate -> "gate top.u2 work.gate"
+// gold: hand derivation, §13.3.1.3 and §13.3.1.6 (above)
 //! inherited IEEE 1364-2005 13.3.1.3 13.3.1.6
 `timescale 1ns/1ns
 config cfg;

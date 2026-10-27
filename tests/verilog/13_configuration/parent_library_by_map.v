@@ -12,6 +12,7 @@
 // map's order with no config would give rtlLib.foo
 // (default_search_order.v). adder's D is 0:
 //   t=0 adder aLib.adder; t=1,2 adder.f1/f2 aLib.foo.
+// gold: hand derivation, §13.3.1.5 and §13.4.4 (above)
 //@ libmap ex13_5/lib.map
 //@ files ex13_5/top.v ex13_5/adder.v ex13_5/adder.vg
 //! inherited IEEE 1364-2005 13.3.1.5 13.4.4

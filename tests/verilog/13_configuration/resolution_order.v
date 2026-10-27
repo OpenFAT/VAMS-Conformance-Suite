@@ -17,6 +17,7 @@
 //   bar.v     lib3 (only the directory matches)                    t=3
 //   barver.v  lib4 (wildcarded filename over lib3's directory)   t=4
 // This file matches nothing: work.top, at t=0.
+// gold: hand derivation, §13.2.1.1 and §13.7.3 (above)
 //@ libmap libmap/proj/tb/lib.map
 //@ files libmap/proj/lib1/foobar.v libmap/proj/lib1/foo.v libmap/proj/lib1/bar.v libmap/proj/lib1/barver.v
 //! inherited IEEE 1364-2005 13.2.1.1 13.2.1 13.2.3

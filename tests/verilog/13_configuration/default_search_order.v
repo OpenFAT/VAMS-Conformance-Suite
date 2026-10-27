@@ -17,6 +17,7 @@
 // Search order rtlLib aLib gateLib work. Each instance prints at its time:
 //   t=0 top rtlLib.top; t=1,2 top.a1/a2 aLib.adder;
 //   t=11,12,21,22 top.a1.f1 .. top.a2.f2 rtlLib.foo.
+// gold: hand derivation, §13.5.1 and §13.2.1.1 (above)
 //@ libmap ex13_5/lib.map
 //@ files ex13_5/top.v ex13_5/adder.v ex13_5/adder.vg
 //! inherited IEEE 1364-2005 13.5.1 13.2.1 13.2.1.1 13.2.3 13.6

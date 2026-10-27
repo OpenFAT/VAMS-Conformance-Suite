@@ -11,6 +11,7 @@
 // barver.v lib4's ("*ver.v"). Resolved against outer.map's directory they
 // would name libmap/lib1/, which does not exist, and both would be work.
 //   t=0 top work.top; t=1 top.u1 lib3.bar; t=2 top.u2 lib4.barver.
+// gold: hand derivation, §13.2.2 (above)
 //@ libmap libmap/inc/outer.map
 //@ files libmap/proj/lib1/bar.v libmap/proj/lib1/barver.v
 //! inherited IEEE 1364-2005 13.2.2

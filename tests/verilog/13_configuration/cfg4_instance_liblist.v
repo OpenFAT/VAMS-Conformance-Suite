@@ -13,6 +13,7 @@
 //   t=0 top rtlLib.top; t=1 top.a1 gateLib.adder; t=2 top.a2 aLib.adder;
 //   t=11,12 top.a1.f1/f2 gateLib.foo (the default list);
 //   t=21,22 top.a2.f1/f2 aLib.foo (top.a2's list, inherited).
+// gold: hand derivation, §13.5.4 and §13.3.1.5 (above)
 //@ libmap ex13_5/lib.map
 //@ files ex13_5/top.v ex13_5/adder.v ex13_5/adder.vg
 //! inherited IEEE 1364-2005 13.5.4 13.3.1.3 13.3.1.5

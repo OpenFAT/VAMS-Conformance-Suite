@@ -15,6 +15,7 @@
 //   t=0  top     -> "top work.top work.top"
 //   t=1  top.u   -> "top.u work.mid work.mid"
 //   t=2  top.u.v -> "top.u.v work.leaf work.leaf"
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 13.1 13.6
 `timescale 1ns/1ns
 module leaf;

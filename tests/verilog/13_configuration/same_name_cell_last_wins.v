@@ -17,6 +17,7 @@
 // Both leaf modules are in work (no map, §13.2.1); the second is the last
 // encountered, so work.leaf is the second and top.u prints "second". The
 // clause's warning names no text; VerA's is W1152.
+// gold: hand derivation, §13.2.1.1 (above)
 //! inherited IEEE 1364-2005 13.2.1.1
 module leaf;
   initial $display("first");

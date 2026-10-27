@@ -12,6 +12,7 @@
 // so what the fixture tells apart is Syntax 13-8's empty list being accepted;
 // the parent-library search across libraries is cfg4_instance_liblist.v
 // (an instance liblist, inherited) and parent_library_by_map.v.
+// gold: Verilator 5.052 agrees
 //! inherited IEEE 1364-2005 13.3.1.5
 `timescale 1ns/1ns
 config cfg;

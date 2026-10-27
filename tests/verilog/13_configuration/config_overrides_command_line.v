@@ -10,6 +10,7 @@
 // transcript is cfg1's:
 //   t=0 top rtlLib.top; t=1,2 top.a1/a2 aLib.adder;
 //   t=11,12,21,22 top.a1.f1 .. top.a2.f2 aLib.foo.
+// gold: hand derivation, §13.7 and §13.5.2 (above)
 //@ libmap ex13_5/lib.map
 //@ files ex13_5/top.v ex13_5/adder.v ex13_5/adder.vg
 //@ liblist gateLib

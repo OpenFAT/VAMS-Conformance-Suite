@@ -11,6 +11,7 @@
 // uninstantiated module (§12.1.1), found by no search.
 //   t=0 top rtlLib.top; t=1,2 top.a1/a2 gateLib.adder;
 //   t=11,12,21,22 top.a1.f1 .. top.a2.f2 gateLib.foo.
+// gold: hand derivation, §13.7.1 (above)
 //@ libmap ex13_5/lib.map
 //@ files ex13_5/top.v ex13_5/adder.v ex13_5/adder.vg
 //@ liblist gateLib

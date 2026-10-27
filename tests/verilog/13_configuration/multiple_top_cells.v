@@ -10,6 +10,7 @@
 // uninstantiated and not listed, so it is not a top and never prints.
 // t1 prints at t=0, t2 at t=1 (distinct times, no §11.4.2 order assumed),
 // and t1 finishes at t=2:  "t1", "t2".
+// gold: hand derivation, §13.3.1.1 and §13.4.4 (above)
 //! inherited IEEE 1364-2005 13.3.1.1 13.4.4
 `timescale 1ns/1ns
 config cfg;
