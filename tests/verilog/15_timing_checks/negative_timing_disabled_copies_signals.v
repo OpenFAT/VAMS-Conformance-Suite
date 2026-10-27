@@ -1,4 +1,5 @@
 // Without an option enabling negative timing checks, the delayed arguments must still copy the original signals.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 15.5.4
 `timescale 1ns/1ns
 module negative_copy_cell(input clk,input d,output delayed_clk,output delayed_d);

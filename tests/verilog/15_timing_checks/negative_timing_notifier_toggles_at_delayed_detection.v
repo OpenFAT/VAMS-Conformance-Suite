@@ -30,6 +30,7 @@
 //   t=101  nb has not toggled yet: "t=101 na=0 nb=0".
 //   t=140  after every delayed event: nb went 0 -> 1 (Table 15-13):
 //          "t=140 na=0 nb=1".
+// gold: hand derivation, §15.5.1 and §15.5.3 (above)
 //@ negative-timing
 //! inherited IEEE 1364-2005 15.5.3 15.5.1
 `timescale 1ns/1ps

@@ -21,6 +21,7 @@
 //          no event.
 //   t=130  after every delayed event (the delays are the tool's, §15.5.1,
 //          so the notifiers are read long after): "after=1,0".
+// gold: hand derivation, §15.8, §15.5.2 and §15.2 (above)
 //@ negative-timing
 //! inherited IEEE 1364-2005 15.5.2 15.8
 `timescale 1ns/1ps

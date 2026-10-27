@@ -36,6 +36,7 @@
 //   clk rises at 1494: before (1495, 1498): none.        t=1540 n=1
 // A tool that read either negative limit as 0 would see violations at 101,
 // 202, 1099 and 1198 as well.
+// gold: hand derivation, §15.8, §15.2.6 and §15.5.1 a) (above)
 //@ negative-timing
 //! inherited IEEE 1364-2005 15.8 15.2.6
 `timescale 1ns/1ps
