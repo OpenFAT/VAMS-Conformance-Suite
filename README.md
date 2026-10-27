@@ -101,7 +101,8 @@ Two kinds of directive:
 | `//! lrm 4.5.7`, `//! inherited IEEE 1364-2005 3.8` | nobody | the clause, or `clause:sentence`, the test checks |
 | `//! reject <note>` | harness | the tool must refuse the source with a diagnostic (exit 1–125, not a crash or timeout). The note names the expected error, often as VerA's code; the harness does not match it. |
 | `//! reject-run <note>` | harness | compiles, and the run must fail |
-| `//! exit N` | harness | the run's exit status |
+| `//! exit N` | harness | the run's exit status, 0–125 |
+| `//! exit any` | harness | the run may exit with any status 0–125, for a clause that leaves it open (a crash, timeout or exit ≥ 126 still fails); the output checks below still apply |
 | `//! checks N` | harness | exactly N `ok=` lines |
 | `//! stdout TEXT` | harness | stdout contains TEXT |
 | `//! expect stdout GOLD` | harness | stdout equals GOLD (beside the test) instead of `<stem>.expected.txt`; a GOLD that is not there fails the test |
@@ -116,7 +117,7 @@ Two kinds of directive:
 1. A test with only metadata (`lrm`, `reject`, ...) is an accept or reject
    test: the compile stage decides it.
 2. Any other `//!` line, a `CHECK` macro, or an `.expected.txt` makes it a run
-   test. The run must exit 0 (or `//! exit N`), and then:
+   test. The run must exit 0 (or `//! exit N`, or 0–125 under `//! exit any`), and then:
    - stdout must equal `<stem>.expected.txt` byte for byte;
    - stderr must contain `<stem>.expected.stderr.txt` (stderr also carries the
      tool's own diagnostics, so containment, not equality);

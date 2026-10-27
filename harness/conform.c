@@ -255,6 +255,8 @@ static int locate(const char *abs, char *root, char *lang, const char **rel) {
 
 /* ---- one test -------------------------------------------------------- */
 
+/* Spec.exit_want below 0: any status 1..125 (reject-run), any 0..125 (`//! exit any`) */
+enum { EXIT_FAILED = -1, EXIT_ANY = -2 };
 typedef struct {
     int reject, reject_run, exit_want, checks_want, needs_run, self_checks, passed;
     char *stdout_want[16];
@@ -326,7 +328,14 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
         const char *arg = d + kn + strspn(d + kn, " \t");
         if (kw_is(d, kn, "reject") || kw_is(d, kn, "reject-only")) sp->reject = 1;
         else if (kw_is(d, kn, "reject-run")) sp->reject_run = 1;
-        else if (kw_is(d, kn, "exit")) sp->exit_want = atoi(arg), exit_set = 1;
+        else if (kw_is(d, kn, "exit")) {
+            int any = !strncmp(arg, "any", 3);
+            char *end = (char *)arg + 3;
+            long n = any ? EXIT_ANY : strtol(arg, &end, 10);
+            if (end == arg || *trim(end) || (!any && (n < 0 || n > 125)))
+                return snprintf(why, MSG, "//! exit takes 0..125 or `any`: %s", arg), free(text), -1;
+            sp->exit_want = (int)n, exit_set = 1;
+        }
         else if (kw_is(d, kn, "checks")) sp->checks_want = atoi(arg);
         else if (kw_is(d, kn, "stdout") && sp->nstdout < 16) sp->stdout_want[sp->nstdout++] = xstrdup(trim((char *)arg));
         else if (kw_is(d, kn, "expect")) {
@@ -338,7 +347,7 @@ static int parse(const char *src, const char *dir, Spec *sp, char *why) {
         if (!is_meta(d, kn)) sp->needs_run = 1;
     }
     free(text);
-    if (sp->reject_run && !exit_set) sp->exit_want = -1; /* any normal failure */
+    if (sp->reject_run && !exit_set) sp->exit_want = EXIT_FAILED;
     if (*named) {
         /* a named gold that is not there is a broken test, not a gold-less one */
         snprintf(sp->gold, sizeof sp->gold, "%s/%s", dir, named);
@@ -374,7 +383,7 @@ static int parse_row(char *row, const char *mroot, Spec *sp, char *lang, char *s
     else if (!strcmp(w, "passed")) sp->needs_run = sp->passed = 1;
     else if (!strcmp(w, "compile")) ;
     else if (!strcmp(w, "reject")) sp->reject = 1;
-    else if (!strcmp(w, "reject-run")) sp->reject_run = sp->needs_run = 1, sp->exit_want = -1;
+    else if (!strcmp(w, "reject-run")) sp->reject_run = sp->needs_run = 1, sp->exit_want = EXIT_FAILED;
     else return snprintf(why, MSG, "unknown want `%s`", w), -1;
     if (n > 3 && strchr(col[3], '=')) return snprintf(why, MSG, "gold column is `%s`: write `-` before KEY=VALUE", col[3]), -1;
     if (n > 3 && strcmp(col[3], "-")) snprintf(sp->gold, sizeof sp->gold, "%s/%s", mroot, col[3]);
@@ -757,7 +766,8 @@ static int run_test(const Test *t, size_t index, char *why) {
         } else if (!judge_output(dir, work, &sp, &r, why)) verdict = FAIL;
         goto out;
     }
-    if (r.status != sp.exit_want) {
+    /* `//! exit any`: the tool's to choose, short of a crash, a timeout or a shell failure */
+    if (sp.exit_want == EXIT_ANY ? r.status < 0 || r.status > 125 : r.status != sp.exit_want) {
         snprintf(why, MSG, "%s", describe(&r, "run", d));
         if (r.status >= 0 && r.status < 126) {
             const char *e = *r.err ? r.err : r.out;

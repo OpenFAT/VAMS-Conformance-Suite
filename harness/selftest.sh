@@ -32,6 +32,10 @@ case_ verilog-a reject_accepted '//! reject E0001' '' 0
 case_ verilog-a reject_crash '//! reject E0001' '' segv
 case_ verilog-a reject_run_ok '//! reject-run out of range' '' 1
 case_ verilog-a exit_code '//! exit 3' '' 3
+# `//! exit any`: any status 0..125, the output still judged; a crash fails.
+case_ verilog-a exit_any '//! exit any\n//! stdout loaded 2' 'loaded 2\n' 1
+case_ verilog-a exit_any_crash '//! exit any\n//! stdout loaded 2' 'loaded 2\n' segv
+case_ verilog-a exit_any_wrong_output '//! exit any\n//! stdout loaded 2' 'loaded 3\n' 0
 case_ verilog-a stdout_line '//! stdout t=20 reached' 'p: t=20 reached\n' 0
 case_ verilog-a timeout '//! bias V(p) = 1' '' hang
 case_ verilog-a xfail '//! bias V(p) = 1' 'ok=0\n' 0
@@ -116,6 +120,9 @@ FAIL	verilog-a/reject_accepted.va
 FAIL	verilog-a/reject_crash.va
 PASS	verilog-a/reject_run_ok.va
 PASS	verilog-a/exit_code.va
+PASS	verilog-a/exit_any.va
+FAIL	verilog-a/exit_any_crash.va
+FAIL	verilog-a/exit_any_wrong_output.va
 PASS	verilog-a/stdout_line.va
 FAIL	verilog-a/timeout.va
 XFAIL	verilog-a/xfail.va
