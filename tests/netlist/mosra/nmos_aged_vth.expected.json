@@ -13,7 +13,8 @@
       "version": "44.2",
       "command": "ngspice -b fresh.sp  (level=8 version=3.3; aged: the same with delvto=0.01)",
       "max_rel_err": 1.9e-07,
-      "note": "fresh 0.3908655379 V, aged (delvto=0.01) 0.4008654972 V: the aged gate moves 0.0099999594 V. ngspice cannot run MOSRA, so this deck does not test it."
+      "note": "fresh 0.3908655379 V, aged (delvto=0.01) 0.4008654972 V: the aged gate moves 0.0099999594 V. ngspice cannot run MOSRA, so this deck does not test it.",
+      "mosra_note": "The aged shift dVth = tit0*t^tn is the MOSRA level 1 BTI law, unconfirmed: the HSPICE Reliability Analysis guide is not available here and no second simulator runs MOSRA."
     }
   },
   "tokenizer": "hspice",

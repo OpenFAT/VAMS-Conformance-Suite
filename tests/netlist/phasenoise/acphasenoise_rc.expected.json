@@ -4,7 +4,9 @@
   "purpose": "HSPICE .acphasenoise reads the .noise output of a phase-domain circuit as phase noise in dBc/Hz.",
   "oracle": {
     "kind": "analytic",
-    "derivation": "Phase-domain RC: S(f) = 4kTR/(1+(f/fc)^2) rad^2/Hz at 25 degC, k = 1.38064852e-23 J/K (ngspice CONSTboltz, as ESPice), fc = 1/(2 pi R C); PHNOISE = 10 log10(S/2) (IEEE 1139 L(f); the manual gives no formula)."
+    "derivation": "Phase-domain RC: the output phase PSD is S(f) = 4kTR/(1+(f/fc)^2) rad^2/Hz at 25 degC (k = 1.38064852e-23 J/K, CODATA 2014), fc = 1/(2 pi R C); PHNOISE is the single-sideband phase noise L(f) = S(f)/2 in dBc/Hz, the definition of IEEE Std 1139.",
+    "confirmed": null,
+    "confirmed_reason": "IEEE 1139 defines L(f) = S_phi(f)/2; that HSPICE's PHNOISE column is this L(f) is not in the HSPICE manuals available here, and no second simulator runs .acphasenoise."
   },
   "tokenizer": "hspice",
   "expect": {

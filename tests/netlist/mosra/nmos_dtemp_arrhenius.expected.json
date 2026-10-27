@@ -4,7 +4,9 @@
   "purpose": "MOSRA BTI Arrhenius factor at each device's own temperature (circuit + dtemp, or an explicit temp).",
   "oracle": {
     "kind": "analytic",
-    "derivation": "dVth = 1e-2*exp(-3000/T)*(1e8)^0.25 with T = 298.15, 348.15 and 373.15 K (HSPICE's 25 C; 25 + dtemp 50; temp=100 overriding dtemp). The m2/m1 ratio is exp(3000*(1/298.15 - 1/348.15)) = 4.24216546786."
+    "derivation": "dVth = 1e-2*exp(-3000/T)*(1e8)^0.25 with T = 298.15, 348.15 and 373.15 K (HSPICE's 25 C; 25 + dtemp 50; temp=100 overriding dtemp). The m2/m1 ratio is exp(3000*(1/298.15 - 1/348.15)) = 4.24216546786.",
+    "confirmed": null,
+    "confirmed_reason": "The MOSRA level 1 equations (BTI tit0*exp(titfd*Vgs)*exp(-tittd/T)*t^tn, HCI hci0*exp(hcifd*Vds)*t^hcin) follow the parameter names of the HSPICE Reliability Analysis guide, which is not available here to confirm their form; no second simulator runs MOSRA."
   },
   "tokenizer": "hspice",
   "expect": {
