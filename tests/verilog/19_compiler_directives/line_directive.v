@@ -13,6 +13,7 @@
 // example and one directive of each other level, one of them inside the
 // initial block ("anywhere"), leave the module as it is without them:
 // v = 5, then v + 1 -> "v=6".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.7
 `line 3 "orig.v" 2
 module b_19_7_line_directive;

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.5
 // §19.5 leaves where a relative `include is searched to the tool; VerA
 // searches the including file's directory, so this sibling is found though

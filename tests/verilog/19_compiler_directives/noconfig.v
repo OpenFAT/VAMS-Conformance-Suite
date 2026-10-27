@@ -10,6 +10,7 @@
 //
 // config, cell and design as reg names under "1364-2001-noconfig":
 // config = 1, cell = 1, design = 0 -> "110".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.11
 `begin_keywords "1364-2001-noconfig"
 module b_19_11_noconfig;

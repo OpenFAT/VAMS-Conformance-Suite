@@ -14,6 +14,7 @@
 // written inside b_19_1_cell_or's definition, and an unpaired `celldefine
 // before the top module. a = 1, b = 0 at time 0:
 //   and -> 0, or -> 1, printed at time 1 as "and=0 or=1".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.1
 `timescale 1ns/1ns
 `celldefine

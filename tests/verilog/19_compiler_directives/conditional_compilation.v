@@ -32,6 +32,7 @@
 // `else arm: "define is not defined".
 // "anywhere": an `ifdef inside an expression selects its operand: with
 // `plus3 defined, 1 + 3 = 4.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.4
 `define wow
 `define nest_one

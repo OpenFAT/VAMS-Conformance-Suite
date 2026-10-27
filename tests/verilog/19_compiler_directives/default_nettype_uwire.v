@@ -1,3 +1,4 @@
+// gold: hand derivation, §19.2: `default_nettype uwire makes uw an implicit uwire, driven 0
 //! inherited IEEE 1364-2005 19.2
 // `default_nettype uwire is legal: the implicit net below is a uwire with one
 // driver.

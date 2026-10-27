@@ -23,6 +23,7 @@
 // A second `include of the same file inside the begin-end block ("anywhere")
 //   reads CONSTANTS_VAMS as defined and so inserts nothing but directives:
 //   the block still holds only its $display statements.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19 19.5
 `ifdef M_PI
 `define BEFORE 1

@@ -41,6 +41,7 @@
 //   the latest definition prevails. The redefinition sits inside the initial
 //   block, textually before the use: macros follow source text, not
 //   execution, and §19.3.1 lets a `define appear inside a module.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19 19.3.1
 `timescale 1ns/1ns
 `define wordsize 8

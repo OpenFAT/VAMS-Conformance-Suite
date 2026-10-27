@@ -56,6 +56,7 @@
 // inputs as pull-strength drivers, and resolves them with §7.10's strength
 // model. (Until that landed this header listed three blockers; they are gone.)
 
+// gold: hand derivation, §19.9, §4.6.4, §4.6.6 and §7.10.1 (above)
 //! inherited IEEE 1364-2005 4.6.4 4.6.6 7.10.1 19.9
 `unconnected_drive pull1
 module d10_pulled(w, t, s);

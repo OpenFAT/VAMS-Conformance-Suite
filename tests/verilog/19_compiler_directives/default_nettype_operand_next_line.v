@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.2
 // A directive's operand need not be on the directive's own line; the newline
 // is white space (br_gh782f).

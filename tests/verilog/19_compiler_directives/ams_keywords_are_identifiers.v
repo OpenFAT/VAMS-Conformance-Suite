@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //@ std 1364-2005
 //! inherited IEEE 1364-2005 19.11 B
 // Annex B reserves none of connect, sqrt or string for 1364-2005, so all three

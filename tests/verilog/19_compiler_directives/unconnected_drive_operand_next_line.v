@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.9
 // `unconnected_drive's pull1 operand may be on the next line; the unconnected
 // input port of leaf, whose definition sits between the directives, is then

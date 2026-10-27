@@ -22,6 +22,7 @@
 //   generate = 0 -> "95b 0" at time 2.
 // "1364-2001" (Table 19-3 has no uwire): the clause's m2, wire [63:0] uwire,
 //   assigned 64'd5 -> "01 5" at time 3.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.11
 `timescale 1ns/1ns
 `begin_keywords "1364-1995"

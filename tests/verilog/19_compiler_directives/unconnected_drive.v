@@ -22,6 +22,7 @@
 //   which the "latest occurrence" sentence only has a use for.)
 //   b_19_9_bound under pull1 again, but its input is connected to a reg
 //                holding 0: only unconnected ports are pulled       -> 0 at 4
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.9
 `timescale 1ns/1ns
 `unconnected_drive pull1

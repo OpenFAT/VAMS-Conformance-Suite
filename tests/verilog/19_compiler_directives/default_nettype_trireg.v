@@ -1,3 +1,4 @@
+// gold: hand derivation, §19.2: `default_nettype trireg makes treg_net an implicit trireg, driven 1
 //! inherited IEEE 1364-2005 19.2
 // `default_nettype trireg is legal: the implicit net below is a trireg and
 // carries its continuous driver's value.

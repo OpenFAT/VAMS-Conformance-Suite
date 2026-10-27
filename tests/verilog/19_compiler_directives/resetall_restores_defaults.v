@@ -16,6 +16,7 @@
 //   modules to have a `timescale and others not, so the `timescale is given
 //   again right after the `resetall, as the recommended usage says.
 // `KEEP, defined before the `resetall, is still 7 after it -> "KEEP=7" at 3.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.3 19.6 19.9
 `timescale 1ns/1ns
 `define KEEP 7

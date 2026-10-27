@@ -10,6 +10,7 @@
 // superseded by the second ("Multiple `default_nettype directives are
 // allowed"); neither changes a declared net. The final `default_nettype wire
 // restores the default for whatever source follows.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.2
 `timescale 1ns/1ns
 `default_nettype tri

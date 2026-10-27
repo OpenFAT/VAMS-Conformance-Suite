@@ -14,6 +14,7 @@
 // of two unrecognized names, restore every pragma to the state it was in
 // before any text was read, which is the state it is in: the module compiles
 // and computes as it would without them. q = 3 at time 0 -> "q=3".
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.10.1
 `pragma resetall
 `pragma reset vera_unrecognized, another_unrecognized

@@ -18,6 +18,7 @@
 //   p_tri1  (`default_nettype tri1)   no driver at all: tri1 pulls up -> 1
 //   p_reset (`resetall, then only `timescale): wire again, 1 vs 0 -> x
 // Read at time 1 in each parent, printed in order by distinct delays.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.2 19.6
 `timescale 1ns/1ns
 module b_19_2_one(output o); assign o = 1'b1; endmodule

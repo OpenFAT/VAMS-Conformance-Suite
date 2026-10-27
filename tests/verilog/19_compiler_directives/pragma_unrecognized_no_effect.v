@@ -7,6 +7,7 @@
 // of Syntax 19-9's pragma_expression (a bare keyword, keyword = value, a
 // parenthesized list, a number, a string). With no effect, the module is the
 // same as one without them: q takes 1 at t = 1 and prints it.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.10
 //! expect stdout pragma_unrecognized_no_effect.expected.txt
 module pragma_unrecognized_no_effect;

@@ -22,6 +22,7 @@
 // itself still prints 1.55 (%g) at the end. §4.10.1, p. 36: "A parameter
 // declaration with no type or range specification shall default to the type
 // and range of the final value assigned to the parameter", here real.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.8
 `timescale 10 ns / 1 ns
 module b_19_8_parameter_example;

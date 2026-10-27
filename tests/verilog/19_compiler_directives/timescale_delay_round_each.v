@@ -2,6 +2,7 @@
 // Unit10ns/precision1ns: each0.26-unit delay is2.6ns rounded to3ns.
 // Repeated delays occur at3ns and6ns, not at rounded accumulated5.2ns=5ns.
 // $realtime is in module units, giving0.3 then0.6; no midpoint tie is used.
+// gold: Icarus Verilog 13.0 agrees
 //! lrm 9.6
 //! lrm 9.10
 //! inherited IEEE 1364-2005 19.8,17.7.3

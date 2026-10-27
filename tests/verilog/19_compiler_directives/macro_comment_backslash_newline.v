@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.3.1
 // A backslash-newline continues macro text inside a // comment, and the
 // comment is then dropped (br_gh435).

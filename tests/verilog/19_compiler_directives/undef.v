@@ -9,6 +9,7 @@
 // again as 6 after the `undef: 6 (nothing of the old definition survives).
 // `undef never_defined is allowed ("can result in a warning", not an error),
 // so the module still compiles and runs.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.3.2
 `define width 4
 `undef never_defined

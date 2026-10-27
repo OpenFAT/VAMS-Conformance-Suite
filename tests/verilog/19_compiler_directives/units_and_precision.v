@@ -22,6 +22,7 @@
 //   3.2. (1.55 units is 15.5 ns, half-way between 15 and 16; the clause
 //   itself fixes the rounding up to 16.)
 // Printed in time order: 1.235 ns, 16 ns, 32 ns.
+// gold: Icarus Verilog 13.0 agrees
 //! inherited IEEE 1364-2005 19.8
 `timescale 1 ns / 1 ps
 module b_19_8_fine;

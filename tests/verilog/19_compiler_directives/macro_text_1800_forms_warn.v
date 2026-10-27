@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //@ std 1364-2005
 //! inherited IEEE 1364-2005 19.3.1
 //! warn W0151

@@ -1,3 +1,4 @@
+// gold: Icarus Verilog 13.0 agrees
 //@ std 1364-2001
 //! inherited IEEE 1364-2005 19.11
 // "1364-2001-noconfig" is 1364-2001 without the config keywords, so config is
