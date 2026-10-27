@@ -7,8 +7,14 @@
     "derivation": "Independent ngspice-44.2 run of the preserved benchmark circuit. Stored binary raw doubles, selected by column name. Transient values retain reference accepted times. Large sweeps retain explicit row indices including outer-sweep boundaries.",
     "command": "ngspice -n -b -r reference.raw circuit.sp",
     "source_sha256": "f6d2453c67f2056ca5fc60c9ab53c42af67a066a9d4883d3e6cdae2c8aa81469",
-    "confirmed": null,
-    "confirmed_reason": "Ngspice's VBIC (level 4, its C port of VBIC 1.2): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
+    "confirmed": {
+      "tool": "vacask",
+      "version": "unstable-2026 (nixpkgs vacask-unstable-2026)",
+      "command": "vacask twin.sim: vbic_1p3_4t.osdi, the VBIC 1.3 reference Verilog-A shipped with VACASK; the deck's VBIC card as a vbic13_4t model, sweep vbe 0.6..0.8 (outer) and vce 0..5 (inner), options reltol=1e-7",
+      "max_rel_err": 0.000367,
+      "max_tolerance_ratio": 0.348,
+      "note": "ngspice's level 4 is its C port of VBIC 1.2; the 1.3 reference agrees within tolerance here (no self-heating, 27 degC). The largest relative error is at currents under the atol."
+    }
   },
   "origin": "benchmark/fixtures/devices/vbic_output/circuit.sp",
   "expect": {

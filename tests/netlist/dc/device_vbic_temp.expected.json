@@ -11,7 +11,7 @@
       ".print line ignored since rawfile was produced."
     ],
     "confirmed": null,
-    "confirmed_reason": "Ngspice's VBIC (level 4, its C port of VBIC 1.2): Xyce 7.10.0 has no model with the same equations; VACASK's OSDI builds of SPICE models are compiled from ngspice's own C sources, so they are no independent check."
+    "confirmed_reason": "ngspice's VBIC (level 4, its C port of VBIC 1.2) with RTH = 300 at 150 degC: VACASK running the VBIC 1.3 reference Verilog-A (vbic_1p3_4t.osdi) on the same card differs up to 6.8% in i(vb) (68x the tolerance), a self-heating and temperature difference between the model releases; Xyce 7.10.0 has no VBIC of either release with these equations. No source decides."
   },
   "origin": "benchmark/fixtures/devices/vbic_temp/circuit.sp",
   "expect": {
