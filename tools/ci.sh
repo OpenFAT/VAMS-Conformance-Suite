@@ -17,14 +17,14 @@ in_shell=(nix shell "$unstable#python3")
 
 case $tool in
 vera)
-  nix build github:OmarSiwy/VerA -o result-tool
+  nix build github:OpenFAT/VerA -o result-tool
   export VERA=$PWD/result-tool/bin/vera
   # vera drives Zig at run time: run inside VerA's own dev shell.
-  in_shell=(nix develop github:OmarSiwy/VerA)
+  in_shell=(nix develop github:OpenFAT/VerA)
   version=$("$VERA" --version)
   ;;
 espice)
-  nix build github:OmarSiwy/ESPice -o result-tool
+  nix build github:OpenFAT/EGSpice -o result-tool
   export ESPICE=$PWD/result-tool/bin/espice
   version="espice $("$ESPICE" --version 2>&1 | head -1)"
   ;;

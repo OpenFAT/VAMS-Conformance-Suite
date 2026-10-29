@@ -1,6 +1,6 @@
 # vera/
 
-What only [VerA](https://github.com/OmarSiwy/VerA) uses. VerA checks this
+What only [VerA](https://github.com/OpenFAT/VerA) uses. VerA checks this
 suite out at `tests/conformance` and runs `tests/` through its own harness
 (`zig build suite -- ams|devices|ieee1364`, `test` for the hosts and VPI applications, `test-spice`);
 `conform` never reads this directory, since a test is a file under `tests/`.
