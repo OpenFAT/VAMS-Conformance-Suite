@@ -4,3 +4,7 @@ result-*
 .zig-cache/
 results/
 __pycache__/
+
+# fetched by external/spice-bench/*/fetch.sh
+/suites/
+/*.log
