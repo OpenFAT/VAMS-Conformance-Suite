@@ -7,9 +7,9 @@
 <rect class="trk" x="172" y="38" width="12" height="12" rx="3"/><text class="m" x="190" y="48">Not supported</text>
 <text x="16" y="77">ESPice</text>
 <rect class="trk" x="150" y="64" width="430" height="18" rx="4"><title>36 not supported</title></rect>
-<rect class="p" x="150.0" y="64" width="368.3" height="18" rx="4"><title>924 passed (86.1%)</title></rect>
-<rect class="f" x="520.3" y="64" width="43.3" height="18" rx="4"><title>113 failed (10.5%)</title></rect>
-<text x="592" y="77"><tspan font-weight="600">86.1%</tspan><tspan class="m"> 924 / 1073</tspan></text>
+<rect class="p" x="150.0" y="64" width="368.7" height="18" rx="4"><title>925 passed (86.2%)</title></rect>
+<rect class="f" x="520.7" y="64" width="42.9" height="18" rx="4"><title>112 failed (10.4%)</title></rect>
+<text x="592" y="77"><tspan font-weight="600">86.2%</tspan><tspan class="m"> 925 / 1073</tspan></text>
 <text x="16" y="111">ngspice</text>
 <rect class="trk" x="150" y="98" width="430" height="18" rx="4"><title>36 not supported</title></rect>
 <rect class="p" x="150.0" y="98" width="238.0" height="18" rx="4"><title>599 passed (55.8%)</title></rect>

@@ -4,6 +4,6 @@
 <text class="h" x="16" y="26">Verilog-AMS: wall time, shorter is faster</text>
 <text class="m" x="16" y="44">the 728 tests it passes</text>
 <text x="16" y="65">VerA</text>
-<rect class="p" x="150" y="52" width="430.0" height="18" rx="4"><title>1727.4 s total, median 1.4 s per test</title></rect>
-<text x="590.0" y="65"><tspan font-weight="600">1727.4 s</tspan><tspan class="m"> median 1.4 s/test</tspan></text>
+<rect class="p" x="150" y="52" width="430.0" height="18" rx="4"><title>1902.1 s total, median 1.6 s per test</title></rect>
+<text x="590.0" y="65"><tspan font-weight="600">1902.1 s</tspan><tspan class="m"> median 1.6 s/test</tspan></text>
 </svg>
