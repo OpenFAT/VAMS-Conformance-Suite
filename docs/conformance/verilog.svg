@@ -7,6 +7,6 @@
 <rect class="trk" x="172" y="38" width="12" height="12" rx="3"/><text class="m" x="190" y="48">Not supported</text>
 <text x="16" y="77">VerA</text>
 <rect class="trk" x="150" y="64" width="430" height="18" rx="4"><title>0 not supported</title></rect>
-<rect class="p" x="150.0" y="64" width="427.8" height="18" rx="4"><title>3609 passed (99.9%)</title></rect>
-<text x="592" y="77"><tspan font-weight="600">99.9%</tspan><tspan class="m"> 3609 / 3611</tspan></text>
+<rect class="p" x="150.0" y="64" width="428.0" height="18" rx="4"><title>3611 passed (100.0%)</title></rect>
+<text x="592" y="77"><tspan font-weight="600">100.0%</tspan><tspan class="m"> 3611 / 3611</tspan></text>
 </svg>

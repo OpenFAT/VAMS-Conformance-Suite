@@ -247,7 +247,7 @@ same class, with as many tests in parallel as it has CPUs; treat differences
 under about 20% as noise.
 
 <!-- conformance:start -->
-Measured 2026-10-30 by `.github/workflows/conformance.yml`, each tool at its latest version (`tools/ci.sh` says which).
+Measured 2026-11-02 by `.github/workflows/conformance.yml`, each tool at its latest version (`tools/ci.sh` says which).
 
 ![Verilog (IEEE 1364-2005) conformance](docs/conformance/verilog.svg)
 ![Verilog (IEEE 1364-2005) speed](docs/conformance/verilog-time.svg)
@@ -266,11 +266,11 @@ Measured 2026-10-30 by `.github/workflows/conformance.yml`, each tool at its lat
 
 | Language | Tool | Version | Passed | Failed | Not supported | Conformance | Time on common tests |
 |---|---|---|---:|---:|---:|---:|---:|
-| Verilog (IEEE 1364-2005) | VerA | vera 0.20.0 | 3609 | 2 | 0 | 99.9% | 149.5 s (3609) |
-| Verilog-A | VerA | vera 0.20.0 | 2452 | 0 | 0 | 100.0% | 2389.2 s (2452) |
-| Verilog-AMS | VerA | vera 0.20.0 | 728 | 26 | 0 | 96.6% | 1902.1 s (728) |
-| SPICE | ESPice | espice espice 0.3.0 (VerA 0.20.0 14541a6f966b2e96eca145546b36e4550078dc0f; backends: cpu) | 925 | 112 | 36 | 86.2% | 373.6 s (552) |
-| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 599 | 438 | 36 | 55.8% | 329.0 s (552) |
+| Verilog (IEEE 1364-2005) | VerA | vera 0.22.0 | 3611 | 0 | 0 | 100.0% | 108.0 s (3611) |
+| Verilog-A | VerA | vera 0.22.0 | 2452 | 0 | 0 | 100.0% | 2442.0 s (2452) |
+| Verilog-AMS | VerA | vera 0.22.0 | 752 | 1 | 0 | 99.9% | 2013.2 s (752) |
+| SPICE | ESPice | espice espice 0.3.0 (VerA 0.20.0 3fabee3cd24baefc72c32ea052d032e4757b10be; backends: cpu) | 926 | 111 | 36 | 86.3% | 373.8 s (553) |
+| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 600 | 437 | 36 | 55.9% | 346.1 s (553) |
 
 </details>
 <!-- conformance:end -->
