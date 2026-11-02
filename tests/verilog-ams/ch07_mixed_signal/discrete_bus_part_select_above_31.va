@@ -25,9 +25,8 @@
 // the `reg` as a 32-bit integer reads 0 for the first three (or refuses
 // them); one that counted q from its left bound reads bits 15..0 (0x9abc).
 //
-// See also discrete_bus_part_select_above_31_analog_assigned.va: the same
-// selects of a `reg` the analog context assigns, which it computes at the
-// width IEEE 1364-2005 §5.4 gives the assignment.
+// See also discrete_bus_part_select_analog_assigned_rejected.va: the analog
+// context may read these selects, not assign them (§5.7, §7.3).
 //
 //! lrm 7.3.1
 //! inherited IEEE 1364-2005 4.2.1

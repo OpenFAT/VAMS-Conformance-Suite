@@ -1,0 +1,26 @@
+// §5.7: "The left-hand side of a procedural assignment shall be scalar,
+// either an integer, real, or string identifier or an element of an
+// integer, real or string array." A `reg` is none of these, and §7.3:
+// "Read operations of nets and variables in both domains are allowed from
+// both contexts. Write operations of nets and variables are only allowed
+// from the context of their domain." So the analog block may read the
+// digital `reg` x, and may not assign the `reg` a, whatever its width.
+//
+// net_and_variable_types.va is the legal neighbour: a vector `reg` set by
+// its declaration and read in the analog block (§7.3.1 Table 7-1).
+//
+//! lrm 5.7
+//! lrm 7.3
+//! reject-only E0316
+//! reject an analog assignment to a reg
+//! neighbour ../annex_a_syntax/net_and_variable_types.va
+`include "disciplines.vams"
+module ch7_analog_assignment_to_reg_vector(p);
+  inout p; electrical p;
+  reg [7:0] x, a;
+  initial x = 8'h5a;
+  analog begin
+    a = x + 1;
+    I(p) <+ V(p);
+  end
+endmodule

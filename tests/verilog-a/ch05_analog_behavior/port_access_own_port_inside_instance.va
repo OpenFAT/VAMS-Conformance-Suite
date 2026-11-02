@@ -1,0 +1,39 @@
+// §5.4.3: "The port access function accesses the flow into a port of a
+// module ... I(<a>) accesses the current through module port a." Read
+// inside an instance, a module's own `I(<a>)` is the flow into THAT
+// instance's port a: what the instance conducts away from the net its port
+// is joined to, and nothing any other instance on that net conducts.
+//
+// THE CIRCUIT. Two leaves on the top's port p, each `I(a) <+ V(a) / r`: u1
+// with r = 2k, u2 with r = 1k. Each reads its own port flow and checks it
+// against the value its instance is handed as `want`.
+//
+// BY HAND, at the bias V(p) = 0.5:
+//   u1: I(<a>) = 0.5 / 2000 = 2.5e-4
+//   u2: I(<a>) = 0.5 / 1000 = 5.0e-4
+// A tool that read the joined net's (the top port's) flow would give 7.5e-4
+// for both. Two checks.
+//
+// port_branch_own_port_inside_instance.va is the port-branch spelling;
+// port_access_hierarchical_instance.va reads the same flows from the top as
+// `I(<u1.a>)`, `I(<u2.a>)`.
+//
+//! lrm 5.4.3
+//! bias V(p) = 0.5
+//! solve
+//! checks 2
+`include "check.vh"
+module paop_g(a);
+  inout a; electrical a;
+  parameter real r = 1k;
+  parameter real want = 0.0;
+  analog begin
+    I(a) <+ V(a) / r;
+    `CHECKR("the instance's own port flow", I(<a>), want, 1e-12);
+  end
+endmodule
+module paop_top(p);
+  inout p; electrical p;
+  paop_g #(.r(2k), .want(2.5e-4)) u1(p);
+  paop_g #(.r(1k), .want(5.0e-4)) u2(p);
+endmodule

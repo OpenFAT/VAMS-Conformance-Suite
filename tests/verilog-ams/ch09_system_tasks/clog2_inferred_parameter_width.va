@@ -6,7 +6,9 @@
 // An explicit [3:0] range fixes four bits despite an eight-bit initializer:
 // ff is truncated to f, so both direct and dependent $clog2 are 4.
 // The child's parameter-bound range has the same result after flattening,
-// as does its packed reg whose four one bits read as analog integer 15.
+// as does its packed reg whose four one bits read as analog integer 15. Its
+// `initial` block sets the reg: §5.7 lets an analog assignment target only an
+// integer, real or string, and §7.3 writes a variable only from its own domain.
 //
 // HOST CARD VALUES (specification/Vague_Decisions.md VD-089). IEEE 1364-2005 12.2: an
 // untyped, unranged parameter takes "the type and range of the final override
@@ -28,6 +30,7 @@
 // value is still 4'shf, 4 bits, so it stays 4 (the third analog check).
 //! lrm 3.4.1
 //! lrm 9.14
+//! lrm 5.7
 //! inherited IEEE 1364-2005 4.10.1 12.2
 //! param knob = 255
 //! param knob_ranged = 255
@@ -41,11 +44,11 @@ module clog2_width_child;
   parameter [BITS-1:0] packed_child = 8'hff;
   localparam integer derived = $clog2(code);
   reg [BITS-1:0] bits;
+  initial bits = -1;
   analog begin
     `CHECKI("HDL override supplies its 64-bit width", $clog2(code), 64);
     `CHECKI("dependent default uses overridden HDL width", derived, 64);
     `CHECKI("child packed range follows its renamed parameter", $clog2(packed_child), 4);
-    bits = -1;
     `CHECKI("child reg width follows its renamed parameter", $clog2(bits), 4);
   end
 endmodule

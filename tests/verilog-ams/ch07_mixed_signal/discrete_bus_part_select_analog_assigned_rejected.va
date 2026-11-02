@@ -1,0 +1,25 @@
+// §5.7: "The left-hand side of a procedural assignment shall be scalar,
+// either an integer, real, or string identifier or an element of an
+// integer, real or string array." A part-select of a `reg` is none of these
+// (A.8.5 `analog_variable_lvalue` takes a variable and index expressions,
+// never a range), and §7.3 writes a variable only "from the context of
+// its domain". §7.3.1 Table 7-1 makes r[38:8] of a 40-bit `reg` legal to
+// READ from the analog context, not to assign.
+//
+// discrete_bus_part_select_above_31.va is the legal neighbour: the same
+// selects of a `reg` an `initial` block sets, read in the analog block.
+//
+//! lrm 5.7
+//! lrm 7.3
+//! reject-only E0316
+//! reject an analog assignment to a reg part-select
+//! neighbour discrete_bus_part_select_above_31.va
+`include "disciplines.vams"
+module ch7_discrete_bus_part_select_analog_assigned(p);
+  inout p; electrical p;
+  reg [39:0] r;
+  analog begin
+    r[38:8] = 1;
+    I(p) <+ V(p);
+  end
+endmodule

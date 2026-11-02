@@ -19,9 +19,8 @@
 // 7.5e-4 for both. `//! solve` frees the top's port-flow unknown so Kirchhoff
 // sets it. Three checks.
 //
-// port_access_hierarchical_potential_source_rejected.va is the invalid
-// neighbour: the same read of an instance driving its port through a
-// potential source, which VerA refuses (E0997, a limit, not an LRM rule).
+// port_access_hierarchical_potential_source.va is the same read of an
+// instance driving its port through a potential source.
 //
 //! lrm 5.4.3
 //! lrm 5.4.3:1002
