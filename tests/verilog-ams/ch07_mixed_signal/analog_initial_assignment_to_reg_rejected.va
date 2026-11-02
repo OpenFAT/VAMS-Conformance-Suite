@@ -1,0 +1,23 @@
+// §5.7's rule holds in an `analog initial` block too (§5.2.1: it is an
+// analog block that runs on the first evaluation only): "The left-hand side
+// of a procedural assignment shall be scalar, either an integer, real, or
+// string identifier or an element of an integer, real or string array."
+// A `reg` is none of these, and §7.3 writes a variable only "from the
+// context of its domain".
+//
+// wide_reg_part_select_above_31.va is the legal neighbour: a wide `reg`
+// the digital context sets, read in the analog block.
+//
+//! lrm 5.7
+//! lrm 5.2.1
+//! lrm 7.3
+//! reject-only E0316
+//! reject an analog procedural assignment targets an integer, real or string
+//! neighbour wide_reg_part_select_above_31.va
+`include "disciplines.vams"
+module ch7_analog_initial_assignment_to_reg(p);
+  inout p; electrical p;
+  reg [7:0] acc;
+  analog initial acc = 8'ha5;
+  analog I(p) <+ V(p);
+endmodule

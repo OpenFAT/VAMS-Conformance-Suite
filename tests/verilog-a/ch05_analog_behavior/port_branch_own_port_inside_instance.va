@@ -1,0 +1,40 @@
+// §3.12.1: "A port branch is a special type of branch used to access the
+// flow into a port of a module (see 5.4.3). It is a branch between the upper
+// and lower connections of the port." So `I(pb)` over `branch (<a>) pb;`
+// names the same quantity as `I(<a>)`: read inside an instance, the flow
+// into that instance's own port. The port-branch spelling of
+// port_access_own_port_inside_instance.va.
+//
+// BY HAND, at the bias V(p) = 0.5, each leaf `I(a) <+ V(a) / r`:
+//   u1 (r = 2k): I(pb) = 0.5 / 2000 = 2.5e-4
+//   u2 (r = 1k): I(pb) = 0.5 / 1000 = 5.0e-4
+// A tool that read the joined net's (the top port's) flow would give 7.5e-4
+// for both. Two checks.
+//
+//! lrm 3.12.1
+//! lrm 5.4.3
+//! bias V(p) = 0.5
+//! solve
+//! checks 2
+`include "check.vh"
+module pbop_2k(a);
+  inout a; electrical a;
+  branch (<a>) pb;
+  analog begin
+    I(a) <+ V(a) / 2k;
+    `CHECKR("u1's port branch carries its own port flow", I(pb), 2.5e-4, 1e-12);
+  end
+endmodule
+module pbop_1k(a);
+  inout a; electrical a;
+  branch (<a>) pb;
+  analog begin
+    I(a) <+ V(a) / 1k;
+    `CHECKR("u2's port branch carries its own port flow", I(pb), 5.0e-4, 1e-12);
+  end
+endmodule
+module pbop_top(p);
+  inout p; electrical p;
+  pbop_2k u1(p);
+  pbop_1k u2(p);
+endmodule

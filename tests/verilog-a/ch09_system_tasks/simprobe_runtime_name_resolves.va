@@ -1,0 +1,46 @@
+// §9.16: "The arguments inst_name and param_name are string values, either a
+// string literal, string parameter, or a string variable." and "If either the
+// inst_name or param_name cannot be resolved, and the optional expression is
+// not supplied, then an error shall be generated. If the optional expression
+// is supplied, its value will be returned in lieu of raising an error."
+//
+// Here inst_name is a string variable whose value the solution picks, so the
+// name exists only when the analog block runs. "Cannot be resolved" is about
+// whether the name exists, not when the tool learns it.
+//
+// BY HAND, at the bias V(p) = 0.75, V(n) = 0.25: V(c, d) = 0.5 > 0, so
+//   inst = "u_a", a sibling whose gain is overridden to 3.0: 3.0
+//   gone = "u_b", which names no sibling: the fallback, -1.0
+// Two checks. simprobe_string_parameter_name_resolves.va is the same probe
+// with the names in string parameters.
+//
+//! lrm 9.16
+//! bias V(p) = 0.75, V(n) = 0.25
+//! checks 2
+`include "check.vh"
+module simprobe_runtime_name_resolves(p, n);
+  inout p, n;
+  electrical p, n;
+  simprobe_rtn_dev #(.gain(3.0)) u_a(p, n);
+  simprobe_rtn_mon u_m(p, n);
+endmodule
+
+module simprobe_rtn_dev(c, d);
+  inout c, d;
+  electrical c, d;
+  parameter real gain = 1.0;
+  analog I(c, d) <+ gain * V(c, d);
+endmodule
+
+module simprobe_rtn_mon(c, d);
+  inout c, d;
+  electrical c, d;
+  string inst, gone;
+  analog begin
+    inst = (V(c, d) > 0.0) ? "u_a" : "u_b";
+    gone = (V(c, d) > 0.0) ? "u_b" : "u_a";
+    `CHECKX("a run-time name resolves to the sibling", $simprobe(inst, "gain", -1.0), 3.0);
+    `CHECKX("a run-time name with no sibling returns the fallback", $simprobe(gone, "gain", -1.0), -1.0);
+    I(c, d) <+ 0.0 * V(c, d);
+  end
+endmodule

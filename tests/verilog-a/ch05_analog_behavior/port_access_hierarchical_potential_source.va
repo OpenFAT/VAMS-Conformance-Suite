@@ -1,0 +1,40 @@
+// §5.4.3 makes `I(<u1.a>)` the flow into instance u1 through its port a,
+// and §6.7.1 lets the read be hierarchical. Nothing in either clause depends
+// on how u1 drives the port: through a potential source, the flow is that
+// source's current.
+//
+// THE CIRCUIT. An internal net n joins u1, `V(a) <+ 0.5`, and u2,
+// `I(a) <+ V(a) / r` with r = 1k. Nothing else touches n, so Kirchhoff's
+// current law at n says the flows into the two ports sum to zero.
+//
+// BY HAND: V(n) = 0.5, so
+//   I(<u2.a>) = 0.5 / 1000 = 5.0e-4   (u2 sinks it)
+//   I(<u1.a>) = -5.0e-4               (u1 sources it: the flow INTO u1 is negative)
+// Two checks.
+//
+// port_access_hierarchical_instance.va is the same read of an instance
+// whose branch at the port is a flow source.
+//
+//! lrm 5.4.3
+//! lrm 6.7.1
+//! solve
+//! checks 2
+`include "check.vh"
+module pah_v(a);
+  inout a; electrical a;
+  analog V(a) <+ 0.5;
+endmodule
+module pah_g(a);
+  inout a; electrical a;
+  parameter real r = 1k;
+  analog I(a) <+ V(a) / r;
+endmodule
+module pah_top;
+  electrical n;
+  pah_v u1(n);
+  pah_g #(.r(1k)) u2(n);
+  analog begin
+    `CHECKR("u1 sources the flow through its potential source", I(<u1.a>), -5.0e-4, 1e-12);
+    `CHECKR("u2 sinks it", I(<u2.a>), 5.0e-4, 1e-12);
+  end
+endmodule

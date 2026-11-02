@@ -1267,9 +1267,9 @@ pass	verilog-a/ch05_analog_behavior/one_unnamed_branch_under_every_spelling.va
 pass	verilog-a/ch05_analog_behavior/parallel_instances_own_unnamed_branch.va
 pass	verilog-a/ch05_analog_behavior/parameter_V_with_generic_access.va
 pass	verilog-a/ch05_analog_behavior/port_access_hierarchical_instance.va
-pass	verilog-a/ch05_analog_behavior/port_access_hierarchical_potential_source_rejected.va
-pass	verilog-a/ch05_analog_behavior/port_access_own_port_inside_instance_rejected.va
-pass	verilog-a/ch05_analog_behavior/port_branch_own_port_inside_instance_rejected.va
+pass	verilog-a/ch05_analog_behavior/port_access_hierarchical_potential_source.va
+pass	verilog-a/ch05_analog_behavior/port_access_own_port_inside_instance.va
+pass	verilog-a/ch05_analog_behavior/port_branch_own_port_inside_instance.va
 pass	verilog-a/ch05_analog_behavior/port_flow_contribution_invalid.va
 pass	verilog-a/ch05_analog_behavior/port_flow_includes_the_reactive_part.va
 pass	verilog-a/ch05_analog_behavior/port_flow_is_kirchhoff_at_the_port.va
@@ -1932,7 +1932,6 @@ pass	verilog-a/ch09_system_tasks/reject_clog2_wide_arithmetic.va
 pass	verilog-a/ch09_system_tasks/reject_clog2_wide_arithmetic_default.va
 pass	verilog-a/ch09_system_tasks/reject_clog2_wide_unsigned_carrier.va
 pass	verilog-a/ch09_system_tasks/reject_clog2_wide_widening.va
-pass	verilog-a/ch09_system_tasks/reject_simprobe_runtime_name.va
 pass	verilog-a/ch09_system_tasks/rejected_iterations_leave_no_file_side_effects.va
 pass	verilog-a/ch09_system_tasks/reserved_system_function_name_rejected.va
 pass	verilog-a/ch09_system_tasks/rewind.va
@@ -1974,6 +1973,7 @@ pass	verilog-a/ch09_system_tasks/simparam_string.va
 pass	verilog-a/ch09_system_tasks/simparam_timescale.va
 pass	verilog-a/ch09_system_tasks/simparam_unknown_no_fallback_rejected.va
 pass	verilog-a/ch09_system_tasks/simprobe.va
+pass	verilog-a/ch09_system_tasks/simprobe_runtime_name_resolves.va
 pass	verilog-a/ch09_system_tasks/simprobe_string_parameter_name_resolves.va
 pass	verilog-a/ch09_system_tasks/simulation_control_in_analog_context.va
 pass	verilog-a/ch09_system_tasks/sin.va
@@ -2426,10 +2426,12 @@ pass	verilog-ams/ch07_mixed_signal/absdelta_runtime_reversal.va
 pass	verilog-ams/ch07_mixed_signal/absdelta_runtime_time_precision.va
 pass	verilog-ams/ch07_mixed_signal/absdelta_runtime_time_tol.va
 pass	verilog-ams/ch07_mixed_signal/absdelta_samples_an_analog_signal.va
+pass	verilog-ams/ch07_mixed_signal/analog_assignment_to_reg_vector_rejected.va
 pass	verilog-ams/ch07_mixed_signal/analog_event.va
 pass	verilog-ams/ch07_mixed_signal/analog_event_variable_drives_continuous_assign.va
 pass	verilog-ams/ch07_mixed_signal/analog_event_variable_drives_wreal_assign.va
 pass	verilog-ams/ch07_mixed_signal/analog_function_from_digital_rejected.va
+pass	verilog-ams/ch07_mixed_signal/analog_initial_assignment_to_reg_rejected.va
 pass	verilog-ams/ch07_mixed_signal/analog_net_written_from_a_digital_process_rejected.va
 pass	verilog-ams/ch07_mixed_signal/analog_port.va
 pass	verilog-ams/ch07_mixed_signal/analog_probe_in_a_digital_expression.va
@@ -2512,7 +2514,7 @@ pass	verilog-ams/ch07_mixed_signal/discrete_bus_over31_rejected.va
 pass	verilog-ams/ch07_mixed_signal/discrete_bus_part_select_31.va
 pass	verilog-ams/ch07_mixed_signal/discrete_bus_part_select_32_rejected.va
 pass	verilog-ams/ch07_mixed_signal/discrete_bus_part_select_above_31.va
-pass	verilog-ams/ch07_mixed_signal/discrete_bus_part_select_above_31_analog_assigned.va
+pass	verilog-ams/ch07_mixed_signal/discrete_bus_part_select_analog_assigned_rejected.va
 pass	verilog-ams/ch07_mixed_signal/discrete_discipline.va
 pass	verilog-ams/ch07_mixed_signal/discrete_real_from_analog.va
 pass	verilog-ams/ch07_mixed_signal/display_binary_operand_analog.va
@@ -2607,10 +2609,6 @@ pass	verilog-ams/ch07_mixed_signal/timer_runtime_enable.va
 pass	verilog-ams/ch07_mixed_signal/unassigned_variable_reads_in_both_contexts.va
 pass	verilog-ams/ch07_mixed_signal/undeclared_interconnect_resolves_continuous.va
 pass	verilog-ams/ch07_mixed_signal/unit_delay_tick_alignment.va
-pass	verilog-ams/ch07_mixed_signal/wide_reg_held_across_evaluations.va
-pass	verilog-ams/ch07_mixed_signal/wide_reg_matches_digital_300.va
-pass	verilog-ams/ch07_mixed_signal/wide_reg_matches_digital_65600.va
-pass	verilog-ams/ch07_mixed_signal/wide_reg_matches_digital_72.va
 pass	verilog-ams/ch07_mixed_signal/wide_reg_part_select_above_31.va
 pass	verilog-ams/ch07_mixed_signal/wreal_port_joined_to_wand_rejected.va
 pass	verilog-ams/ch07_mixed_signal/x_case_equality_compared.va

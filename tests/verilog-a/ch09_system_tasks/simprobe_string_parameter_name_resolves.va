@@ -1,7 +1,7 @@
 // §9.16: "The arguments inst_name and param_name are string values, either a
-// string literal, string parameter, or a string variable." This is the legal
-// neighbour of reject_simprobe_runtime_name.va: the same probe with the
-// names in string parameters, which VerA resolves at compile time.
+// string literal, string parameter, or a string variable." The names are in
+// string parameters here; simprobe_runtime_name_resolves.va holds them in
+// string variables.
 //
 // The monitor u_m is a sibling of u_a under the top, and u_a's gain is
 // overridden to 3.0, so $simprobe(inst, par) with inst = "u_a" and
