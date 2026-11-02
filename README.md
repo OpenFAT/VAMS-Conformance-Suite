@@ -266,11 +266,11 @@ Measured 2026-11-02 by `.github/workflows/conformance.yml`, each tool at its lat
 
 | Language | Tool | Version | Passed | Failed | Not supported | Conformance | Time on common tests |
 |---|---|---|---:|---:|---:|---:|---:|
-| Verilog (IEEE 1364-2005) | VerA | vera 0.22.0 | 3611 | 0 | 0 | 100.0% | 108.0 s (3611) |
-| Verilog-A | VerA | vera 0.22.0 | 2452 | 0 | 0 | 100.0% | 2442.0 s (2452) |
-| Verilog-AMS | VerA | vera 0.22.0 | 752 | 1 | 0 | 99.9% | 2013.2 s (752) |
-| SPICE | ESPice | espice espice 0.3.0 (VerA 0.20.0 3fabee3cd24baefc72c32ea052d032e4757b10be; backends: cpu) | 926 | 111 | 36 | 86.3% | 373.8 s (553) |
-| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 600 | 437 | 36 | 55.9% | 346.1 s (553) |
+| Verilog (IEEE 1364-2005) | VerA | vera 0.22.0 | 3611 | 0 | 0 | 100.0% | 124.1 s (3611) |
+| Verilog-A | VerA | vera 0.22.0 | 2452 | 0 | 0 | 100.0% | 2528.2 s (2452) |
+| Verilog-AMS | VerA | vera 0.22.0 | 755 | 0 | 0 | 100.0% | 2068.3 s (755) |
+| SPICE | ESPice | espice espice 0.3.0 (VerA 0.20.0 3fabee3cd24baefc72c32ea052d032e4757b10be; backends: cpu) | 925 | 112 | 36 | 86.2% | 386.6 s (552) |
+| SPICE | ngspice | ** ngspice-45 : Circuit level simulation program | 601 | 436 | 36 | 56.0% | 185.5 s (552) |
 
 </details>
 <!-- conformance:end -->
