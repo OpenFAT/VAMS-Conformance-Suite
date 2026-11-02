@@ -12,7 +12,7 @@
 //! lrm 5.2.1
 //! lrm 7.3
 //! reject-only E0316
-//! reject an analog initial assignment to a reg
+//! reject an analog procedural assignment targets an integer, real or string
 //! neighbour wide_reg_part_select_above_31.va
 `include "disciplines.vams"
 module ch7_analog_initial_assignment_to_reg(p);

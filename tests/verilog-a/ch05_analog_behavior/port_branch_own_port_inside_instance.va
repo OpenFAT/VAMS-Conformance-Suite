@@ -17,18 +17,24 @@
 //! solve
 //! checks 2
 `include "check.vh"
-module pbop_g(a);
+module pbop_2k(a);
   inout a; electrical a;
-  parameter real r = 1k;
-  parameter real want = 0.0;
   branch (<a>) pb;
   analog begin
-    I(a) <+ V(a) / r;
-    `CHECKR("the port branch carries the instance's own port flow", I(pb), want, 1e-12);
+    I(a) <+ V(a) / 2k;
+    `CHECKR("u1's port branch carries its own port flow", I(pb), 2.5e-4, 1e-12);
+  end
+endmodule
+module pbop_1k(a);
+  inout a; electrical a;
+  branch (<a>) pb;
+  analog begin
+    I(a) <+ V(a) / 1k;
+    `CHECKR("u2's port branch carries its own port flow", I(pb), 5.0e-4, 1e-12);
   end
 endmodule
 module pbop_top(p);
   inout p; electrical p;
-  pbop_g #(.r(2k), .want(2.5e-4)) u1(p);
-  pbop_g #(.r(1k), .want(5.0e-4)) u2(p);
+  pbop_2k u1(p);
+  pbop_1k u2(p);
 endmodule

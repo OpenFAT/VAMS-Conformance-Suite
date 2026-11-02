@@ -5,8 +5,8 @@
 // is joined to, and nothing any other instance on that net conducts.
 //
 // THE CIRCUIT. Two leaves on the top's port p, each `I(a) <+ V(a) / r`: u1
-// with r = 2k, u2 with r = 1k. Each reads its own port flow and checks it
-// against the value its instance is handed as `want`.
+// with r = 2k (module paop_2k), u2 with r = 1k (paop_1k). Each reads its own
+// port flow.
 //
 // BY HAND, at the bias V(p) = 0.5:
 //   u1: I(<a>) = 0.5 / 2000 = 2.5e-4
@@ -23,17 +23,22 @@
 //! solve
 //! checks 2
 `include "check.vh"
-module paop_g(a);
+module paop_2k(a);
   inout a; electrical a;
-  parameter real r = 1k;
-  parameter real want = 0.0;
   analog begin
-    I(a) <+ V(a) / r;
-    `CHECKR("the instance's own port flow", I(<a>), want, 1e-12);
+    I(a) <+ V(a) / 2k;
+    `CHECKR("u1's own port flow", I(<a>), 2.5e-4, 1e-12);
+  end
+endmodule
+module paop_1k(a);
+  inout a; electrical a;
+  analog begin
+    I(a) <+ V(a) / 1k;
+    `CHECKR("u2's own port flow", I(<a>), 5.0e-4, 1e-12);
   end
 endmodule
 module paop_top(p);
   inout p; electrical p;
-  paop_g #(.r(2k), .want(2.5e-4)) u1(p);
-  paop_g #(.r(1k), .want(5.0e-4)) u2(p);
+  paop_2k u1(p);
+  paop_1k u2(p);
 endmodule
