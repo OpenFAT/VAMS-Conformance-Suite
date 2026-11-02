@@ -1,0 +1,25 @@
+// §5.7: "The left-hand side of a procedural assignment shall be scalar,
+// either an integer, real, or string identifier or an element of an
+// integer, real or string array." An element of an array of `reg`s (IEEE
+// 1364-2005 §4.9) is none of these, and §7.3 writes a variable only "from
+// the context of its domain". The subscript is a constant, so the element is
+// a fixed one, and the write is still the discrete domain's.
+//
+// ../ch09_system_tasks/clog2_reg_analog_conversion.va is the legal
+// neighbour: the same elements, set by an `initial` block and read in the
+// analog block (§7.3.1 Table 7-1).
+//
+//! lrm 5.7
+//! lrm 7.3
+//! reject-only E0316
+//! reject an analog procedural assignment targets an integer, real or string
+//! neighbour ../ch09_system_tasks/clog2_reg_analog_conversion.va
+`include "disciplines.vams"
+module ch7_analog_assignment_to_reg_array_element(p);
+  inout p; electrical p;
+  reg [3:0] mem[0:3];
+  analog begin
+    mem[1] = 1;
+    I(p) <+ V(p);
+  end
+endmodule

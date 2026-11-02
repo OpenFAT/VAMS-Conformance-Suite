@@ -6,15 +6,17 @@
 // its domain". §7.3.1 Table 7-1 makes r[38:8] of a 40-bit `reg` legal to
 // READ from the analog context, not to assign.
 //
-// The part-select target breaks A.8.5 as well as §5.7, so a tool may report
-// both; `reject`, not `reject-only`.
+// The part-select target breaks A.8.5 as well as §5.7, but both are one
+// fault in one target, so one error: `reject-only`. `38` and `8` are
+// constants and `r` is a vector, not an array, so an "array index is not a
+// constant" error beside it is a second, wrong verdict.
 //
 // discrete_bus_part_select_above_31.va is the legal neighbour: the same
 // selects of a `reg` an `initial` block sets, read in the analog block.
 //
 //! lrm 5.7
 //! lrm 7.3
-//! reject E0316
+//! reject-only E0316
 //! reject an analog procedural assignment targets an integer, real or string
 //! neighbour discrete_bus_part_select_above_31.va
 `include "disciplines.vams"
