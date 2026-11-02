@@ -1,0 +1,86 @@
+// Annex F.2.1 step 1, "Elaborate the design. After this step, every port in
+// the design has both its upper (actual) connection and its lower (formal)
+// connection defined", comes before step 4 examines any signal, so a child
+// that exists only once the design is elaborated is a child segment like any
+// other: a paramset instance (§6.4.2, §6.4), an instance array (IEEE
+// 1364-2005 §12.1.2) and a generate block's instance (§6.6).
+//
+// elaborated_children_bridged_at_top.va without its `connectrules` block.
+// Step 4 makes `n` electrical and u1.p, u2.p and u3.p ddiscrete (every
+// segment below them has only ddiscrete children), so the mixed ports are
+// exactly those three of the top module, and no connect statement matches
+// them: §7.8.4, "the port shall match one (and only one) connect statement".
+// Every port below joins ddiscrete to ddiscrete and is not mixed, so the
+// refusal names the top's ports, u1, u2 and u3, and no port of `w` or `x`.
+//
+//! lrm F.2.1
+//! lrm F.2.1:1
+//! lrm 7.8.4
+//! lrm 7.8.4:2
+//! reject-only E0927
+//! reject port `p` of `u1`
+//! reject port `p` of `u2`
+//! reject port `p` of `u3`
+//! neighbour elaborated_children_bridged_at_top.va
+`include "check.vh"
+
+module annex_f_ecr_leaf(p);
+  input p;
+  ddiscrete p;
+  parameter real k = 1.0;
+endmodule
+
+paramset annex_f_ecr_ps annex_f_ecr_leaf;
+  parameter real l = 2.0;
+  .k = l;
+endparamset
+
+module annex_f_ecr_wrap_ps(p);
+  input p;
+  annex_f_ecr_ps x(p);
+endmodule
+
+module annex_f_ecr_wrap_arr(p);
+  input p;
+  annex_f_ecr_leaf x[1:0](p);
+endmodule
+
+module annex_f_ecr_wrap_gen(p);
+  input p;
+  generate
+    if (1) begin : g
+      annex_f_ecr_leaf x(p);
+    end
+  endgenerate
+endmodule
+
+module annex_f_ecr_mid_ps(p);
+  input p;
+  annex_f_ecr_wrap_ps w(p);
+endmodule
+
+module annex_f_ecr_mid_arr(p);
+  input p;
+  annex_f_ecr_wrap_arr w(p);
+endmodule
+
+module annex_f_ecr_mid_gen(p);
+  input p;
+  annex_f_ecr_wrap_gen w(p);
+endmodule
+
+module annex_f_ecr_load(p);
+  inout p;
+  electrical p;
+  analog begin
+    I(p) <+ V(p) / 1000.0;
+    I(p) <+ -1.0e-3;
+  end
+endmodule
+
+module annex_f_ecr_top;
+  annex_f_ecr_load u0(n);
+  annex_f_ecr_mid_ps u1(n);
+  annex_f_ecr_mid_arr u2(n);
+  annex_f_ecr_mid_gen u3(n);
+endmodule
