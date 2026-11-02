@@ -1,0 +1,126 @@
+// Annex F.2.1 step 1, "Elaborate the design. After this step, every port in
+// the design has both its upper (actual) connection and its lower (formal)
+// connection defined", comes before step 4 examines any signal. So a child
+// that exists only once the design is elaborated is a child segment like any
+// other: an instance of a paramset is an instance of the module §6.4.2
+// selects for it during elaboration ("all of the behavior is determined by
+// the associated module", §6.4), an instance array is one instance per index
+// (IEEE 1364-2005 §12.1.2), and a generate block brings its instances into
+// existence (§6.6).
+//
+// THE DESIGN. `n` is an undeclared net in the top module. Below it hang
+// three chains, each `annex_f_ec_mid_*` -> `annex_f_ec_wrap_*` -> a
+// `ddiscrete` input port: through a paramset (u1), an instance array (u2)
+// and a generate block (u3). u0 is a 1 kohm shunt and a 1 mA source.
+//
+// RESOLUTION (F.2.1 step 4, post-order). Each leaf port is declared
+// ddiscrete (step 2), so every undeclared segment above it has only digital
+// children and is digital with ddiscrete (4.a, 4.b's single discipline):
+// u1.w.p, u1.p, and so on. `n` has u0.p (electrical) among its children, so
+// it is analog and electrical. The mixed ports are then exactly u1.p, u2.p
+// and u3.p, the top's three: every port below joins ddiscrete to ddiscrete.
+//
+// INSERTION. The three are input ports with an electrical upper and a
+// ddiscrete lower connection, which `connect annex_f_ec_a2d` bridges
+// (§7.6 Example 2's shape). Its connect_mode is the default, merged (§7.8.3:
+// "The default is merged"), which "group[s] all ports ... and use[s] just one
+// connector module, provided the module is the same" (§7.8.3.1): one
+// instance on `n`.
+//
+// DERIVATION (resolution_precedes_insertion.va's load count). The bridge
+// loads `n` with rin = 1 kohm:
+//
+//     V/1000 - 1e-3 + N*V/1000 = 0   =>   V = 1/(N+1)
+//
+//   N = 1 (one merged bridge at the top's ports)       -> V = 0.5
+//   N = 3 (a bridge per chain, inserted at a lower port) -> V = 0.25
+//
+// Neighbour: elaborated_children_mixed_port_rejected.va, the same design
+// with no connect statement.
+//
+//! lrm F.2.1
+//! lrm F.2.1:1
+//! lrm 6.4.2
+//! lrm 7.8.3.1
+//! lrm 7.8.4
+//! solve
+`include "check.vh"
+
+connectmodule annex_f_ec_a2d(el, cm);
+  input el;
+  output cm;
+  electrical el;
+  ddiscrete cm;
+  reg cm;
+  parameter real rin = 1000.0 from (0.0:inf);
+  analog I(el) <+ V(el) / rin;
+  initial cm = 1'b0;
+endmodule
+
+module annex_f_ec_leaf(p);
+  input p;
+  ddiscrete p;
+  parameter real k = 1.0;
+endmodule
+
+paramset annex_f_ec_ps annex_f_ec_leaf;
+  parameter real l = 2.0;
+  .k = l;
+endparamset
+
+module annex_f_ec_wrap_ps(p);
+  input p;
+  annex_f_ec_ps x(p);
+endmodule
+
+module annex_f_ec_wrap_arr(p);
+  input p;
+  annex_f_ec_leaf x[1:0](p);
+endmodule
+
+module annex_f_ec_wrap_gen(p);
+  input p;
+  generate
+    if (1) begin : g
+      annex_f_ec_leaf x(p);
+    end
+  endgenerate
+endmodule
+
+module annex_f_ec_mid_ps(p);
+  input p;
+  annex_f_ec_wrap_ps w(p);
+endmodule
+
+module annex_f_ec_mid_arr(p);
+  input p;
+  annex_f_ec_wrap_arr w(p);
+endmodule
+
+module annex_f_ec_mid_gen(p);
+  input p;
+  annex_f_ec_wrap_gen w(p);
+endmodule
+
+module annex_f_ec_load(p);
+  inout p;
+  electrical p;
+  analog begin
+    I(p) <+ V(p) / 1000.0;
+    I(p) <+ -1.0e-3;
+  end
+endmodule
+
+module annex_f_ec_top;
+  annex_f_ec_load u0(n);
+  annex_f_ec_mid_ps u1(n);
+  annex_f_ec_mid_arr u2(n);
+  annex_f_ec_mid_gen u3(n);
+  analog
+    `CHECK("F.2.1 n resolves electrical, u1-u3 resolve ddiscrete, one merged a2d at the top: V = 1/(1+1)",
+           V(u0.p), 0.5, 1e-12);
+endmodule
+
+connectrules annex_f_ec_rules;
+  connect annex_f_ec_a2d;
+endconnectrules
