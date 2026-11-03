@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "analysis": "op",
+  "purpose": "BSIM4's drain and source diffusion resistance, RSH x NRD/NRS with rdsMod=0 and RSH with rdsMod=1, as ngspice 45 stamps it (b4ld.c gdpr/gspr, gdtot/gstot): terminal currents of an nfet in triode with forward-biased junctions, saturated with m=2 and back bias, in reverse mode, of a saturated pfet, with NRD alone and with the geometry-based resistance (RGEOMOD=1, NF=2, DMCG).",
+  "oracle": {
+    "kind": "ngspice-45",
+    "derivation": "ngspice 45 (nixpkgs 5adc50831c25, tests/conformance flake.lock) on this deck, the binary raw's doubles. Every terminal is held by a source and the options pin Newton, so the bias is fixed. Measured agreement with ESPice after the fix: at most 1.7e-13 relative (i(vda6)); before it, rdsMod=0 shorted the diffusion resistors: i(vda1) 1.72e-1 off (2.525e-4 against 2.090e-4 A), i(vda3) 1.53e-1 in reverse mode, i(vda5) 7.3e-3 with NRD alone, i(vda6) 3.8e-3 with the geometry-based resistance, while rdsMod=1 agreed to 1e-14. rtol 1e-9 is four decades over the measured agreement, for libm and codegen differences between platforms; a 0.1% move fails.",
+    "command": "ngspice -n -b -r reference.raw bsim4_rsh_nrd.sp"
+  },
+  "origin": "#236 follow-up 7 (BSIM4 RSH/NRD operating point)",
+  "expect": {
+    "status": "success",
+    "plots": [
+      {
+        "name": "Operating Point",
+        "match": "exact",
+        "row_count": 1,
+        "columns": {
+          "i(vda1)": {
+            "values": [
+              -0.00020897166857469698
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsa1)": {
+            "values": [
+              0.00022100551519138112
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vda2)": {
+            "values": [
+              -0.0048117550540972
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsa2)": {
+            "values": [
+              0.004811755046093175
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vda3)": {
+            "values": [
+              0.002138085723449361
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsa3)": {
+            "values": [
+              -0.0021380857249513616
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vda4)": {
+            "values": [
+              0.0011929846143485107
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsa4)": {
+            "values": [
+              -0.0011929846123469225
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vda5)": {
+            "values": [
+              -0.00282503485635692
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsa5)": {
+            "values": [
+              0.002825034854525418
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vda6)": {
+            "values": [
+              -0.00279097692964303
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsa6)": {
+            "values": [
+              0.0027909769276419608
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vdr1)": {
+            "values": [
+              -0.0002092614190918375
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsr1)": {
+            "values": [
+              0.00022098723729773335
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vdr2)": {
+            "values": [
+              -0.004838242426961209
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsr2)": {
+            "values": [
+              0.004838242418985602
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vdr3)": {
+            "values": [
+              0.002147955007866409
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsr3)": {
+            "values": [
+              -0.0021479550093672964
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vdr4)": {
+            "values": [
+              0.0011933023947530014
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsr4)": {
+            "values": [
+              -0.0011933023927583847
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vdr5)": {
+            "values": [
+              -0.00284495856069418
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsr5)": {
+            "values": [
+              0.0028449585588804244
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vdr6)": {
+            "values": [
+              -0.0028107976711120863
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          },
+          "i(vsr6)": {
+            "values": [
+              0.0028107976691278506
+            ],
+            "unit": "A",
+            "rtol": 1e-09,
+            "atol": 1e-15
+          }
+        }
+      }
+    ]
+  },
+  "netlist_sha256": "fc76772f715155b033de221e36dbc8ffed4dac770fdd1205794025542e3562dd"
+}
