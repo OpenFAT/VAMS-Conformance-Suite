@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "analysis": "tran",
+  "purpose": "The analog initial block executes exactly once per analysis in every GPU transient lane: v(ini) = 1.0 for every .step point.",
+  "oracle": {
+    "kind": "analytic",
+    "derivation": "As a09_analog_initial_once: real runs defaults to 0.0 and the analog initial block performs runs = runs + 1.0 once per analysis (LRM 5.2.1, 8.2), so V(ini) = runs = 1.0 at every point, whatever rl; the ladder only loads V1 and never touches ini."
+  },
+  "expect": {
+    "status": "success",
+    "plots": [
+      {
+        "name": "Transient Analysis (rl=1000)",
+        "match": "samples",
+        "axis": {
+          "name": "time",
+          "values": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-12
+        },
+        "columns": {
+          "v(ini)": {
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "unit": "V",
+            "rtol": 0.0,
+            "atol": 1e-12
+          }
+        }
+      },
+      {
+        "name": "Transient Analysis (rl=2000)",
+        "match": "samples",
+        "axis": {
+          "name": "time",
+          "values": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-12
+        },
+        "columns": {
+          "v(ini)": {
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "unit": "V",
+            "rtol": 0.0,
+            "atol": 1e-12
+          }
+        }
+      },
+      {
+        "name": "Transient Analysis (rl=3000)",
+        "match": "samples",
+        "axis": {
+          "name": "time",
+          "values": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-12
+        },
+        "columns": {
+          "v(ini)": {
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "unit": "V",
+            "rtol": 0.0,
+            "atol": 1e-12
+          }
+        }
+      },
+      {
+        "name": "Transient Analysis (rl=4000)",
+        "match": "samples",
+        "axis": {
+          "name": "time",
+          "values": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-12
+        },
+        "columns": {
+          "v(ini)": {
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "unit": "V",
+            "rtol": 0.0,
+            "atol": 1e-12
+          }
+        }
+      },
+      {
+        "name": "Transient Analysis (rl=5000)",
+        "match": "samples",
+        "axis": {
+          "name": "time",
+          "values": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-12
+        },
+        "columns": {
+          "v(ini)": {
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "unit": "V",
+            "rtol": 0.0,
+            "atol": 1e-12
+          }
+        }
+      },
+      {
+        "name": "Transient Analysis (rl=6000)",
+        "match": "samples",
+        "axis": {
+          "name": "time",
+          "values": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-12
+        },
+        "columns": {
+          "v(ini)": {
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "unit": "V",
+            "rtol": 0.0,
+            "atol": 1e-12
+          }
+        }
+      },
+      {
+        "name": "Transient Analysis (rl=7000)",
+        "match": "samples",
+        "axis": {
+          "name": "time",
+          "values": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-12
+        },
+        "columns": {
+          "v(ini)": {
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "unit": "V",
+            "rtol": 0.0,
+            "atol": 1e-12
+          }
+        }
+      },
+      {
+        "name": "Transient Analysis (rl=8000)",
+        "match": "samples",
+        "axis": {
+          "name": "time",
+          "values": [
+            0.0,
+            0.25,
+            0.5,
+            0.75,
+            1.0
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-12
+        },
+        "columns": {
+          "v(ini)": {
+            "values": [
+              1.0,
+              1.0,
+              1.0,
+              1.0,
+              1.0
+            ],
+            "unit": "V",
+            "rtol": 0.0,
+            "atol": 1e-12
+          }
+        }
+      }
+    ],
+    "finite_values_required": true,
+    "all_requested_analyses_must_complete": true
+  },
+  "netlist_sha256": "09b131563a183ca5fb0785d63245cafa74cad5ccafcd8e9e428708d6789997c6",
+  "row": "A09"
+}
