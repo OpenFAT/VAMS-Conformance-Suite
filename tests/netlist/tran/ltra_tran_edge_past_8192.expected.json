@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "analysis": "tran",
+  "purpose": "LTRA history past its 8192-point capacity across a 10 ps edge: the compaction must keep the edge's corners, so a stale per-point bend cache shows at the delayed corners.",
+  "oracle": {
+    "kind": "analytic",
+    "derivation": "Matched near-lossless LTRA line, Z0=50 ohm, Td=10 ns, driven by PULSE(0 1 6n 10p 10p 500n 1u) through 50 ohm: v(a)=0.5 after the 6 ns edge, v(b)=v(a)(t-Td), a 10 ps ramp from 16 ns to 16.01 ns. The forced 1 ps step puts 10000 points behind the far end, past the 8192-point capacity. Rows sit on accepted far-end points (16 ns -0.5, +1.5, +9.5, +10.5 ps), where the ramp is the closed form; alpha*len = 2e-8 Np is inside rtol.",
+    "cross_check": "See the .sp header: ngspice-45 and ESPice 5275c0d3 on this netlist, and the planted cache bugs it catches.",
+    "command": "ngspice -n -b -r reference.raw <netlist>.sp"
+  },
+  "expect": {
+    "status": "success",
+    "plots": [
+      {
+        "name": "Transient Analysis",
+        "match": "samples",
+        "columns": {
+          "v(a)": {
+            "unit": "V",
+            "rtol": 2e-05,
+            "atol": 5e-06,
+            "values": [
+              0.0,
+              0.5,
+              0.5,
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          "v(b)": {
+            "unit": "V",
+            "rtol": 2e-05,
+            "atol": 5e-06,
+            "values": [
+              0.0,
+              0.0,
+              0.075,
+              0.475,
+              0.5,
+              0.5
+            ]
+          }
+        },
+        "axis": {
+          "name": "time",
+          "values": [
+            3e-09,
+            1.59995e-08,
+            1.60015e-08,
+            1.6009500000000002e-08,
+            1.60105e-08,
+            1.65e-08
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-15
+        }
+      }
+    ],
+    "finite_values_required": true,
+    "all_requested_analyses_must_complete": true
+  },
+  "netlist_sha256": "69f06ea8291a29b14debfc749983a0e2e1119fbb0a830893557a6400a90998cb"
+}
