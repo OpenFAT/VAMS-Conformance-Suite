@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "analysis": "tran",
+  "purpose": "A 1000-wide TXL batch: the device's history path under --backend auto; every line is a transparent 1 ns delay.",
+  "oracle": {
+    "kind": "analytic",
+    "derivation": "Z0=sqrt(L/C)=50, Td=length*sqrt(L*C)=0.2*5 ns=1 ns, Rs=RL=Z0 so GammaS=GammaL=0. v(a)=0.5 after the 10 ps source edge; v(b)=v(a) delayed by Td on every line. The 0.95 ns sample pins Td from below, 50 ps before arrival.",
+    "cross_check": "The same line at ten times the length is txl_tran_matched_step (ngspice-44.2 agrees to 5.1e-12); every line of this deck sees one drive, so v(b1), v(b500) and v(b1000) are equal.",
+    "command": "derived by hand; espice --backend cpu and --backend cuda give byte-identical raws on this netlist"
+  },
+  "expect": {
+    "status": "success",
+    "plots": [
+      {
+        "name": "Transient Analysis",
+        "match": "samples",
+        "columns": {
+          "v(a1)": {
+            "unit": "V",
+            "rtol": 2e-05,
+            "atol": 5e-07,
+            "values": [
+              0.5,
+              0.5,
+              0.5,
+              0.5
+            ]
+          },
+          "v(b1)": {
+            "unit": "V",
+            "rtol": 2e-05,
+            "atol": 5e-07,
+            "values": [
+              0.0,
+              0.0,
+              0.5,
+              0.5
+            ]
+          },
+          "v(b500)": {
+            "unit": "V",
+            "rtol": 2e-05,
+            "atol": 5e-07,
+            "values": [
+              0.0,
+              0.0,
+              0.5,
+              0.5
+            ]
+          },
+          "v(b1000)": {
+            "unit": "V",
+            "rtol": 2e-05,
+            "atol": 5e-07,
+            "values": [
+              0.0,
+              0.0,
+              0.5,
+              0.5
+            ]
+          }
+        },
+        "axis": {
+          "name": "time",
+          "values": [
+            5e-10,
+            9.5e-10,
+            1.2e-09,
+            1.4e-09
+          ],
+          "rtol": 1e-09,
+          "atol": 1e-15
+        }
+      }
+    ],
+    "finite_values_required": true,
+    "all_requested_analyses_must_complete": true
+  },
+  "netlist_sha256": "d4990eb6e8462dcf3586dabd9564e44c293883d78a5fcf4a694b07903e001741"
+}
