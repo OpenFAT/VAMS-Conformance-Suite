@@ -4,8 +4,8 @@
   "purpose": "X01: TXL run whose live history depth exceeds the native capacity bound 2048 (txl_native).",
   "oracle": {
     "kind": "analytic",
-    "derivation": "Matched near-lossless line, Z0=sqrt(l/c)=50, GammaS=GammaL=0, so v(b)(t)=v(a)(t-Td) exactly. The forced 1 ps step makes the far-end value depend on a history entry Td/1ps accepted points back, deeper than the 2048 (txl_native) bound, and compaction is disabled. Source step at 6 ns; v(a)=0.5 after it, v(b)=0.5 after it plus Td. The sample 100 ps before the far-end edge is the gate: a discarded still-live entry republishes the edge at the capacity horizon instead.",
-    "cross_check": "Independent ngspice-44.2 run of this exact netlist agrees with every tabulated value; the per-fixture bound is stated in the .sp header.",
+    "derivation": "Matched near-lossless line, Z0=sqrt(l/c)=50, GammaS=GammaL=0, so v(b)(t)=v(a)(t-Td) exactly. The forced 1 ps step makes the far-end value depend on a history entry Td/1ps accepted points back, deeper than the 2048 (txl_native) bound, and compaction is disabled. Source step at 6 ns; v(a)=0.5 after it, v(b)=0.5 after it plus Td. The sample 100 ps before the far-end edge is the gate: a discarded still-live entry republishes the edge at the capacity horizon instead. The far end follows the source's 10 ps ramp Td later: at the accepted points 1.5 ps and 9.5 ps into it, v = 0.5*(t - Td - 6 ns)/10 ps = 0.075 and 0.475 (ESPice test/tline-cache).",
+    "cross_check": "Independent ngspice-44.2 run of this exact netlist agrees with every tabulated value; the per-fixture bound is stated in the .sp header. The two edge rows: ngspice-45 on this netlist gives both to 1.7e-12.",
     "command": "ngspice -n -b -r reference.raw <netlist>.sp"
   },
   "expect": {
@@ -24,6 +24,8 @@
               0.5,
               0.5,
               0.5,
+              0.5,
+              0.5,
               0.5
             ]
           },
@@ -35,6 +37,8 @@
               0.0,
               0.0,
               0.0,
+              0.075,
+              0.475,
               0.5,
               0.5
             ]
@@ -46,6 +50,8 @@
             3e-09,
             8e-09,
             1.09e-08,
+            1.10015e-08,
+            1.10095e-08,
             1.2e-08,
             1.29e-08
           ],
@@ -57,5 +63,5 @@
     "finite_values_required": true,
     "all_requested_analyses_must_complete": true
   },
-  "netlist_sha256": "f900faed360f9e9fcc0f8b30d1c7ac61ea53103d6e8f1725aa3be4ed80049615"
+  "netlist_sha256": "f304f87401935432d79518fed6c12d4eada6127646372c4cfb72f2b3693f009d"
 }

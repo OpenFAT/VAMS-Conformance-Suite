@@ -73,6 +73,14 @@
 *   agrees with the closed form to 1.22e-5, of which 1.54e-5 is the allowed
 *   10 ps interpolation bound -- i.e. indistinguishable from exact, which
 *   isolates the defect to the capacity and not to the model or the source.
+* Dense rows (ESPice test/tline-cache): the same closed form every 0.1 ns
+* from 10.1 to 25 ns, 151 rows with the 9.9 ns one. The seven hand rows miss a
+* stale per-point bend cache (models/ltra.va hb[k], ESPice 51f3ed29), whose
+* holes open between them: with the bend refresh around a dropped point
+* removed, v(b) is 0.146 V off at 17.8 ns (16 rows over); dropping the point
+* chosen at the previous timepoint, 5.3e-4 V off at 11.9 ns (8 rows over).
+* ngspice-45 on this netlist is within 1.35e-7 of all 151 rows, ESPice
+* 5275c0d3 within 1.38e-7.
 * Expected results: ltra_tran_long_run_past_8192.expected.json
 Vin in 0 SIN(0 1 250meg)
 Rs in a 50

@@ -20,6 +20,15 @@
 * points, under the bound) puts the edge at 11.012 ns on both, so the defect is
 * the capacity, not the model fit.
 * Independent ngspice-44.2 agreement at the sampled times: <= 4.0e-12.
+* Edge rows (ESPice test/tline-cache): the far end follows the 10 ps source
+* ramp Td later, so at the accepted points 1.5 ps and 9.5 ps into it
+*   t = 11.0015 ns  v(b) = 0.075     t = 11.0095 ns  v(b) = 0.475
+* Those are the points one step inside the corners: a history that drops a
+* corner reads 0.0625 and 0.4625 there. ESPice with txl.va's drop-loss refresh
+* of the new tail removed (ESPice fcfab5ec's hb[k]) does exactly that; the
+* five rows above stay green under it. ngspice-45 and ESPice 5275c0d3 give
+* both values to 1.7e-12. The rows sit on accepted times, so a change to the
+* step grid moves them.
 * Expected results: txl_tran_long_run_past_2048.expected.json
 Vin in 0 PULSE(0 1 6n 10p 10p 500n 1u)
 Rs in a 50
